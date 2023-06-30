@@ -24,6 +24,9 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
               iconTheme: const IconThemeData(color: primaryColor))),
+      routes: {
+        OnboardingScreen.routeName: (context) => const OnboardingScreen(),
+      }, // theme give
       home: const OnboardingScreen(),
     );
   }

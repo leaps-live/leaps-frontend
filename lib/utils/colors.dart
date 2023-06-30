@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-const buttonColor = Color.fromRGBO(145, 71, 255, 1);
-const backgroundColor = Colors.white;
-const secondaryBackgroundColor = Color.fromRGBO(239, 239, 241, 1);
-const primaryColor = Colors.black;
+const backgroundColor = Color.fromRGBO(246, 246, 246, 1);
+const secondaryBackgroundColor = Colors.white;
+const primaryColor = Color.fromRGBO(217, 49, 81, 1);

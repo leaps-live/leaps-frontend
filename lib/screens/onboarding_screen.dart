@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget {
+  static const routeName = '/onboarding';
   const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('LEAPS'), leading: Icon(Icons.abc)),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'LEAPS: Livestreaming Engagement for all People and Sports',
     );
   }
 }
