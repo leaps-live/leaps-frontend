@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'LEAPS = Live-streaming Engagement for All People and Sports',
       theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: backgroundColor,
