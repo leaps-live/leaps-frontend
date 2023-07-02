@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/userprofile_screen.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -25,7 +26,7 @@ class OnboardingScreen extends StatelessWidget {
               child: CustomButton(
                 text: 'User Profile',
                 onTap: () {
-                  Navigator.pushNamed(context, OnboardingScreen.routeName);
+                  Navigator.pushNamed(context, UserProfileScreen.routeName);
                 },
               )),
         ],
