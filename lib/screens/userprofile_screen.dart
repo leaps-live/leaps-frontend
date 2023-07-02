@@ -9,6 +9,7 @@ class UserProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: backgroundColor,
             title: const Row(
                 children: [Icon(Icons.menu, color: Colors.black, size: 30)])),
