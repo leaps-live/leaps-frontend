@@ -11,7 +11,7 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 18.0),
+      padding: const EdgeInsets.symmetric(horizontal: 18.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

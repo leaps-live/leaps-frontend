@@ -119,8 +119,8 @@ class HeroBar extends StatelessWidget {
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.settings,
-                      size: 25.0, color: Colors.black),
+                  icon:
+                      const Icon(Icons.wallet, size: 25.0, color: Colors.black),
                   label: const Text('Wallet',
                       style: TextStyle(
                           fontFamily: 'Inter',
@@ -131,7 +131,7 @@ class HeroBar extends StatelessWidget {
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.settings,
+                  icon: const Icon(Icons.history,
                       size: 25.0, color: Colors.black),
                   label: const Text('Watch History',
                       style: TextStyle(
@@ -143,7 +143,7 @@ class HeroBar extends StatelessWidget {
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.settings,
+                  icon: const Icon(Icons.favorite,
                       size: 25.0, color: Colors.black),
                   label: const Text('Likes',
                       style: TextStyle(
@@ -155,7 +155,7 @@ class HeroBar extends StatelessWidget {
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.settings,
+                  icon: const Icon(Icons.comment,
                       size: 25.0, color: Colors.black),
                   label: const Text('Comments',
                       style: TextStyle(
@@ -167,7 +167,7 @@ class HeroBar extends StatelessWidget {
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.settings,
+                  icon: const Icon(Icons.download,
                       size: 25.0, color: Colors.black),
                   label: const Text('Downloads',
                       style: TextStyle(
