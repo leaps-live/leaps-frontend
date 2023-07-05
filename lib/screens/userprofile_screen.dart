@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:leaps_frontend/widgets/nav_drawer.dart';
 
 class UserProfileScreen extends StatelessWidget {
   static const routeName = '/user';
@@ -8,7 +9,28 @@ class UserProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: _buildAppBar(),
+        drawer: const NavDrawer(),
+        // appBar: _buildAppBar(),
+        appBar: AppBar(
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(Icons.menu, color: Colors.black, size: 30),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
+              },
+            ),
+            backgroundColor: backgroundColor,
+            title: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Icon(Icons.menu, color: Colors.black, size: 30),
+                  Icon(Icons.qr_code_scanner, color: Colors.black, size: 30)
+                ])),
         body: ListView(
           children: const [HeroBar()],
         ));
