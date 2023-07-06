@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:leaps_frontend/widgets/bottom_navigation.dart';
 import 'package:leaps_frontend/widgets/nav_drawer.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -33,7 +34,8 @@ class UserProfileScreen extends StatelessWidget {
                 ])),
         body: ListView(
           children: const [HeroBar()],
-        ));
+        ),
+        bottomNavigationBar: const BottomNavbar());
   }
 
   AppBar _buildAppBar() {
@@ -78,12 +80,13 @@ class HeroBar extends StatelessWidget {
                 Column(children: [
                   Text(
                     'Ruolin',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     textAlign: TextAlign.left,
                   ),
                   Text(
                     'Ruov',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
                     textAlign: TextAlign.left,
                   )
                 ])
@@ -91,23 +94,23 @@ class HeroBar extends StatelessWidget {
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.edit_square,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Edit Profile',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center)),
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.settings,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Settings',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center))
             ],
@@ -130,72 +133,72 @@ class HeroBar extends StatelessWidget {
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.edit_square,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Coins',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center)),
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
                   icon:
-                      const Icon(Icons.wallet, size: 25.0, color: Colors.black),
+                      const Icon(Icons.wallet, size: 21.0, color: Colors.black),
                   label: const Text('Wallet',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center)),
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.history,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Watch History',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center)),
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.favorite,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Likes',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center)),
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.comment,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Comments',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center)),
               const SizedBox(height: 10),
               TextButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.download,
-                      size: 25.0, color: Colors.black),
+                      size: 21.0, color: Colors.black),
                   label: const Text('Downloads',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.normal,
-                          fontSize: 21,
+                          fontSize: 17,
                           color: Colors.black),
                       textAlign: TextAlign.center))
             ],
