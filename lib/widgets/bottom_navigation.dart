@@ -43,25 +43,50 @@ class _BottomNavBarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      unselectedItemColor: Colors.grey,
+      unselectedFontSize: 14,
+      selectedItemColor: primaryColor,
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.home,
+              color: primaryColor,
+            ),
             icon: Icon(Icons.home),
             label: "Home",
             backgroundColor: primaryColor),
         BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.favorite,
+              color: primaryColor,
+            ),
             icon: Icon(Icons.favorite),
             label: 'For you',
             backgroundColor: primaryColor),
         BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.add,
+              color: primaryColor,
+            ),
             icon: Icon(Icons.add),
             label: 'Create',
             backgroundColor: primaryColor),
         BottomNavigationBarItem(
-            icon: Icon(Icons.star_rounded),
+            activeIcon: Icon(
+              Icons.star_rounded,
+              color: primaryColor,
+            ),
+            icon: Icon(
+              Icons.star_rounded,
+            ),
             label: 'Career',
             backgroundColor: primaryColor),
         BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.person,
+              color: primaryColor,
+            ),
             icon: Icon(Icons.person),
             label: 'Profile',
             backgroundColor: primaryColor),
