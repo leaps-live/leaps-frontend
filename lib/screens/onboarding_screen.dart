@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
+import 'package:leaps_frontend/screens/createleague_screen.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -27,6 +28,14 @@ class OnboardingScreen extends StatelessWidget {
                 text: 'User Profile',
                 onTap: () {
                   Navigator.pushNamed(context, UserProfileScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Create League',
+                onTap: () {
+                  Navigator.pushNamed(context, CreateLeagueScreen.routeName);
                 },
               )),
         ],
