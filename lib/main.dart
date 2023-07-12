@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
               iconTheme: const IconThemeData(color: primaryColor))),
       routes: {
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
-        UserProfileScreen.routeName: (context) => const UserProfileScreen()
+        UserProfileScreen.routeName: (context) => const UserProfileScreen(),
+        CareerProfileScreen.routeName: (context) => const CareerProfileScreen()
       }, // theme give
       home: const OnboardingScreen(),
     );

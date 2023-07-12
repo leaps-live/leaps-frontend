@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
+import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -47,10 +49,10 @@ class _BottomNavBarState extends State<BottomNavbar> {
         Navigator.pushNamed(context, OnboardingScreen.routeName);
         break;
       case 3:
-        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        Navigator.pushNamed(context, CareerProfileScreen.routeName);
         break;
       case 4:
-        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        Navigator.pushNamed(context, UserProfileScreen.routeName);
         break;
     }
     setState(() {

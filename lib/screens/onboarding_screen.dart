@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
+import 'package:leaps_frontend/widgets/bottom_navigation.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -11,26 +12,27 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Welcome to \nLeaps',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
-            textAlign: TextAlign.center,
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Welcome to \nLeaps',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: CustomButton(
+                    text: 'User Profile',
+                    onTap: () {
+                      Navigator.pushNamed(context, UserProfileScreen.routeName);
+                    },
+                  )),
+            ],
           ),
-          const SizedBox(height: 20),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'User Profile',
-                onTap: () {
-                  Navigator.pushNamed(context, UserProfileScreen.routeName);
-                },
-              )),
-        ],
-      ),
-    ));
+        ),
+        bottomNavigationBar: const BottomNavbar());
   }
 }
