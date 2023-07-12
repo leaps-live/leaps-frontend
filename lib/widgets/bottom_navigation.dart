@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -35,6 +36,23 @@ class _BottomNavBarState extends State<BottomNavbar> {
   ];
 
   void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        break;
+      case 1:
+        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        break;
+      case 2:
+        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        break;
+      case 3:
+        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        break;
+      case 4:
+        Navigator.pushNamed(context, OnboardingScreen.routeName);
+        break;
+    }
     setState(() {
       _selectedIndex = index;
     });
