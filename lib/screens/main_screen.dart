@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/careerprofile_screen.dart';
+import 'package:leaps_frontend/screens/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const OnboardingScreen(),
     const OnboardingScreen(),
-    const OnboardingScreen(),
+    const CreateCenterScreen(),
     const CareerProfileScreen(),
     const UserProfileScreen(),
   ];
