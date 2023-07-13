@@ -3,7 +3,6 @@ import 'package:leaps_frontend/screens/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
-import 'package:leaps_frontend/widgets/bottom_navigation.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

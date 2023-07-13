@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/careerprofile_screen.dart';
+import 'package:leaps_frontend/screens/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
+import 'package:leaps_frontend/screens/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
@@ -31,8 +33,10 @@ class MyApp extends StatelessWidget {
       routes: {
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
         UserProfileScreen.routeName: (context) => const UserProfileScreen(),
-        CareerProfileScreen.routeName: (context) => const CareerProfileScreen()
-      }, // theme give
+        CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
+        CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
+        SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
+      },
       home: const MainScreen(),
     );
   }
