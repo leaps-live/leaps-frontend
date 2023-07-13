@@ -19,7 +19,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Create a Team',
+          'Edit a Team',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),

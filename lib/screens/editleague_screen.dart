@@ -16,7 +16,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Create a league',
+          'Edit a league',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
