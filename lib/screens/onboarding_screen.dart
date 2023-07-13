@@ -4,6 +4,7 @@ import 'package:leaps_frontend/screens/createleague_screen.dart';
 import 'package:leaps_frontend/screens/createteam_screen.dart';
 import 'package:leaps_frontend/screens/editteam_screen.dart';
 import 'package:leaps_frontend/screens/editleague_screen.dart';
+import 'package:leaps_frontend/screens/editgame_screen.dart';
 import 'package:leaps_frontend/screens/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/creategame_screen.dart';
 
@@ -81,6 +82,14 @@ class OnboardingScreen extends StatelessWidget {
                 text: 'Create Game',
                 onTap: () {
                   Navigator.pushNamed(context, CreateGameScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Edit Game',
+                onTap: () {
+                  Navigator.pushNamed(context, EditGameScreen.routeName);
                 },
               )),
         ],

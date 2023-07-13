@@ -4,6 +4,7 @@ import 'package:leaps_frontend/screens/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/creategame_screen.dart';
 import 'package:leaps_frontend/screens/editleague_screen.dart';
 import 'package:leaps_frontend/screens/editteam_screen.dart';
+import 'package:leaps_frontend/screens/editgame_screen.dart';
 
 class CreateCenterScreen extends StatefulWidget {
   const CreateCenterScreen({super.key});
@@ -149,7 +150,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                       child: Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text(
-                          "Placeholder",
+                          "Los Angeles Lakers",
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
@@ -171,29 +172,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                       child: Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text(
-                          "Placeholder",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, EditTeamScreen.routeName);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Placeholder",
+                          "Seattle Supersonics",
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
@@ -222,7 +201,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                       child: Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text(
-                          "Placeholder",
+                          "NBA",
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
@@ -244,7 +223,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                       child: Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text(
-                          "Placeholder",
+                          "NCAA",
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
@@ -252,9 +231,16 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 36,
+              ),
+              const Text(
+                "Manage Games",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, EditLeagueScreen.routeName);
+                  Navigator.pushNamed(context, EditGameScreen.routeName);
                 },
                 child: Row(
                   children: [
@@ -266,7 +252,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                       child: Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text(
-                          "Placeholder",
+                          "UWJE vs UCLA",
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
