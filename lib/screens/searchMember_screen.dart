@@ -47,12 +47,12 @@ class SearchMemberScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              'PlaceHolder',
+              'PlaceHolder!!!!!',
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 16),
             const Text(
-              'PlaceHolder',
+              'PlaceHolder???',
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 16),

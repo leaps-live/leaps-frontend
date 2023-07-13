@@ -52,12 +52,7 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                   });
                 }
               },
-              items: <String>[
-                'Option 1',
-                'basketball',
-                'football',
-                'tennis',
-              ]
+              items: <String>['basketball', 'football', 'tennis', 'volleyball']
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
