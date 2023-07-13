@@ -9,6 +9,7 @@ import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/creategame_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 void main() {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         EditLeagueScreen.routeName: (context) => const EditLeagueScreen(),
         SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
         CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
+        CreateGameScreen.routeName: (context) => const CreateGameScreen(),
       },
       home: const MainScreen(),
     );
