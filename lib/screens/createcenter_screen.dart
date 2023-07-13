@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/createteam_screen.dart';
 import 'package:leaps_frontend/screens/createLeague_screen.dart';
+import 'package:leaps_frontend/screens/creategame_screen.dart';
 import 'package:leaps_frontend/screens/editleague_screen.dart';
 import 'package:leaps_frontend/screens/editteam_screen.dart';
 
@@ -92,7 +93,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, CreateGameScreen.routeName);
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.sports_basketball), // 添加图标
