@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+import 'package:leaps_frontend/screens/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/createLeague_screen.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
-=======
->>>>>>> 6585ee25f6ac991827f71d3978261572960076d0
 import 'package:leaps_frontend/utils/colors.dart';
 
 void main() {
@@ -31,22 +30,26 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
               iconTheme: const IconThemeData(color: primaryColor))),
-<<<<<<< HEAD
-      routes: {
-        OnboardingScreen.routeName: (context) => const OnboardingScreen(),
-        UserProfileScreen.routeName: (context) => const UserProfileScreen(),
-        CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
-        SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
-      }, // theme give
-      home: const OnboardingScreen(),
-=======
+      // routes: {
+      //   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
+      //   UserProfileScreen.routeName: (context) => const UserProfileScreen(),
+      //   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
+      //   SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
+      // }, // theme give
+      // home: const OnboardingScreen(),
       // routes: {
       //   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
       //   UserProfileScreen.routeName: (context) => const UserProfileScreen(),
       //   CareerProfileScreen.routeName: (context) => const CareerProfileScreen()
       // }, // theme give
+      routes: {
+        OnboardingScreen.routeName: (context) => const OnboardingScreen(),
+        UserProfileScreen.routeName: (context) => const UserProfileScreen(),
+        CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
+        CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
+        SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
+      },
       home: const MainScreen(),
->>>>>>> 6585ee25f6ac991827f71d3978261572960076d0
     );
   }
 }

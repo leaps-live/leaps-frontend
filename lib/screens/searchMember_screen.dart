@@ -1,73 +1,162 @@
 import 'package:flutter/material.dart';
 
-class SearchMemberScreen extends StatelessWidget {
+class SearchMemberScreen extends StatefulWidget {
+  const SearchMemberScreen({super.key});
   static const routeName = '/search_member';
 
-  const SearchMemberScreen({super.key});
+  @override
+  State<SearchMemberScreen> createState() => _SearchMemberScreenState();
+}
+
+class _SearchMemberScreenState extends State<SearchMemberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     'Another Page',
-      //     style: TextStyle(color: Colors.black),
-      //   ),
-      //   iconTheme: const IconThemeData(color: Colors.black),
-      // ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: const Row(
+      body: SafeArea(
+        child: Container(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 350,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 8.0), // 左边距
+                        child: Icon(Icons.search),
+                      ),
+                      const SizedBox(width: 8), // 间距
+                      const Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 8.0), // 左边距
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "Search by username",
+                              hintStyle: TextStyle(color: Colors.black),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              left: BorderSide(color: Colors.black),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: const Text("Cancel"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
                 children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          hintText: 'Search by username',
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black))),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 40),
+                    child: Icon(
+                      Icons.abc,
+                      size: 50,
                     ),
                   ),
-                  SizedBox(width: 10.0),
-                  Text(
-                    'Cancel',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Placeholder",
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-            const Text(
-              'PlaceHolder',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'PlaceHolder!!!!!',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'PlaceHolder???',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'PlaceHolder',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // 返回到前一个页面
-              },
-              child: const Text('Go Back'),
-            ),
-          ],
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 40),
+                    child: Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Placeholder",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 40),
+                    child: Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Placeholder",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 40),
+                    child: Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Placeholder",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+            ],
+          ),
         ),
       ),
     );

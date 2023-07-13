@@ -81,12 +81,6 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
             const SizedBox(height: 16.0),
             GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => SearchMemberScreen(),
-                //   ),
-                // );
                 Navigator.pushNamed(context, SearchMemberScreen.routeName);
               },
               child: Container(
@@ -105,8 +99,120 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 16.0,
+            ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                        child: const Text(
+                          "Placeholder",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Admin",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                        child: const Text(
+                          "Placeholder",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Coach",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                        child: const Text(
+                          "Placeholder",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Player",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.abc,
+                      size: 50,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                        child: const Text(
+                          "Placeholder",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
+                      child: const Text(
+                        "Player",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
 
-            const SizedBox(height: 50.0),
+            const SizedBox(height: 70.0),
             Center(
               child: ElevatedButton(
                 onPressed: () {
