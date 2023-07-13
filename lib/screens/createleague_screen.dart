@@ -10,7 +10,7 @@ class CreateLeagueScreen extends StatefulWidget {
 }
 
 class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
-  String? selectedValue;
+  String selectedValue = "Please Select";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,7 +35,7 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 25.0),
 
             //category dropdown button
 
@@ -52,7 +52,13 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                   });
                 }
               },
-              items: <String>['basketball', 'football', 'tennis', 'volleyball']
+              items: <String>[
+                'Please Select',
+                'basketball',
+                'football',
+                'tennis',
+                'volleyball'
+              ]
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -74,18 +80,19 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
               // maxLines: 3,
             ),
             const SizedBox(height: 16.0),
+
             const Text(
-              'Add Member',
+              'Add Teams',
               style: TextStyle(fontSize: 17),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 8.0),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, SearchMemberScreen.routeName);
               },
               child: Container(
-                width: 36,
-                height: 36,
+                width: 30,
+                height: 30,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.blue,
@@ -100,7 +107,7 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
               ),
             ),
             const SizedBox(
-              height: 16.0,
+              height: 5.0,
             ),
             Column(
               children: [
@@ -115,21 +122,11 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                         margin: const EdgeInsets.only(left: 10), // 设置左边距为10
                         child: const Text(
                           "Placeholder",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 17),
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
-                      child: const Text(
-                        "Admin",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
                   ],
-                ),
-                const SizedBox(
-                  height: 16,
                 ),
                 Row(
                   children: [
@@ -142,21 +139,11 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                         margin: const EdgeInsets.only(left: 10), // 设置左边距为10
                         child: const Text(
                           "Placeholder",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 17),
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
-                      child: const Text(
-                        "Coach",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
                   ],
-                ),
-                const SizedBox(
-                  height: 16,
                 ),
                 Row(
                   children: [
@@ -169,21 +156,11 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                         margin: const EdgeInsets.only(left: 10), // 设置左边距为10
                         child: const Text(
                           "Placeholder",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 17),
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
-                      child: const Text(
-                        "Player",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
                   ],
-                ),
-                const SizedBox(
-                  height: 16,
                 ),
                 Row(
                   children: [
@@ -196,19 +173,52 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                         margin: const EdgeInsets.only(left: 10), // 设置左边距为10
                         child: const Text(
                           "Placeholder",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 17),
                         ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10), // 设置左边距为10
-                      child: const Text(
-                        "Player",
-                        style: TextStyle(fontSize: 20),
                       ),
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Row(
+                  children: [
+                    Text(
+                      'Add Admins',
+                      style: TextStyle(fontSize: 17),
+                    ),
+                    SizedBox(height: 8.0),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, SearchMemberScreen.routeName);
+                      },
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue,
+                        ),
+                        child: const CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
 
