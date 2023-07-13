@@ -20,29 +20,6 @@ class _BottomNavBarState extends State<BottomNavbar> {
     const CareerProfileScreen()
   ];
 
-  // void _onItemTapped(int index) {
-  //   switch (index) {
-  //     case 0:
-  //       Navigator.pushNamed(context, OnboardingScreen.routeName);
-  //       break;
-  //     case 1:
-  //       Navigator.pushNamed(context, OnboardingScreen.routeName);
-  //       break;
-  //     case 2:
-  //       Navigator.pushNamed(context, OnboardingScreen.routeName);
-  //       break;
-  //     case 3:
-  //       Navigator.pushNamed(context, CareerProfileScreen.routeName);
-  //       break;
-  //     case 4:
-  //       Navigator.pushNamed(context, UserProfileScreen.routeName);
-  //       break;
-  //   }
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
