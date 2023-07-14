@@ -5,6 +5,7 @@ import 'package:leaps_frontend/screens/creategame_screen.dart';
 import 'package:leaps_frontend/screens/editleague_screen.dart';
 import 'package:leaps_frontend/screens/editteam_screen.dart';
 import 'package:leaps_frontend/screens/editgame_screen.dart';
+import 'package:leaps_frontend/screens/onboarding_screen.dart';
 
 class CreateCenterScreen extends StatefulWidget {
   const CreateCenterScreen({super.key});
@@ -26,7 +27,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, OnboardingScreen.routeName);
                 },
                 child: const Text(
                   "GO HOME",

@@ -31,14 +31,6 @@ class OnboardingScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
-                text: 'User Profile',
-                onTap: () {
-                  Navigator.pushNamed(context, UserProfileScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
                 text: 'Create League',
                 onTap: () {
                   Navigator.pushNamed(context, CreateLeagueScreen.routeName);
