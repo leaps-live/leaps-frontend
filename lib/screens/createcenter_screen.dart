@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/createteam_screen.dart';
 import 'package:leaps_frontend/screens/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/creategame_screen.dart';
@@ -113,7 +114,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                   ),
                   Expanded(
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, CreateLiveStreamScreen.routeName);
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.live_tv), // 添加图标
