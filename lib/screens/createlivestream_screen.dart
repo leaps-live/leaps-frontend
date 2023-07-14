@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/confirmlivestream_screen.dart';
 
 class CreateLiveStreamScreen extends StatefulWidget {
   const CreateLiveStreamScreen({super.key});
@@ -104,6 +105,7 @@ class _CreateLiveStreamScreenState extends State<CreateLiveStreamScreen> {
             child: ElevatedButton(
               onPressed: () {
                 // do something after clicking create button
+                Navigator.pushNamed(context, ConfirmLiveStreamScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey,
