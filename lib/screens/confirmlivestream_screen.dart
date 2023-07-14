@@ -82,24 +82,30 @@ class _ConfirmLiveStreamScreenState extends State<ConfirmLiveStreamScreen> {
         ),
         body: Column(
           children: [
-            const Center(
+            Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "gaga",
                     style: TextStyle(color: Colors.white),
                   ),
-                  Spacer(),
-                  Icon(
+                  const Spacer(),
+                  const Icon(
                     Icons.live_tv,
                     size: 200,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Column(
                     children: [
-                      Icon(Icons.share),
-                      Icon(Icons.share),
+                      const Icon(Icons.settings),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: const Icon(Icons.flip),
+                      ),
                     ],
                   )
                 ],
