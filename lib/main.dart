@@ -3,6 +3,7 @@ import 'package:leaps_frontend/screens/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/createleague_screen.dart';
 import 'package:leaps_frontend/screens/createteam_screen.dart';
 import 'package:leaps_frontend/screens/creategame_screen.dart';
+import 'package:leaps_frontend/screens/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/editleague_screen.dart';
 import 'package:leaps_frontend/screens/editteam_screen.dart';
 import 'package:leaps_frontend/screens/editgame_screen.dart';
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
         SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
         CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
         CreateGameScreen.routeName: (context) => const CreateGameScreen(),
+        CreateLiveStreamScreen.routeName: (context) =>
+            const CreateLiveStreamScreen(),
         EditGameScreen.routeName: (context) => const EditGameScreen(),
       },
       home: const MainScreen(),

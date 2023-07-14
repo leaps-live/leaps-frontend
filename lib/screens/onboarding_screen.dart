@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/createleague_screen.dart';
 import 'package:leaps_frontend/screens/createteam_screen.dart';
@@ -90,6 +91,15 @@ class OnboardingScreen extends StatelessWidget {
                 text: 'Edit Game',
                 onTap: () {
                   Navigator.pushNamed(context, EditGameScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Create Live Steam',
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, CreateLiveStreamScreen.routeName);
                 },
               )),
         ],
