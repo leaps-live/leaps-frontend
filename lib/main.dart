@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
         CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
         CreateGameScreen.routeName: (context) => const CreateGameScreen(),
         EditGameScreen.routeName: (context) => const EditGameScreen(),
+        MainScreen.routeName: (context) => const MainScreen()
       },
       home: const MainScreen(),
     );
