@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:leaps_frontend/screens/userprofile_screen.dart';
 
 class ConfirmLiveStreamScreen extends StatefulWidget {
   const ConfirmLiveStreamScreen({Key? key}) : super(key: key);
@@ -56,7 +55,7 @@ class _ConfirmLiveStreamScreenState extends State<ConfirmLiveStreamScreen> {
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(0),
+            preferredSize: const Size.fromHeight(0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

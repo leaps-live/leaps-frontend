@@ -20,7 +20,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Container(
+      body: SizedBox(
         height: 250,
         child: Swiper(
           autoplay: true,
@@ -31,7 +31,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             );
           },
           itemCount: 3,
-          pagination: SwiperPagination(),
+          pagination: const SwiperPagination(),
           // control: SwiperControl(),
         ),
       ),
