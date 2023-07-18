@@ -24,25 +24,25 @@ class HeroContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           // padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
           width: MediaQuery.of(context).size.width * 0.90,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Column(
+                const Column(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
                               'Ruolin Chen',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
+                                  fontWeight: FontWeight.bold, fontSize: 30),
                               textAlign: TextAlign.left,
                             ),
                             Text(
@@ -58,28 +58,9 @@ class HeroContent extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            TextButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.settings,
-                                    size: 21.0, color: Colors.black),
-                                label: const Text('Settings',
-                                    style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 17,
-                                        color: Colors.black),
-                                    textAlign: TextAlign.center)),
-                            TextButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.settings,
-                                    size: 21.0, color: Colors.black),
-                                label: const Text('Settings',
-                                    style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 17,
-                                        color: Colors.black),
-                                    textAlign: TextAlign.center))
+                            Icon(Icons.person_add,
+                                size: 35.0, color: primaryColor),
+                            Icon(Icons.sms, size: 35.0, color: primaryColor),
                           ],
                         )
                       ],
