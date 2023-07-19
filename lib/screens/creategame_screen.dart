@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/searchMember_screen.dart';
 
@@ -18,34 +19,114 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
   String concatenatedDateTime = '';
 
   Future<void> _selectDate() async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      final DateTime? pickedDate = await showCupertinoModalPopup<DateTime>(
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 500,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: DateTime.now(),
+              minimumYear: 2000,
+              maximumYear: 2100,
+              backgroundColor: Colors.white,
+              onDateTimeChanged: (DateTime newDateTime) {
+                setState(() {
+                  selectedDate = newDateTime;
+                  _updateConcatenatedDateTime();
+                });
+              },
+            ),
+          );
+        },
+      );
+    } else {
+      final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100),
+      );
 
-    if (pickedDate != null) {
-      setState(() {
-        selectedDate = pickedDate;
-        _updateConcatenatedDateTime();
-      });
+      if (pickedDate != null) {
+        setState(() {
+          selectedDate = pickedDate;
+          _updateConcatenatedDateTime();
+        });
+      }
     }
   }
 
   Future<void> _selectTime() async {
-    final TimeOfDay? pickedTime = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      final TimeOfDay? pickedTime = await showCupertinoModalPopup<TimeOfDay>(
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 500,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.time,
+              backgroundColor: Colors.white,
+              initialDateTime: DateTime.now(),
+              onDateTimeChanged: (DateTime newDateTime) {
+                setState(() {
+                  selectedTime = TimeOfDay.fromDateTime(newDateTime);
+                  _updateConcatenatedDateTime();
+                });
+              },
+            ),
+          );
+        },
+      );
+    } else {
+      final TimeOfDay? pickedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      );
 
-    if (pickedTime != null) {
-      setState(() {
-        selectedTime = pickedTime;
-        _updateConcatenatedDateTime();
-      });
+      if (pickedTime != null) {
+        setState(() {
+          selectedTime = pickedTime;
+          _updateConcatenatedDateTime();
+        });
+      }
     }
   }
+
+  // DateTime? selectedDate;
+  // TimeOfDay? selectedTime;
+  // String concatenatedDateTime = '';
+
+  // Future<void> _selectDate() async {
+  //   final DateTime? pickedDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(2000),
+  //     lastDate: DateTime(2100),
+  //   );
+
+  //   if (pickedDate != null) {
+  //     setState(() {
+  //       selectedDate = pickedDate;
+  //       _updateConcatenatedDateTime();
+  //     });
+  //   }
+  // }
+
+  // Future<void> _selectTime() async {
+  //   final TimeOfDay? pickedTime = await showTimePicker(
+  //     context: context,
+  //     initialTime: TimeOfDay.now(),
+  //   );
+
+  //   if (pickedTime != null) {
+  //     setState(() {
+  //       selectedTime = pickedTime;
+  //       _updateConcatenatedDateTime();
+  //     });
+  //   }
+  // }
 
   void _updateConcatenatedDateTime() {
     if (selectedDate != null && selectedTime != null) {
@@ -81,6 +162,7 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
           children: [
             Text(
               'Schedule: $concatenatedDateTime',
+              // 'Schedule: $concatenatedDateTime',
               style: const TextStyle(fontSize: 17),
             ),
             const SizedBox(
