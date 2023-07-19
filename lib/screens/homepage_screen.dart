@@ -12,8 +12,11 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
   Future<void> testNode() async {
-    var url = Uri.parse('http://localhost:8080/routers/teams/test');
-    var response = await http.post(url);
+    // var url = Uri.parse('http://localhost:8080/routers/teams/test');
+    var url = Uri.parse(
+        'http://localhost:8080/users/b6031c9a-7409-4c7a-9ad4-13fd0f532619');
+    var response = await http.get(url);
+    // print(response);
 
     if (response.statusCode == 200) {
       // success
