@@ -10,7 +10,6 @@ class UserProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const NavDrawer(),
-        // appBar: _buildAppBar(),
         appBar: AppBar(
             leading: Builder(
               builder: (BuildContext context) {
@@ -34,18 +33,6 @@ class UserProfileScreen extends StatelessWidget {
         body: ListView(
           children: const [HeroBar()],
         ));
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: backgroundColor,
-        title: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Icon(Icons.menu, color: Colors.black, size: 30),
-              Icon(Icons.qr_code_scanner, color: Colors.black, size: 30)
-            ]));
   }
 }
 

@@ -23,14 +23,6 @@ class OnboardingScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'User Profile',
-                onTap: () {
-                  Navigator.pushNamed(context, UserProfileScreen.routeName);
-                },
-              )),
           // Padding(
           //     padding: const EdgeInsets.symmetric(vertical: 8.0),
           //     child: CustomButton(
@@ -63,6 +55,7 @@ class OnboardingScreen extends StatelessWidget {
           //         Navigator.pushNamed(context, EditLeagueScreen.routeName);
           //       },
           //     )),
+
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
