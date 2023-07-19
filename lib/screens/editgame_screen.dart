@@ -104,7 +104,7 @@ class _EditGameScreenState extends State<EditGameScreen> {
             Row(
               children: [
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     width: 120,
                     height: 40,
                     child: ElevatedButton(
@@ -118,7 +118,7 @@ class _EditGameScreenState extends State<EditGameScreen> {
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     width: 120,
                     height: 40,
                     child: ElevatedButton(

@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
-import 'package:leaps_frontend/screens/createleague_screen.dart';
-import 'package:leaps_frontend/screens/createteam_screen.dart';
-import 'package:leaps_frontend/screens/editteam_screen.dart';
-import 'package:leaps_frontend/screens/editleague_screen.dart';
-import 'package:leaps_frontend/screens/editgame_screen.dart';
 import 'package:leaps_frontend/screens/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/creategame_screen.dart';
+import 'package:leaps_frontend/screens/homepage_screen.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -37,38 +31,38 @@ class OnboardingScreen extends StatelessWidget {
                   Navigator.pushNamed(context, UserProfileScreen.routeName);
                 },
               )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Create League',
-                onTap: () {
-                  Navigator.pushNamed(context, CreateLeagueScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Create Team',
-                onTap: () {
-                  Navigator.pushNamed(context, CreateTeamScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Edit Team',
-                onTap: () {
-                  Navigator.pushNamed(context, EditTeamScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Edit League',
-                onTap: () {
-                  Navigator.pushNamed(context, EditLeagueScreen.routeName);
-                },
-              )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Create League',
+          //       onTap: () {
+          //         Navigator.pushNamed(context, CreateLeagueScreen.routeName);
+          //       },
+          //     )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Create Team',
+          //       onTap: () {
+          //         Navigator.pushNamed(context, CreateTeamScreen.routeName);
+          //       },
+          //     )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Edit Team',
+          //       onTap: () {
+          //         Navigator.pushNamed(context, EditTeamScreen.routeName);
+          //       },
+          //     )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Edit League',
+          //       onTap: () {
+          //         Navigator.pushNamed(context, EditLeagueScreen.routeName);
+          //       },
+          //     )),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
@@ -77,29 +71,37 @@ class OnboardingScreen extends StatelessWidget {
                   Navigator.pushNamed(context, CreateCenterScreen.routeName);
                 },
               )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Create Game',
+          //       onTap: () {
+          //         Navigator.pushNamed(context, CreateGameScreen.routeName);
+          //       },
+          //     )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Edit Game',
+          //       onTap: () {
+          //         Navigator.pushNamed(context, EditGameScreen.routeName);
+          //       },
+          //     )),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: CustomButton(
+          //       text: 'Create Live Steam',
+          //       onTap: () {
+          //         Navigator.pushNamed(
+          //             context, CreateLiveStreamScreen.routeName);
+          //       },
+          //     )),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
-                text: 'Create Game',
+                text: 'Home Page',
                 onTap: () {
-                  Navigator.pushNamed(context, CreateGameScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Edit Game',
-                onTap: () {
-                  Navigator.pushNamed(context, EditGameScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Create Live Steam',
-                onTap: () {
-                  Navigator.pushNamed(
-                      context, CreateLiveStreamScreen.routeName);
+                  Navigator.pushNamed(context, HomePageScreen.routeName);
                 },
               )),
         ],
