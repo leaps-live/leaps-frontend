@@ -7,6 +7,7 @@ import 'package:leaps_frontend/utils/colors.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+  static const routeName = '/main';
 
   @override
   _MainScreenState createState() => _MainScreenState();

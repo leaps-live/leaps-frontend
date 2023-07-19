@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
         HomePageScreen.routeName: (context) => const HomePageScreen(),
         ConfirmLiveStreamScreen.routeName: (context) =>
             const ConfirmLiveStreamScreen(),
+        MainScreen.routeName: (context) => const MainScreen()
       },
       home: const MainScreen(),
     );
