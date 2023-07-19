@@ -62,6 +62,31 @@ class HeroContent extends StatelessWidget {
                                 size: 35.0, color: primaryColor),
                             Icon(Icons.sms, size: 35.0, color: primaryColor),
                           ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '5,096 Fans',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 15),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '•',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 25),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '1201 Views',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            )
+                          ],
                         )
                       ],
                     )
