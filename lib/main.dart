@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/careerprofile_screen.dart';
-import 'package:leaps_frontend/screens/createleague_screen.dart';
-import 'package:leaps_frontend/screens/createteam_screen.dart';
-import 'package:leaps_frontend/screens/creategame_screen.dart';
-import 'package:leaps_frontend/screens/createlivestream_screen.dart';
-import 'package:leaps_frontend/screens/confirmlivestream_screen.dart';
-import 'package:leaps_frontend/screens/editleague_screen.dart';
-import 'package:leaps_frontend/screens/editteam_screen.dart';
-import 'package:leaps_frontend/screens/editgame_screen.dart';
+import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
+import 'package:leaps_frontend/screens/league/createleague_screen.dart';
+import 'package:leaps_frontend/screens/team/createteam_screen.dart';
+import 'package:leaps_frontend/screens/game/creategame_screen.dart';
+import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
+import 'package:leaps_frontend/screens/livestream/confirmlivestream_screen.dart';
+import 'package:leaps_frontend/screens/league/editleague_screen.dart';
+import 'package:leaps_frontend/screens/team/editteam_screen.dart';
+import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
-import 'package:leaps_frontend/screens/searchMember_screen.dart';
-import 'package:leaps_frontend/screens/userprofile_screen.dart';
-import 'package:leaps_frontend/screens/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/homepage_screen.dart';
+import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
+import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 void main() {

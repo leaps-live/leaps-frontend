@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 
-class CreateLeagueScreen extends StatefulWidget {
-  const CreateLeagueScreen({super.key});
-  static const routeName = '/create_league';
+class EditLeagueScreen extends StatefulWidget {
+  const EditLeagueScreen({super.key});
+  static const routeName = '/edit_league';
 
   @override
-  State<CreateLeagueScreen> createState() => _CreateLeagueScreenState();
+  State<EditLeagueScreen> createState() => _EditLeagueScreenState();
 }
 
-class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
+class _EditLeagueScreenState extends State<EditLeagueScreen> {
   String selectedValue = "Please Select";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Create a league',
+          'Edit a league',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // do something for save button
+            },
+            child: const Text(
+              'Save',
+              style: TextStyle(
+                color: Color.fromARGB(255, 8, 125, 221),
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16),
@@ -220,23 +235,6 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
                   ],
                 )
               ],
-            ),
-
-            const SizedBox(height: 70.0),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // 这里是点击按钮后的逻辑，你可以在这里处理保存联赛的操作
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  fixedSize: const Size(300, 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20), // 设置按钮的圆角半径为20
-                  ), // 设置按钮的宽度和高度
-                ),
-                child: const Text('Create'),
-              ),
             ),
           ],
         ),

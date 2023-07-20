@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/userprofile_screen.dart';
-import 'package:leaps_frontend/screens/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/homepage_screen.dart';
+import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
+import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 
 import '../widgets/custom_button.dart';
 

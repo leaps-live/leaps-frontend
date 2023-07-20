@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 
 class CreateGameScreen extends StatefulWidget {
   const CreateGameScreen({super.key});

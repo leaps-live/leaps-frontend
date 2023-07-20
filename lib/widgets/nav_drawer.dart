@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/userprofile_screen.dart';
+import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({super.key});
