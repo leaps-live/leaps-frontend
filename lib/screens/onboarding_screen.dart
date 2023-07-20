@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/register_screen.dart';
 import 'package:leaps_frontend/screens/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/homepage_screen.dart';
 
 import '../widgets/custom_button.dart';
+import 'login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   static const routeName = '/onboarding';
@@ -64,31 +66,6 @@ class OnboardingScreen extends StatelessWidget {
                   Navigator.pushNamed(context, CreateCenterScreen.routeName);
                 },
               )),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Create Game',
-          //       onTap: () {
-          //         Navigator.pushNamed(context, CreateGameScreen.routeName);
-          //       },
-          //     )),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Edit Game',
-          //       onTap: () {
-          //         Navigator.pushNamed(context, EditGameScreen.routeName);
-          //       },
-          //     )),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Create Live Steam',
-          //       onTap: () {
-          //         Navigator.pushNamed(
-          //             context, CreateLiveStreamScreen.routeName);
-          //       },
-          //     )),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
@@ -97,6 +74,22 @@ class OnboardingScreen extends StatelessWidget {
                   Navigator.pushNamed(context, HomePageScreen.routeName);
                 },
               )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Register',
+                onTap: () {
+                  Navigator.pushNamed(context, RegisterScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Login',
+                onTap: () {
+                  Navigator.pushNamed(context, LoginScreen.routeName);
+                },
+              ))
         ],
       ),
     ));
