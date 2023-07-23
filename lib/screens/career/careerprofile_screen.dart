@@ -71,7 +71,7 @@ class HeroContent extends StatelessWidget {
                             Text(
                               '5,096 Fans',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 15),
+                                  fontWeight: FontWeight.w600, fontSize: 15),
                               textAlign: TextAlign.left,
                             ),
                             Text(
@@ -230,6 +230,96 @@ class HeroContent extends StatelessWidget {
                       ],
                     ),
                   ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      height: 140,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 15.0),
+                      width: MediaQuery.of(context).size.width * 0.44,
+                      decoration: ShapeDecoration(
+                        color: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.25, color: Color(0xFFE6E6E6)),
+                          borderRadius: BorderRadius.circular(17),
+                        ),
+                      ),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'About me:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                color: secondaryBackgroundColor),
+                            textAlign: TextAlign.left,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            '19 y/o',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                color: secondaryBackgroundColor),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            '19 y/o',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                color: secondaryBackgroundColor),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            '19 y/o',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                color: secondaryBackgroundColor),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      )),
+                  Container(
+                      height: 140,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 15.0),
+                      width: MediaQuery.of(context).size.width * 0.44,
+                      decoration: ShapeDecoration(
+                        color: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.10, color: Color(0xFFE6E6E6)),
+                          borderRadius: BorderRadius.circular(17),
+                        ),
+                      ),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Social Media:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                color: secondaryBackgroundColor),
+                            textAlign: TextAlign.left,
+                          ),
+                          SizedBox(height: 10),
+                          Icon(Icons.facebook,
+                              size: 25.0, color: secondaryBackgroundColor),
+                          Icon(Icons.facebook,
+                              size: 25.0, color: secondaryBackgroundColor),
+                          Icon(Icons.facebook,
+                              size: 25.0, color: secondaryBackgroundColor),
+                        ],
+                      ))
                 ],
               )
             ],
