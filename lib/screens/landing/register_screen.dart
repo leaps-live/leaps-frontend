@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -14,7 +15,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Register',
+          'Sign up',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
@@ -87,7 +88,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 80,
+            ),
+            Container(
+              width: 300,
+              child: RichText(
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontSize: 16, // 设置默认字体大小
+                    color: Colors.black, // 设置默认字体颜色
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "By signing up, you agree to our ",
+                      style: TextStyle(fontWeight: FontWeight.normal),
+                    ),
+                    TextSpan(
+                      text: "Terms of Use",
+                      style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
+                    ),
+                    TextSpan(
+                      text: " and ",
+                      style: TextStyle(fontWeight: FontWeight.normal),
+                    ),
+                    TextSpan(
+                      text: "Privacy Policy",
+                      style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
+                    ),
+                    TextSpan(
+                      text: ".",
+                      style: TextStyle(fontWeight: FontWeight.normal),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 16,
             ),
             Center(
               child: ElevatedButton(
@@ -95,13 +132,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   // do something after clicking create button
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: primaryColor,
                   fixedSize: const Size(300, 40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: const Text('Register'),
+                child: const Text('Sign up'),
               ),
             ),
           ],

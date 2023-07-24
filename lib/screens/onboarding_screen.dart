@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-import 'package:leaps_frontend/screens/register_screen.dart';
+import 'package:leaps_frontend/screens/landing/landing_screen.dart';
+import 'package:leaps_frontend/screens/landing/register_screen.dart';
 
 import '../widgets/custom_button.dart';
-import 'login_screen.dart';
+import 'landing/login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   static const routeName = '/onboarding';
@@ -25,39 +25,6 @@ class OnboardingScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Create League',
-          //       onTap: () {
-          //         Navigator.pushNamed(context, CreateLeagueScreen.routeName);
-          //       },
-          //     )),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Create Team',
-          //       onTap: () {
-          //         Navigator.pushNamed(context, CreateTeamScreen.routeName);
-          //       },
-          //     )),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Edit Team',
-          //       onTap: () {
-          //         Navigator.pushNamed(context, EditTeamScreen.routeName);
-          //       },
-          //     )),
-          // Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-          //     child: CustomButton(
-          //       text: 'Edit League',
-          //       onTap: () {
-          //         Navigator.pushNamed(context, EditLeagueScreen.routeName);
-          //       },
-          //     )),
-
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
@@ -77,19 +44,11 @@ class OnboardingScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
-                text: 'Register',
+                text: 'Landing',
                 onTap: () {
-                  Navigator.pushNamed(context, RegisterScreen.routeName);
+                  Navigator.pushNamed(context, LandingScreen.routeName);
                 },
               )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Login',
-                onTap: () {
-                  Navigator.pushNamed(context, LoginScreen.routeName);
-                },
-              ))
         ],
       ),
     ));
