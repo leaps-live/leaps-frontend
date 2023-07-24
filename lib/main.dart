@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
+import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/league/createleague_screen.dart';
 import 'package:leaps_frontend/screens/team/createteam_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
@@ -14,15 +15,11 @@ import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-// import 'package:leaps_frontend/screens/searchMember_screen.dart';
-// import 'package:leaps_frontend/screens/userprofile_screen.dart';
-// import 'package:leaps_frontend/screens/createcenter_screen.dart';
-// import 'package:leaps_frontend/screens/homepage_screen.dart';
-import 'package:leaps_frontend/screens/league_screen.dart';
-import 'package:leaps_frontend/screens/team_screen.dart';
-import 'package:leaps_frontend/screens/game_screen.dart';
-import 'package:leaps_frontend/screens/register_screen.dart';
-import 'package:leaps_frontend/screens/login_screen.dart';
+import 'package:leaps_frontend/screens/league/league_screen.dart';
+import 'package:leaps_frontend/screens/team/team_screen.dart';
+import 'package:leaps_frontend/screens/game/game_screen.dart';
+import 'package:leaps_frontend/screens/landing/register_screen.dart';
+import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 void main() {
@@ -71,6 +68,7 @@ class MyApp extends StatelessWidget {
         GameScreen.routeName: (context) => const GameScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
+        LandingScreen.routeName: (context) => const LandingScreen(),
       },
       home: const MainScreen(),
     );
