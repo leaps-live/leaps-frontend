@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:http/http.dart' as http;
-import 'package:leaps_frontend/screens/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/game_screen.dart';
-import 'package:leaps_frontend/screens/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/team_screen.dart';
 
-import 'league_screen.dart';
+import 'package:leaps_frontend/screens/league_screen.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
