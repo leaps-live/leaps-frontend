@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -10,6 +12,66 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // Define controllers to capture user input
+  final TextEditingController userFirstNameController = TextEditingController();
+  final TextEditingController userLastNameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController birthdayController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+
+  // Function to make the POST request to nodeJS
+  void _userRegister() async {
+    const String apiUrl = 'http://localhost:8080/users/register';
+
+    // Create a map with the collected data
+    final Map<String, dynamic> userData = {
+      'userFirstName': userFirstNameController.text,
+      'userLastName': userLastNameController.text,
+      'username': usernameController.text,
+      'userEmail': emailController.text,
+      'userPassword': passwordController.text,
+      'userBirthday': birthdayController.text,
+      'userHeight': heightController.text,
+      'userWeight': weightController.text,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        // Successfully sent data to the backend
+        print('Data sent successfully!');
+      } else {
+        // Error handling if the request fails
+        // print('Failed to send data. Error code: ${response.statusCode}');
+        print(response);
+      }
+    } catch (e) {
+      print('Error occurred while sending data: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    // Dispose the controllers to free up resources
+    userFirstNameController.dispose();
+    userLastNameController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    birthdayController.dispose();
+    heightController.dispose();
+    weightController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +86,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'User Formal Name',
-                hintText: 'User Formal Name',
+            TextField(
+              controller: userFirstNameController,
+              decoration: const InputDecoration(
+                labelText: 'User First Name',
+                hintText: 'User First Name',
                 labelStyle: TextStyle(
                   color: Colors.black,
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: userLastNameController,
+              decoration: const InputDecoration(
+                labelText: 'User Last Name',
+                hintText: 'User Last Name',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            TextField(
+              controller: usernameController,
+              decoration: const InputDecoration(
                 labelText: 'Username',
                 hintText: 'Username',
                 labelStyle: TextStyle(
@@ -42,8 +116,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: passwordController,
+              decoration: const InputDecoration(
                 labelText: 'Password',
                 hintText: 'Password',
                 labelStyle: TextStyle(
@@ -51,8 +126,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
                 labelText: 'Email',
                 hintText: 'Email',
                 labelStyle: TextStyle(
@@ -60,8 +136,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: birthdayController,
+              decoration: const InputDecoration(
                 labelText: 'Birthday',
                 hintText: 'Birthday',
                 labelStyle: TextStyle(
@@ -69,8 +146,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: heightController,
+              decoration: const InputDecoration(
                 labelText: 'Height (in inches)',
                 hintText: 'Height',
                 labelStyle: TextStyle(
@@ -78,8 +156,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: weightController,
+              decoration: const InputDecoration(
                 labelText: 'Weight (in pounds)',
                 hintText: 'Weight',
                 labelStyle: TextStyle(
@@ -129,7 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // do something after clicking create button
+                  _userRegister();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
@@ -140,6 +219,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 child: const Text('Sign up'),
               ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.g_translate),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "Continue with Google",
+                  style: TextStyle(fontSize: 15),
+                )
+              ],
             ),
           ],
         ),

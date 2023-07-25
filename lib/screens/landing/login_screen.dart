@@ -62,6 +62,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text('Login'),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.g_translate),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Continue with Google",
+                    style: TextStyle(fontSize: 15),
+                  )
+                ],
+              ),
             ],
           ),
         ),
