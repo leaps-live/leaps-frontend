@@ -1,16 +1,8 @@
-# leaps_frontend
+# LEAPS Frontend
 
-A new Flutter project.
+### Techstack: Flutter
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Setting up your Dev Environment
+1. After cloning the repo, install the necessary dependencies with this command in your terminal: ```flutter pub get```
+2. Initiate simulator on your computer (iOS and Android)
+3. Run the app with this command in your terminal: ```flutter run```
