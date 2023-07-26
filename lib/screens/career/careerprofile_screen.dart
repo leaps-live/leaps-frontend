@@ -12,7 +12,11 @@ class CareerProfileScreen extends StatelessWidget {
           backgroundColor: backgroundColor,
         ),
         body: ListView(
-          children: const [HeroContent()],
+          children: const [
+            HeroContent(),
+            SizedBox(height: 30),
+            ExperienceContent()
+          ],
         ));
   }
 }
@@ -324,6 +328,143 @@ class HeroContent extends StatelessWidget {
               )
             ],
           ),
+        )
+      ],
+    );
+  }
+}
+
+class ExperienceContent extends StatelessWidget {
+  const ExperienceContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Text(
+          '<-- Insert Toggle Button Here -->',
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
+        const Text(
+          'Now',
+          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+              width: MediaQuery.of(context).size.width * 0.90,
+              decoration: ShapeDecoration(
+                color: const Color(0xFFFEFEFE),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 2, color: primaryColor),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IntrinsicHeight(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'PTS',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 12),
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                '124',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                textAlign: TextAlign.left,
+                              )
+                            ]),
+                        VerticalDivider(
+                          width: 20,
+                          thickness: 1,
+                          indent: 20,
+                          endIndent: 0,
+                          color: Colors.grey,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'REB',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 12),
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                '124',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                textAlign: TextAlign.left,
+                              )
+                            ]),
+                        VerticalDivider(
+                          width: 20,
+                          thickness: 1,
+                          indent: 20,
+                          endIndent: 0,
+                          color: Colors.grey,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ASST',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 12),
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                '124',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                textAlign: TextAlign.left,
+                              )
+                            ]),
+                        VerticalDivider(
+                          width: 20,
+                          thickness: 1,
+                          indent: 20,
+                          endIndent: 0,
+                          color: Colors.grey,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'GP',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 12),
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                '124',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                textAlign: TextAlign.left,
+                              )
+                            ]),
+                      ]))
+                ],
+              ),
+            )
+          ],
         )
       ],
     );
