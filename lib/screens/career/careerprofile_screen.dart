@@ -358,112 +358,131 @@ class ExperienceContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
-              width: MediaQuery.of(context).size.width * 0.90,
-              decoration: ShapeDecoration(
-                color: const Color(0xFFFEFEFE),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 2, color: primaryColor),
-                  borderRadius: BorderRadius.circular(10),
+                height: 75,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                width: MediaQuery.of(context).size.width * 0.90,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: primaryColor,
+                    width: 2.5,
+                  ),
+                  color: const Color(0xFFFEFEFE),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
                 ),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IntrinsicHeight(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'PTS',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 12),
-                                textAlign: TextAlign.left,
-                              ),
-                              Text(
-                                '124',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                                textAlign: TextAlign.left,
-                              )
-                            ]),
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 0,
-                          color: Colors.grey,
-                        ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'REB',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 12),
-                                textAlign: TextAlign.left,
-                              ),
-                              Text(
-                                '124',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                                textAlign: TextAlign.left,
-                              )
-                            ]),
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 0,
-                          color: Colors.grey,
-                        ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'ASST',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 12),
-                                textAlign: TextAlign.left,
-                              ),
-                              Text(
-                                '124',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                                textAlign: TextAlign.left,
-                              )
-                            ]),
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 0,
-                          color: Colors.grey,
-                        ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'GP',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 12),
-                                textAlign: TextAlign.left,
-                              ),
-                              Text(
-                                '124',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                                textAlign: TextAlign.left,
-                              )
-                            ]),
-                      ]))
-                ],
-              ),
-            )
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100), // Image border
+                    child: SizedBox.fromSize(
+                      size: const Size.fromRadius(23), // Image radius
+                      child: Image.network(
+                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Point Guard',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        'Mighty Dragons',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                            color: Colors.grey),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'PTS',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                            color: Colors.grey),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        '20.0',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'PTS',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                            color: Colors.grey),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        '20.0',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'PTS',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                            color: Colors.grey),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        '20.0',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                ])),
           ],
         )
       ],
