@@ -339,51 +339,69 @@ class ExperienceContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           '<-- Insert Toggle Button Here -->',
           style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 20),
-        const Text(
+        SizedBox(height: 20),
+        Text(
           'Now',
           style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                height: 75,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                width: MediaQuery.of(context).size.width * 0.90,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: primaryColor,
-                    width: 2.5,
-                  ),
-                  color: const Color(0xFFFEFEFE),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
+        SizedBox(height: 20),
+        ExperienceWidget(),
+        SizedBox(height: 15),
+        ExperienceWidget(),
+        SizedBox(height: 15),
+        ExperienceWidget(),
+        SizedBox(height: 15),
+        ExperienceWidget(),
+      ],
+    );
+  }
+}
+
+class ExperienceWidget extends StatelessWidget {
+  const ExperienceWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+            height: 75,
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            width: MediaQuery.of(context).size.width * 0.90,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: primaryColor,
+                width: 2.5,
+              ),
+              color: const Color(0xFFFEFEFE),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              ],
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(100), // Image border
                     child: SizedBox.fromSize(
@@ -402,7 +420,7 @@ class ExperienceContent extends StatelessWidget {
                         'Point Guard',
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Colors.black),
                         textAlign: TextAlign.left,
                       ),
@@ -410,7 +428,7 @@ class ExperienceContent extends StatelessWidget {
                         'Mighty Dragons',
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 10,
+                            fontSize: 13,
                             color: Colors.grey),
                         textAlign: TextAlign.left,
                       ),
@@ -483,8 +501,6 @@ class ExperienceContent extends StatelessWidget {
                     ],
                   ),
                 ])),
-          ],
-        )
       ],
     );
   }
