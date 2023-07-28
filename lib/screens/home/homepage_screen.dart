@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
-import 'package:leaps_frontend/screens/team/team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 
 import 'package:leaps_frontend/screens/league/league_screen.dart';
 

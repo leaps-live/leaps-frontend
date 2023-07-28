@@ -16,7 +16,7 @@ import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/league/league_screen.dart';
-import 'package:leaps_frontend/screens/team/team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
