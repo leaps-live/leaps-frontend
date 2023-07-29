@@ -121,7 +121,8 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
 
   void _searchMember() async {
     var apiUrl_id = Uri.parse('http://localhost:8080/users/$searchQuery');
-    var apiUrl_name = Uri.parse('http://localhost:8080/users/$searchQuery');
+    var apiUrl_name =
+        Uri.parse('http://localhost:8080/users/username/$searchQuery');
 
     try {
       final response_id = http.get(apiUrl_id);
