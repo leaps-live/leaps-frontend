@@ -26,6 +26,8 @@ class HeroContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         SizedBox(
@@ -257,10 +259,10 @@ class HeroContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(17),
                         ),
                       ),
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'About me:',
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -268,30 +270,30 @@ class HeroContent extends StatelessWidget {
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             '19 y/o',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                fontSize: screenWidth * .035,
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             '6\'1',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                fontSize: screenWidth * .035,
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             'Seattle, WA',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                fontSize: screenWidth * .035,
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
@@ -310,10 +312,10 @@ class HeroContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(17),
                         ),
                       ),
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Social Media:',
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -321,52 +323,61 @@ class HeroContent extends StatelessWidget {
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             children: [
-                              Icon(Icons.facebook,
+                              const Icon(Icons.facebook,
                                   size: 25.0, color: secondaryBackgroundColor),
-                              SizedBox(width: 5),
-                              Text(
-                                '@ruolinchen',
+                              const SizedBox(width: 5),
+                              Expanded(
+                                  child: Text(
+                                '@ruolinchenasdfasdf',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 15,
+                                    fontSize: screenWidth * .035,
                                     color: secondaryBackgroundColor),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.left,
-                              ),
+                              )),
                             ],
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Row(
                             children: [
-                              Icon(Icons.facebook,
+                              const Icon(Icons.facebook,
                                   size: 25.0, color: secondaryBackgroundColor),
-                              SizedBox(width: 5),
-                              Text(
-                                '@ruolinchen',
+                              const SizedBox(width: 5),
+                              Expanded(
+                                  child: Text(
+                                '@ruolinchenasdfasdf',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 15,
+                                    fontSize: screenWidth * .035,
                                     color: secondaryBackgroundColor),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.left,
-                              ),
+                              )),
                             ],
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Row(
                             children: [
-                              Icon(Icons.facebook,
+                              const Icon(Icons.facebook,
                                   size: 25.0, color: secondaryBackgroundColor),
-                              SizedBox(width: 5),
-                              Text(
-                                '@ruolinchen',
+                              const SizedBox(width: 5),
+                              Expanded(
+                                  child: Text(
+                                '@ruolinchenasdfasdf',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 15,
+                                    fontSize: screenWidth * .035,
                                     color: secondaryBackgroundColor),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.left,
-                              ),
+                              )),
                             ],
                           ),
                         ],
