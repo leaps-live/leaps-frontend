@@ -15,7 +15,7 @@ class CareerProfileScreen extends StatelessWidget {
           children: const [
             HeroContent(),
             SizedBox(height: 30),
-            ExperienceContent()
+            ExperienceContentState()
           ],
         ));
   }
@@ -49,6 +49,7 @@ class HeroContent extends StatelessWidget {
                                   fontWeight: FontWeight.bold, fontSize: 30),
                               textAlign: TextAlign.left,
                             ),
+                            SizedBox(width: 5),
                             Text(
                               'PG',
                               style: TextStyle(
@@ -65,6 +66,7 @@ class HeroContent extends StatelessWidget {
                           children: [
                             Icon(Icons.person_add,
                                 size: 35.0, color: primaryColor),
+                            SizedBox(width: 15),
                             Icon(Icons.sms, size: 35.0, color: primaryColor),
                           ],
                         ),
@@ -78,12 +80,14 @@ class HeroContent extends StatelessWidget {
                                   fontWeight: FontWeight.w600, fontSize: 15),
                               textAlign: TextAlign.left,
                             ),
+                            SizedBox(width: 5),
                             Text(
                               '•',
                               style: TextStyle(
                                   fontWeight: FontWeight.w400, fontSize: 25),
                               textAlign: TextAlign.left,
                             ),
+                            SizedBox(width: 5),
                             Text(
                               '1201 Views',
                               style: TextStyle(
@@ -241,7 +245,7 @@ class HeroContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      height: 140,
+                      height: 150,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 15.0),
                       width: MediaQuery.of(context).size.width * 0.44,
@@ -269,30 +273,32 @@ class HeroContent extends StatelessWidget {
                             '19 y/o',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15,
+                                fontSize: 18,
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
+                          SizedBox(height: 10),
                           Text(
-                            '19 y/o',
+                            '6\'1',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15,
+                                fontSize: 18,
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
+                          SizedBox(height: 10),
                           Text(
-                            '19 y/o',
+                            'Seattle, WA',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15,
+                                fontSize: 18,
                                 color: secondaryBackgroundColor),
                             textAlign: TextAlign.left,
                           ),
                         ],
                       )),
                   Container(
-                      height: 140,
+                      height: 150,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 15.0),
                       width: MediaQuery.of(context).size.width * 0.44,
@@ -316,12 +322,53 @@ class HeroContent extends StatelessWidget {
                             textAlign: TextAlign.left,
                           ),
                           SizedBox(height: 10),
-                          Icon(Icons.facebook,
-                              size: 25.0, color: secondaryBackgroundColor),
-                          Icon(Icons.facebook,
-                              size: 25.0, color: secondaryBackgroundColor),
-                          Icon(Icons.facebook,
-                              size: 25.0, color: secondaryBackgroundColor),
+                          Row(
+                            children: [
+                              Icon(Icons.facebook,
+                                  size: 25.0, color: secondaryBackgroundColor),
+                              SizedBox(width: 5),
+                              Text(
+                                '@ruolinchen',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: secondaryBackgroundColor),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Row(
+                            children: [
+                              Icon(Icons.facebook,
+                                  size: 25.0, color: secondaryBackgroundColor),
+                              SizedBox(width: 5),
+                              Text(
+                                '@ruolinchen',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: secondaryBackgroundColor),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Row(
+                            children: [
+                              Icon(Icons.facebook,
+                                  size: 25.0, color: secondaryBackgroundColor),
+                              SizedBox(width: 5),
+                              Text(
+                                '@ruolinchen',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: secondaryBackgroundColor),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          ),
                         ],
                       ))
                 ],
@@ -334,33 +381,64 @@ class HeroContent extends StatelessWidget {
   }
 }
 
-class ExperienceContent extends StatelessWidget {
-  const ExperienceContent({super.key});
+class ExperienceContentState extends StatefulWidget {
+  const ExperienceContentState({super.key});
+
+  @override
+  State<ExperienceContentState> createState() => ExperienceContent();
+}
+
+const List<Widget> choices = <Widget>[
+  Text('Experience'),
+  Text('Highlights'),
+  Text('Fans')
+];
+
+class ExperienceContent extends State<ExperienceContentState> {
+  final List<bool> _selectedChoices = <bool>[true, false, false];
+  bool vertical = false;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          '<-- Insert Toggle Button Here -->',
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
-          textAlign: TextAlign.center,
+        ToggleButtons(
+          direction: vertical ? Axis.vertical : Axis.horizontal,
+          onPressed: (int index) {
+            setState(() {
+              // The button that is tapped is set to true, and the others to false.
+              for (int i = 0; i < _selectedChoices.length; i++) {
+                _selectedChoices[i] = i == index;
+              }
+            });
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          selectedBorderColor: primaryColor,
+          selectedColor: Colors.white,
+          fillColor: primaryColor,
+          color: primaryColor,
+          constraints: const BoxConstraints(
+            minHeight: 40.0,
+            minWidth: 100.0,
+          ),
+          isSelected: _selectedChoices,
+          children: choices,
         ),
-        SizedBox(height: 20),
-        Text(
+        const SizedBox(height: 20),
+        const Text(
           'Now',
           style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 20),
-        ExperienceWidget(),
-        SizedBox(height: 15),
-        ExperienceWidget(),
-        SizedBox(height: 15),
-        ExperienceWidget(),
-        SizedBox(height: 15),
-        ExperienceWidget(),
+        const SizedBox(height: 20),
+        const ExperienceWidget(),
+        const SizedBox(height: 15),
+        const ExperienceWidget(),
+        const SizedBox(height: 15),
+        const ExperienceWidget(),
+        const SizedBox(height: 15),
+        const ExperienceWidget(),
       ],
     );
   }
