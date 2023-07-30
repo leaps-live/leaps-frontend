@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         LandingScreen.routeName: (context) => const LandingScreen(),
       },
-      home: const MainScreen(),
+      home: const LandingScreen(),
     );
   }
 }

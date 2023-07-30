@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -24,6 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _userLogin() async {
+    setState(() {
+      isLoading = true;
+    });
+
     const String apiUrl = 'http://localhost:8080/users/login';
 
     // Create a map with the collected data
@@ -43,13 +49,18 @@ class _LoginScreenState extends State<LoginScreen> {
         // Successfully sent data to the backend
         print('Data sent successfully!');
         print(response.body);
+        Navigator.pushNamed(context, MainScreen.routeName);
 
         // use shared preference to store response
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('user', "fafaf");
+        // SharedPreferences prefs = await SharedPreferences.getInstance();
+        // prefs.setString('user', "fafaf");
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -103,7 +114,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: const Text('Login'),
+                  // child: const Text('Login'),
+                  child: isLoading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Login'),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      : const Text('Login'),
                 ),
               ),
               const SizedBox(
