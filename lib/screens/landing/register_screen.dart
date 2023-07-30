@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -48,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
         print('Data sent successfully!');
+        Navigator.pushNamed(context, LoginScreen.routeName);
       } else {
         // Error handling if the request fails
         // print('Failed to send data. Error code: ${response.statusCode}');

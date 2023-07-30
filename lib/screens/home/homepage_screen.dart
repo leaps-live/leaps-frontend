@@ -52,7 +52,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   },
                   child: const Row(
                     children: [
-                      Icon(Icons.add_circle),
+                      Icon(Icons.add_circle_outline),
                       SizedBox(
                         width: 5,
                       ),
@@ -77,7 +77,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       width: 5,
                     ),
                     GestureDetector(
-                      child: const Icon(Icons.notifications),
+                      child: const Icon(Icons.notifications_outlined),
                       onTap: () {},
                     ),
                   ],

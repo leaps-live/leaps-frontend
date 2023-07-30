@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class CreateTeamScreen extends StatefulWidget {
   const CreateTeamScreen({super.key});
@@ -10,6 +14,55 @@ class CreateTeamScreen extends StatefulWidget {
 }
 
 class _CreateTeamScreenState extends State<CreateTeamScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    categoryController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  void createTeam() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? user = prefs.getString('user');
+    print(user);
+
+    const String apiUrl = 'http://localhost:8080/teams/create';
+
+    // Create a map with the collected data
+    final Map<String, dynamic> userData = {
+      'teamCategories': categoryController.text,
+      'teamName': nameController.text,
+      'teamDescription': descriptionController.text,
+      'teamCreator': descriptionController.text,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        // Successfully sent data to the backend
+        print('Data sent successfully!');
+        print(response.body);
+        Navigator.pop(context);
+      } else {
+        // Error handling if the request fails
+        // print('Failed to send data. Error code: ${response.statusCode}');
+        print(response);
+      }
+    } catch (e) {
+      print('Error occurred while sending data: $e');
+    }
+  }
+
   String dropdownValue1 = "Default";
   String dropdownValue2 = "Default";
   String dropdownValue3 = "Default";
@@ -32,8 +85,9 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
                 labelText: 'Team Name',
                 // border: InputBorder.none,
                 hintText: 'Team name',
@@ -42,8 +96,20 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: categoryController,
+              decoration: const InputDecoration(
+                labelText: 'Team Category',
+                // border: InputBorder.none,
+                hintText: 'Team Category',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            TextField(
+              controller: descriptionController,
+              decoration: const InputDecoration(
                 labelText: 'Description',
                 hintText: 'Some description about this team',
                 labelStyle: TextStyle(
@@ -281,7 +347,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // do something after clicking create button
+                  createTeam();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey,

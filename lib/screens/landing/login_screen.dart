@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   bool isLoading = false;
+  bool showPassword = false;
 
   @override
   void dispose() {
@@ -49,11 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
         // Successfully sent data to the backend
         print('Data sent successfully!');
         print(response.body);
-        Navigator.pushNamed(context, MainScreen.routeName);
 
         // use shared preference to store response
-        // SharedPreferences prefs = await SharedPreferences.getInstance();
-        // prefs.setString('user', "fafaf");
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('user', response.body);
+        String? user = prefs.getString('user');
+        print('User value: $user');
+
+        Navigator.pushNamed(context, MainScreen.routeName);
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
@@ -91,11 +95,21 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextField(
                 controller: passwordController,
-                decoration: const InputDecoration(
+                obscureText: !showPassword,
+                decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Password',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                        showPassword ? Icons.visibility_off : Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -141,16 +155,19 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.g_translate),
-                  SizedBox(
+                  const Icon(Icons.g_translate),
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    "Continue with Google",
-                    style: TextStyle(fontSize: 15),
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Text(
+                      "Continue with Google",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   )
                 ],
               ),
