@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_index.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_tabbar.dart';
+import '../../../utils/colors.dart';
+import '../../league/leaguePage/league_tabbar.dart';
+import '../../league/leaguePage/league_index.dart';
 
-class TeamScreen extends StatefulWidget {
-  const TeamScreen({super.key});
-  static const routeName = '/team';
+class LeagueScreen extends StatefulWidget {
+  const LeagueScreen({super.key});
+  static const routeName = '/league';
 
   @override
-  State<TeamScreen> createState() => _TeamScreenState();
+  State<LeagueScreen> createState() => _LeagueScreenState();
 }
 
-class _TeamScreenState extends State<TeamScreen> {
+class _LeagueScreenState extends State<LeagueScreen> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Teams",
+            "Leagues",
             style: TextStyle(color: Colors.black),
           ),
           iconTheme: const IconThemeData(color: Colors.black),
