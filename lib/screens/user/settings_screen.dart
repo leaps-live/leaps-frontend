@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   userSignOut();
-                  Navigator.pushNamed(context, ProfileScreen.routeName);
+                  Navigator.pushNamed(context, MainScreen.routeName);
                 },
                 child: const Text(
                   'Sign out',
