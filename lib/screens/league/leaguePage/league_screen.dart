@@ -19,9 +19,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
         appBar: AppBar(
           title: const Text(
             "Leagues",
-            style: TextStyle(color: Colors.black),
           ),
-          iconTheme: const IconThemeData(color: Colors.black),
           actions: [
             GestureDetector(
               child: const Icon(Icons.share),
