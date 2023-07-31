@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CareerProfileScreen extends StatelessWidget {
   static const routeName = '/careerprofile';
@@ -8,16 +9,14 @@ class CareerProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: backgroundColor,
-        ),
         body: ListView(
-          children: const [
-            HeroContent(),
-            SizedBox(height: 30),
-            ExperienceContentState()
-          ],
-        ));
+      children: const [
+        SizedBox(height: 30),
+        HeroContent(),
+        SizedBox(height: 30),
+        ExperienceContentState()
+      ],
+    ));
   }
 }
 
@@ -37,12 +36,12 @@ class HeroContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                const Column(
+                Column(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
@@ -62,18 +61,27 @@ class HeroContent extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon(Icons.person_add,
+                            const Icon(Icons.person_add_outlined,
                                 size: 35.0, color: primaryColor),
-                            SizedBox(width: 15),
-                            Icon(Icons.sms, size: 35.0, color: primaryColor),
+                            const SizedBox(width: 15),
+                            const Icon(Icons.sms_outlined,
+                                size: 35.0, color: primaryColor),
+                            const SizedBox(width: 15),
+                            IconButton(
+                              icon: const Icon(Icons.share_outlined,
+                                  size: 35.0, color: primaryColor),
+                              onPressed: () {
+                                Share.share("Share something!!!");
+                              },
+                            ),
                           ],
                         ),
-                        SizedBox(height: 10),
-                        Row(
+                        const SizedBox(height: 10),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
