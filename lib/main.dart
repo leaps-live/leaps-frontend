@@ -14,6 +14,7 @@ import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
+import 'package:leaps_frontend/screens/user/settings_screen.dart';
 import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
@@ -43,10 +44,10 @@ class MyApp extends StatelessWidget {
               backgroundColor: backgroundColor,
               elevation: 0,
               titleTextStyle: const TextStyle(
-                  color: primaryColor,
+                  color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
-              iconTheme: const IconThemeData(color: primaryColor))),
+              iconTheme: const IconThemeData(color: Colors.black))),
       routes: {
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
         UserProfileScreen.routeName: (context) => const UserProfileScreen(),
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
         LandingScreen.routeName: (context) => const LandingScreen(),
         EditProfile.routeName: (context) => const EditProfile(),
         ProfileScreen.routeName: (context) => const ProfileScreen(),
+        SettingsScreen.routeName: (context) => const SettingsScreen(),
       },
       home: const LandingScreen(),
     );
