@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -5,6 +6,32 @@ import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/colors.dart';
+
+class User {
+  String userid;
+  String firstName;
+  String lastName;
+
+  User({required this.userid, required this.firstName, required this.lastName});
+
+  // Convert User object to Map
+  Map<String, dynamic> toJson() {
+    return {
+      'userid': userid,
+      'userfirstname': firstName,
+      'userlastname': lastName
+    };
+  }
+
+  // Create User object from Map
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      userid: json['userid'],
+      firstName: json['userfirstname'],
+      lastName: json['userlastname'],
+    );
+  }
+}
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -16,6 +43,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isLogin = false;
+  late User user;
+  late String userName;
 
   @override
   void initState() {
@@ -26,6 +55,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _getUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userJsonString = prefs.getString('user');
+    user = User.fromJson(jsonDecode(userJsonString!));
+    userName = '${user.firstName} ${user.lastName}';
+    print("111111111111111 ${userJsonString}");
     if (userJsonString != null) {
       setState(() {
         isLogin = true;
@@ -41,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const topBar(),
-            isLogin ? const Avatar() : const AvatarNone(),
+            isLogin ? Avatar(userName: userName) : const AvatarNone(),
             const Features(),
             const SizedBox(height: 20),
             if (!isLogin) const Landing(),
@@ -68,7 +100,8 @@ class topBar extends StatelessWidget {
 }
 
 class Avatar extends StatefulWidget {
-  const Avatar({super.key});
+  final String userName;
+  const Avatar({required this.userName, Key? key}) : super(key: key);
 
   @override
   State<Avatar> createState() => _AvatarState();
@@ -88,8 +121,8 @@ class _AvatarState extends State<Avatar> {
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             children: [
-              const Text(
-                'Ruolin Chen',
+              Text(
+                widget.userName,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 textAlign: TextAlign.left,
               ),

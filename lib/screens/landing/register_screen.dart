@@ -31,8 +31,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _checkIfFieldFilled() {
     setState(() {
-      areAllFieldsFilled =
-          emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+      areAllFieldsFilled = emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          confirmPasswordController.text.isNotEmpty &&
+          userFirstNameController.text.isNotEmpty &&
+          userLastNameController.text.isNotEmpty &&
+          usernameController.text.isNotEmpty &&
+          birthdayController.text.isNotEmpty &&
+          heightController.text.isNotEmpty &&
+          weightController.text.isNotEmpty;
     });
   }
 
