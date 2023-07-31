@@ -1,0 +1,302 @@
+import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/landing/login_screen.dart';
+import 'package:leaps_frontend/screens/landing/register_screen.dart';
+import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../utils/colors.dart';
+
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+  static const routeName = '/profile';
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
+
+  Future<void> _getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userJsonString = prefs.getString('user');
+    if (userJsonString != null) {
+      setState(() {
+        isLogin = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const topBar(),
+            isLogin ? const Avatar() : const AvatarNone(),
+            const Features(),
+            const SizedBox(height: 20),
+            if (!isLogin) const Landing(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class topBar extends StatelessWidget {
+  const topBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [Icon(Icons.qr_code_scanner), Icon(Icons.settings_outlined)],
+      ),
+    );
+  }
+}
+
+class Avatar extends StatefulWidget {
+  const Avatar({super.key});
+
+  @override
+  State<Avatar> createState() => _AvatarState();
+}
+
+class _AvatarState extends State<Avatar> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+        const CircleAvatar(
+          radius: 45,
+          backgroundImage: NetworkImage('https://picsum.photos/id/237/200/300'),
+        ),
+        const SizedBox(width: 16),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            children: [
+              const Text(
+                'Ruolin Chen',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              GestureDetector(
+                child: const Icon(Icons.edit_outlined, size: 20),
+                onTap: () {
+                  Navigator.pushNamed(context, EditProfile.routeName);
+                },
+              )
+            ],
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            '@ruov',
+            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17),
+            textAlign: TextAlign.left,
+          )
+        ])
+      ]),
+    );
+  }
+}
+
+class AvatarNone extends StatelessWidget {
+  const AvatarNone({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Container(
+          width: 90,
+          height: 90,
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+            shape: BoxShape.circle,
+          ),
+          child: const Icon(
+            Icons.person,
+            color: Colors.white,
+            size: 40,
+          ),
+        ),
+        const SizedBox(width: 16),
+        const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            'Guest',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+            textAlign: TextAlign.left,
+          ),
+          SizedBox(height: 8),
+          Text(
+            '-',
+            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17),
+            textAlign: TextAlign.left,
+          )
+        ])
+      ]),
+    );
+  }
+}
+
+class Features extends StatefulWidget {
+  const Features({super.key});
+
+  @override
+  State<Features> createState() => _FeaturesState();
+}
+
+class _FeaturesState extends State<Features> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.attach_money,
+                  size: 21.0, color: Colors.black),
+              label: const Text('Coins',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center)),
+          const SizedBox(height: 10),
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.wallet, size: 21.0, color: Colors.black),
+              label: const Text('Wallet',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center)),
+          const SizedBox(height: 10),
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.history, size: 21.0, color: Colors.black),
+              label: const Text('Watch History',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center)),
+          const SizedBox(height: 10),
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.favorite_outline,
+                  size: 21.0, color: Colors.black),
+              label: const Text('Likes',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center)),
+          const SizedBox(height: 10),
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.comment_outlined,
+                  size: 21.0, color: Colors.black),
+              label: const Text('Comments',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center)),
+          const SizedBox(height: 10),
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.download_outlined,
+                  size: 21.0, color: Colors.black),
+              label: const Text('Downloads',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center))
+        ],
+      ),
+    );
+  }
+}
+
+class Landing extends StatefulWidget {
+  const Landing({super.key});
+
+  @override
+  State<Landing> createState() => _LandingState();
+}
+
+class _LandingState extends State<Landing> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, LoginScreen.routeName);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              fixedSize: const Size(150, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: const BorderSide(color: Colors.black),
+              ),
+            ),
+            child: const Text(
+              'Log in',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          const SizedBox(width: 16),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RegisterScreen.routeName);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              fixedSize: const Size(150, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: const Text(
+              'Sign up',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
