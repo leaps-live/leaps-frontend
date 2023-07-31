@@ -68,12 +68,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: Color.fromARGB(255, 193, 217, 229),
+          leading: IconButton(
+            icon: const Icon(Icons
+                .qr_code_scanner_outlined), // Replace with the icon you want
+            onPressed: () {
+              // Handle the onTap event for the custom leading IconButton
+            },
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings_outlined),
+              onPressed: () {},
+            ),
+          ]),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const topBar(),
-            isLogin ? Avatar(userName: userName) : const AvatarNone(),
+            Container(
+              color: Color.fromARGB(255, 193, 217, 229),
+              child: isLogin ? Avatar(userName: userName) : const AvatarNone(),
+            ),
             const Features(),
             const SizedBox(height: 20),
             if (!isLogin) const Landing(),
@@ -84,20 +103,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-class topBar extends StatelessWidget {
-  const topBar({super.key});
+// class topBar extends StatelessWidget {
+//   const topBar({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Icon(Icons.qr_code_scanner), Icon(Icons.settings_outlined)],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(16.0),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           IconButton(
+//             icon: const Icon(Icons.qr_code_scanner),
+//             onPressed: () {},
+//           ),
+//           IconButton(
+//             icon: const Icon(Icons.settings_outlined),
+//             onPressed: () {},
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class Avatar extends StatefulWidget {
   final String userName;
@@ -112,39 +140,47 @@ class _AvatarState extends State<Avatar> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-        const CircleAvatar(
-          radius: 45,
-          backgroundImage: NetworkImage('https://picsum.photos/id/237/200/300'),
-        ),
-        const SizedBox(width: 16),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            children: [
-              Text(
-                widget.userName,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+      child: Column(
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            const CircleAvatar(
+              radius: 45,
+              backgroundImage:
+                  NetworkImage('https://picsum.photos/id/237/200/300'),
+            ),
+            const SizedBox(width: 16),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(
+                children: [
+                  Text(
+                    widget.userName,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  GestureDetector(
+                    child: const Icon(Icons.edit_outlined, size: 20),
+                    onTap: () {
+                      Navigator.pushNamed(context, EditProfile.routeName);
+                    },
+                  )
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                '@ruov',
+                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17),
                 textAlign: TextAlign.left,
               ),
-              const SizedBox(
-                width: 8,
-              ),
-              GestureDetector(
-                child: const Icon(Icons.edit_outlined, size: 20),
-                onTap: () {
-                  Navigator.pushNamed(context, EditProfile.routeName);
-                },
-              )
-            ],
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            '@ruov',
-            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17),
-            textAlign: TextAlign.left,
+            ])
+          ]),
+          const SizedBox(
+            height: 16,
           )
-        ])
-      ]),
+        ],
+      ),
     );
   }
 }
