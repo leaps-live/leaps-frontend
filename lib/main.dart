@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/league/createleague_screen.dart';
+import 'package:leaps_frontend/screens/splash_screen.dart';
 import 'package:leaps_frontend/screens/team/createteam_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
         ProfileScreen.routeName: (context) => const ProfileScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
       },
-      home: const LandingScreen(),
+      home: const SplashScreen(),
     );
   }
 }
