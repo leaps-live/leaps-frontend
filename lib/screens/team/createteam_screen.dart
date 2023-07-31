@@ -5,6 +5,24 @@ import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+class User {
+  String userid;
+
+  User({required this.userid});
+
+  // Convert User object to Map
+  Map<String, dynamic> toJson() {
+    return {'userid': userid};
+  }
+
+  // Create User object from Map
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      userid: json['userid'],
+    );
+  }
+}
+
 class CreateTeamScreen extends StatefulWidget {
   const CreateTeamScreen({super.key});
   static const routeName = '/create_team';
@@ -27,9 +45,11 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   }
 
   void createTeam() async {
+    Map<String, dynamic> userJson = {};
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? user = prefs.getString('user');
-    print(user);
+    String? userJsonString = prefs.getString('user');
+    User user = User.fromJson(jsonDecode(userJsonString!));
+    print(user.userid);
 
     const String apiUrl = 'http://localhost:8080/teams/create';
 
@@ -38,8 +58,10 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
       'teamCategories': categoryController.text,
       'teamName': nameController.text,
       'teamDescription': descriptionController.text,
-      'teamCreator': descriptionController.text,
+      'teamCreator': user.userid,
     };
+
+    print(userData);
 
     try {
       final response = await http.post(
@@ -55,8 +77,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
         Navigator.pop(context);
       } else {
         // Error handling if the request fails
-        // print('Failed to send data. Error code: ${response.statusCode}');
-        print(response);
+        print('Failed to send data. Error code: ${response.statusCode}');
+        // print(response);
       }
     } catch (e) {
       print('Error occurred while sending data: $e');

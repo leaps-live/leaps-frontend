@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +20,16 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool showPassword = false;
 
+  // change button color when all the fields are filled
+  bool areAllFieldsFilled = false;
+
+  void _checkIfFieldFilled() {
+    setState(() {
+      areAllFieldsFilled =
+          emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+    });
+  }
+
   @override
   void dispose() {
     passwordController.dispose();
@@ -27,6 +38,30 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _userLogin() async {
+    if (emailController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your email",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
+    if (passwordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your password",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
     setState(() {
       isLoading = true;
     });
@@ -74,9 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text(
           'Log in',
-          style: TextStyle(color: Colors.black),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -85,6 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TextField(
                 controller: emailController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
                 decoration: const InputDecoration(
                   labelText: 'UserEmail',
                   hintText: 'UserEmail',
@@ -95,6 +131,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextField(
                 controller: passwordController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
                 obscureText: !showPassword,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -122,7 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     _userLogin();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
+                    backgroundColor:
+                        areAllFieldsFilled ? primaryColor : Colors.grey,
                     fixedSize: const Size(300, 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -163,7 +203,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 10,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, MainScreen.routeName);
+                    },
                     child: const Text(
                       "Continue with Google",
                       style: TextStyle(fontSize: 15),
