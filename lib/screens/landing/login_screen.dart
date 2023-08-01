@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _userLogin() async {
     if (emailController.text.isEmpty) {
       Fluttertoast.showToast(
-        msg: "Please enter your email",
+        msg: "Please enter your email or username",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -66,33 +66,48 @@ class _LoginScreenState extends State<LoginScreen> {
       isLoading = true;
     });
 
-    const String apiUrl = 'http://localhost:8080/users/login';
+    const String apiUrl_email = 'http://localhost:8080/users/login';
+    const String apiUrl_username = 'http://localhost:8080/users/username/login';
 
     // Create a map with the collected data
-    final Map<String, dynamic> userData = {
+    final Map<String, dynamic> userData_email = {
       'userEmail': emailController.text,
       'userPassword': passwordController.text,
     };
-    print(userData);
+    final Map<String, dynamic> userData_username = {
+      'username': emailController.text,
+      'userPassword': passwordController.text,
+    };
+
     try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        body: json.encode(userData),
+      final response_email = http.post(
+        Uri.parse(apiUrl_email),
+        body: json.encode(userData_email),
         headers: {'Content-Type': 'application/json'},
       );
+      final response_username = http.post(
+        Uri.parse(apiUrl_username),
+        body: json.encode(userData_username),
+        headers: {'Content-Type': 'application/json'},
+      );
+      final response = await Future.wait([response_email, response_username]);
 
-      if (response.statusCode == 200) {
-        // Successfully sent data to the backend
-        print('Data sent successfully!');
-        print(response.body);
+      for (final response in response) {
+        print(response.statusCode);
 
-        // use shared preference to store response
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('user', response.body);
-        String? user = prefs.getString('user');
-        print('User value: $user');
+        if (response.statusCode == 200) {
+          // Successfully sent data to the backend
+          print('Data sent successfully!');
+          print(response.body);
 
-        Navigator.pushNamed(context, MainScreen.routeName);
+          // use shared preference to store response
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('user', response.body);
+          String? user = prefs.getString('user');
+          print('User value: $user');
+
+          Navigator.pushNamed(context, MainScreen.routeName);
+        }
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
@@ -122,8 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   _checkIfFieldFilled(); // Update button state on input change
                 },
                 decoration: const InputDecoration(
-                  labelText: 'UserEmail',
-                  hintText: 'UserEmail',
+                  labelText: 'UserEmail / Username',
+                  hintText: 'UserEmail / Username',
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),

@@ -22,9 +22,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController birthdayController = TextEditingController();
-  final TextEditingController heightController = TextEditingController();
-  final TextEditingController weightController = TextEditingController();
 
   // change button color when all the fields are filled
   bool areAllFieldsFilled = false;
@@ -36,10 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           confirmPasswordController.text.isNotEmpty &&
           userFirstNameController.text.isNotEmpty &&
           userLastNameController.text.isNotEmpty &&
-          usernameController.text.isNotEmpty &&
-          birthdayController.text.isNotEmpty &&
-          heightController.text.isNotEmpty &&
-          weightController.text.isNotEmpty;
+          usernameController.text.isNotEmpty;
     });
   }
 
@@ -50,10 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         usernameController.text.isEmpty ||
         passwordController.text.isEmpty ||
         confirmPasswordController.text.isEmpty ||
-        emailController.text.isEmpty ||
-        birthdayController.text.isEmpty ||
-        heightController.text.isEmpty ||
-        weightController.text.isEmpty) {
+        emailController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fullfil all the fields",
         toastLength: Toast.LENGTH_SHORT,
@@ -86,9 +77,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'username': usernameController.text,
       'userEmail': emailController.text,
       'userPassword': passwordController.text,
-      'userBirthday': birthdayController.text,
-      'userHeight': heightController.text,
-      'userWeight': weightController.text,
+      'userBirthday': '2000-1-1',
+      'userHeight': null,
+      'userWeight': null,
     };
 
     try {
@@ -121,9 +112,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     emailController.dispose();
-    birthdayController.dispose();
-    heightController.dispose();
-    weightController.dispose();
     super.dispose();
   }
 
@@ -140,44 +128,77 @@ class _RegisterScreenState extends State<RegisterScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              TextField(
-                controller: userFirstNameController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'User First Name',
-                  hintText: 'User First Name',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: userFirstNameController,
+                      onChanged: (value) {
+                        _checkIfFieldFilled(); // Update button state on input change
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'First Name',
+                        hintText: 'User First Name',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(
+                      width: 32), // Add a 16 space between the text fields
+                  Expanded(
+                    child: TextField(
+                      controller: userLastNameController,
+                      onChanged: (value) {
+                        _checkIfFieldFilled(); // Update button state on input change
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'Last Name',
+                        hintText: 'User Last Name',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              TextField(
-                controller: userLastNameController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'User Last Name',
-                  hintText: 'User Last Name',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: usernameController,
+                      onChanged: (value) {
+                        _checkIfFieldFilled(); // Update button state on input change
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'Username',
+                        hintText: 'Username',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              TextField(
-                controller: usernameController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Username',
-                  hintText: 'Username',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
+                  const SizedBox(
+                      width: 32), // Add a 16 space between the text fields
+                  Expanded(
+                    child: TextField(
+                      controller: emailController,
+                      onChanged: (value) {
+                        _checkIfFieldFilled(); // Update button state on input change
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        hintText: 'Email',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               TextField(
                 controller: passwordController,
@@ -202,58 +223,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: const InputDecoration(
                   labelText: 'Confirm Password',
                   hintText: 'Confirm Password',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              TextField(
-                controller: emailController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'Email',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              TextField(
-                controller: birthdayController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Birthday',
-                  hintText: 'Birthday',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              TextField(
-                controller: heightController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Height (in inches)',
-                  hintText: 'Height',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              TextField(
-                controller: weightController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Weight (in pounds)',
-                  hintText: 'Weight',
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),

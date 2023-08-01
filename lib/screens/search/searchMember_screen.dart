@@ -147,7 +147,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
       final response_id = http.get(apiUrl_id);
       final response_name = http.get(apiUrl_name);
 
-      // 并行请求
+      // two requests are sent at the same time
       final response = await Future.wait([response_id, response_name]);
 
       for (final response in response) {
