@@ -22,7 +22,14 @@ class SettingsScreen extends StatelessWidget {
                   Navigator.pushNamed(context, MainScreen.routeName);
                 },
                 child: const Text(
-                  'Sign out',
+                  'Log out',
+                  style: TextStyle(fontSize: 19, color: Colors.black),
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Delete account',
                   style: TextStyle(fontSize: 19, color: Colors.black),
                 ),
               ),

@@ -164,41 +164,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: usernameController,
-                      onChanged: (value) {
-                        _checkIfFieldFilled(); // Update button state on input change
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Username',
-                        hintText: 'Username',
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+              TextField(
+                controller: usernameController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  hintText: 'Username',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
                   ),
-                  const SizedBox(
-                      width: 32), // Add a 16 space between the text fields
-                  Expanded(
-                    child: TextField(
-                      controller: emailController,
-                      onChanged: (value) {
-                        _checkIfFieldFilled(); // Update button state on input change
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Email',
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+                ),
+              ),
+              TextField(
+                controller: emailController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  hintText: 'Email',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
                   ),
-                ],
+                ),
               ),
               TextField(
                 controller: passwordController,

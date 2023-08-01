@@ -92,12 +92,15 @@ class _LoginScreenState extends State<LoginScreen> {
       );
       final response = await Future.wait([response_email, response_username]);
 
+      bool allRequestsFailed = true;
+
       for (final response in response) {
         print(response.statusCode);
 
         if (response.statusCode == 200) {
           // Successfully sent data to the backend
           print('Data sent successfully!');
+          allRequestsFailed = false;
           print(response.body);
 
           // use shared preference to store response
@@ -108,6 +111,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
           Navigator.pushNamed(context, MainScreen.routeName);
         }
+      }
+
+      print(allRequestsFailed);
+      if (allRequestsFailed) {
+        Fluttertoast.showToast(
+          msg: "Login or password is wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
