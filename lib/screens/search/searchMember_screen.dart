@@ -12,6 +12,7 @@ class SearchMemberScreen extends StatefulWidget {
 
 class _SearchMemberScreenState extends State<SearchMemberScreen> {
   String searchQuery = '';
+  bool isLoading = false;
 
   Map<String, dynamic> searchResult = {};
 
@@ -80,35 +81,48 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              searchResult['username'] != null
-                  ? GestureDetector(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 40),
-                            child: Icon(
-                              Icons.abc,
-                              size: 50,
-                            ),
+              isLoading
+                  ? const Expanded(
+                      child: Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: Colors.black,
+                            strokeWidth: 4,
                           ),
-                          Expanded(
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.only(left: 10), // 设置左边距为10
-                              child: Text(
-                                searchResult['username'] ?? 'No result',
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     )
-                  : const Padding(
-                      padding: EdgeInsets.only(top: 240.0),
-                      child: Text("No Result", style: TextStyle(fontSize: 20)),
-                    ),
+                  : searchResult['username'] != null
+                      ? GestureDetector(
+                          onTap: () {},
+                          child: Row(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(left: 40),
+                                child: Icon(
+                                  Icons.abc,
+                                  size: 50,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                    margin: const EdgeInsets.only(
+                                        left: 10), // 设置左边距为10
+                                    child: Text(
+                                      searchResult['username'] ?? 'No result',
+                                      style: const TextStyle(fontSize: 20),
+                                    )),
+                              ),
+                            ],
+                          ),
+                        )
+                      : const Padding(
+                          padding: EdgeInsets.only(top: 240.0),
+                          child:
+                              Text("No Result", style: TextStyle(fontSize: 20)),
+                        ),
               const SizedBox(
                 height: 16,
               ),
@@ -120,6 +134,11 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
   }
 
   void _searchMember() async {
+    setState(() {
+      isLoading = true;
+      searchResult = {};
+    });
+
     var apiUrl_id = Uri.parse('http://localhost:8080/users/$searchQuery');
     var apiUrl_name =
         Uri.parse('http://localhost:8080/users/username/$searchQuery');
@@ -128,7 +147,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
       final response_id = http.get(apiUrl_id);
       final response_name = http.get(apiUrl_name);
 
-      // 并行请求
+      // two requests are sent at the same time
       final response = await Future.wait([response_id, response_name]);
 
       for (final response in response) {
@@ -142,6 +161,10 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
       }
     } catch (e) {
       print(e);
+    } finally {
+      setState(() {
+        isLoading = false; // 隐藏loading状态
+      });
     }
   }
 }

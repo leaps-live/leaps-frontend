@@ -17,7 +17,22 @@ class CreateCenterScreen extends StatefulWidget {
   State<CreateCenterScreen> createState() => _CreateCenterScreenState();
 }
 
-class _CreateCenterScreenState extends State<CreateCenterScreen> {
+class _CreateCenterScreenState extends State<CreateCenterScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,133 +154,115 @@ class _CreateCenterScreenState extends State<CreateCenterScreen> {
                 height: 45,
               ),
               const Text(
-                "Manage Teams",
+                "Manage",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, EditTeamScreen.routeName);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Los Angeles Lakers",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, EditTeamScreen.routeName);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Seattle Supersonics",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(
-                height: 36,
+                height: 8,
               ),
-              const Text(
-                "Manage Leagues",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, EditLeagueScreen.routeName);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
+              Column(
+                children: [
+                  TabBar(
+                    controller: _tabController,
+                    tabs: const [
+                      Tab(text: "Team"),
+                      Tab(text: "League"),
+                      Tab(text: "Game"),
+                    ],
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    labelStyle: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "NBA",
-                          style: TextStyle(fontSize: 17),
+                    unselectedLabelStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    indicator: const UnderlineTabIndicator(
+                      borderSide:
+                          BorderSide(color: Colors.transparent, width: 0),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 200, // Adjust the height as needed
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, EditTeamScreen.routeName);
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.abc,
+                                size: 50,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: const Text(
+                                    "Los Angeles Lakers",
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, EditLeagueScreen.routeName);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "NCAA",
-                          style: TextStyle(fontSize: 17),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, EditLeagueScreen.routeName);
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.abc,
+                                size: 50,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: const Text(
+                                    "NCAA",
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 36,
-              ),
-              const Text(
-                "Manage Games",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, EditGameScreen.routeName);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "UWJE vs UCLA",
-                          style: TextStyle(fontSize: 17),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, EditGameScreen.routeName);
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.abc,
+                                size: 50,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: const Text(
+                                    "UWJE vs UCLA",
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

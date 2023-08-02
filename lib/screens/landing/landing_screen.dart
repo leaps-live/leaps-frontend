@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 
 import '../../utils/colors.dart';
 import 'login_screen.dart';
@@ -70,7 +71,9 @@ class _LandingScreenState extends State<LandingScreen> {
                 "Continue as a guest",
                 style: TextStyle(fontSize: 16),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, MainScreen.routeName);
+              },
             )
           ],
         ),

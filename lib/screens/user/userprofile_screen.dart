@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:leaps_frontend/widgets/nav_drawer.dart';
 
@@ -77,7 +78,9 @@ class HeroBar extends StatelessWidget {
                 ])
               ]),
               TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, EditProfile.routeName);
+                  },
                   icon: const Icon(Icons.edit_square,
                       size: 21.0, color: Colors.black),
                   label: const Text('Edit Profile',

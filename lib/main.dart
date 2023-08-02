@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/league/createleague_screen.dart';
+import 'package:leaps_frontend/screens/splash_screen.dart';
 import 'package:leaps_frontend/screens/team/createteam_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
@@ -12,10 +13,13 @@ import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:leaps_frontend/screens/user/profile_screen.dart';
+import 'package:leaps_frontend/screens/user/settings_screen.dart';
 import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-import 'package:leaps_frontend/screens/league/league_screen.dart';
+import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -41,10 +45,10 @@ class MyApp extends StatelessWidget {
               backgroundColor: backgroundColor,
               elevation: 0,
               titleTextStyle: const TextStyle(
-                  color: primaryColor,
+                  color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
-              iconTheme: const IconThemeData(color: primaryColor))),
+              iconTheme: const IconThemeData(color: Colors.black))),
       routes: {
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
         UserProfileScreen.routeName: (context) => const UserProfileScreen(),
@@ -69,8 +73,11 @@ class MyApp extends StatelessWidget {
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         LandingScreen.routeName: (context) => const LandingScreen(),
+        EditProfile.routeName: (context) => const EditProfile(),
+        ProfileScreen.routeName: (context) => const ProfileScreen(),
+        SettingsScreen.routeName: (context) => const SettingsScreen(),
       },
-      home: const MainScreen(),
+      home: const SplashScreen(),
     );
   }
 }
