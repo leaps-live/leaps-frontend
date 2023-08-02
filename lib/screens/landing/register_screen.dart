@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,13 +19,60 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController userLastNameController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController birthdayController = TextEditingController();
-  final TextEditingController heightController = TextEditingController();
-  final TextEditingController weightController = TextEditingController();
 
-  // Function to make the POST request to nodeJS
+  // change button color when all the fields are filled
+  bool areAllFieldsFilled = false;
+  bool isLoading = false;
+
+  void _checkIfFieldFilled() {
+    setState(() {
+      areAllFieldsFilled = emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          confirmPasswordController.text.isNotEmpty &&
+          userFirstNameController.text.isNotEmpty &&
+          userLastNameController.text.isNotEmpty &&
+          usernameController.text.isNotEmpty;
+    });
+  }
+
+  // make toast for incomplete form
   void _userRegister() async {
+    if (userFirstNameController.text.isEmpty ||
+        userLastNameController.text.isEmpty ||
+        usernameController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty ||
+        emailController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please fullfil all the fields",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      Fluttertoast.showToast(
+        msg: "The password is different from the confirmation password.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
     const String apiUrl = 'http://localhost:8080/users/register';
 
     // Create a map with the collected data
@@ -33,9 +82,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'username': usernameController.text,
       'userEmail': emailController.text,
       'userPassword': passwordController.text,
-      'userBirthday': birthdayController.text,
-      'userHeight': heightController.text,
-      'userWeight': weightController.text,
+      'userBirthday': '2000-1-1',
+      'userHeight': null,
+      'userWeight': null,
     };
 
     try {
@@ -47,7 +96,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
-        print('Data sent successfully!');
+        print('Account registered successfully!');
+        Navigator.pushNamed(context, LoginScreen.routeName);
       } else {
         // Error handling if the request fails
         // print('Failed to send data. Error code: ${response.statusCode}');
@@ -55,6 +105,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -65,10 +119,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     userLastNameController.dispose();
     usernameController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     emailController.dispose();
-    birthdayController.dispose();
-    heightController.dispose();
-    weightController.dispose();
     super.dispose();
   }
 
@@ -78,165 +130,196 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         title: const Text(
           'Sign up',
-          style: TextStyle(color: Colors.black),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              controller: userFirstNameController,
-              decoration: const InputDecoration(
-                labelText: 'User First Name',
-                hintText: 'User First Name',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: userLastNameController,
-              decoration: const InputDecoration(
-                labelText: 'User Last Name',
-                hintText: 'User Last Name',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: usernameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                hintText: 'Username',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Password',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                hintText: 'Email',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: birthdayController,
-              decoration: const InputDecoration(
-                labelText: 'Birthday',
-                hintText: 'Birthday',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: heightController,
-              decoration: const InputDecoration(
-                labelText: 'Height (in inches)',
-                hintText: 'Height',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            TextField(
-              controller: weightController,
-              decoration: const InputDecoration(
-                labelText: 'Weight (in pounds)',
-                hintText: 'Weight',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 80,
-            ),
-            Container(
-              width: 300,
-              child: RichText(
-                text: const TextSpan(
-                  style: TextStyle(
-                    fontSize: 16, // 设置默认字体大小
-                    color: Colors.black, // 设置默认字体颜色
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: userFirstNameController,
+                      onChanged: (value) {
+                        _checkIfFieldFilled(); // Update button state on input change
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'First Name',
+                        hintText: 'User First Name',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                  children: [
-                    TextSpan(
-                      text: "By signing up, you agree to our ",
-                      style: TextStyle(fontWeight: FontWeight.normal),
+                  const SizedBox(
+                      width: 32), // Add a 16 space between the text fields
+                  Expanded(
+                    child: TextField(
+                      controller: userLastNameController,
+                      onChanged: (value) {
+                        _checkIfFieldFilled(); // Update button state on input change
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'Last Name',
+                        hintText: 'User Last Name',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
-                    TextSpan(
-                      text: "Terms of Use",
-                      style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
-                    ),
-                    TextSpan(
-                      text: " and ",
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                    TextSpan(
-                      text: "Privacy Policy",
-                      style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
-                    ),
-                    TextSpan(
-                      text: ".",
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  _userRegister();
+              TextField(
+                controller: usernameController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  fixedSize: const Size(300, 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  hintText: 'Username',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
                   ),
                 ),
-                child: const Text('Sign up'),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.g_translate),
-                SizedBox(
-                  width: 10,
+              TextField(
+                controller: emailController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  hintText: 'Email',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
-                Text(
-                  "Continue with Google",
-                  style: TextStyle(fontSize: 15),
-                )
-              ],
-            ),
-          ],
+              ),
+              TextField(
+                controller: passwordController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  hintText: 'Password',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              TextField(
+                controller: confirmPasswordController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Confirm Password',
+                  hintText: 'Confirm Password',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 80,
+              ),
+              Container(
+                width: 300,
+                child: RichText(
+                  text: const TextSpan(
+                    style: TextStyle(
+                      fontSize: 16, // 设置默认字体大小
+                      color: Colors.black, // 设置默认字体颜色
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "By signing up, you agree to our ",
+                        style: TextStyle(fontWeight: FontWeight.normal),
+                      ),
+                      TextSpan(
+                        text: "Terms of Use",
+                        style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
+                      ),
+                      TextSpan(
+                        text: " and ",
+                        style: TextStyle(fontWeight: FontWeight.normal),
+                      ),
+                      TextSpan(
+                        text: "Privacy Policy",
+                        style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
+                      ),
+                      TextSpan(
+                        text: ".",
+                        style: TextStyle(fontWeight: FontWeight.normal),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    _userRegister();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        areAllFieldsFilled ? primaryColor : Colors.grey,
+                    fixedSize: const Size(300, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: isLoading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Sign up'),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      : const Text('Sign up'),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.g_translate),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Continue with Google",
+                    style: TextStyle(fontSize: 15),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

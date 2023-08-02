@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_index.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_tabbar.dart';
-import '../../../utils/colors.dart';
 
 class TeamScreen extends StatefulWidget {
   const TeamScreen({super.key});
@@ -14,7 +13,6 @@ class TeamScreen extends StatefulWidget {
 class _TeamScreenState extends State<TeamScreen> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: const Text(

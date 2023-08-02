@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../main_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +17,19 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  bool isLoading = false;
+  bool showPassword = false;
+  Map<String, dynamic> searchResult = {};
+
+  // change button color when all the fields are filled
+  bool areAllFieldsFilled = false;
+
+  void _checkIfFieldFilled() {
+    setState(() {
+      areAllFieldsFilled =
+          emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+    });
+  }
 
   @override
   void dispose() {
@@ -24,32 +39,107 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _userLogin() async {
-    const String apiUrl = 'http://localhost:8080/users/login';
+    if (emailController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your email or username",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
+    if (passwordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your password",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+      searchResult = {};
+    });
+
+    const String apiUrl_email = 'http://localhost:8080/users/login';
+    const String apiUrl_username = 'http://localhost:8080/users/username/login';
 
     // Create a map with the collected data
-    final Map<String, dynamic> userData = {
+    final Map<String, dynamic> userData_email = {
       'userEmail': emailController.text,
       'userPassword': passwordController.text,
     };
-    print(userData);
+    final Map<String, dynamic> userData_username = {
+      'username': emailController.text,
+      'userPassword': passwordController.text,
+    };
+
     try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        body: json.encode(userData),
+      final response_email = http.post(
+        Uri.parse(apiUrl_email),
+        body: json.encode(userData_email),
         headers: {'Content-Type': 'application/json'},
       );
+      final response_username = http.post(
+        Uri.parse(apiUrl_username),
+        body: json.encode(userData_username),
+        headers: {'Content-Type': 'application/json'},
+      );
+      final response = await Future.wait([response_email, response_username]);
 
-      if (response.statusCode == 200) {
-        // Successfully sent data to the backend
-        print('Data sent successfully!');
-        print(response.body);
+      bool allRequestsFailed = true;
 
-        // use shared preference to store response
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('user', "fafaf");
+      for (final response in response) {
+        print(response.statusCode);
+
+        if (response.statusCode == 200) {
+          // Successfully sent data to the backend
+          print('Data sent successfully!');
+          allRequestsFailed = false;
+          print(response.body);
+
+          setState(() {
+            searchResult = json.decode(response.body);
+          });
+
+          // use shared preference to store response
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('user', response.body);
+          String? user = prefs.getString('user');
+          print('User value: $user');
+
+          prefs.setString('userid', searchResult['userid']);
+          String? userid = prefs.getString('userid');
+          print('Userid: $userid');
+
+          Navigator.pushNamed(context, MainScreen.routeName);
+        }
+      }
+
+      print(allRequestsFailed);
+      if (allRequestsFailed) {
+        Fluttertoast.showToast(
+          msg: "Login or password is wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -59,9 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text(
           'Log in',
-          style: TextStyle(color: Colors.black),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -70,9 +158,12 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TextField(
                 controller: emailController,
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
                 decoration: const InputDecoration(
-                  labelText: 'UserEmail',
-                  hintText: 'UserEmail',
+                  labelText: 'UserEmail / Username',
+                  hintText: 'UserEmail / Username',
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
@@ -80,11 +171,24 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextField(
                 controller: passwordController,
-                decoration: const InputDecoration(
+                onChanged: (value) {
+                  _checkIfFieldFilled(); // Update button state on input change
+                },
+                obscureText: !showPassword,
+                decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Password',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                        showPassword ? Icons.visibility_off : Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -97,28 +201,55 @@ class _LoginScreenState extends State<LoginScreen> {
                     _userLogin();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
+                    backgroundColor:
+                        areAllFieldsFilled ? primaryColor : Colors.grey,
                     fixedSize: const Size(300, 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: const Text('Login'),
+                  // child: const Text('Login'),
+                  child: isLoading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Login'),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      : const Text('Login'),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.g_translate),
-                  SizedBox(
+                  const Icon(Icons.g_translate),
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    "Continue with Google",
-                    style: TextStyle(fontSize: 15),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, MainScreen.routeName);
+                    },
+                    child: const Text(
+                      "Continue with Google",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   )
                 ],
               ),

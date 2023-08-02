@@ -3,6 +3,8 @@ import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
+import 'package:leaps_frontend/screens/user/profile_screen.dart';
+import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 
 import '../widgets/custom_button.dart';
 import 'landing/login_screen.dart';
@@ -47,6 +49,14 @@ class OnboardingScreen extends StatelessWidget {
                 text: 'Landing',
                 onTap: () {
                   Navigator.pushNamed(context, LandingScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Profile',
+                onTap: () {
+                  Navigator.pushNamed(context, UserProfileScreen.routeName);
                 },
               )),
         ],

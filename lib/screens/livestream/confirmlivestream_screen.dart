@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ConfirmLiveStreamScreen extends StatefulWidget {
   const ConfirmLiveStreamScreen({Key? key}) : super(key: key);
@@ -73,7 +74,9 @@ class _ConfirmLiveStreamScreenState extends State<ConfirmLiveStreamScreen> {
                     Icons.ios_share,
                     size: 15,
                   )),
-                  onTap: () {},
+                  onTap: () {
+                    // Share.share("gaga");
+                  },
                 )
               ],
             ),
