@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
@@ -173,13 +174,68 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                   onTap: () {
-                    deleteAccount();
-                    Navigator.pushNamed(context, MainScreen.routeName);
+                    showConfirmationDialog();
                   },
                 ),
             ],
           ),
         ));
+  }
+
+  void showConfirmationDialog() {
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            // title: Text('Confirmation'),
+            content: const Text(
+                'Are you sure you want to delete your account? This action is irreversible!!!'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  deleteAccount();
+                  Navigator.pushNamed(context, MainScreen.routeName);
+                },
+                child: const Text('Confirm'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel'),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            // title: Text('Confirmation'),
+            content: const Text(
+                'Are you sure you want to delete your account? This action is irreversible!!!'),
+            actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  deleteAccount();
+                  Navigator.pushNamed(context, MainScreen.routeName);
+                },
+                child: const Text('Confirm'),
+              ),
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   void userLogOut() async {

@@ -43,7 +43,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  // set different pages for guest and user
   bool isLogin = false;
+
+  // add loading effect for initState
+  bool isInit = false;
+
   late User user;
   late String userName;
 
@@ -54,6 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _getUserData() async {
+    setState(() {
+      isInit = true;
+    });
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userJsonString = prefs.getString('user');
     if (userJsonString != null) {
@@ -64,45 +72,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
         isLogin = true;
       });
     }
+    setState(() {
+      isInit = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Color.fromARGB(255, 193, 217, 229),
-          leading: IconButton(
-            icon: const Icon(Icons
-                .qr_code_scanner_outlined), // Replace with the icon you want
-            onPressed: () {
-              // Handle the onTap event for the custom leading IconButton
-            },
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.settings_outlined),
-              onPressed: () {
-                Navigator.pushNamed(context, SettingsScreen.routeName);
-              },
+    return isInit
+        ? const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          )
+        : Scaffold(
+            appBar: AppBar(
+                elevation: 0,
+                iconTheme: const IconThemeData(color: Colors.black),
+                backgroundColor: isLogin
+                    ? const Color.fromARGB(255, 193, 217, 229)
+                    : Colors.transparent,
+                leading: IconButton(
+                  icon: const Icon(Icons
+                      .qr_code_scanner_outlined), // Replace with the icon you want
+                  onPressed: () {
+                    // Handle the onTap event for the custom leading IconButton
+                  },
+                ),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.settings_outlined),
+                    onPressed: () {
+                      Navigator.pushNamed(context, SettingsScreen.routeName);
+                    },
+                  ),
+                ]),
+            body: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    color: isLogin
+                        ? const Color.fromARGB(255, 193, 217, 229)
+                        : Colors.transparent,
+                    child: isLogin
+                        ? Avatar(userName: userName)
+                        : const AvatarNone(),
+                  ),
+                  const Features(),
+                  const SizedBox(height: 20),
+                  if (!isLogin) const Landing(),
+                ],
+              ),
             ),
-          ]),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: Color.fromARGB(255, 193, 217, 229),
-              child: isLogin ? Avatar(userName: userName) : const AvatarNone(),
-            ),
-            const Features(),
-            const SizedBox(height: 20),
-            if (!isLogin) const Landing(),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }
 
@@ -157,7 +178,8 @@ class _AvatarState extends State<Avatar> {
                 children: [
                   Text(
                     widget.userName,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 21),
                     textAlign: TextAlign.left,
                   ),
                   const SizedBox(
