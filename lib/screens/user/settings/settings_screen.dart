@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
+import 'package:leaps_frontend/screens/user/settings/manage_settings/manage_settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,7 +56,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   color: Colors.black,
                   size: 20,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AccountSecurity.routeName);
+                },
               ),
               const SizedBox(
                 height: 16,
@@ -75,7 +79,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   color: Colors.black,
                   size: 20,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, ManageSettings.routeName);
+                },
               ),
               const SizedBox(
                 height: 16,

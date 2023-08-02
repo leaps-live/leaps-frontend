@@ -93,15 +93,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
         body: json.encode(userData),
         headers: {'Content-Type': 'application/json'},
       );
+      print(response.statusCode);
+      print(response.body);
 
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
         print('Account registered successfully!');
         Navigator.pushNamed(context, LoginScreen.routeName);
-      } else {
-        // Error handling if the request fails
-        // print('Failed to send data. Error code: ${response.statusCode}');
-        print(response);
+      } else if (response.statusCode == 401) {
+        Fluttertoast.showToast(
+          msg: "Email has already existed.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+      } else if (response.statusCode == 402) {
+        Fluttertoast.showToast(
+          msg: "Username has already existed.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
       }
     } catch (e) {
       print('Error occurred while sending data: $e');

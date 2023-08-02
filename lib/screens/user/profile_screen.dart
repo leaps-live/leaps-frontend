@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
-import 'package:leaps_frontend/screens/user/settings_screen.dart';
+import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/colors.dart';
