@@ -16,7 +16,40 @@ class SettingsScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ListTile(
+                title: const Text(
+                  'Account Security',
+                  style: TextStyle(color: Colors.black, fontSize: 19),
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text("NOTIFICATION",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold)),
+              ListTile(
+                title: const Text(
+                  'Account Security',
+                  style: TextStyle(color: Colors.black, fontSize: 19),
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                onTap: () {},
+              ),
               TextButton(
                 onPressed: () {
                   userSignOut();
