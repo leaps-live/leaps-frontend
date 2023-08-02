@@ -5,6 +5,7 @@ import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
 import 'package:leaps_frontend/screens/user/settings/manage_settings/manage_settings.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -188,7 +189,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            // title: Text('Confirmation'),
+            title: const Text(
+              'Warning',
+              style:
+                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+            ),
             content: const Text(
                 'Are you sure you want to delete your account? This action is irreversible!!!'),
             actions: [
@@ -214,7 +219,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            // title: Text('Confirmation'),
+            title: const Text(
+              'Warning',
+              style:
+                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+            ),
             content: const Text(
                 'Are you sure you want to delete your account? This action is irreversible!!!'),
             actions: [
