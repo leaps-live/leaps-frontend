@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   bool isLoading = false;
   bool showPassword = false;
+  Map<String, dynamic> searchResult = {};
 
   // change button color when all the fields are filled
   bool areAllFieldsFilled = false;
@@ -64,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() {
       isLoading = true;
+      searchResult = {};
     });
 
     const String apiUrl_email = 'http://localhost:8080/users/login';
@@ -103,11 +105,19 @@ class _LoginScreenState extends State<LoginScreen> {
           allRequestsFailed = false;
           print(response.body);
 
+          setState(() {
+            searchResult = json.decode(response.body);
+          });
+
           // use shared preference to store response
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString('user', response.body);
           String? user = prefs.getString('user');
           print('User value: $user');
+
+          prefs.setString('userid', searchResult['userid']);
+          String? userid = prefs.getString('userid');
+          print('Userid: $userid');
 
           Navigator.pushNamed(context, MainScreen.routeName);
         }

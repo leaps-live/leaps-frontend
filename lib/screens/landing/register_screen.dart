@@ -25,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   // change button color when all the fields are filled
   bool areAllFieldsFilled = false;
+  bool isLoading = false;
 
   void _checkIfFieldFilled() {
     setState(() {
@@ -68,6 +69,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
+    setState(() {
+      isLoading = true;
+    });
+
     const String apiUrl = 'http://localhost:8080/users/register';
 
     // Create a map with the collected data
@@ -91,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
-        print('Data sent successfully!');
+        print('Account registered successfully!');
         Navigator.pushNamed(context, LoginScreen.routeName);
       } else {
         // Error handling if the request fails
@@ -100,6 +105,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }
     } catch (e) {
       print('Error occurred while sending data: $e');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -270,7 +279,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: const Text('Sign up'),
+                  child: isLoading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Sign up'),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      : const Text('Sign up'),
                 ),
               ),
               const SizedBox(
