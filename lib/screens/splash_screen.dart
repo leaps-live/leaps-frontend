@@ -22,9 +22,11 @@ class _SplashScreenState extends State<SplashScreen>
     _getUserData();
     Future.delayed(const Duration(seconds: 3), () {
       if (isLogin) {
-        Navigator.pushNamed(context, MainScreen.routeName);
+        // Navigator.pushNamed(context, MainScreen.routeName);
+        Navigator.pushReplacementNamed(context, MainScreen.routeName);
       } else {
-        Navigator.pushNamed(context, LandingScreen.routeName);
+        // Navigator.pushNamed(context, LandingScreen.routeName);
+        Navigator.pushReplacementNamed(context, LandingScreen.routeName);
       }
     });
   }

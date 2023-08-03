@@ -27,8 +27,7 @@ class _CreateLiveStreamScreenState extends State<CreateLiveStreamScreen> {
           const Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             CircleAvatar(
               radius: 40,
-              backgroundImage:
-                  NetworkImage('https://picsum.photos/id/237/200/300'),
+              backgroundImage: NetworkImage(''),
             ),
             SizedBox(
               width: 16,

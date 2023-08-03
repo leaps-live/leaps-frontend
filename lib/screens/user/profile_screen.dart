@@ -169,8 +169,7 @@ class _AvatarState extends State<Avatar> {
           Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             const CircleAvatar(
               radius: 45,
-              backgroundImage:
-                  NetworkImage('https://picsum.photos/id/237/200/300'),
+              backgroundImage: NetworkImage(''),
             ),
             const SizedBox(width: 16),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

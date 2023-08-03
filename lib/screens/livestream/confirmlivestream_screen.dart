@@ -50,8 +50,7 @@ class _ConfirmLiveStreamScreenState extends State<ConfirmLiveStreamScreen> {
                 // Navigator.pushNamed(context, UserProfileScreen.routeName);
               },
               child: const CircleAvatar(
-                backgroundImage:
-                    NetworkImage('https://picsum.photos/id/237/200/300'),
+                backgroundImage: NetworkImage(''),
               ),
             ),
           ],

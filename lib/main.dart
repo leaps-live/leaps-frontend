@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
-import 'package:leaps_frontend/screens/league/createleague_screen.dart';
+import 'package:leaps_frontend/screens/league/createLeague/createleague_screen.dart';
+import 'package:leaps_frontend/screens/league/createLeague/firstCreateLeague.dart';
+import 'package:leaps_frontend/screens/search/searchLeague.dart';
+import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/screens/splash_screen.dart';
-import 'package:leaps_frontend/screens/team/createteam_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/livestream/confirmlivestream_screen.dart';
-import 'package:leaps_frontend/screens/league/editleague_screen.dart';
-import 'package:leaps_frontend/screens/team/editteam_screen.dart';
+import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
@@ -88,6 +92,10 @@ class MyApp extends StatelessWidget {
         ChangeEmail.routeName: (context) => const ChangeEmail(),
         ChangePassword.routeName: (context) => const ChangePassword(),
         ManageDevices.routeName: (context) => const ManageDevices(),
+        FirstCreateTeam.routeName: (context) => const FirstCreateTeam(),
+        SearchTeam.routeName: (context) => const SearchTeam(),
+        SearchLeague.routeName: (context) => const SearchLeague(),
+        FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
       },
       home: const SplashScreen(),
     );
