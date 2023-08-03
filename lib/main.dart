@@ -15,7 +15,13 @@ import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/settings_screen.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/change_email.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
+import 'package:leaps_frontend/screens/user/settings/manage_settings/manage_settings.dart';
+import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
@@ -76,6 +82,12 @@ class MyApp extends StatelessWidget {
         EditProfile.routeName: (context) => const EditProfile(),
         ProfileScreen.routeName: (context) => const ProfileScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
+        AccountSecurity.routeName: (context) => const AccountSecurity(),
+        ManageSettings.routeName: (context) => const ManageSettings(),
+        ChangeUsername.routeName: (context) => const ChangeUsername(),
+        ChangeEmail.routeName: (context) => const ChangeEmail(),
+        ChangePassword.routeName: (context) => const ChangePassword(),
+        ManageDevices.routeName: (context) => const ManageDevices(),
       },
       home: const SplashScreen(),
     );

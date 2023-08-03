@@ -68,31 +68,27 @@ class _LoginScreenState extends State<LoginScreen> {
       searchResult = {};
     });
 
-    const String apiUrl_email = 'http://localhost:8080/users/login';
-    const String apiUrl_username = 'http://localhost:8080/users/username/login';
+    const String apiUrl = 'http://localhost:8080/users/login';
+
+    // Check to see if input is an email
+    final bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(emailController.text);
 
     // Create a map with the collected data
-    final Map<String, dynamic> userData_email = {
-      'userEmail': emailController.text,
-      'userPassword': passwordController.text,
-    };
-    final Map<String, dynamic> userData_username = {
-      'username': emailController.text,
+    final Map<String, dynamic> userData = {
+      'userName': emailValid ? null : emailController.text,
+      'userEmail': emailValid ? emailController.text : null,
       'userPassword': passwordController.text,
     };
 
     try {
-      final response_email = http.post(
-        Uri.parse(apiUrl_email),
-        body: json.encode(userData_email),
+      final loginResponse = http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
         headers: {'Content-Type': 'application/json'},
       );
-      final response_username = http.post(
-        Uri.parse(apiUrl_username),
-        body: json.encode(userData_username),
-        headers: {'Content-Type': 'application/json'},
-      );
-      final response = await Future.wait([response_email, response_username]);
+      final response = await Future.wait([loginResponse]);
 
       bool allRequestsFailed = true;
 

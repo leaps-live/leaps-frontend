@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,14 +13,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+  bool isLogin = false;
+
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
+    _getUserData();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, LandingScreen.routeName);
+      if (isLogin) {
+        Navigator.pushNamed(context, MainScreen.routeName);
+      } else {
+        Navigator.pushNamed(context, LandingScreen.routeName);
+      }
     });
+  }
+
+  Future<void> _getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userid = prefs.getString('userid');
+    if (userid != null) {
+      setState(() {
+        isLogin = true;
+      });
+    }
   }
 
   @override
