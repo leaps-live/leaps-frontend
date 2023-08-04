@@ -56,7 +56,11 @@ class _AccountSecurityState extends State<AccountSecurity> {
               TextButton(
                 onPressed: () {
                   deleteAccount();
-                  Navigator.pushReplacementNamed(context, MainScreen.routeName);
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    MainScreen.routeName,
+                    (route) => false,
+                  );
                 },
                 child: const Text('Confirm'),
               ),

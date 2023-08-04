@@ -5,7 +5,8 @@ import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
-
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -55,14 +56,20 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     },
                     child: const Row(
                       children: [
-                        Icon(Icons.add_circle_outline),
+                        // Icon(Icons.add_circle_outline),
+                        Icon(
+                          Remix.dashboard_line,
+                          color: Color(0xFF2E3A59),
+                        ),
                         SizedBox(
                           width: 5,
                         ),
                         Text(
                           'Create',
                           style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
+                              color: Color(0xFF2E3A59),
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -70,7 +77,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        child: const Icon(Icons.search),
+                        child: const Icon(
+                          Remix.search_line,
+                          color: Color(0xFF2E3A59),
+                        ),
                         onTap: () {
                           Navigator.pushNamed(
                               context, SearchMemberScreen.routeName);
@@ -80,7 +90,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         width: 5,
                       ),
                       GestureDetector(
-                        child: const Icon(Icons.notifications_outlined),
+                        child: const Icon(
+                          Remix.notification_3_line,
+                          color: Color(0xFF2E3A59),
+                        ),
                         onTap: () {},
                       ),
                     ],
@@ -134,8 +147,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       fit: BoxFit.fill,
                     );
                   },
+
                   itemCount: 3,
-                  pagination: const SwiperPagination(),
+                  pagination: const SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                      color: Color(0xFF7D7D7D),
+                      activeColor: primaryColor,
+                    ),
+                  ),
                   // control: SwiperControl(),
                 ),
               ),

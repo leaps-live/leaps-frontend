@@ -53,6 +53,7 @@ class _NotificationsState extends State<Notifications> {
                   AdvancedSwitch(
                     controller: mentionController,
                     activeColor: primaryColor,
+                    inactiveColor: const Color(0xFFD7D7D7),
                   ),
                 ],
               ),
@@ -67,6 +68,7 @@ class _NotificationsState extends State<Notifications> {
                   AdvancedSwitch(
                     controller: likesController,
                     activeColor: primaryColor,
+                    inactiveColor: const Color(0xFFD7D7D7),
                   ),
                 ],
               ),
@@ -80,6 +82,7 @@ class _NotificationsState extends State<Notifications> {
                   const Spacer(),
                   AdvancedSwitch(
                     controller: commentController,
+                    inactiveColor: const Color(0xFFD7D7D7),
                     activeColor: primaryColor,
                   ),
                 ],
@@ -93,6 +96,7 @@ class _NotificationsState extends State<Notifications> {
                   ),
                   const Spacer(),
                   AdvancedSwitch(
+                    inactiveColor: const Color(0xFFD7D7D7),
                     controller: followerController,
                     activeColor: primaryColor,
                   ),

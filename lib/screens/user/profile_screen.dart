@@ -5,6 +5,7 @@ import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:remixicon/remixicon.dart';
 
 import '../../utils/colors.dart';
 
@@ -91,15 +92,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ? const Color.fromARGB(255, 193, 217, 229)
                     : Colors.transparent,
                 leading: IconButton(
-                  icon: const Icon(Icons
-                      .qr_code_scanner_outlined), // Replace with the icon you want
+                  icon: const Icon(
+                    Remix.qr_scan_2_line,
+                    color: Color(0xFF2E3A59),
+                  ), // Replace with the icon you want
                   onPressed: () {
                     // Handle the onTap event for the custom leading IconButton
                   },
                 ),
                 actions: [
                   IconButton(
-                    icon: const Icon(Icons.settings_outlined),
+                    icon: const Icon(
+                      Remix.settings_2_line,
+                      color: Color(0xFF2E3A59),
+                    ),
                     onPressed: () {
                       Navigator.pushNamed(context, SettingsScreen.routeName);
                     },
@@ -185,7 +191,10 @@ class _AvatarState extends State<Avatar> {
                     width: 8,
                   ),
                   GestureDetector(
-                    child: const Icon(Icons.edit_outlined, size: 20),
+                    child: const Icon(
+                      Remix.edit_line,
+                      color: Color(0xFF2E3A59),
+                    ),
                     onTap: () {
                       Navigator.pushNamed(context, EditProfile.routeName);
                     },
@@ -264,32 +273,35 @@ class _FeaturesState extends State<Features> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // TextButton.icon(
+          //     onPressed: () {},
+          //     icon: const Icon(Icons.attach_money,
+          //         size: 21.0, color: Colors.black),
+          //     label: const Text('Coins',
+          //         style: TextStyle(
+          //             fontFamily: 'Inter',
+          //             fontWeight: FontWeight.normal,
+          //             fontSize: 17,
+          //             color: Colors.black),
+          //         textAlign: TextAlign.center)),
+          // const SizedBox(height: 10),
+          // TextButton.icon(
+          //     onPressed: () {},
+          //     icon: const Icon(Icons.wallet, size: 21.0, color: Colors.black),
+          //     label: const Text('Wallet',
+          //         style: TextStyle(
+          //             fontFamily: 'Inter',
+          //             fontWeight: FontWeight.normal,
+          //             fontSize: 17,
+          //             color: Colors.black),
+          //         textAlign: TextAlign.center)),
+          // const SizedBox(height: 10),
           TextButton.icon(
               onPressed: () {},
-              icon: const Icon(Icons.attach_money,
-                  size: 21.0, color: Colors.black),
-              label: const Text('Coins',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 17,
-                      color: Colors.black),
-                  textAlign: TextAlign.center)),
-          const SizedBox(height: 10),
-          TextButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.wallet, size: 21.0, color: Colors.black),
-              label: const Text('Wallet',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 17,
-                      color: Colors.black),
-                  textAlign: TextAlign.center)),
-          const SizedBox(height: 10),
-          TextButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.history, size: 21.0, color: Colors.black),
+              icon: const Icon(
+                Remix.history_line,
+                color: Color(0xFF2E3A59),
+              ), // Re
               label: const Text('Watch History',
                   style: TextStyle(
                       fontFamily: 'Inter',
@@ -300,8 +312,25 @@ class _FeaturesState extends State<Features> {
           const SizedBox(height: 10),
           TextButton.icon(
               onPressed: () {},
-              icon: const Icon(Icons.favorite_outline,
-                  size: 21.0, color: Colors.black),
+              icon: const Icon(
+                Remix.download_line,
+                color: Color(0xFF2E3A59),
+              ), // Re
+              label: const Text('Downloads',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 17,
+                      color: Colors.black),
+                  textAlign: TextAlign.center)),
+          const SizedBox(height: 10),
+
+          TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(
+                Remix.heart_line,
+                color: Color(0xFF2E3A59),
+              ), // Re
               label: const Text('Likes',
                   style: TextStyle(
                       fontFamily: 'Inter',
@@ -312,8 +341,10 @@ class _FeaturesState extends State<Features> {
           const SizedBox(height: 10),
           TextButton.icon(
               onPressed: () {},
-              icon: const Icon(Icons.comment_outlined,
-                  size: 21.0, color: Colors.black),
+              icon: const Icon(
+                Remix.message_3_line,
+                color: Color(0xFF2E3A59),
+              ), // Re
               label: const Text('Comments',
                   style: TextStyle(
                       fontFamily: 'Inter',
@@ -321,18 +352,6 @@ class _FeaturesState extends State<Features> {
                       fontSize: 17,
                       color: Colors.black),
                   textAlign: TextAlign.center)),
-          const SizedBox(height: 10),
-          TextButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.download_outlined,
-                  size: 21.0, color: Colors.black),
-              label: const Text('Downloads',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 17,
-                      color: Colors.black),
-                  textAlign: TextAlign.center))
         ],
       ),
     );

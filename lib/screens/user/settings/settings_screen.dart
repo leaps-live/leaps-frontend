@@ -149,7 +149,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                   onTap: () {
                     userLogOut();
-                    Navigator.pushNamed(context, MainScreen.routeName);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      MainScreen.routeName,
+                      (route) => false,
+                    );
                   },
                 ),
             ],
