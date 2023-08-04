@@ -19,23 +19,11 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  Future<void> testNode() async {
-    // var url = Uri.parse('http://localhost:8080/routers/teams/test');
-    var url = Uri.parse(
-        'http://localhost:8080/users/b6031c9a-7409-4c7a-9ad4-13fd0f532619');
-    var response = await http.get(url);
-    // print(response);
-
-    if (response.statusCode == 200) {
-      // success
-      var responseData = response.body;
-      // process responseData
-      print(responseData);
-    } else {
-      // fail
-      print('fail request ${response.statusCode}');
-    }
-  }
+  final List<String> imageUrls = [
+    "assets/images/swiper1.jpg",
+    "assets/images/swiper2.jpeg",
+    "assets/images/swiper3.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -138,16 +126,21 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 height: 16,
               ),
               SizedBox(
-                height: 230,
+                height: 200,
                 child: Swiper(
                   autoplay: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Image.network(
-                      "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1629630.png",
+                    //   return Image.network(
+                    //     "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1629630.png",
+                    //     fit: BoxFit.fill,
+                    //   );
+                    // },
+
+                    return Image.asset(
+                      imageUrls[index],
                       fit: BoxFit.fill,
                     );
                   },
-
                   itemCount: 3,
                   pagination: const SwiperPagination(
                     builder: DotSwiperPaginationBuilder(
@@ -181,12 +174,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               const SizedBox(
                 height: 40,
-              ),
-              TextButton(
-                onPressed: () {
-                  testNode();
-                },
-                child: const Text("test nodeJS"),
               ),
               TextButton(
                 onPressed: () {
