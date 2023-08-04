@@ -24,7 +24,8 @@ import 'package:leaps_frontend/screens/user/settings/account_security/change_ema
 import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
-import 'package:leaps_frontend/screens/user/settings/manage_settings/manage_settings.dart';
+import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
+import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
@@ -87,7 +88,8 @@ class MyApp extends StatelessWidget {
         ProfileScreen.routeName: (context) => const ProfileScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
         AccountSecurity.routeName: (context) => const AccountSecurity(),
-        ManageSettings.routeName: (context) => const ManageSettings(),
+        Notifications.routeName: (context) => const Notifications(),
+        PrivacySettings.routeName: (context) => const PrivacySettings(),
         ChangeUsername.routeName: (context) => const ChangeUsername(),
         ChangeEmail.routeName: (context) => const ChangeEmail(),
         ChangePassword.routeName: (context) => const ChangePassword(),

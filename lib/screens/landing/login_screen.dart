@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
           String? userid = prefs.getString('userid');
           print('Userid: $userid');
 
-          Navigator.pushNamed(context, MainScreen.routeName);
+          Navigator.pushReplacementNamed(context, MainScreen.routeName);
         }
       }
 
@@ -240,7 +240,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, MainScreen.routeName);
+                      Navigator.pushReplacementNamed(
+                          context, MainScreen.routeName);
                     },
                     child: const Text(
                       "Continue with Google",

@@ -356,7 +356,7 @@ class _LandingState extends State<Landing> {
         children: [
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, LoginScreen.routeName);
+              Navigator.pushReplacementNamed(context, LoginScreen.routeName);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
@@ -374,7 +374,7 @@ class _LandingState extends State<Landing> {
           const SizedBox(width: 16),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, RegisterScreen.routeName);
+              Navigator.pushReplacementNamed(context, RegisterScreen.routeName);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,

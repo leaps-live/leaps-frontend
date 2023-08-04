@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,10 +41,10 @@ class _EditProfileState extends State<EditProfile> {
           searchResult = json.decode(response.body);
         });
         print(searchResult);
-        print(searchResult['userbirthday']);
         birthdayController.text = searchResult['userbirthday'];
-        heightController.text = searchResult['userheight'];
-        weightController.text = searchResult['userweight'];
+        // heightController.text = searchResult['userheight'];
+        // weightController.text = searchResult['userweight'];
+        print(response.body);
       }
     } catch (e) {
       print(e);
@@ -95,6 +96,17 @@ class _EditProfileState extends State<EditProfile> {
       if (response.statusCode == 200) {
         // Profile updated successfully
         print('Profile updated successfully!');
+
+        Fluttertoast.showToast(
+          msg: "Profile updated successfully!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+
+        Navigator.pop(context);
       } else {
         print('Error updating profile: ${response.statusCode}');
       }
