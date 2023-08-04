@@ -20,6 +20,7 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
   String selectedValue = "Category Choices";
   bool isLoading = false;
   bool areAllfieldsFilled = false;
+  Map<String, dynamic> searchResult = {};
 
   @override
   void dispose() {
@@ -81,6 +82,14 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
         // Successfully sent data to the backend
         print('Data sent successfully!');
         print(response.body);
+        setState(() {
+          searchResult = json.decode(response.body);
+        });
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('leagueid', searchResult['leagueid']);
+        String? leagueid = prefs.getString('leagueid');
+        print(leagueid);
+
         Navigator.pushReplacementNamed(context, FirstCreateLeague.routeName);
       } else {
         // Error handling if the request fails

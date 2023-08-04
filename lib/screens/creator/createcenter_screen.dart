@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
-import 'package:leaps_frontend/screens/league/createLeague_screen.dart';
+import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
