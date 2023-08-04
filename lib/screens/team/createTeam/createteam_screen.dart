@@ -85,7 +85,19 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
         print('Data sent successfully!');
         print(response.body);
 
-        Navigator.pushReplacementNamed(context, FirstCreateTeam.routeName);
+        var teamName = nameController.text;
+
+        Navigator.pushReplacementNamed(context, FirstCreateTeam.routeName,
+            arguments: teamName);
+      } else if (response.statusCode == 401) {
+        Fluttertoast.showToast(
+          msg: "The team name already exists",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
       } else {
         // Error handling if the request fails
         print('Failed to send data. Error code: ${response.statusCode}');

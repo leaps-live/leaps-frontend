@@ -90,7 +90,19 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
         String? leagueid = prefs.getString('leagueid');
         print(leagueid);
 
-        Navigator.pushReplacementNamed(context, FirstCreateLeague.routeName);
+        var leagueName = nameController.text;
+
+        Navigator.pushReplacementNamed(context, FirstCreateLeague.routeName,
+            arguments: leagueName);
+      } else if (response.statusCode == 401) {
+        Fluttertoast.showToast(
+          msg: "The league name already exists",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
       } else {
         // Error handling if the request fails
         print('Failed to send data. Error code: ${response.statusCode}');
