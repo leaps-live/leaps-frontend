@@ -330,7 +330,7 @@ class _FeaturesState extends State<Features> {
               icon: const Icon(
                 Remix.heart_line,
                 color: Color(0xFF2E3A59),
-              ), // Re
+              ),
               label: const Text('Likes',
                   style: TextStyle(
                       fontFamily: 'Inter',

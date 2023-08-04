@@ -75,7 +75,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         },
                       ),
                       const SizedBox(
-                        width: 5,
+                        width: 10,
                       ),
                       GestureDetector(
                         child: const Icon(
