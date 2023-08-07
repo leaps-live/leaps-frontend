@@ -54,7 +54,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                               });
                             },
                             decoration: const InputDecoration(
-                              hintText: "Search by username or userID",
+                              hintText: "Search team/league/user",
                               hintStyle:
                                   TextStyle(color: Colors.black, fontSize: 13),
                               border: InputBorder.none,
@@ -108,8 +108,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                               ),
                               Expanded(
                                 child: Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10), // 设置左边距为10
+                                    margin: const EdgeInsets.only(left: 10),
                                     child: Text(
                                       searchResult['username'] ?? 'No result',
                                       style: const TextStyle(fontSize: 20),
