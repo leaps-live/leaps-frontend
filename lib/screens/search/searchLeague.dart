@@ -14,7 +14,7 @@ class _SearchLeagueState extends State<SearchLeague> {
   String searchQuery = '';
   bool isLoading = false;
 
-  Map<String, dynamic> searchResult = {};
+  List<dynamic> searchResults = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _SearchLeagueState extends State<SearchLeague> {
                               });
                             },
                             decoration: const InputDecoration(
-                              hintText: "Search by leagueName or leagueID",
+                              hintText: "Search by teamName",
                               hintStyle:
                                   TextStyle(color: Colors.black, fontSize: 13),
                               border: InputBorder.none,
@@ -94,28 +94,36 @@ class _SearchLeagueState extends State<SearchLeague> {
                         ),
                       ),
                     )
-                  : searchResult['username'] != null
-                      ? GestureDetector(
-                          onTap: () {},
-                          child: Row(
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 40),
-                                child: Icon(
-                                  Icons.abc,
-                                  size: 50,
+                  : searchResults.isNotEmpty
+                      ? Expanded(
+                          child: ListView.builder(
+                            itemCount: searchResults.length,
+                            itemBuilder: (context, index) {
+                              final result = searchResults[index];
+                              return GestureDetector(
+                                onTap: () {},
+                                child: Row(
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 40),
+                                      child: Icon(
+                                        Icons.abc,
+                                        size: 50,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        margin: const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          result['teamname'] ?? 'No result',
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10), // 设置左边距为10
-                                    child: Text(
-                                      searchResult['username'] ?? 'No result',
-                                      style: const TextStyle(fontSize: 20),
-                                    )),
-                              ),
-                            ],
+                              );
+                            },
                           ),
                         )
                       : const Padding(
@@ -136,34 +144,33 @@ class _SearchLeagueState extends State<SearchLeague> {
   void _searchMember() async {
     setState(() {
       isLoading = true;
-      searchResult = {};
     });
 
-    var apiUrl_id = Uri.parse('http://localhost:8080/users/$searchQuery');
-    var apiUrl_name =
-        Uri.parse('http://localhost:8080/users/username/$searchQuery');
+    var apiUrl = 'http://localhost:8080/team/search/teamname';
 
+    final Map<String, dynamic> userData = {
+      'teamname': searchQuery,
+    };
+
+    print(userData);
     try {
-      final response_id = http.get(apiUrl_id);
-      final response_name = http.get(apiUrl_name);
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
 
-      // two requests are sent at the same time
-      final response = await Future.wait([response_id, response_name]);
-
-      for (final response in response) {
-        if (response.statusCode == 200) {
-          setState(() {
-            searchResult = json.decode(response.body);
-          });
-          print(searchResult);
-          break;
-        }
+      if (response.statusCode == 200) {
+        setState(() {
+          searchResults = json.decode(response.body);
+        });
+        print(searchResults);
       }
     } catch (e) {
       print(e);
     } finally {
       setState(() {
-        isLoading = false; // 隐藏loading状态
+        isLoading = false;
       });
     }
   }
