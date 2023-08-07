@@ -69,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     const String apiUrl = 'http://localhost:8080/users/login';
+    // const String apiUrl = 'http://10.8.4.186:8080/users/login';
 
     // Check to see if input is an email
     final bool emailValid = RegExp(
@@ -115,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
           String? userid = prefs.getString('userid');
           print('Userid: $userid');
 
-          Navigator.pushNamed(context, MainScreen.routeName);
+          Navigator.pushReplacementNamed(context, MainScreen.routeName);
         }
       }
 
@@ -240,7 +241,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, MainScreen.routeName);
+                      Navigator.pushReplacementNamed(
+                          context, MainScreen.routeName);
                     },
                     child: const Text(
                       "Continue with Google",

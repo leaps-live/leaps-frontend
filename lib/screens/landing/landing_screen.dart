@@ -72,7 +72,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 style: TextStyle(fontSize: 16),
               ),
               onTap: () {
-                Navigator.pushNamed(context, MainScreen.routeName);
+                Navigator.pushReplacementNamed(context, MainScreen.routeName);
               },
             )
           ],

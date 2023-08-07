@@ -5,7 +5,8 @@ import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
-
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -18,23 +19,11 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  Future<void> testNode() async {
-    // var url = Uri.parse('http://localhost:8080/routers/teams/test');
-    var url = Uri.parse(
-        'http://localhost:8080/users/b6031c9a-7409-4c7a-9ad4-13fd0f532619');
-    var response = await http.get(url);
-    // print(response);
-
-    if (response.statusCode == 200) {
-      // success
-      var responseData = response.body;
-      // process responseData
-      print(responseData);
-    } else {
-      // fail
-      print('fail request ${response.statusCode}');
-    }
-  }
+  final List<String> imageUrls = [
+    "assets/images/swiper1.jpg",
+    "assets/images/swiper2.jpeg",
+    "assets/images/swiper3.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +44,20 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     },
                     child: const Row(
                       children: [
-                        Icon(Icons.add_circle_outline),
+                        // Icon(Icons.add_circle_outline),
+                        Icon(
+                          Remix.dashboard_line,
+                          color: Color(0xFF2E3A59),
+                        ),
                         SizedBox(
                           width: 5,
                         ),
                         Text(
                           'Create',
                           style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
+                              color: Color(0xFF2E3A59),
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -70,17 +65,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        child: const Icon(Icons.search),
+                        child: const Icon(
+                          Remix.search_line,
+                          color: Color(0xFF2E3A59),
+                        ),
                         onTap: () {
                           Navigator.pushNamed(
                               context, SearchMemberScreen.routeName);
                         },
                       ),
                       const SizedBox(
-                        width: 5,
+                        width: 10,
                       ),
                       GestureDetector(
-                        child: const Icon(Icons.notifications_outlined),
+                        child: const Icon(
+                          Remix.notification_3_line,
+                          color: Color(0xFF2E3A59),
+                        ),
                         onTap: () {},
                       ),
                     ],
@@ -125,17 +126,28 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 height: 16,
               ),
               SizedBox(
-                height: 230,
+                height: 200,
                 child: Swiper(
                   autoplay: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Image.network(
-                      "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1629630.png",
+                    //   return Image.network(
+                    //     "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1629630.png",
+                    //     fit: BoxFit.fill,
+                    //   );
+                    // },
+
+                    return Image.asset(
+                      imageUrls[index],
                       fit: BoxFit.fill,
                     );
                   },
                   itemCount: 3,
-                  pagination: const SwiperPagination(),
+                  pagination: const SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                      color: Color(0xFF7D7D7D),
+                      activeColor: primaryColor,
+                    ),
+                  ),
                   // control: SwiperControl(),
                 ),
               ),
@@ -162,12 +174,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               const SizedBox(
                 height: 40,
-              ),
-              TextButton(
-                onPressed: () {
-                  testNode();
-                },
-                child: const Text("test nodeJS"),
               ),
               TextButton(
                 onPressed: () {
