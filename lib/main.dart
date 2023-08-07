@@ -6,35 +6,7 @@ import 'package:leaps_frontend/screens/league/createLeague/firstCreateLeague.dar
 import 'package:leaps_frontend/screens/search/searchLeague.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/screens/splash_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
-import 'package:leaps_frontend/screens/game/creategame_screen.dart';
-import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
-import 'package:leaps_frontend/screens/livestream/confirmlivestream_screen.dart';
-import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
-import 'package:leaps_frontend/screens/game/editgame_screen.dart';
-import 'package:leaps_frontend/screens/main_screen.dart';
-import 'package:leaps_frontend/screens/onboarding_screen.dart';
-import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
-import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
-import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_email.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
-import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
-import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
-import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
-import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
-import 'package:leaps_frontend/screens/game/game_screen.dart';
-import 'package:leaps_frontend/screens/landing/register_screen.dart';
-import 'package:leaps_frontend/screens/landing/login_screen.dart';
+import 'package:leaps_frontend/routes.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 void main() {
@@ -60,45 +32,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
               iconTheme: const IconThemeData(color: Colors.black))),
-      routes: {
-        OnboardingScreen.routeName: (context) => const OnboardingScreen(),
-        UserProfileScreen.routeName: (context) => const UserProfileScreen(),
-        CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
-        CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
-        CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
-        EditTeamScreen.routeName: (context) => const EditTeamScreen(),
-        EditLeagueScreen.routeName: (context) => const EditLeagueScreen(),
-        SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
-        CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
-        CreateGameScreen.routeName: (context) => const CreateGameScreen(),
-        CreateLiveStreamScreen.routeName: (context) =>
-            const CreateLiveStreamScreen(),
-        EditGameScreen.routeName: (context) => const EditGameScreen(),
-        HomePageScreen.routeName: (context) => const HomePageScreen(),
-        ConfirmLiveStreamScreen.routeName: (context) =>
-            const ConfirmLiveStreamScreen(),
-        MainScreen.routeName: (context) => const MainScreen(),
-        LeagueScreen.routeName: (context) => const LeagueScreen(),
-        TeamScreen.routeName: (context) => const TeamScreen(),
-        GameScreen.routeName: (context) => const GameScreen(),
-        RegisterScreen.routeName: (context) => const RegisterScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        LandingScreen.routeName: (context) => const LandingScreen(),
-        EditProfile.routeName: (context) => const EditProfile(),
-        ProfileScreen.routeName: (context) => const ProfileScreen(),
-        SettingsScreen.routeName: (context) => const SettingsScreen(),
-        AccountSecurity.routeName: (context) => const AccountSecurity(),
-        Notifications.routeName: (context) => const Notifications(),
-        PrivacySettings.routeName: (context) => const PrivacySettings(),
-        ChangeUsername.routeName: (context) => const ChangeUsername(),
-        ChangeEmail.routeName: (context) => const ChangeEmail(),
-        ChangePassword.routeName: (context) => const ChangePassword(),
-        ManageDevices.routeName: (context) => const ManageDevices(),
-        FirstCreateTeam.routeName: (context) => const FirstCreateTeam(),
-        SearchTeam.routeName: (context) => const SearchTeam(),
-        SearchLeague.routeName: (context) => const SearchLeague(),
-        FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
-      },
+      routes: allRoutes,
       home: const SplashScreen(),
     );
   }
