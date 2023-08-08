@@ -106,10 +106,20 @@ class _SearchLeagueState extends State<SearchLeague> {
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 19),
                                 ),
-                                subtitle: Text(
-                                  result['teamcategories'][0],
-                                  style: const TextStyle(fontSize: 17),
+                                subtitle: Row(
+                                  children: [
+                                    for (var category
+                                        in result['teamcategories'])
+                                      Text(
+                                        category,
+                                        style: const TextStyle(fontSize: 17),
+                                      ),
+                                  ],
                                 ),
+                                // Text(
+                                //   result['teamcategories'][0],
+                                //   style: const TextStyle(fontSize: 17),
+                                // ),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 32.0),
                                 leading: const CircleAvatar(

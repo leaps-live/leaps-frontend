@@ -124,15 +124,15 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
         TabBar(
           controller: _tabController,
           tabs: const [
-            Tab(text: "Recommendations"),
-            Tab(text: "Leagues"),
-            Tab(text: "Games"),
-            Tab(text: "Teams"),
+            Tab(text: "For You"),
+            Tab(text: "League"),
+            Tab(text: "Game"),
+            Tab(text: "Team"),
           ],
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey,
           labelStyle: const TextStyle(
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
           unselectedLabelStyle: const TextStyle(
