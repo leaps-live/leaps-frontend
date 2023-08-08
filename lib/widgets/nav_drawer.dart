@@ -13,10 +13,8 @@ class NavDrawer extends StatelessWidget {
           const DrawerHeader(
             decoration: BoxDecoration(
                 color: Colors.green,
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image:
-                        NetworkImage('https://picsum.photos/id/237/200/300'))),
+                image:
+                    DecorationImage(fit: BoxFit.fill, image: NetworkImage(''))),
             child: Text(
               'Ruolin Chen',
               style: TextStyle(color: Colors.white, fontSize: 25),

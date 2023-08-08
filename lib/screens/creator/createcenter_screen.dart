@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
-import 'package:leaps_frontend/screens/team/createteam_screen.dart';
-import 'package:leaps_frontend/screens/league/createLeague_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
+import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
-import 'package:leaps_frontend/screens/league/editleague_screen.dart';
-import 'package:leaps_frontend/screens/team/editteam_screen.dart';
+import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
-import 'package:leaps_frontend/screens/onboarding_screen.dart';
+import 'package:remixicon/remixicon.dart';
 
 class CreateCenterScreen extends StatefulWidget {
   const CreateCenterScreen({super.key});
@@ -44,7 +44,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, MainScreen.routeName);
+                  Navigator.pushReplacementNamed(context, MainScreen.routeName);
                 },
                 child: const Text(
                   "GO HOME",
@@ -73,7 +73,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       },
                       child: const Row(
                         children: [
-                          Icon(Icons.groups), // 添加图标
+                          Icon(
+                            Remix.team_line,
+                            color: Color(0xFF2E3A59),
+                          ), // 添加图标
                           SizedBox(width: 8), // 图标和文本之间的间距
                           Text(
                             "Create a team",
@@ -92,8 +95,11 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       },
                       child: const Row(
                         children: [
-                          Icon(Icons.corporate_fare), // 添加图标
-                          SizedBox(width: 8), // 图标和文本之间的间距
+                          Icon(
+                            Remix.medal_line,
+                            color: Color(0xFF2E3A59),
+                          ), // 添
+                          SizedBox(width: 8),
                           Text(
                             "Create a league",
                             style: TextStyle(
@@ -118,7 +124,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       },
                       child: const Row(
                         children: [
-                          Icon(Icons.sports_basketball), // 添加图标
+                          Icon(
+                            Remix.basketball_line,
+                            color: Color(0xFF2E3A59),
+                          ), // 添 // 添加图标
                           SizedBox(width: 8), // 图标和文本之间的间距
                           Text(
                             "Create a game",
@@ -137,7 +146,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       },
                       child: const Row(
                         children: [
-                          Icon(Icons.live_tv), // 添加图标
+                          Icon(
+                            Remix.broadcast_line,
+                            color: Color(0xFF2E3A59),
+                          ), // 添
                           SizedBox(width: 8), // 图标和文本之间的间距
                           Text(
                             "Live streaming",

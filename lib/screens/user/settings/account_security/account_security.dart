@@ -1,7 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
-
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 import 'change_email.dart';
 import 'change_username.dart';
 
@@ -14,6 +19,127 @@ class AccountSecurity extends StatefulWidget {
 }
 
 class _AccountSecurityState extends State<AccountSecurity> {
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
+
+  Future<void> _getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userid = prefs.getString('userid');
+    print(userid);
+    if (userid != null) {
+      setState(() {
+        isLogin = true;
+      });
+    }
+    print(isLogin);
+  }
+
+  void showConfirmationDialog() {
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text(
+              'Warning',
+              style:
+                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+                'Are you sure you want to delete your account? This action is irreversible!!!'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  deleteAccount();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    MainScreen.routeName,
+                    (route) => false,
+                  );
+                },
+                child: const Text('Confirm'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel'),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text(
+              'Warning',
+              style:
+                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+                'Are you sure you want to delete your account? This action is irreversible!!!'),
+            actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  deleteAccount();
+                  Navigator.pushReplacementNamed(context, MainScreen.routeName);
+                },
+                child: const Text('Confirm'),
+              ),
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  void deleteAccount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userid = prefs.getString('userid');
+
+    // Define the API endpoint URL
+    String apiUrl = 'http://localhost:8080/users/$userid';
+
+    try {
+      final response = await http.delete(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        // Profile updated successfully
+        print('Account deleted successfully!');
+
+        await prefs.remove('user');
+        await prefs.remove('userid');
+
+        Fluttertoast.showToast(
+          msg: "Account deleted successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+      } else {
+        print('Error updating profile: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error occurred while deleting account: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +210,17 @@ class _AccountSecurityState extends State<AccountSecurity> {
                   Navigator.pushNamed(context, ManageDevices.routeName);
                 },
               ),
+              if (isLogin)
+                ListTile(
+                  title: const Text(
+                    'Delete Account',
+                    style: TextStyle(color: Colors.black, fontSize: 19),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  onTap: () {
+                    showConfirmationDialog();
+                  },
+                ),
             ],
           ),
         ));
