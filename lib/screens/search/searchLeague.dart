@@ -100,28 +100,33 @@ class _SearchLeagueState extends State<SearchLeague> {
                             itemCount: searchResults.length,
                             itemBuilder: (context, index) {
                               final result = searchResults[index];
-                              return GestureDetector(
-                                onTap: () {},
-                                child: Row(
+                              return ListTile(
+                                title: Text(
+                                  result['teamname'],
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 19),
+                                ),
+                                subtitle: Row(
                                   children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 40),
-                                      child: Icon(
-                                        Icons.abc,
-                                        size: 50,
+                                    for (var category
+                                        in result['teamcategories'])
+                                      Text(
+                                        category,
+                                        style: const TextStyle(fontSize: 17),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        margin: const EdgeInsets.only(left: 10),
-                                        child: Text(
-                                          result['teamname'] ?? 'No result',
-                                          style: const TextStyle(fontSize: 20),
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
+                                // Text(
+                                //   result['teamcategories'][0],
+                                //   style: const TextStyle(fontSize: 17),
+                                // ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 32.0),
+                                leading: const CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      'https://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnba.png'),
+                                ),
+                                onTap: () {},
                               );
                             },
                           ),
