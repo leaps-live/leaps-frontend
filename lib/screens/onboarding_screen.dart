@@ -3,6 +3,8 @@ import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
+import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
+import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 
@@ -30,22 +32,6 @@ class OnboardingScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
-                text: 'Creator Center',
-                onTap: () {
-                  Navigator.pushNamed(context, CreateCenterScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
-                text: 'Home Page',
-                onTap: () {
-                  Navigator.pushNamed(context, HomePageScreen.routeName);
-                },
-              )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CustomButton(
                 text: 'Landing',
                 onTap: () {
                   Navigator.pushNamed(context, LandingScreen.routeName);
@@ -54,9 +40,17 @@ class OnboardingScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CustomButton(
-                text: 'Profile',
+                text: 'TeamPage',
                 onTap: () {
-                  Navigator.pushNamed(context, UserProfileScreen.routeName);
+                  Navigator.pushNamed(context, TeamScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'LeaguePage',
+                onTap: () {
+                  Navigator.pushNamed(context, LeagueScreen.routeName);
                 },
               )),
         ],

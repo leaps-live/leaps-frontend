@@ -73,7 +73,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                   child: const Text(
                     'Done',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Color(0xFF747474),
                       fontSize: 17,
                     ),
                   ),
