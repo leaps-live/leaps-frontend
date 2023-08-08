@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
         print('Account registered successfully!');
-        Navigator.pushNamed(context, LoginScreen.routeName);
+        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "Email has already existed.",

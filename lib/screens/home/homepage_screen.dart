@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/game/game_screen.dart';
+import 'package:leaps_frontend/screens/home/home_leagues.dart';
+import 'package:leaps_frontend/screens/home/home_recommendations.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
-
-import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:remixicon/remixicon.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -18,167 +14,148 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  Future<void> testNode() async {
-    // var url = Uri.parse('http://localhost:8080/routers/teams/test');
-    var url = Uri.parse(
-        'http://localhost:8080/users/b6031c9a-7409-4c7a-9ad4-13fd0f532619');
-    var response = await http.get(url);
-    // print(response);
-
-    if (response.statusCode == 200) {
-      // success
-      var responseData = response.body;
-      // process responseData
-      print(responseData);
-    } else {
-      // fail
-      print('fail request ${response.statusCode}');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-        child: SafeArea(
+    return const SingleChildScrollView(
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, CreateCenterScreen.routeName);
-                    },
-                    child: const Row(
-                      children: [
-                        Icon(Icons.add_circle_outline),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Create',
-                          style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        child: const Icon(Icons.search),
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, SearchMemberScreen.routeName);
-                        },
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        child: const Icon(Icons.notifications_outlined),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      "Recommendations",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, LeagueScreen.routeName);
-                    },
-                    child: const Text("Leagues"),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, GameScreen.routeName);
-                    },
-                    child: const Text("Games"),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, TeamScreen.routeName);
-                    },
-                    child: const Text("Teams"),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+              topBar(),
               SizedBox(
-                height: 230,
-                child: Swiper(
-                  autoplay: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Image.network(
-                      "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1629630.png",
-                      fit: BoxFit.fill,
-                    );
-                  },
-                  itemCount: 3,
-                  pagination: const SwiperPagination(),
-                  // control: SwiperControl(),
-                ),
+                height: 8,
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                "Live Games",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 80,
-              ),
-              const Text(
-                "Popular Leagues",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 80,
-              ),
-              const Text(
-                "Top Ranked Leagues",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              TextButton(
-                onPressed: () {
-                  testNode();
-                },
-                child: const Text("test nodeJS"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Share.share("gagaga");
-                },
-                child: const Text("test Share"),
-              ),
+              tabBar(),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class topBar extends StatelessWidget {
+  const topBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, CreateCenterScreen.routeName);
+          },
+          child: const Row(
+            children: [
+              // Icon(Icons.add_circle_outline),
+              Icon(
+                Remix.dashboard_line,
+                color: Color(0xFF2E3A59),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                'Create',
+                style: TextStyle(
+                    color: Color(0xFF2E3A59),
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        Row(
+          children: [
+            GestureDetector(
+              child: const Icon(
+                Remix.search_line,
+                color: Color(0xFF2E3A59),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, SearchMemberScreen.routeName);
+              },
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              child: const Icon(
+                Remix.notification_3_line,
+                color: Color(0xFF2E3A59),
+              ),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class tabBar extends StatefulWidget {
+  const tabBar({super.key});
+
+  @override
+  State<tabBar> createState() => _tabBarState();
+}
+
+class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(text: "Recommendations"),
+            Tab(text: "Leagues"),
+            Tab(text: "Games"),
+            Tab(text: "Teams"),
+          ],
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey,
+          labelStyle: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+          ),
+          unselectedLabelStyle: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+          indicator: const UnderlineTabIndicator(
+            borderSide: BorderSide(color: Colors.transparent, width: 0),
+          ),
+        ),
+        SizedBox(
+          height: 900, // Adjust the height as needed
+          child: TabBarView(
+            controller: _tabController,
+            children: const [
+              HomeRecommendations(),
+              HomeLeagues(),
+              Text("gagag"),
+              Text("gagag"),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

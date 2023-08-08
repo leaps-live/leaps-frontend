@@ -60,8 +60,7 @@ class HeroBar extends StatelessWidget {
             children: [
               const Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                 CircleAvatar(
-                  backgroundImage:
-                      NetworkImage('https://picsum.photos/id/237/200/300'),
+                  backgroundImage: NetworkImage(''),
                 ),
                 Column(children: [
                   Text(

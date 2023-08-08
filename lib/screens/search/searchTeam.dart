@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SearchMemberScreen extends StatefulWidget {
-  const SearchMemberScreen({super.key});
-  static const routeName = '/search_member';
+class SearchTeam extends StatefulWidget {
+  const SearchTeam({super.key});
+  static const routeName = '/search_team';
 
   @override
-  State<SearchMemberScreen> createState() => _SearchMemberScreenState();
+  State<SearchTeam> createState() => _SearchTeamState();
 }
 
-class _SearchMemberScreenState extends State<SearchMemberScreen> {
+class _SearchTeamState extends State<SearchTeam> {
   String searchQuery = '';
   bool isLoading = false;
 
-  Map<String, dynamic> searchResult = {};
+  List<dynamic> searchResults = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                               });
                             },
                             decoration: const InputDecoration(
-                              hintText: "Search team/league/user",
+                              hintText: "Search by username",
                               hintStyle:
                                   TextStyle(color: Colors.black, fontSize: 13),
                               border: InputBorder.none,
@@ -94,27 +94,36 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                         ),
                       ),
                     )
-                  : searchResult['username'] != null
-                      ? GestureDetector(
-                          onTap: () {},
-                          child: Row(
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 40),
-                                child: Icon(
-                                  Icons.abc,
-                                  size: 50,
+                  : searchResults.isNotEmpty
+                      ? Expanded(
+                          child: ListView.builder(
+                            itemCount: searchResults.length,
+                            itemBuilder: (context, index) {
+                              final result = searchResults[index];
+                              return GestureDetector(
+                                onTap: () {},
+                                child: Row(
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 40),
+                                      child: Icon(
+                                        Icons.abc,
+                                        size: 50,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        margin: const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          result['teamname'] ?? 'No result',
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                    margin: const EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      searchResult['username'] ?? 'No result',
-                                      style: const TextStyle(fontSize: 20),
-                                    )),
-                              ),
-                            ],
+                              );
+                            },
                           ),
                         )
                       : const Padding(
@@ -135,34 +144,33 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
   void _searchMember() async {
     setState(() {
       isLoading = true;
-      searchResult = {};
     });
 
-    var apiUrl_id = Uri.parse('http://localhost:8080/users/$searchQuery');
-    var apiUrl_name =
-        Uri.parse('http://localhost:8080/users/username/$searchQuery');
+    var apiUrl = 'http://localhost:8080/users/search/username';
 
+    final Map<String, dynamic> userData = {
+      'userName': searchQuery,
+    };
+
+    print(userData);
     try {
-      final response_id = http.get(apiUrl_id);
-      final response_name = http.get(apiUrl_name);
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
 
-      // two requests are sent at the same time
-      final response = await Future.wait([response_id, response_name]);
-
-      for (final response in response) {
-        if (response.statusCode == 200) {
-          setState(() {
-            searchResult = json.decode(response.body);
-          });
-          print(searchResult);
-          break;
-        }
+      if (response.statusCode == 200) {
+        setState(() {
+          searchResults = json.decode(response.body);
+        });
+        print(searchResults);
       }
     } catch (e) {
       print(e);
     } finally {
       setState(() {
-        isLoading = false; // 隐藏loading状态
+        isLoading = false;
       });
     }
   }
