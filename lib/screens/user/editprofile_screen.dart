@@ -42,8 +42,8 @@ class _EditProfileState extends State<EditProfile> {
         });
         print(searchResult);
         birthdayController.text = searchResult['userbirthday'];
-        // heightController.text = searchResult['userheight'];
-        // weightController.text = searchResult['userweight'];
+        heightController.text = searchResult['userheight'];
+        weightController.text = searchResult['userweight'];
         print(response.body);
       }
     } catch (e) {
@@ -65,6 +65,19 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   void editProfile() async {
+    if (birthdayController.text.isEmpty ||
+        heightController.text.isEmpty ||
+        weightController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please fill in all fields!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
     // Get the input values from the text fields
     String birthday = birthdayController.text;
     String height = heightController.text;
