@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -69,6 +70,14 @@ class OnboardingScreen extends StatelessWidget {
                 text: 'Edit League',
                 onTap: () {
                   Navigator.pushNamed(context, EditLeagueScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'Edit Game',
+                onTap: () {
+                  Navigator.pushNamed(context, EditGameScreen.routeName);
                 },
               )),
         ],
