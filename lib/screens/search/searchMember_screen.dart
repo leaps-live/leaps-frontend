@@ -104,7 +104,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                               strokeWidth: 3,
                             ),
                           )
-                        : searchResult['teams'] != null
+                        : searchResult['users'] != null
                             ? Column(
                                 children: [
                                   for (var user in searchResult['users'])
@@ -181,7 +181,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                                       ),
                                       contentPadding:
                                           const EdgeInsets.symmetric(
-                                              horizontal: 1.0),
+                                              horizontal: 0),
                                       leading: const CircleAvatar(
                                         backgroundImage: NetworkImage(
                                             'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
@@ -217,7 +217,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                               strokeWidth: 3,
                             ),
                           )
-                        : searchResult['teams'] != null
+                        : searchResult['leagues'] != null
                             ? Column(
                                 children: [
                                   for (var league in searchResult['leagues'])
@@ -240,7 +240,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                                       ),
                                       contentPadding:
                                           const EdgeInsets.symmetric(
-                                              horizontal: 1.0),
+                                              horizontal: 0),
                                       leading: const CircleAvatar(
                                         backgroundImage: NetworkImage(
                                             'https://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnba.png'),
