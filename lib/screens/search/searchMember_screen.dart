@@ -54,6 +54,9 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                                 searchQuery = value;
                               });
                             },
+                            onEditingComplete: () {
+                              _searchMember();
+                            },
                             decoration: const InputDecoration(
                               hintText: "Search team/league/user",
                               hintStyle:

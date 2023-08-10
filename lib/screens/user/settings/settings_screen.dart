@@ -144,21 +144,94 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ListTile(
                   title: const Text(
                     'Log Out',
-                    style: TextStyle(color: Colors.red, fontSize: 19),
+                    style: TextStyle(color: primaryColor, fontSize: 19),
                   ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                   onTap: () {
-                    userLogOut();
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      MainScreen.routeName,
-                      (route) => false,
-                    );
+                    showPopup();
                   },
                 ),
             ],
           ),
         ));
+  }
+
+  void showPopup() {
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text(
+              'Warning',
+              style:
+                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+                'Are you sure you want to delete your account? This action is irreversible!!!'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  userLogOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    MainScreen.routeName,
+                    (route) => false,
+                  );
+                },
+                child: const Text('Yes, delete'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(color: Color(0xFF747474)),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text(
+              'Are you sure you want to log out?',
+              textAlign: TextAlign.start,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel',
+                    style: TextStyle(color: Color(0xFF747474))),
+              ),
+              CupertinoDialogAction(
+                onPressed: () {
+                  userLogOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    MainScreen.routeName,
+                    (route) => false,
+                  );
+                },
+                child: const Text(
+                  'Log out',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: primaryColor),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   void userLogOut() async {
