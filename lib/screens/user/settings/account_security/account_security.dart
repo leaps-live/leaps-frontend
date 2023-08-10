@@ -20,6 +20,7 @@ class AccountSecurity extends StatefulWidget {
 
 class _AccountSecurityState extends State<AccountSecurity> {
   bool isLogin = false;
+  String username = '';
 
   @override
   void initState() {
@@ -36,7 +37,21 @@ class _AccountSecurityState extends State<AccountSecurity> {
         isLogin = true;
       });
     }
-    print(isLogin);
+    try {
+      final response = await http
+          .get(Uri.parse('http://localhost:8080/users/$userid/username'));
+
+      if (response.statusCode == 200) {
+        setState(() {
+          username = response.body.replaceAll('"', '');
+        });
+        print('Username: $username');
+      } else {
+        print('fail request ${response.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   void showConfirmationDialog() {
@@ -62,13 +77,16 @@ class _AccountSecurityState extends State<AccountSecurity> {
                     (route) => false,
                   );
                 },
-                child: const Text('Confirm'),
+                child: const Text('Yes, delete'),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(color: Color(0xFF747474)),
+                ),
               ),
             ],
           );
@@ -80,25 +98,33 @@ class _AccountSecurityState extends State<AccountSecurity> {
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
             title: const Text(
-              'Warning',
-              style:
-                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+              'Do you want to delete this account?',
+              textAlign: TextAlign.start,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            content: const Text(
-                'Are you sure you want to delete your account? This action is irreversible!!!'),
+            content: Text(
+              'Username: $username',
+              style: const TextStyle(fontSize: 15),
+              textAlign: TextAlign.start,
+            ),
             actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel',
+                    style: TextStyle(color: Color(0xFF747474))),
+              ),
               CupertinoDialogAction(
                 onPressed: () {
                   deleteAccount();
                   Navigator.pushReplacementNamed(context, MainScreen.routeName);
                 },
-                child: const Text('Confirm'),
-              ),
-              CupertinoDialogAction(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Yes, delete',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
               ),
             ],
           );
@@ -214,7 +240,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
                 ListTile(
                   title: const Text(
                     'Delete Account',
-                    style: TextStyle(color: Colors.black, fontSize: 19),
+                    style: TextStyle(color: primaryColor, fontSize: 19),
                   ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                   onTap: () {
