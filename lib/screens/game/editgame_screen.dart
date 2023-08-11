@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens//search/searchMember_screen.dart';
+import 'package:http/http.dart' as http;
 
 class EditGameScreen extends StatefulWidget {
   const EditGameScreen({super.key});
@@ -12,6 +14,7 @@ class EditGameScreen extends StatefulWidget {
 class _EditGameScreenState extends State<EditGameScreen> {
   String dropdownValue1 = "None";
   String dropdownValue2 = "None";
+  bool isLoading = false;
 
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
@@ -59,6 +62,105 @@ class _EditGameScreenState extends State<EditGameScreen> {
       concatenatedDateTime = combinedDateTime.toString();
     } else {
       concatenatedDateTime = '';
+    }
+  }
+
+  void showPopup() {
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text(
+              'Do you want to delete this league?',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+                'Team admins will be notified. This cannot be redone'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  deleteGame();
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Yes, delete'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(color: Color(0xFF747474)),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text(
+              'Do you want to delete this league?',
+              textAlign: TextAlign.start,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+              'Team admins will be notified. This cannot be redone',
+              style: TextStyle(fontSize: 15),
+              textAlign: TextAlign.start,
+            ),
+            actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel',
+                    style: TextStyle(color: Color(0xFF747474))),
+              ),
+              CupertinoDialogAction(
+                onPressed: () {
+                  deleteGame();
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Yes, delete',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  void deleteGame() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    String gameid = "85627481-9197-4d10-b55c-650414511f2b";
+
+    try {
+      final response =
+          await http.delete(Uri.parse('http://localhost:8080/game/$gameid'));
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        print("Game deleted successfully");
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -291,6 +393,46 @@ class _EditGameScreenState extends State<EditGameScreen> {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 70.0),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  showPopup();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  fixedSize: const Size(300, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: isLoading
+                    ? const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Delete this league',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 17)),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Center(
+                            child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    : const Text(
+                        'Delete this league',
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      ),
+              ),
+            ),
           ],
         ),
       ),
