@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
@@ -251,7 +252,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: RichText(
                   text: const TextSpan(
                     style: TextStyle(
-                      fontSize: 16, // 设置默认字体大小
+                      fontSize: 13, // 设置默认字体大小
                       color: Colors.black, // 设置默认字体颜色
                     ),
                     children: [
@@ -321,17 +322,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              RichText(
+                text: TextSpan(
+                  children: [
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Container(
+                        width: 120,
+                        height: 1,
+                        color: const Color(0xFFD7D7D7),
+                      ),
+                    ),
+                    const TextSpan(
+                      text: " Or sign up with ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Container(
+                        width: 120,
+                        height: 1,
+                        color: const Color(0xFFD7D7D7),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.g_translate),
-                  SizedBox(
-                    width: 10,
+                  Image.asset(
+                    'assets/images/google.png', // 替换为你的图片路径
+                    width: 24,
+                    height: 24,
                   ),
-                  Text(
-                    "Continue with Google",
-                    style: TextStyle(fontSize: 15),
-                  )
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  const Icon(Icons.apple),
                 ],
               ),
             ],

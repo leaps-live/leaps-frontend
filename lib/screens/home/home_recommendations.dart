@@ -1,6 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/colors.dart';
 
 class HomeRecommendations extends StatefulWidget {

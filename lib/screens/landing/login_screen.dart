@@ -230,25 +230,52 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(
+                height: 30,
+              ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Container(
+                        width: 120,
+                        height: 1,
+                        color: const Color(0xFFD7D7D7),
+                      ),
+                    ),
+                    const TextSpan(
+                      text: " Or sign up with ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Container(
+                        width: 120,
+                        height: 1,
+                        color: const Color(0xFFD7D7D7),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.g_translate),
-                  const SizedBox(
-                    width: 10,
+                  Image.asset(
+                    'assets/images/google.png', // 替换为你的图片路径
+                    width: 24,
+                    height: 24,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                          context, MainScreen.routeName);
-                    },
-                    child: const Text(
-                      "Continue with Google",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  )
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  const Icon(Icons.apple),
                 ],
               ),
             ],
