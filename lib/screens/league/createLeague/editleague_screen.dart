@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:http/http.dart' as http;
 
 class EditLeagueScreen extends StatefulWidget {
   const EditLeagueScreen({super.key});
@@ -11,6 +13,107 @@ class EditLeagueScreen extends StatefulWidget {
 
 class _EditLeagueScreenState extends State<EditLeagueScreen> {
   String selectedValue = "Please Select";
+  bool isLoading = false;
+
+  void showPopup() {
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text(
+              'Do you want to delete this league?',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            content:
+                const Text('Admins will be notified. This cannot be redone'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  deleteLeague();
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Yes, delete'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(color: Color(0xFF747474)),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text(
+              'Do you want to delete this league?',
+              textAlign: TextAlign.start,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+              'Admins will be notified. This cannot be redone',
+              style: TextStyle(fontSize: 15),
+              textAlign: TextAlign.start,
+            ),
+            actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel',
+                    style: TextStyle(color: Color(0xFF747474))),
+              ),
+              CupertinoDialogAction(
+                onPressed: () {
+                  deleteLeague();
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Yes, delete',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  void deleteLeague() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    String leagueid = "85627481-9197-4d10-b55c-650414511f2b";
+
+    try {
+      final response = await http
+          .delete(Uri.parse('http://localhost:8080/leagues/$leagueid'));
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        print("League deleted successfully");
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -233,7 +336,50 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
                       ),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showPopup();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey,
+                      fixedSize: const Size(300, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: isLoading
+                        ? const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Delete this league',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 17)),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                        : const Text(
+                            'Delete this league',
+                            style: TextStyle(color: Colors.black, fontSize: 17),
+                          ),
+                  ),
+                ),
               ],
             ),
           ],
