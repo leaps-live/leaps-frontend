@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfile extends StatefulWidget {
@@ -128,6 +131,49 @@ class _EditProfileState extends State<EditProfile> {
     }
   }
 
+  Future<void> _showDatePicker(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        birthdayController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
+  }
+
+  Future<void> _showCupertinoDatePicker(BuildContext context) async {
+    DateTime? pickedDate = await showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builder) {
+        return Container(
+          height: 200.0,
+          color: Colors.white,
+          child: CupertinoDatePicker(
+            mode: CupertinoDatePickerMode.date,
+            initialDateTime: DateTime.now(),
+            minimumYear: 1900,
+            maximumYear: 2100,
+            onDateTimeChanged: (DateTime newDate) {
+              birthdayController.text =
+                  DateFormat('yyyy-MM-dd').format(newDate);
+            },
+          ),
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        birthdayController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -174,15 +220,21 @@ class _EditProfileState extends State<EditProfile> {
                     size: 80,
                   ),
                   TextField(
-                    controller: birthdayController,
-                    decoration: const InputDecoration(
-                      labelText: 'Birthday',
-                      hintText: 'Birthday',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                      controller: birthdayController,
+                      decoration: const InputDecoration(
+                        labelText: 'Birthday',
+                        hintText: 'Birthday',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ),
+                      onTap: () {
+                        if (Theme.of(context).platform == TargetPlatform.iOS) {
+                          _showCupertinoDatePicker(context);
+                        } else {
+                          _showDatePicker(context);
+                        }
+                      }),
                   const SizedBox(
                     height: 16,
                   ),
@@ -201,6 +253,8 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   TextField(
                     controller: weightController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: const InputDecoration(
                       labelText: 'Weight',
                       hintText: 'Weight',

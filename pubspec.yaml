@@ -43,6 +43,7 @@ dependencies:
   share_plus: ^4.0.4
   flutter_advanced_switch: ^3.0.1
   remixicon: ^1.0.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
