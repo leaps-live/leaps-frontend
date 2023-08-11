@@ -21,6 +21,8 @@ class AccountSecurity extends StatefulWidget {
 class _AccountSecurityState extends State<AccountSecurity> {
   bool isLogin = false;
   String username = '';
+  bool isOwner = false;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -37,6 +39,26 @@ class _AccountSecurityState extends State<AccountSecurity> {
         isLogin = true;
       });
     }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final response = await http
+          .get(Uri.parse('http://localhost:8080/users/isowner/$userid'));
+      if (response.statusCode == 200) {
+        print(response.body);
+        setState(() {
+          isOwner = response.body == 'true';
+        });
+      } else {
+        print('fail request ${response.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
+
     try {
       final response = await http
           .get(Uri.parse('http://localhost:8080/users/$userid/username'));
@@ -52,84 +74,157 @@ class _AccountSecurityState extends State<AccountSecurity> {
     } catch (e) {
       print(e);
     }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   void showConfirmationDialog() {
-    if (Theme.of(context).platform == TargetPlatform.android) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text(
-              'Warning',
-              style:
-                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
-            ),
-            content: const Text(
-                'Are you sure you want to delete your account? This action is irreversible!!!'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  deleteAccount();
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    MainScreen.routeName,
-                    (route) => false,
-                  );
-                },
-                child: const Text('Yes, delete'),
+    if (isOwner) {
+      if (Theme.of(context).platform == TargetPlatform.android) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text(
+                'Warning',
+                style:
+                    TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(color: Color(0xFF747474)),
+              content: const Text(
+                  'Are you sure you want to delete your account? This action is irreversible!!!'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    deleteAccount();
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      MainScreen.routeName,
+                      (route) => false,
+                    );
+                  },
+                  child: const Text('Yes, delete'),
                 ),
-              ),
-            ],
-          );
-        },
-      );
-    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return CupertinoAlertDialog(
-            title: const Text(
-              'Do you want to delete this account?',
-              textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            content: Text(
-              'Username: $username',
-              style: const TextStyle(fontSize: 15),
-              textAlign: TextAlign.start,
-            ),
-            actions: [
-              CupertinoDialogAction(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel',
-                    style: TextStyle(color: Color(0xFF747474))),
-              ),
-              CupertinoDialogAction(
-                onPressed: () {
-                  deleteAccount();
-                  Navigator.pushReplacementNamed(context, MainScreen.routeName);
-                },
-                child: const Text(
-                  'Yes, delete',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Color(0xFF747474)),
+                  ),
                 ),
+              ],
+            );
+          },
+        );
+      } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CupertinoAlertDialog(
+              title: const Text(
+                'Note',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ],
-          );
-        },
-      );
+              content: const Text(
+                'To delete your account, you must first transfer ownshiper of all leagues and/or teams that you own.',
+                style: TextStyle(fontSize: 15),
+                textAlign: TextAlign.start,
+              ),
+              actions: [
+                CupertinoDialogAction(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child:
+                      const Text('Okay', style: TextStyle(color: Colors.black)),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } else {
+      if (Theme.of(context).platform == TargetPlatform.android) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text(
+                'Warning',
+                style:
+                    TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+              ),
+              content: const Text(
+                  'Are you sure you want to delete your account? This action is irreversible!!!'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    deleteAccount();
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      MainScreen.routeName,
+                      (route) => false,
+                    );
+                  },
+                  child: const Text('Yes, delete'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Color(0xFF747474)),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CupertinoAlertDialog(
+              title: const Text(
+                'Do you want to delete this account?',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              content: Text(
+                'Username: $username',
+                style: const TextStyle(fontSize: 15),
+                textAlign: TextAlign.start,
+              ),
+              actions: [
+                CupertinoDialogAction(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel',
+                      style: TextStyle(color: Color(0xFF747474))),
+                ),
+                CupertinoDialogAction(
+                  onPressed: () {
+                    deleteAccount();
+                    Navigator.pushReplacementNamed(
+                        context, MainScreen.routeName);
+                  },
+                  child: const Text(
+                    'Yes, delete',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
@@ -237,16 +332,21 @@ class _AccountSecurityState extends State<AccountSecurity> {
                 },
               ),
               if (isLogin)
-                ListTile(
-                  title: const Text(
-                    'Delete Account',
-                    style: TextStyle(color: primaryColor, fontSize: 19),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  onTap: () {
-                    showConfirmationDialog();
-                  },
-                ),
+                isLoading
+                    ? const LinearProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF7d7d7d)))
+                    : ListTile(
+                        title: const Text(
+                          'Delete Account',
+                          style: TextStyle(color: primaryColor, fontSize: 19),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 0.0),
+                        onTap: () {
+                          showConfirmationDialog();
+                        },
+                      ),
             ],
           ),
         ));
