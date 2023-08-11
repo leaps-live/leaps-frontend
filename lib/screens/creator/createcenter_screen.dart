@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
@@ -185,7 +186,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, CreateGameScreen.routeName);
+                              context, GameSelectScreen.routeName);
                         },
                         child: const Row(
                           children: [
