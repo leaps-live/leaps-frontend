@@ -276,16 +276,8 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                     ),
                                   ),
                                 )
-                              : searchResultTeam.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                        "No teams found",
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    )
-                                  : Column(
+                              : searchResultTeam.isNotEmpty
+                                  ? Column(
                                       children: [
                                         for (var team in searchResultTeam)
                                           ListTile(
@@ -329,7 +321,16 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                             },
                                           )
                                       ],
+                                    )
+                                  : const Center(
+                                      child: Text(
+                                        "No teams found",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
+
                           // Lists for Leagues
                           const Center(
                             child: Text(
