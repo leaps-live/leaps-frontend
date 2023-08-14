@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 
@@ -19,6 +20,7 @@ class EditTeamScreen extends StatefulWidget {
 class _EditTeamScreenState extends State<EditTeamScreen> {
   String selectedValue = "Category Choices";
   bool isLoading = false;
+  bool saveLoading = false;
   final TextEditingController teamNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
@@ -140,6 +142,51 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     }
   }
 
+  void saveChange(BuildContext context) async {
+    setState(() {
+      saveLoading = true;
+    });
+
+    final Map<String, dynamic> teamInfo = {
+      'teamName': teamNameController.text,
+      'teamDescription': descriptionController.text,
+    };
+
+    String teamid = widget.searchResult['teamid'];
+    print("teamid: $teamid");
+
+    final apiUrl = 'http://localhost:8080/team/$teamid/update';
+
+    try {
+      final response = await http.put(
+        Uri.parse(apiUrl),
+        body: json.encode(teamInfo),
+        headers: {'Content-Type': 'application/json'},
+      );
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        print("Team updated successfully");
+        Fluttertoast.showToast(
+          msg: "Team updated successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        saveLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,16 +199,24 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              // do something for save button
+              saveChange(context);
             },
-            child: const Text(
-              'Save',
-              style: TextStyle(
-                color: Color.fromARGB(255, 8, 125, 221),
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: saveLoading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  )
+                : const Text(
+                    'Save',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 8, 125, 221),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
         ],
       ),
