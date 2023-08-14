@@ -13,8 +13,77 @@ class SearchLeague extends StatefulWidget {
 class _SearchLeagueState extends State<SearchLeague> {
   String searchQuery = '';
   bool isLoading = false;
-
+  bool addLoading = false;
   List<dynamic> searchResults = [];
+
+  void _searchMember() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    var apiUrl = 'http://localhost:8080/team/search/teamname';
+
+    final Map<String, dynamic> userData = {
+      'teamname': searchQuery,
+    };
+
+    print(userData);
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          searchResults = json.decode(response.body);
+        });
+        print(searchResults);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void addTeam(result) async {
+    setState(() {
+      addLoading = true;
+    });
+
+    var apiUrl = 'http://localhost:8080/leagueteam/add';
+
+    final Map<String, dynamic> userData = {
+      'leagueid': 'a24e8028-3021-4cd8-81c1-e0365d2ce66e',
+      'teamid': result['teamid'],
+      'teamCategories': result['teamCategories'],
+    };
+
+    print(userData);
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        print(response.body);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        addLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +179,17 @@ class _SearchLeagueState extends State<SearchLeague> {
                                   children: [
                                     for (var category
                                         in result['teamcategories'])
-                                      Text(
-                                        category,
-                                        style: const TextStyle(fontSize: 17),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            category,
+                                            style:
+                                                const TextStyle(fontSize: 15),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          )
+                                        ],
                                       ),
                                   ],
                                 ),
@@ -122,7 +199,9 @@ class _SearchLeagueState extends State<SearchLeague> {
                                   backgroundImage: NetworkImage(
                                       'https://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnba.png'),
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  addTeam(result);
+                                },
                               );
                             },
                           ),
@@ -140,39 +219,5 @@ class _SearchLeagueState extends State<SearchLeague> {
         ),
       ),
     );
-  }
-
-  void _searchMember() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    var apiUrl = 'http://localhost:8080/team/search/teamname';
-
-    final Map<String, dynamic> userData = {
-      'teamname': searchQuery,
-    };
-
-    print(userData);
-    try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        body: json.encode(userData),
-        headers: {'Content-Type': 'application/json'},
-      );
-
-      if (response.statusCode == 200) {
-        setState(() {
-          searchResults = json.decode(response.body);
-        });
-        print(searchResults);
-      }
-    } catch (e) {
-      print(e);
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
   }
 }
