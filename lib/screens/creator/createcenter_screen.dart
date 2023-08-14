@@ -8,6 +8,7 @@ import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -273,8 +274,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
-                                    ),
+                                        color: primaryColor),
                                   ),
                                 )
                               : searchResultTeam.isEmpty
@@ -382,8 +382,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
-                                    ),
+                                        color: primaryColor),
                                   ),
                                 )
                               : searchResultTeam.isEmpty

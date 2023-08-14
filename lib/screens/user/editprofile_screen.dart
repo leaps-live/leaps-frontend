@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfile extends StatefulWidget {
@@ -198,7 +199,10 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return isLoading
         ? const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+                child: CircularProgressIndicator(
+              color: primaryColor,
+            )),
           )
         : Scaffold(
             appBar: AppBar(
