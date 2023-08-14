@@ -4,9 +4,8 @@ import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
-import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
-import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -41,6 +40,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userid = prefs.getString('userid');
+    print(userid);
 
     var apiUrl = Uri.parse('http://localhost:8080/team/getTeam/$userid');
     try {
@@ -299,10 +299,17 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                               children: [
                                                 for (var category
                                                     in team['teamcategories'])
-                                                  Text(
-                                                    category,
-                                                    style: const TextStyle(
-                                                        fontSize: 17),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        category,
+                                                        style: const TextStyle(
+                                                            fontSize: 17),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      )
+                                                    ],
                                                   ),
                                               ],
                                             ),
@@ -313,7 +320,13 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                               backgroundImage: NetworkImage(
                                                   'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
                                             ),
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                TeamScreen.routeName,
+                                                arguments: team['teamid'],
+                                              );
+                                            },
                                           )
                                       ],
                                     ),
@@ -371,7 +384,12 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                           //                     backgroundImage: NetworkImage(
                           //                         'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
                           //                   ),
-                          //                   onTap: () {},
+                          //                   onTap: () {
+                          //  Navigator.pushNamed(
+                          //   context,
+                          //   TeamScreen.routeName,
+                          //   arguments: league['leagueid'],
+                          // );},
                           //                 )
                           //             ],
                           //           ),
@@ -408,10 +426,17 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                               children: [
                                                 for (var category
                                                     in team['teamcategories'])
-                                                  Text(
-                                                    category,
-                                                    style: const TextStyle(
-                                                        fontSize: 17),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        category,
+                                                        style: const TextStyle(
+                                                            fontSize: 17),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      )
+                                                    ],
                                                   ),
                                               ],
                                             ),
