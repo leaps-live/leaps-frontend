@@ -23,15 +23,19 @@ class _SearchTeamState extends State<SearchTeam> {
       addLoading = true;
     });
 
-    // try {
-    //   final getID = await http.get(
-    //     Uri.parse('http://localhost:8080/team/getid/$teamName'),
-    //   );
+    try {
+      final getID = await http.get(
+        Uri.parse('http://localhost:8080/team/getid/$teamName'),
+      );
 
-    //   print(getID.body);
-    // } catch (e) {
-    //   print(e);
-    // }
+      print(getID.body);
+
+      if (getID.statusCode == 200) {
+        print("get IDDDDDDDD");
+      }
+    } catch (e) {
+      print(e);
+    }
 
     var apiUrl = 'http://localhost:8080/teamplayer/add';
 
