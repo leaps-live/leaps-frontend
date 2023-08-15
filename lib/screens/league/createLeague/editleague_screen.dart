@@ -4,7 +4,10 @@ import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:http/http.dart' as http;
 
 class EditLeagueScreen extends StatefulWidget {
-  const EditLeagueScreen({super.key});
+  final Map<String, dynamic> searchResult;
+
+  const EditLeagueScreen({Key? key, required this.searchResult})
+      : super(key: key);
   static const routeName = '/edit_league';
 
   @override
@@ -14,6 +17,26 @@ class EditLeagueScreen extends StatefulWidget {
 class _EditLeagueScreenState extends State<EditLeagueScreen> {
   String selectedValue = "Please Select";
   bool isLoading = false;
+
+  final TextEditingController leagueNameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    print(widget.searchResult);
+    leagueNameController.text = widget.searchResult['leaguename'];
+    descriptionController.text = widget.searchResult['leaguedescription'];
+    selectedValue =
+        widget.searchResult['leaguecategories'][0] ?? "Category Choices";
+  }
+
+  @override
+  void dispose() {
+    leagueNameController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
 
   void showPopup() {
     if (Theme.of(context).platform == TargetPlatform.android) {
@@ -144,8 +167,9 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: leagueNameController,
+              decoration: const InputDecoration(
                 labelText: 'League Name',
                 hintText: 'League name',
                 labelStyle: TextStyle(
@@ -187,8 +211,9 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
                   .toList(), // 使用Set来确保唯一值
             ),
 
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: descriptionController,
+              decoration: const InputDecoration(
                 labelText: 'Description',
                 hintText: 'Some description about this league',
                 labelStyle: TextStyle(

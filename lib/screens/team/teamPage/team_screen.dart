@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_index.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_tabbar.dart';
 import 'package:http/http.dart' as http;
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 
 class TeamScreen extends StatefulWidget {
@@ -57,7 +58,9 @@ class _TeamScreenState extends State<TeamScreen> {
     return isLoading
         ? const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: primaryColor,
+              ),
             ),
           )
         : Scaffold(

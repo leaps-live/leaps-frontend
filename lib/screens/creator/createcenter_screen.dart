@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/game/create_game.dart';
+import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
@@ -58,6 +59,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -86,6 +88,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -380,7 +383,13 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                                 backgroundImage: NetworkImage(
                                                     'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
                                               ),
-                                              onTap: () {},
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  LeagueScreen.routeName,
+                                                  arguments: league['leagueid'],
+                                                );
+                                              },
                                             )
                                       ],
                                     ),
