@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -56,7 +57,7 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
 
     return isLoading
         ? const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(child: CircularProgressIndicator(color: primaryColor)),
           )
         : Scaffold(
             appBar: AppBar(

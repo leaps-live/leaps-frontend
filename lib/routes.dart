@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
@@ -76,4 +77,5 @@ var allRoutes = <String, WidgetBuilder>{
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
   HomeRecommendations.routeName: (context) => const HomeRecommendations(),
   HomeLeagues.routeName: (context) => const HomeLeagues(),
+  GameSelectScreen.routeName: (context) => const GameSelectScreen(),
 };
