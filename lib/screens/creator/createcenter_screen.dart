@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
-import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
-import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -41,6 +42,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userid = prefs.getString('userid');
+    print(userid);
 
     var apiUrl = Uri.parse('http://localhost:8080/team/getTeam/$userid');
     try {
@@ -185,7 +187,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, CreateGameScreen.routeName);
+                              context, GameSelectScreen.routeName);
                         },
                         child: const Row(
                           children: [
@@ -272,20 +274,11 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
-                                    ),
+                                        color: primaryColor),
                                   ),
                                 )
-                              : searchResultTeam.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                        "No teams found",
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    )
-                                  : Column(
+                              : searchResultTeam.isNotEmpty
+                                  ? Column(
                                       children: [
                                         for (var team in searchResultTeam)
                                           ListTile(
@@ -299,10 +292,17 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                               children: [
                                                 for (var category
                                                     in team['teamcategories'])
-                                                  Text(
-                                                    category,
-                                                    style: const TextStyle(
-                                                        fontSize: 17),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        category,
+                                                        style: const TextStyle(
+                                                            fontSize: 17),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      )
+                                                    ],
                                                   ),
                                               ],
                                             ),
@@ -313,10 +313,25 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                               backgroundImage: NetworkImage(
                                                   'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
                                             ),
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                TeamScreen.routeName,
+                                                arguments: team['teamid'],
+                                              );
+                                            },
                                           )
                                       ],
+                                    )
+                                  : const Center(
+                                      child: Text(
+                                        "No teams found",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
+
                           // Lists for Leagues
                           isLoading
                               ? const SizedBox(
@@ -375,8 +390,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
-                                    ),
+                                        color: primaryColor),
                                   ),
                                 )
                               : searchResultTeam.isEmpty
@@ -402,10 +416,17 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                               children: [
                                                 for (var category
                                                     in team['teamcategories'])
-                                                  Text(
-                                                    category,
-                                                    style: const TextStyle(
-                                                        fontSize: 17),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        category,
+                                                        style: const TextStyle(
+                                                            fontSize: 17),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      )
+                                                    ],
                                                   ),
                                               ],
                                             ),

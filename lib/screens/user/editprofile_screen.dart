@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfile extends StatefulWidget {
@@ -16,7 +19,8 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   Map<String, dynamic> searchResult = {};
   final TextEditingController birthdayController = TextEditingController();
-  final TextEditingController heightController = TextEditingController();
+  final TextEditingController feetController = TextEditingController();
+  final TextEditingController inchController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   bool isLoading = false;
 
@@ -43,8 +47,9 @@ class _EditProfileState extends State<EditProfile> {
         });
         print(searchResult);
         birthdayController.text = searchResult['userbirthday'];
-        heightController.text = searchResult['userheight'];
         weightController.text = searchResult['userweight'];
+        feetController.text = searchResult['userheight'].split("'")[0];
+        inchController.text = searchResult['userheight'].split("'")[1];
         print(response.body);
       }
     } catch (e) {
@@ -60,14 +65,16 @@ class _EditProfileState extends State<EditProfile> {
   void dispose() {
     // Dispose the controllers to free up resources
     birthdayController.dispose();
-    heightController.dispose();
+    feetController.dispose();
+    inchController.dispose();
     weightController.dispose();
     super.dispose();
   }
 
   void editProfile() async {
     if (birthdayController.text.isEmpty ||
-        heightController.text.isEmpty ||
+        feetController.text.isEmpty ||
+        inchController.text.isEmpty ||
         weightController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fill in all fields!",
@@ -79,10 +86,26 @@ class _EditProfileState extends State<EditProfile> {
       );
       return;
     }
+
+    int? feetValue = int.tryParse(feetController.text);
+    int? inchValue = int.tryParse(inchController.text);
+    if (feetValue! < 0 || feetValue > 7 || inchValue! < 0 || inchValue > 12) {
+      Fluttertoast.showToast(
+        msg: "Please enter a valid height!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+      return;
+    }
+
     // Get the input values from the text fields
     String birthday = birthdayController.text;
-    String height = heightController.text;
+    String height = feetController.text + "'" + inchController.text;
     String weight = weightController.text;
+    print(height);
 
     String userid = 'f7a0ab13-1573-4716-9423-95d02b8d6732';
 
@@ -129,11 +152,57 @@ class _EditProfileState extends State<EditProfile> {
     }
   }
 
+  Future<void> _showDatePicker(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        birthdayController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
+  }
+
+  Future<void> _showCupertinoDatePicker(BuildContext context) async {
+    DateTime? pickedDate = await showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builder) {
+        return Container(
+          height: 200.0,
+          color: Colors.white,
+          child: CupertinoDatePicker(
+            mode: CupertinoDatePickerMode.date,
+            initialDateTime: DateTime.now(),
+            minimumYear: 1900,
+            maximumYear: 2100,
+            onDateTimeChanged: (DateTime newDate) {
+              birthdayController.text =
+                  DateFormat('yyyy-MM-dd').format(newDate);
+            },
+          ),
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        birthdayController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return isLoading
         ? const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+                child: CircularProgressIndicator(
+              color: primaryColor,
+            )),
           )
         : Scaffold(
             appBar: AppBar(
@@ -175,27 +244,62 @@ class _EditProfileState extends State<EditProfile> {
                     size: 80,
                   ),
                   TextField(
-                    controller: birthdayController,
-                    decoration: const InputDecoration(
-                      labelText: 'Birthday',
-                      hintText: 'Birthday',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                      controller: birthdayController,
+                      decoration: const InputDecoration(
+                        labelText: 'Birthday',
+                        hintText: 'Birthday',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ),
+                      onTap: () {
+                        if (Theme.of(context).platform == TargetPlatform.iOS) {
+                          _showCupertinoDatePicker(context);
+                        } else {
+                          _showDatePicker(context);
+                        }
+                      }),
                   const SizedBox(
                     height: 16,
                   ),
-                  TextField(
-                    controller: heightController,
-                    decoration: const InputDecoration(
-                      labelText: 'Height',
-                      hintText: 'Height',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: feetController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          decoration: const InputDecoration(
+                            labelText: 'Height (feet)',
+                            hintText: 'Height (feet)',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          controller: inchController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          decoration: const InputDecoration(
+                            labelText: 'Height (inch)',
+                            hintText: 'Height (inch)',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 16,

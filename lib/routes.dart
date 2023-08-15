@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
@@ -43,7 +44,9 @@ var allRoutes = <String, WidgetBuilder>{
   CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
   CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
-  EditTeamScreen.routeName: (context) => const EditTeamScreen(),
+  EditTeamScreen.routeName: (context) => EditTeamScreen(
+      searchResult:
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
   EditLeagueScreen.routeName: (context) => const EditLeagueScreen(),
   SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
   CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
@@ -76,4 +79,5 @@ var allRoutes = <String, WidgetBuilder>{
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
   HomeRecommendations.routeName: (context) => const HomeRecommendations(),
   HomeLeagues.routeName: (context) => const HomeLeagues(),
+  GameSelectScreen.routeName: (context) => const GameSelectScreen(),
 };

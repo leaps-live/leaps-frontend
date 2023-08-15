@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:remixicon/remixicon.dart';
 
 class CreateGameScreen extends StatefulWidget {
   const CreateGameScreen({super.key});
@@ -94,40 +95,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
     }
   }
 
-  // DateTime? selectedDate;
-  // TimeOfDay? selectedTime;
-  // String concatenatedDateTime = '';
-
-  // Future<void> _selectDate() async {
-  //   final DateTime? pickedDate = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime(2100),
-  //   );
-
-  //   if (pickedDate != null) {
-  //     setState(() {
-  //       selectedDate = pickedDate;
-  //       _updateConcatenatedDateTime();
-  //     });
-  //   }
-  // }
-
-  // Future<void> _selectTime() async {
-  //   final TimeOfDay? pickedTime = await showTimePicker(
-  //     context: context,
-  //     initialTime: TimeOfDay.now(),
-  //   );
-
-  //   if (pickedTime != null) {
-  //     setState(() {
-  //       selectedTime = pickedTime;
-  //       _updateConcatenatedDateTime();
-  //     });
-  //   }
-  // }
-
   void _updateConcatenatedDateTime() {
     if (selectedDate != null && selectedTime != null) {
       final DateTime combinedDateTime = DateTime(
@@ -209,20 +176,9 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
               onTap: () {
                 Navigator.pushNamed(context, SearchMemberScreen.routeName);
               },
-              child: Container(
-                width: 36,
-                height: 36,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue,
-                ),
-                child: const CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.black,
-                  ),
-                ),
+              child: const Icon(
+                Remix.add_circle_line,
+                size: 40,
               ),
             ),
             const SizedBox(
@@ -322,19 +278,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
             ),
             const TextField(
               decoration: InputDecoration(
-                labelText: 'Game Description',
-                hintText: 'Some description about this game',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const TextField(
-              decoration: InputDecoration(
                 labelText: 'Number of Quarters',
                 // border: InputBorder.none,
                 hintText: 'Number Only',
@@ -343,14 +286,21 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 16,
-            ),
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Minutes per Quarters',
                 // border: InputBorder.none,
                 hintText: 'Number only',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Game Description',
+                hintText: 'Some description about this game',
                 labelStyle: TextStyle(
                   color: Colors.black,
                 ),
