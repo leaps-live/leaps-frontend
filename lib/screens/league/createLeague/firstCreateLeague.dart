@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchLeague.dart';
-import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -22,8 +20,8 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
   List<dynamic> teamArrays = [];
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _getLeagueData();
     getTeamArray();
   }
@@ -59,12 +57,17 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
 
   void getTeamArray() async {
     try {
+      final Map<String, dynamic> args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      leagueid = args["leagueid"];
+      print("leagueid: $leagueid");
       final teamArray =
           await http.get(Uri.parse('http://localhost:8080/team/all/$leagueid'));
-      print(teamArray.body);
 
       if (teamArray.statusCode == 200) {
-        teamArrays = json.decode(teamArray.body);
+        setState(() {
+          teamArrays = json.decode(teamArray.body);
+        });
         print("teamArrays: $teamArrays");
       } else {
         print('fail request when requesting teamArray ${teamArray.statusCode}');
@@ -79,7 +82,6 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
     final Map<String, dynamic> args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     var leagueName = args["leagueName"];
-    leagueid = args["leagueid"];
 
     return isLoading
         ? const Scaffold(
@@ -116,7 +118,12 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                   IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, SearchLeague.routeName,
-                            arguments: leagueid);
+                                arguments: leagueid)
+                            .then((result) {
+                          if (result != null && result is bool && result) {
+                            getTeamArray();
+                          }
+                        });
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,
@@ -145,7 +152,43 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                  for (var team in teamArrays) Text(team['teamname'])
+                  // for (var team in teamArrays) Text(team['teamname'])
+
+                  Column(
+                    children: [
+                      for (var team in teamArrays)
+                        ListTile(
+                          title: Text(
+                            team['teamname'],
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 19),
+                          ),
+                          subtitle: Row(
+                            children: [
+                              for (var category in team['teamcategories'] ?? [])
+                                Row(
+                                  children: [
+                                    Text(
+                                      category,
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    )
+                                  ],
+                                ),
+                            ],
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 0.0),
+                          leading: const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
+                          ),
+                          onTap: () {},
+                        )
+                    ],
+                  ),
                 ],
               ),
             ),

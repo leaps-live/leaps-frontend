@@ -85,7 +85,7 @@ class _SearchLeagueState extends State<SearchLeague> {
           textColor: Colors.white,
         );
 
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       }
     } catch (e) {
       print(e);
