@@ -262,7 +262,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       ),
                     ),
                     SizedBox(
-                      height: 400, // Adjust the height as needed
+                      height: 800, // Adjust the height as needed
                       child: TabBarView(
                         controller: _tabController,
                         children: [
@@ -318,15 +318,6 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                       ],
                                     ),
                           // Lists for Leagues
-
-                          // const Center(
-                          //   child: Text(
-                          //     "No leagues found",
-                          //     style: TextStyle(
-                          //         fontSize: 19, fontWeight: FontWeight.bold),
-                          //   ),
-                          // ),
-
                           isLoading
                               ? const SizedBox(
                                   height: 200,

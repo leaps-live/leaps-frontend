@@ -88,7 +88,8 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
                   ),
                   IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, SearchTeam.routeName);
+                        Navigator.pushNamed(context, SearchTeam.routeName,
+                            arguments: teamName);
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,
