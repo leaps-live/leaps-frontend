@@ -55,7 +55,10 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
 
   @override
   Widget build(BuildContext context) {
-    String leagueName = ModalRoute.of(context)?.settings?.arguments as String;
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    var leagueName = args["leagueName"];
+    var leagueid = args["leagueid"];
 
     return isLoading
         ? const Scaffold(
@@ -91,7 +94,8 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                   ),
                   IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, SearchLeague.routeName);
+                        Navigator.pushNamed(context, SearchLeague.routeName,
+                            arguments: leagueid);
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,
@@ -110,7 +114,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                         size: 40,
                       ),
                       const SizedBox(width: 10.0),
-                      Text(creatorName, style: TextStyle(fontSize: 17)),
+                      Text(creatorName, style: const TextStyle(fontSize: 17)),
                       const Spacer(),
                       const Text(
                         "Creator",

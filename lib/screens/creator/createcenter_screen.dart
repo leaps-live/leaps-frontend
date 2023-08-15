@@ -318,63 +318,66 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                       ],
                                     ),
                           // Lists for Leagues
-                          const Center(
-                            child: Text(
-                              "No leagues found",
-                              style: TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          // isLoading
-                          //     ? const SizedBox(
-                          //         height: 200,
-                          //         child: Center(
-                          //           child: CircularProgressIndicator(
-                          //             color: Colors.grey,
-                          //           ),
-                          //         ),
-                          //       )
-                          //     : searchResultLeague.isEmpty
-                          //         ? const Center(
-                          //             child: Text(
-                          //               "No leagues found",
-                          //               style: TextStyle(
-                          //                   fontSize: 19,
-                          //                   fontWeight: FontWeight.bold),
-                          //             ),
-                          //           )
-                          //         : Column(
-                          //             children: [
-                          //               for (var league in searchResultLeague)
-                          //                 ListTile(
-                          //                   title: Text(
-                          //                     league['leaguename'],
-                          //                     style: const TextStyle(
-                          //                         color: Colors.black,
-                          //                         fontSize: 19),
-                          //                   ),
-                          //                   subtitle: Row(
-                          //                     children: [
-                          //                       for (var category in league[
-                          //                           'leaguecategories'])
-                          //                         Text(
-                          //                           category,
-                          //                           style: const TextStyle(
-                          //                               fontSize: 17),
-                          //                         ),
-                          //                     ],
-                          //                   ),
-                          //                   contentPadding:
-                          //                       const EdgeInsets.symmetric(
-                          //                           horizontal: 16.0),
-                          //                   leading: const CircleAvatar(
-                          //                     backgroundImage: NetworkImage(
-                          //                         'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
-                          //                   ),
-                          //                   onTap: () {},
-                          //                 )
-                          //             ],
-                          //           ),
+
+                          // const Center(
+                          //   child: Text(
+                          //     "No leagues found",
+                          //     style: TextStyle(
+                          //         fontSize: 19, fontWeight: FontWeight.bold),
+                          //   ),
+                          // ),
+
+                          isLoading
+                              ? const SizedBox(
+                                  height: 200,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                )
+                              : searchResultLeague.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                        "No leagues found",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  : Column(
+                                      children: [
+                                        for (var leagues in searchResultLeague)
+                                          for (var league in leagues)
+                                            ListTile(
+                                              title: Text(
+                                                league['leaguename'],
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 19),
+                                              ),
+                                              subtitle: Row(
+                                                children: [
+                                                  for (var category in league[
+                                                      'leaguecategories'])
+                                                    Text(
+                                                      category,
+                                                      style: const TextStyle(
+                                                          fontSize: 17),
+                                                    ),
+                                                ],
+                                              ),
+                                              contentPadding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16.0),
+                                              leading: const CircleAvatar(
+                                                backgroundImage: NetworkImage(
+                                                    'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
+                                              ),
+                                              onTap: () {},
+                                            )
+                                      ],
+                                    ),
                           // Lists for Games
                           isLoading
                               ? const SizedBox(

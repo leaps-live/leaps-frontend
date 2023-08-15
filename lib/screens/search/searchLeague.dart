@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -15,6 +16,7 @@ class _SearchLeagueState extends State<SearchLeague> {
   bool isLoading = false;
   bool addLoading = false;
   List<dynamic> searchResults = [];
+  String leagueid = '';
 
   void _searchMember() async {
     setState(() {
@@ -58,7 +60,7 @@ class _SearchLeagueState extends State<SearchLeague> {
     var apiUrl = 'http://localhost:8080/leagueteam/add';
 
     final Map<String, dynamic> userData = {
-      'leagueid': 'a24e8028-3021-4cd8-81c1-e0365d2ce66e',
+      'leagueid': leagueid,
       'teamid': result['teamid'],
       'teamCategories': result['teamCategories'],
     };
@@ -74,7 +76,16 @@ class _SearchLeagueState extends State<SearchLeague> {
       print(response.body);
 
       if (response.statusCode == 200) {
-        print(response.body);
+        Fluttertoast.showToast(
+          msg: "Team added to league",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+
+        Navigator.pop(context);
       }
     } catch (e) {
       print(e);
@@ -87,6 +98,7 @@ class _SearchLeagueState extends State<SearchLeague> {
 
   @override
   Widget build(BuildContext context) {
+    leagueid = ModalRoute.of(context)?.settings?.arguments as String;
     return Scaffold(
       body: SafeArea(
         child: Container(
