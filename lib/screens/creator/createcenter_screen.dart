@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
@@ -7,6 +8,7 @@ import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -185,7 +187,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, CreateGameScreen.routeName);
+                              context, GameSelectScreen.routeName);
                         },
                         child: const Row(
                           children: [
@@ -272,8 +274,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
-                                    ),
+                                        color: primaryColor),
                                   ),
                                 )
                               : searchResultTeam.isEmpty
@@ -381,8 +382,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
-                                    ),
+                                        color: primaryColor),
                                   ),
                                 )
                               : searchResultTeam.isEmpty
