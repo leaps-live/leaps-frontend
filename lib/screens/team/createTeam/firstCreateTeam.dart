@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -15,11 +17,13 @@ class FirstCreateTeam extends StatefulWidget {
 class _FirstCreateTeamState extends State<FirstCreateTeam> {
   String creatorName = '';
   bool isLoading = false;
+  List<dynamic> playerArrays = [];
 
   @override
   void initState() {
     super.initState();
     _getUserData();
+    getPlayerArray();
   }
 
   Future<void> _getUserData() async {
@@ -48,6 +52,26 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
       setState(() {
         isLoading = false;
       });
+    }
+  }
+
+  void getPlayerArray() async {
+    var teamid = '24dbe493-6e10-49d8-b8da-ae26f9dcbe4c';
+
+    try {
+      final playerArray = await http.get(
+          Uri.parse('http://localhost:8080/teamplayer/allplayers/$teamid'));
+      print(playerArray.body);
+
+      if (playerArray.statusCode == 200) {
+        playerArrays = json.decode(playerArray.body);
+        print("teamArrays: $playerArrays");
+      } else {
+        print(
+            'fail request when requesting playerArray ${playerArray.statusCode}');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 

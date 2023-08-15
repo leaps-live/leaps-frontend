@@ -18,14 +18,17 @@ class FirstCreateLeague extends StatefulWidget {
 class _FirstCreateLeagueState extends State<FirstCreateLeague> {
   String creatorName = '';
   bool isLoading = false;
+  String leagueid = '';
+  List<dynamic> teamArrays = [];
 
   @override
   void initState() {
     super.initState();
-    _getUserData();
+    _getLeagueData();
+    getTeamArray();
   }
 
-  Future<void> _getUserData() async {
+  Future<void> _getLeagueData() async {
     setState(() {
       isLoading = true;
     });
@@ -54,12 +57,29 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
     }
   }
 
+  void getTeamArray() async {
+    try {
+      final teamArray =
+          await http.get(Uri.parse('http://localhost:8080/team/all/$leagueid'));
+      print(teamArray.body);
+
+      if (teamArray.statusCode == 200) {
+        teamArrays = json.decode(teamArray.body);
+        print("teamArrays: $teamArrays");
+      } else {
+        print('fail request when requesting teamArray ${teamArray.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     var leagueName = args["leagueName"];
-    var leagueid = args["leagueid"];
+    leagueid = args["leagueid"];
 
     return isLoading
         ? const Scaffold(
@@ -123,7 +143,9 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                             fontSize: 17, fontWeight: FontWeight.bold),
                       )
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 16.0),
+                  for (var team in teamArrays) Text(team['teamname'])
                 ],
               ),
             ),

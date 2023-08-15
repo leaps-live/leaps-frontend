@@ -47,6 +47,7 @@ class _TeamScreenState extends State<TeamScreen> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
