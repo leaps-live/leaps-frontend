@@ -1,0 +1,105 @@
+import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/game/creategame_screen.dart';
+
+class GameSelectScreen extends StatefulWidget {
+  const GameSelectScreen({super.key});
+  static const routeName = '/game_select';
+
+  @override
+  State<GameSelectScreen> createState() => _GameSelectScreenState();
+}
+
+class _GameSelectScreenState extends State<GameSelectScreen> {
+  bool _isLeagueSelected = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Create a game"),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Type of game",
+                style: TextStyle(fontSize: 17),
+              ),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _isLeagueSelected = true;
+                      });
+                    },
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(horizontal: 0),
+                      ),
+                      overlayColor: MaterialStateProperty.all<Color>(
+                        _isLeagueSelected
+                            ? Colors.transparent
+                            : Colors.grey.withOpacity(0.2),
+                      ),
+                    ),
+                    child: Text(
+                      "Select a league",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: _isLeagueSelected ? Colors.red : Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _isLeagueSelected = false;
+                      });
+                    },
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(horizontal: 0),
+                      ),
+                      overlayColor: MaterialStateProperty.all<Color>(
+                        !_isLeagueSelected
+                            ? Colors.transparent
+                            : Colors.grey.withOpacity(0.2),
+                      ),
+                    ),
+                    child: Text(
+                      "Pickup game",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: !_isLeagueSelected ? Colors.red : Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              if (_isLeagueSelected)
+                Column(
+                  children: [
+                    Text("You are the admin for the leagues below:"),
+                    GestureDetector(
+                      child:
+                          Text("Placeholder", style: TextStyle(fontSize: 23)),
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, CreateGameScreen.routeName);
+                      },
+                    )
+                  ],
+                )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

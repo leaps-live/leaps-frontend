@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return isInit
         ? const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(child: CircularProgressIndicator(color: primaryColor)),
           )
         : Scaffold(
             appBar: AppBar(
