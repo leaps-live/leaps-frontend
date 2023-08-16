@@ -3,6 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:leaps_frontend/utils/colors.dart';
+
 class SearchLeague extends StatefulWidget {
   const SearchLeague({super.key});
   static const routeName = '/search_league';
@@ -169,7 +171,7 @@ class _SearchLeagueState extends State<SearchLeague> {
                           width: 50,
                           height: 50,
                           child: CircularProgressIndicator(
-                            color: Colors.black,
+                            color: primaryColor,
                             strokeWidth: 4,
                           ),
                         ),

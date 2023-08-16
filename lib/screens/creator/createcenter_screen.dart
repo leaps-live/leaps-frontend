@@ -341,7 +341,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   height: 200,
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: Colors.grey,
+                                      color: primaryColor,
                                     ),
                                   ),
                                 )

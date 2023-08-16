@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:leaps_frontend/utils/colors.dart';
+
 class SearchMemberScreen extends StatefulWidget {
   const SearchMemberScreen({super.key});
   static const routeName = '/search_member';
@@ -103,7 +105,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                             width: 30, // 设置宽度
                             height: 30, // 设置高度
                             child: CircularProgressIndicator(
-                              color: Colors.grey,
+                              color: primaryColor,
                               strokeWidth: 3,
                             ),
                           )
@@ -157,7 +159,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                             width: 30, // 设置宽度
                             height: 30, // 设置高度
                             child: CircularProgressIndicator(
-                              color: Colors.grey,
+                              color: primaryColor,
                               strokeWidth: 3,
                             ),
                           )
@@ -216,7 +218,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                             width: 30, // 设置宽度
                             height: 30, // 设置高度
                             child: CircularProgressIndicator(
-                              color: Colors.grey,
+                              color: primaryColor,
                               strokeWidth: 3,
                             ),
                           )
@@ -275,7 +277,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                             width: 30, // 设置宽度
                             height: 30, // 设置高度
                             child: CircularProgressIndicator(
-                              color: Colors.grey,
+                              color: primaryColor,
                               strokeWidth: 3,
                             ),
                           )

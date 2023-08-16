@@ -3,6 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:leaps_frontend/utils/colors.dart';
+
 class SearchTeam extends StatefulWidget {
   const SearchTeam({super.key});
   static const routeName = '/search_team';
@@ -136,7 +138,7 @@ class _SearchTeamState extends State<SearchTeam> {
                             width: 50,
                             height: 50,
                             child: CircularProgressIndicator(
-                              color: Colors.black,
+                              color: primaryColor,
                               strokeWidth: 4,
                             ),
                           ),
