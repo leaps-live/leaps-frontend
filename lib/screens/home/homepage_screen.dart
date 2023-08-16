@@ -3,6 +3,7 @@ import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_games.dart';
 import 'package:leaps_frontend/screens/home/home_leagues.dart';
 import 'package:leaps_frontend/screens/home/home_recommendations.dart';
+import 'package:leaps_frontend/screens/home/notifications/notifications_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -87,7 +88,9 @@ class topBar extends StatelessWidget {
                 Remix.notification_3_line,
                 color: Color(0xFF2E3A59),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, NotificationsScreen.routeName);
+              },
             ),
           ],
         ),
@@ -123,9 +126,10 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
     return Column(
       children: [
         TabBar(
+          isScrollable: true, // Make the TabBar scrollable
           controller: _tabController,
           tabs: const [
-            Tab(text: "For You"),
+            Tab(text: "Recommendations"),
             Tab(text: "League"),
             Tab(text: "Game"),
             Tab(text: "Team"),
