@@ -48,6 +48,7 @@ class _SearchLeagueState extends State<SearchLeague> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });

@@ -153,6 +153,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });

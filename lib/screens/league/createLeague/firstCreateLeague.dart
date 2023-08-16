@@ -49,6 +49,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -94,7 +95,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context, true);
                   },
                   child: const Text(
                     'Done',

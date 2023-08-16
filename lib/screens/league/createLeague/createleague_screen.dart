@@ -97,8 +97,15 @@ class _CreateLeagueScreenState extends State<CreateLeagueScreen> {
           "leagueid": leagueid,
         };
 
-        Navigator.pushReplacementNamed(context, FirstCreateLeague.routeName,
-            arguments: routeArguments);
+        Navigator.pushNamed(context, FirstCreateLeague.routeName,
+                arguments: routeArguments)
+            .then((result) {
+          if (result != null && result is bool && result) {
+            if (mounted) {
+              Navigator.pop(context, true);
+            }
+          }
+        });
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "The league name already exists",

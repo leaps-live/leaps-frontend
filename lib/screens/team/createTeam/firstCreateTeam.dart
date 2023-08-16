@@ -50,6 +50,7 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -98,7 +99,7 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context, true);
                   },
                   child: const Text(
                     'Done',
@@ -123,12 +124,11 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
                       onPressed: () {
                         Navigator.pushNamed(context, SearchTeam.routeName,
                                 arguments: teamid)
-                            .then((result) {
-                          if (result != null && result is bool && result) {
+                            .then((r) {
+                          if (r != null && r is bool && r) {
                             getPlayerArray();
                           }
                         });
-                        ;
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,

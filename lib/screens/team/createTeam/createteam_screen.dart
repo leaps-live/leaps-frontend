@@ -30,7 +30,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     super.dispose();
   }
 
-  void _checkIfFieldFilled() {
+  void _checkIfFieldFilled(BuildContext context) {
     setState(() {
       areAllfieldsFilled = nameController.text.isNotEmpty &&
           descriptionController.text.isNotEmpty &&
@@ -94,8 +94,15 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
           "teamid": teamid,
         };
 
-        Navigator.pushReplacementNamed(context, FirstCreateTeam.routeName,
-            arguments: routeArguments);
+        Navigator.pushNamed(context, FirstCreateTeam.routeName,
+                arguments: routeArguments)
+            .then((result) {
+          if (result != null && result is bool && result) {
+            if (mounted) {
+              Navigator.pop(context, true);
+            }
+          }
+        });
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "The team name already exists",
@@ -113,6 +120,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     } catch (e) {
       print('Error occurred while sending data: $e');
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -140,7 +148,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             TextField(
               controller: nameController,
               onChanged: (value) {
-                _checkIfFieldFilled(); // Update button state on input change
+                _checkIfFieldFilled(
+                    context); // Update button state on input change
               },
               decoration: const InputDecoration(
                 labelText: 'Team Name',
@@ -164,7 +173,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                     selectedValue = newValue;
                   });
                 }
-                _checkIfFieldFilled();
+                _checkIfFieldFilled(context);
               },
               items: <String>[
                 'Category Choices',
@@ -185,7 +194,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             TextField(
               controller: descriptionController,
               onChanged: (value) {
-                _checkIfFieldFilled(); // Update button state on input change
+                _checkIfFieldFilled(
+                    context); // Update button state on input change
               },
               decoration: const InputDecoration(
                 labelText: 'Description',
