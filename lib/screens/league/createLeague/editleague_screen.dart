@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:http/http.dart' as http;
 
@@ -55,7 +57,17 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
               TextButton(
                 onPressed: () {
                   deleteLeague();
-                  Navigator.of(context).pop();
+
+                  Fluttertoast.showToast(
+                    msg: "League deleted successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.grey,
+                    textColor: Colors.white,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, MainScreen.routeName, (route) => false);
                 },
                 child: const Text('Yes, delete'),
               ),
@@ -98,7 +110,17 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
               CupertinoDialogAction(
                 onPressed: () {
                   deleteLeague();
-                  Navigator.of(context).pop();
+
+                  Fluttertoast.showToast(
+                    msg: "League deleted successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.grey,
+                    textColor: Colors.white,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, MainScreen.routeName, (route) => false);
                 },
                 child: const Text(
                   'Yes, delete',
@@ -118,7 +140,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
       isLoading = true;
     });
 
-    String leagueid = "85627481-9197-4d10-b55c-650414511f2b";
+    String leagueid = widget.searchResult['leagueid'];
 
     try {
       final response = await http
@@ -131,6 +153,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });

@@ -152,8 +152,6 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                  // for (var team in teamArrays) Text(team['teamname'])
-
                   Column(
                     children: [
                       for (var team in teamArrays)

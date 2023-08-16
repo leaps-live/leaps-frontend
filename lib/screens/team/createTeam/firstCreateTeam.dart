@@ -18,10 +18,11 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
   String creatorName = '';
   bool isLoading = false;
   List<dynamic> playerArrays = [];
+  String teamid = '';
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _getUserData();
     getPlayerArray();
   }
@@ -56,7 +57,10 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
   }
 
   void getPlayerArray() async {
-    var teamid = '24dbe493-6e10-49d8-b8da-ae26f9dcbe4c';
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    teamid = args["teamid"];
+    print("Got teamid !!!!: $teamid");
 
     try {
       final playerArray = await http.get(
@@ -64,7 +68,9 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
       print(playerArray.body);
 
       if (playerArray.statusCode == 200) {
-        playerArrays = json.decode(playerArray.body);
+        setState(() {
+          playerArrays = json.decode(playerArray.body);
+        });
         print("teamArrays: $playerArrays");
       } else {
         print(
@@ -77,7 +83,9 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
 
   @override
   Widget build(BuildContext context) {
-    String teamName = ModalRoute.of(context)?.settings?.arguments as String;
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    var teamName = args["teamName"];
 
     return isLoading
         ? const Scaffold(
@@ -114,7 +122,13 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
                   IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, SearchTeam.routeName,
-                            arguments: teamName);
+                                arguments: teamid)
+                            .then((result) {
+                          if (result != null && result is bool && result) {
+                            getPlayerArray();
+                          }
+                        });
+                        ;
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,
@@ -141,7 +155,33 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
                             fontSize: 17, fontWeight: FontWeight.bold),
                       )
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 16.0),
+                  Column(
+                    children: [
+                      for (var player in playerArrays)
+                        ListTile(
+                          title: Text(
+                            player['userfirstname'] +
+                                ' ' +
+                                player['userlastname'],
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 19),
+                          ),
+                          subtitle: Text(
+                            player['username'],
+                            style: const TextStyle(fontSize: 17),
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 0.0),
+                          leading: const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
+                          ),
+                          onTap: () {},
+                        )
+                    ],
+                  ),
                 ],
               ),
             ),

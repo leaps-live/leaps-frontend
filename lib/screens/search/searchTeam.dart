@@ -15,7 +15,7 @@ class _SearchTeamState extends State<SearchTeam> {
   String searchQuery = '';
   bool isLoading = false;
   bool addLoading = false;
-  String teamName = '';
+  String teamid = '';
   List<dynamic> searchResults = [];
 
   void addPlayer(result) async {
@@ -23,24 +23,10 @@ class _SearchTeamState extends State<SearchTeam> {
       addLoading = true;
     });
 
-    try {
-      final getID = await http.get(
-        Uri.parse('http://localhost:8080/team/getid/$teamName'),
-      );
-
-      print(getID.body);
-
-      if (getID.statusCode == 200) {
-        print("get IDDDDDDDD");
-      }
-    } catch (e) {
-      print(e);
-    }
-
     var apiUrl = 'http://localhost:8080/teamplayer/add';
 
     final Map<String, dynamic> userData = {
-      'teamid': '42bdd764-b233-458f-872d-b0df5c717e94',
+      'teamid': teamid,
       'userid': result['userid'],
     };
     print(userData);
@@ -63,7 +49,7 @@ class _SearchTeamState extends State<SearchTeam> {
           textColor: Colors.white,
         );
 
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       }
     } catch (e) {
       print(e);
@@ -76,7 +62,7 @@ class _SearchTeamState extends State<SearchTeam> {
 
   @override
   Widget build(BuildContext context) {
-    teamName = ModalRoute.of(context)?.settings?.arguments as String ?? '';
+    teamid = ModalRoute.of(context)?.settings?.arguments as String;
 
     return Scaffold(
       body: Padding(

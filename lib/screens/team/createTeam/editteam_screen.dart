@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/main_screen.dart';
-import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 
 class EditTeamScreen extends StatefulWidget {
   final Map<String, dynamic> searchResult;
@@ -173,7 +172,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     String teamid = widget.searchResult['teamid'];
     print("teamid: $teamid");
 
-    final apiUrl = 'http://localhost:8080/team/$teamid/update';
+    final apiUrl = 'http://localhost:8080/team//update/$teamid';
 
     try {
       final response = await http.put(
@@ -186,7 +185,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
       if (response.statusCode == 200) {
         print("Team updated successfully");
         Fluttertoast.showToast(
-          msg: "Team deleted successfully",
+          msg: "Team updated successfully",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,

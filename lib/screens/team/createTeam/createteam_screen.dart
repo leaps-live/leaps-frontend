@@ -19,6 +19,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   String selectedValue = "Category Choices";
+  String teamid = "";
   bool areAllfieldsFilled = false;
   bool isLoading = false;
 
@@ -83,12 +84,18 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
         print('Data sent successfully!');
-        print(response.body);
+        setState(() {
+          teamid = json.decode(response.body);
+        });
+        print("teamid: $teamid");
 
-        var teamName = nameController.text;
+        var routeArguments = {
+          "teamName": nameController.text,
+          "teamid": teamid,
+        };
 
         Navigator.pushReplacementNamed(context, FirstCreateTeam.routeName,
-            arguments: teamName);
+            arguments: routeArguments);
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "The team name already exists",

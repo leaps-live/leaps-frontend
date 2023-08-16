@@ -46,6 +46,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
