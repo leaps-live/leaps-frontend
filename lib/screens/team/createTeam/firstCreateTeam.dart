@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -15,11 +17,14 @@ class FirstCreateTeam extends StatefulWidget {
 class _FirstCreateTeamState extends State<FirstCreateTeam> {
   String creatorName = '';
   bool isLoading = false;
+  List<dynamic> playerArrays = [];
+  String teamid = '';
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _getUserData();
+    getPlayerArray();
   }
 
   Future<void> _getUserData() async {
@@ -45,15 +50,43 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
     }
   }
 
+  void getPlayerArray() async {
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    teamid = args["teamid"];
+    print("Got teamid !!!!: $teamid");
+
+    try {
+      final playerArray = await http.get(
+          Uri.parse('http://localhost:8080/teamplayer/allplayers/$teamid'));
+      print(playerArray.body);
+
+      if (playerArray.statusCode == 200) {
+        setState(() {
+          playerArrays = json.decode(playerArray.body);
+        });
+        print("teamArrays: $playerArrays");
+      } else {
+        print(
+            'fail request when requesting playerArray ${playerArray.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String teamName = ModalRoute.of(context)?.settings?.arguments as String;
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    var teamName = args["teamName"];
 
     return isLoading
         ? const Scaffold(
@@ -66,7 +99,7 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context, true);
                   },
                   child: const Text(
                     'Done',
@@ -89,7 +122,13 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
                   ),
                   IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, SearchTeam.routeName);
+                        Navigator.pushNamed(context, SearchTeam.routeName,
+                                arguments: teamid)
+                            .then((r) {
+                          if (r != null && r is bool && r) {
+                            getPlayerArray();
+                          }
+                        });
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,
@@ -116,7 +155,33 @@ class _FirstCreateTeamState extends State<FirstCreateTeam> {
                             fontSize: 17, fontWeight: FontWeight.bold),
                       )
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 16.0),
+                  Column(
+                    children: [
+                      for (var player in playerArrays)
+                        ListTile(
+                          title: Text(
+                            player['userfirstname'] +
+                                ' ' +
+                                player['userlastname'],
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 19),
+                          ),
+                          subtitle: Text(
+                            player['username'],
+                            style: const TextStyle(fontSize: 17),
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 0.0),
+                          leading: const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
+                          ),
+                          onTap: () {},
+                        )
+                    ],
+                  ),
                 ],
               ),
             ),

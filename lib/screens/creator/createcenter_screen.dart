@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/game/create_game.dart';
+import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
@@ -28,8 +29,8 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
   bool isLoading = false;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     getAllTeams();
     getAllLeagues();
     _tabController = TabController(length: 3, vsync: this);
@@ -58,11 +59,53 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
     }
   }
+
+  // void getTeamArray() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? userid = prefs.getString('userid');
+  //   print(userid);
+
+  //   var apiUrl = Uri.parse('http://localhost:8080/team/getTeam/$userid');
+  //   try {
+  //     var response = await http.get(apiUrl);
+  //     if (response.statusCode == 200) {
+  //       setState(() {
+  //         searchResultTeam = json.decode(response.body);
+  //       });
+  //       print(searchResultTeam);
+  //     } else {
+  //       print(response.statusCode);
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  // void getLeagueArray() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? userid = prefs.getString('userid');
+
+  //   var apiUrl = Uri.parse('http://localhost:8080/leagues/getLeague/$userid');
+  //   try {
+  //     var response = await http.get(apiUrl);
+  //     if (response.statusCode == 200) {
+  //       setState(() {
+  //         searchResultLeague = json.decode(response.body);
+  //       });
+  //       print(searchResultLeague);
+  //     } else {
+  //       print(response.statusCode);
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   Future<void> getAllLeagues() async {
     setState(() {
@@ -86,6 +129,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -136,7 +180,12 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, CreateTeamScreen.routeName);
+                                  context, CreateTeamScreen.routeName)
+                              .then((result) {
+                            if (result != null && result is bool && result) {
+                              getAllTeams();
+                            }
+                          });
                         },
                         child: const Row(
                           children: [
@@ -158,7 +207,12 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, CreateLeagueScreen.routeName);
+                                  context, CreateLeagueScreen.routeName)
+                              .then((result) {
+                            if (result != null && result is bool && result) {
+                              getAllLeagues();
+                            }
+                          });
                         },
                         child: const Row(
                           children: [
@@ -264,7 +318,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       ),
                     ),
                     SizedBox(
-                      height: 400, // Adjust the height as needed
+                      height: 800, // Adjust the height as needed
                       child: TabBarView(
                         controller: _tabController,
                         children: [
@@ -333,68 +387,63 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                     ),
 
                           // Lists for Leagues
-                          const Center(
-                            child: Text(
-                              "No leagues found",
-                              style: TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          // isLoading
-                          //     ? const SizedBox(
-                          //         height: 200,
-                          //         child: Center(
-                          //           child: CircularProgressIndicator(
-                          //             color: Colors.grey,
-                          //           ),
-                          //         ),
-                          //       )
-                          //     : searchResultLeague.isEmpty
-                          //         ? const Center(
-                          //             child: Text(
-                          //               "No leagues found",
-                          //               style: TextStyle(
-                          //                   fontSize: 19,
-                          //                   fontWeight: FontWeight.bold),
-                          //             ),
-                          //           )
-                          //         : Column(
-                          //             children: [
-                          //               for (var league in searchResultLeague)
-                          //                 ListTile(
-                          //                   title: Text(
-                          //                     league['leaguename'],
-                          //                     style: const TextStyle(
-                          //                         color: Colors.black,
-                          //                         fontSize: 19),
-                          //                   ),
-                          //                   subtitle: Row(
-                          //                     children: [
-                          //                       for (var category in league[
-                          //                           'leaguecategories'])
-                          //                         Text(
-                          //                           category,
-                          //                           style: const TextStyle(
-                          //                               fontSize: 17),
-                          //                         ),
-                          //                     ],
-                          //                   ),
-                          //                   contentPadding:
-                          //                       const EdgeInsets.symmetric(
-                          //                           horizontal: 16.0),
-                          //                   leading: const CircleAvatar(
-                          //                     backgroundImage: NetworkImage(
-                          //                         'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
-                          //                   ),
-                          //                   onTap: () {
-                          //  Navigator.pushNamed(
-                          //   context,
-                          //   TeamScreen.routeName,
-                          //   arguments: league['leagueid'],
-                          // );},
-                          //                 )
-                          //             ],
-                          //           ),
+                          isLoading
+                              ? const SizedBox(
+                                  height: 200,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: primaryColor,
+                                    ),
+                                  ),
+                                )
+                              : searchResultLeague.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                        "No leagues found",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  : Column(
+                                      children: [
+                                        for (var leagues in searchResultLeague)
+                                          for (var league in leagues)
+                                            ListTile(
+                                              title: Text(
+                                                league['leaguename'],
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 19),
+                                              ),
+                                              subtitle: Row(
+                                                children: [
+                                                  for (var category in league[
+                                                      'leaguecategories'])
+                                                    Text(
+                                                      category,
+                                                      style: const TextStyle(
+                                                          fontSize: 17),
+                                                    ),
+                                                ],
+                                              ),
+                                              contentPadding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16.0),
+                                              leading: const CircleAvatar(
+                                                backgroundImage: NetworkImage(
+                                                    'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
+                                              ),
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  LeagueScreen.routeName,
+                                                  arguments: league['leagueid'],
+                                                );
+                                              },
+                                            )
+                                      ],
+                                    ),
                           // Lists for Games
                           isLoading
                               ? const SizedBox(

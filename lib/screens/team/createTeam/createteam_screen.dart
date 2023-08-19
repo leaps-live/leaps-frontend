@@ -19,6 +19,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   String selectedValue = "Category Choices";
+  String teamid = "";
   bool areAllfieldsFilled = false;
   bool isLoading = false;
 
@@ -29,7 +30,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     super.dispose();
   }
 
-  void _checkIfFieldFilled() {
+  void _checkIfFieldFilled(BuildContext context) {
     setState(() {
       areAllfieldsFilled = nameController.text.isNotEmpty &&
           descriptionController.text.isNotEmpty &&
@@ -83,12 +84,25 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
         print('Data sent successfully!');
-        print(response.body);
+        setState(() {
+          teamid = json.decode(response.body);
+        });
+        print("teamid: $teamid");
 
-        var teamName = nameController.text;
+        var routeArguments = {
+          "teamName": nameController.text,
+          "teamid": teamid,
+        };
 
-        Navigator.pushReplacementNamed(context, FirstCreateTeam.routeName,
-            arguments: teamName);
+        Navigator.pushNamed(context, FirstCreateTeam.routeName,
+                arguments: routeArguments)
+            .then((result) {
+          if (result != null && result is bool && result) {
+            if (mounted) {
+              Navigator.pop(context, true);
+            }
+          }
+        });
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "The team name already exists",
@@ -106,6 +120,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     } catch (e) {
       print('Error occurred while sending data: $e');
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -133,7 +148,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             TextField(
               controller: nameController,
               onChanged: (value) {
-                _checkIfFieldFilled(); // Update button state on input change
+                _checkIfFieldFilled(
+                    context); // Update button state on input change
               },
               decoration: const InputDecoration(
                 labelText: 'Team Name',
@@ -157,7 +173,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                     selectedValue = newValue;
                   });
                 }
-                _checkIfFieldFilled();
+                _checkIfFieldFilled(context);
               },
               items: <String>[
                 'Category Choices',
@@ -178,7 +194,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             TextField(
               controller: descriptionController,
               onChanged: (value) {
-                _checkIfFieldFilled(); // Update button state on input change
+                _checkIfFieldFilled(
+                    context); // Update button state on input change
               },
               decoration: const InputDecoration(
                 labelText: 'Description',

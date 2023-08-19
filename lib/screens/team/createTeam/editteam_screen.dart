@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 
 class EditTeamScreen extends StatefulWidget {
   final Map<String, dynamic> searchResult;
@@ -41,7 +41,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     super.dispose();
   }
 
-  void showPopup() {
+  void showPopup(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.android) {
       showDialog(
         context: context,
@@ -58,7 +58,16 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
               TextButton(
                 onPressed: () {
                   deleteTeam();
-                  Navigator.of(context).pop();
+                  Fluttertoast.showToast(
+                    msg: "Team deleted successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.grey,
+                    textColor: Colors.white,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, MainScreen.routeName, (route) => false);
                 },
                 child: const Text('Yes, delete'),
               ),
@@ -101,7 +110,16 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
               CupertinoDialogAction(
                 onPressed: () {
                   deleteTeam();
-                  Navigator.of(context).pop();
+                  Fluttertoast.showToast(
+                    msg: "Team deleted successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.grey,
+                    textColor: Colors.white,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, MainScreen.routeName, (route) => false);
                 },
                 child: const Text(
                   'Yes, delete',
@@ -121,7 +139,6 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
       isLoading = true;
     });
 
-    // String teamid = "073a7296-7807-4021-8123-fa930cfa6ca3";
     String teamid = widget.searchResult['teamid'];
     print("teamid: $teamid");
 
@@ -136,6 +153,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -155,7 +173,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     String teamid = widget.searchResult['teamid'];
     print("teamid: $teamid");
 
-    final apiUrl = 'http://localhost:8080/team/$teamid/update';
+    final apiUrl = 'http://localhost:8080/team//update/$teamid';
 
     try {
       final response = await http.put(
@@ -318,7 +336,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showPopup();
+                  showPopup(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey,

@@ -46,7 +46,8 @@ class topBar extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, CreateCenterScreen.routeName);
+            Navigator.pushReplacementNamed(
+                context, CreateCenterScreen.routeName);
           },
           child: const Row(
             children: [
