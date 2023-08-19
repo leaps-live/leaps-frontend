@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:leaps_frontend/utils/colors.dart';
 
 class SearchTeam extends StatefulWidget {
   const SearchTeam({super.key});
@@ -13,11 +16,56 @@ class SearchTeam extends StatefulWidget {
 class _SearchTeamState extends State<SearchTeam> {
   String searchQuery = '';
   bool isLoading = false;
-
+  bool addLoading = false;
+  String teamid = '';
   List<dynamic> searchResults = [];
+
+  void addPlayer(result) async {
+    setState(() {
+      addLoading = true;
+    });
+
+    var apiUrl = 'http://localhost:8080/teamplayer/add';
+
+    final Map<String, dynamic> userData = {
+      'teamid': teamid,
+      'userid': result['userid'],
+    };
+    print(userData);
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        Fluttertoast.showToast(
+          msg: "Player added to team",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+
+        Navigator.pop(context, true);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        addLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    teamid = ModalRoute.of(context)?.settings?.arguments as String;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -90,7 +138,7 @@ class _SearchTeamState extends State<SearchTeam> {
                             width: 50,
                             height: 50,
                             child: CircularProgressIndicator(
-                              color: Colors.black,
+                              color: primaryColor,
                               strokeWidth: 4,
                             ),
                           ),
@@ -120,7 +168,9 @@ class _SearchTeamState extends State<SearchTeam> {
                                     backgroundImage: NetworkImage(
                                         'https://i.guim.co.uk/img/media/851fc16381d2c89a1b65657ab258dcded01c9d50/0_0_5164_3098/master/5164.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=7c65528203e4a01f298159470abf19ba'),
                                   ),
-                                  onTap: () {},
+                                  onTap: () {
+                                    addPlayer(result);
+                                  },
                                 );
                               },
                             ),

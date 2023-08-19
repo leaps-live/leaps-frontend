@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:leaps_frontend/utils/colors.dart';
 
 class SearchLeague extends StatefulWidget {
   const SearchLeague({super.key});
@@ -13,11 +16,92 @@ class SearchLeague extends StatefulWidget {
 class _SearchLeagueState extends State<SearchLeague> {
   String searchQuery = '';
   bool isLoading = false;
-
+  bool addLoading = false;
   List<dynamic> searchResults = [];
+  String leagueid = '';
+
+  void _searchMember() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    var apiUrl = 'http://localhost:8080/team/search/teamname';
+
+    final Map<String, dynamic> userData = {
+      'teamname': searchQuery,
+    };
+
+    print(userData);
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          searchResults = json.decode(response.body);
+        });
+        print(searchResults);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      if (!mounted) return;
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void addTeam(result) async {
+    setState(() {
+      addLoading = true;
+    });
+
+    var apiUrl = 'http://localhost:8080/leagueteam/add';
+
+    final Map<String, dynamic> userData = {
+      'leagueid': leagueid,
+      'teamid': result['teamid'],
+      'teamCategories': result['teamCategories'],
+    };
+
+    print(userData);
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
+      );
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        Fluttertoast.showToast(
+          msg: "Team added to league",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+
+        Navigator.pop(context, true);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        addLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    leagueid = ModalRoute.of(context)?.settings?.arguments as String;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -88,7 +172,7 @@ class _SearchLeagueState extends State<SearchLeague> {
                           width: 50,
                           height: 50,
                           child: CircularProgressIndicator(
-                            color: Colors.black,
+                            color: primaryColor,
                             strokeWidth: 4,
                           ),
                         ),
@@ -110,9 +194,17 @@ class _SearchLeagueState extends State<SearchLeague> {
                                   children: [
                                     for (var category
                                         in result['teamcategories'])
-                                      Text(
-                                        category,
-                                        style: const TextStyle(fontSize: 17),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            category,
+                                            style:
+                                                const TextStyle(fontSize: 15),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          )
+                                        ],
                                       ),
                                   ],
                                 ),
@@ -122,7 +214,9 @@ class _SearchLeagueState extends State<SearchLeague> {
                                   backgroundImage: NetworkImage(
                                       'https://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnba.png'),
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  addTeam(result);
+                                },
                               );
                             },
                           ),
@@ -140,39 +234,5 @@ class _SearchLeagueState extends State<SearchLeague> {
         ),
       ),
     );
-  }
-
-  void _searchMember() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    var apiUrl = 'http://localhost:8080/team/search/teamname';
-
-    final Map<String, dynamic> userData = {
-      'teamname': searchQuery,
-    };
-
-    print(userData);
-    try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        body: json.encode(userData),
-        headers: {'Content-Type': 'application/json'},
-      );
-
-      if (response.statusCode == 200) {
-        setState(() {
-          searchResults = json.decode(response.body);
-        });
-        print(searchResults);
-      }
-    } catch (e) {
-      print(e);
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
   }
 }

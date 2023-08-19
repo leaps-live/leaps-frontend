@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import '../../league/leaguePage/league_tabbar.dart';
 import '../../league/leaguePage/league_index.dart';
 import 'dart:convert';
@@ -30,22 +31,22 @@ class _LeagueScreenState extends State<LeagueScreen> {
     });
 
     leagueid = ModalRoute.of(context)?.settings?.arguments as String?;
-    print(leagueid);
+    print("leagueid: $leagueid");
 
     try {
       final response = await http
           .get(Uri.parse('http://localhost:8080/leagues/get/$leagueid'));
 
-      print(response.body);
-
       if (response.statusCode == 200) {
         searchResult = json.decode(response.body);
+        print("searchResult: $searchResult");
       } else {
         print('fail request ${response.statusCode}');
       }
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
@@ -58,7 +59,9 @@ class _LeagueScreenState extends State<LeagueScreen> {
     return isLoading
         ? const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: primaryColor,
+              ),
             ),
           )
         : Scaffold(

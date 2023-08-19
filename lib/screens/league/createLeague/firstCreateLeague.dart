@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchLeague.dart';
-import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -18,14 +16,17 @@ class FirstCreateLeague extends StatefulWidget {
 class _FirstCreateLeagueState extends State<FirstCreateLeague> {
   String creatorName = '';
   bool isLoading = false;
+  String leagueid = '';
+  List<dynamic> teamArrays = [];
 
   @override
-  void initState() {
-    super.initState();
-    _getUserData();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _getLeagueData();
+    getTeamArray();
   }
 
-  Future<void> _getUserData() async {
+  Future<void> _getLeagueData() async {
     setState(() {
       isLoading = true;
     });
@@ -48,15 +49,40 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
     } catch (e) {
       print(e);
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
     }
   }
 
+  void getTeamArray() async {
+    try {
+      final Map<String, dynamic> args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      leagueid = args["leagueid"];
+      print("leagueid: $leagueid");
+      final teamArray =
+          await http.get(Uri.parse('http://localhost:8080/team/all/$leagueid'));
+
+      if (teamArray.statusCode == 200) {
+        setState(() {
+          teamArrays = json.decode(teamArray.body);
+        });
+        print("teamArrays: $teamArrays");
+      } else {
+        print('fail request when requesting teamArray ${teamArray.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String leagueName = ModalRoute.of(context)?.settings?.arguments as String;
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    var leagueName = args["leagueName"];
 
     return isLoading
         ? const Scaffold(
@@ -69,7 +95,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context, true);
                   },
                   child: const Text(
                     'Done',
@@ -92,7 +118,13 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                   ),
                   IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, SearchLeague.routeName);
+                        Navigator.pushNamed(context, SearchLeague.routeName,
+                                arguments: leagueid)
+                            .then((result) {
+                          if (result != null && result is bool && result) {
+                            getTeamArray();
+                          }
+                        });
                       },
                       icon: const Icon(
                         Icons.add_circle_outline,
@@ -111,7 +143,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                         size: 40,
                       ),
                       const SizedBox(width: 10.0),
-                      Text(creatorName, style: TextStyle(fontSize: 17)),
+                      Text(creatorName, style: const TextStyle(fontSize: 17)),
                       const Spacer(),
                       const Text(
                         "Creator",
@@ -119,7 +151,43 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                             fontSize: 17, fontWeight: FontWeight.bold),
                       )
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 16.0),
+                  Column(
+                    children: [
+                      for (var team in teamArrays)
+                        ListTile(
+                          title: Text(
+                            team['teamname'],
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 19),
+                          ),
+                          subtitle: Row(
+                            children: [
+                              for (var category in team['teamcategories'] ?? [])
+                                Row(
+                                  children: [
+                                    Text(
+                                      category,
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    )
+                                  ],
+                                ),
+                            ],
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 0.0),
+                          leading: const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
+                          ),
+                          onTap: () {},
+                        )
+                    ],
+                  ),
                 ],
               ),
             ),

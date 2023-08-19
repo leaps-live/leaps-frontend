@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/colors.dart';
 
 class Index extends StatefulWidget {
@@ -11,6 +13,26 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
+  bool isCreator = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
+
+  Future<void> _getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userid = prefs.getString('userid');
+    print("the current login is $userid");
+
+    if (userid == widget.searchResult['leaguecreator']) {
+      setState(() {
+        isCreator = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,31 +48,47 @@ class _IndexState extends State<Index> {
                   Icons.face,
                   size: 80,
                 ),
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Remix.message_3_line,
-                          color: Color(0xFF2E3A59)),
-                      onPressed: () {},
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // do something after clicking create button
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        fixedSize: const Size(120, 30),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                isCreator
+                    ? ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, EditLeagueScreen.routeName,
+                              arguments: widget.searchResult);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          fixedSize: const Size(120, 30),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
+                        child: const Text('Edit'),
+                      )
+                    : Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Remix.message_3_line,
+                                color: Color(0xFF2E3A59)),
+                            onPressed: () {},
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              // do something after clicking create button
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primaryColor,
+                              fixedSize: const Size(120, 30),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text('Follow'),
+                          ),
+                        ],
                       ),
-                      child: const Text('Follow'),
-                    ),
-                  ],
-                ),
               ],
             ),
             const SizedBox(
