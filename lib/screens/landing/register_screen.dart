@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:leaps_frontend/screens/landing/login_screen.dart';
+import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,52 +15,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  /// Signs a user up with a username, password, and email. The required
-  /// attributes may be different depending on your app's configuration.
-  Future<void> signUpUser({
-    required String username,
-    required String password,
-    required String email,
-    String? phoneNumber,
-  }) async {
-    try {
-      final userAttributes = {
-        AuthUserAttributeKey.email: email,
-        if (phoneNumber != null) AuthUserAttributeKey.phoneNumber: phoneNumber,
-        // additional attributes as needed
-      };
-      final result = await Amplify.Auth.signUp(
-        username: username,
-        password: password,
-        options: SignUpOptions(
-          userAttributes: userAttributes,
-        ),
-      );
-      await _handleSignUpResult(result);
-    } on AuthException catch (e) {
-      safePrint('Error signing up user: ${e.message}');
-    }
-  }
-
-  Future<void> _handleSignUpResult(SignUpResult result) async {
-    switch (result.nextStep.signUpStep) {
-      case AuthSignUpStep.confirmSignUp:
-        final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
-        _handleCodeDelivery(codeDeliveryDetails);
-        break;
-      case AuthSignUpStep.done:
-        safePrint('Sign up is complete');
-        break;
-    }
-  }
-
-  void _handleCodeDelivery(AuthCodeDeliveryDetails codeDeliveryDetails) {
-    safePrint(
-      'A confirmation code has been sent to ${codeDeliveryDetails.destination}. '
-      'Please check your ${codeDeliveryDetails.deliveryMedium.name} for the code.',
-    );
-  }
-
   // Define controllers to capture user input
   final TextEditingController userFirstNameController = TextEditingController();
   final TextEditingController userLastNameController = TextEditingController();
@@ -72,23 +24,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
-  // change button color when all the fields are filled
-  bool areAllFieldsFilled = false;
-  bool isLoading = false;
+  String? codeDestination;
+  String? codeDeliveryMedium;
 
-  void _checkIfFieldFilled() {
-    setState(() {
-      areAllFieldsFilled = emailController.text.isNotEmpty &&
-          passwordController.text.isNotEmpty &&
-          confirmPasswordController.text.isNotEmpty &&
-          userFirstNameController.text.isNotEmpty &&
-          userLastNameController.text.isNotEmpty &&
-          usernameController.text.isNotEmpty;
-    });
-  }
-
-  // make toast for incomplete form
-  void _userRegister() async {
+  /// Signs a user up with a username, password, and email.
+  Future<void> signUpUser() async {
     if (userFirstNameController.text.isEmpty ||
         userLastNameController.text.isEmpty ||
         usernameController.text.isEmpty ||
@@ -137,6 +77,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
     };
 
     try {
+      final userAttributes = {
+        AuthUserAttributeKey.email: emailController.text,
+        // additional attributes as needed
+      };
+
+      final result = await Amplify.Auth.signUp(
+        username: emailController.text,
+        password: passwordController.text,
+        options: SignUpOptions(
+          userAttributes: userAttributes,
+        ),
+      );
+
+      await _handleSignUpResult(result);
       final response = await http.post(
         Uri.parse(apiUrl),
         body: json.encode(userData),
@@ -147,8 +101,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
+
         print('Account registered successfully!');
-        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+        Navigator.pushReplacementNamed(
+            context, ConfirmationCodeScreen.routeName,
+            arguments: {
+              'codeDestination': codeDestination,
+              'codeDeliveryMedium': codeDeliveryMedium,
+              'email': emailController.text,
+              'password': passwordController.text
+            });
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "Email has already existed.",
@@ -168,13 +130,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
           textColor: Colors.white,
         );
       }
-    } catch (e) {
-      print('Error occurred while sending data: $e');
+    } on AuthException catch (e) {
+      safePrint('Error signing up user: ${e.message}');
     } finally {
       setState(() {
         isLoading = false;
       });
     }
+  }
+
+  Future<void> _handleSignUpResult(SignUpResult result) async {
+    switch (result.nextStep.signUpStep) {
+      case AuthSignUpStep.confirmSignUp:
+        final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
+        _handleCodeDelivery(codeDeliveryDetails);
+        break;
+      case AuthSignUpStep.done:
+        safePrint('Sign up is complete');
+        break;
+    }
+  }
+
+  void _handleCodeDelivery(AuthCodeDeliveryDetails codeDeliveryDetails) {
+    setState(() {
+      codeDestination = codeDeliveryDetails.destination;
+      codeDeliveryMedium = codeDeliveryDetails.deliveryMedium.name;
+    });
+
+    safePrint(
+      'A confirmation code has been sent to ${codeDeliveryDetails.destination}. '
+      'Please check your ${codeDeliveryDetails.deliveryMedium.name} for the code.',
+    );
+  }
+
+  // change button color when all the fields are filled
+  bool areAllFieldsFilled = false;
+  bool isLoading = false;
+
+  void _checkIfFieldFilled() {
+    setState(() {
+      areAllFieldsFilled = emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          confirmPasswordController.text.isNotEmpty &&
+          userFirstNameController.text.isNotEmpty &&
+          userLastNameController.text.isNotEmpty &&
+          usernameController.text.isNotEmpty;
+    });
   }
 
   @override
@@ -334,7 +335,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    _userRegister();
+                    signUpUser();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
