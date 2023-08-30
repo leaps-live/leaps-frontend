@@ -67,11 +67,11 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             height: 200, // Adjust the height as needed
             child: TabBarView(
               controller: _tabController,
-              children: [
-                const Likes(),
-                Text("Comments content"),
-                Text("Mentions content"),
-                Text("Requests content"),
+              children: const [
+                Likes(),
+                Comments(),
+                Mentions(),
+                Requests(),
               ],
             ),
           ),
@@ -92,28 +92,163 @@ class _LikesState extends State<Likes> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
             Row(
               children: [
-                Column(
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Text("Ruolin Chen"),
-                        const SizedBox(width: 5),
+                        Text(
+                          "Ruolin Chen",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 5),
                         Text(
                           "today",
                           style: TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
+                    SizedBox(height: 5),
                     Text("has liked your highlight video"),
                   ],
                 ),
                 const Spacer(),
                 Container(width: 90, height: 50, color: Colors.grey),
+              ],
+            )
+          ],
+        ));
+  }
+}
+
+class Comments extends StatefulWidget {
+  const Comments({super.key});
+
+  @override
+  State<Comments> createState() => _CommentsState();
+}
+
+class _CommentsState extends State<Comments> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Ruolin Chen",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "today",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Text("Nice Game!!!"),
+                  ],
+                ),
+                const Spacer(),
+                Container(width: 90, height: 50, color: Colors.grey),
+              ],
+            )
+          ],
+        ));
+  }
+}
+
+class Mentions extends StatefulWidget {
+  const Mentions({super.key});
+
+  @override
+  State<Mentions> createState() => _MentionsState();
+}
+
+class _MentionsState extends State<Mentions> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Ruolin Chen",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "today",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Text("Mentioned you @ruov"),
+                  ],
+                ),
+                const Spacer(),
+                Container(width: 90, height: 50, color: Colors.grey),
+              ],
+            )
+          ],
+        ));
+  }
+}
+
+class Requests extends StatefulWidget {
+  const Requests({super.key});
+
+  @override
+  State<Requests> createState() => _RequestsState();
+}
+
+class _RequestsState extends State<Requests> {
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Ruolin Chen requested to join Team B"),
+                        SizedBox(width: 10),
+                        Text(
+                          "Dec 30",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Remix.more_2_line),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             )
           ],
