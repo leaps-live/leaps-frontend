@@ -83,6 +83,6 @@ var allRoutes = <String, WidgetBuilder>{
   HomeRecommendations.routeName: (context) => const HomeRecommendations(),
   HomeLeagues.routeName: (context) => const HomeLeagues(),
   GameSelectScreen.routeName: (context) => const GameSelectScreen(),
-  ConfirmationCodeScreen.routeName: (context) => const ConfirmationCodeScreen(
-      codeDeliveryMedium: '', codeDestination: '', email: '', password: '')
+  ConfirmationCodeScreen.routeName: (context) =>
+      const ConfirmationCodeScreen(arguments: {})
 };

@@ -90,6 +90,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       );
 
+      print('amplify auth sign up result:');
+      print(result);
+
       await _handleSignUpResult(result);
       final response = await http.post(
         Uri.parse(apiUrl),
@@ -102,15 +105,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
 
-        print('Account registered successfully!');
+        String emailToSend = emailController.text;
+
+        print('Account registered successfully! $emailToSend');
+
+        final Map<String, dynamic> dataToSend = {
+          'codeDestination': codeDestination,
+          'codeDeliveryMedium': codeDeliveryMedium,
+          'email': emailController.text,
+          'password': passwordController.text
+        };
+
         Navigator.pushReplacementNamed(
             context, ConfirmationCodeScreen.routeName,
-            arguments: {
-              'codeDestination': codeDestination,
-              'codeDeliveryMedium': codeDeliveryMedium,
-              'email': emailController.text,
-              'password': passwordController.text
-            });
+            arguments: dataToSend);
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "Email has already existed.",

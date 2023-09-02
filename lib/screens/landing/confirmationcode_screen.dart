@@ -5,17 +5,10 @@ import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class ConfirmationCodeScreen extends StatefulWidget {
-  final String codeDestination;
-  final String codeDeliveryMedium;
-  final String email;
-  final String password;
+  const ConfirmationCodeScreen({super.key, required this.arguments});
 
-  const ConfirmationCodeScreen(
-      {super.key,
-      required this.codeDestination,
-      required this.codeDeliveryMedium,
-      required this.email,
-      required this.password});
+  final Map<String, dynamic> arguments;
+
   static const routeName = '/confirmationcode';
 
   @override
@@ -23,6 +16,8 @@ class ConfirmationCodeScreen extends StatefulWidget {
 }
 
 class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
+  @override
+
   // Define controllers to capture user input
   final TextEditingController confirmationCodeController =
       TextEditingController();
@@ -30,41 +25,6 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
   // change button color when all the fields are filled
   bool areAllFieldsFilled = false;
   bool isLoading = false;
-
-  void _checkIfFieldFilled() {
-    setState(() {
-      areAllFieldsFilled = confirmationCodeController.text.isNotEmpty;
-    });
-  }
-
-  Future<void> confirmUser() async {
-    try {
-      final result = await Amplify.Auth.confirmSignUp(
-        username: widget.email,
-        confirmationCode: confirmationCodeController.text,
-      );
-      // Check if further confirmations are needed or if
-      // the sign up is complete.
-      await _handleSignUpResult(result);
-      await signInUser(widget.email, widget.password);
-      print("signed in user");
-      Navigator.pushReplacementNamed(context, MainScreen.routeName);
-    } on AuthException catch (e) {
-      safePrint('Error confirming user: ${e.message}');
-    }
-  }
-
-  Future<void> signInUser(String username, String password) async {
-    try {
-      final result = await Amplify.Auth.signIn(
-        username: username,
-        password: password,
-      );
-      await _handleSignInResult(result);
-    } on AuthException catch (e) {
-      safePrint('Error signing in: ${e.message}');
-    }
-  }
 
   Future<void> _handleSignInResult(SignInResult result) async {
     switch (result.nextStep.signInStep) {
@@ -87,8 +47,51 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
     }
   }
 
-  @override
+  void _checkIfFieldFilled() {
+    setState(() {
+      areAllFieldsFilled = confirmationCodeController.text.isNotEmpty;
+    });
+  }
+
+  Future<void> confirmUser(Map<String, dynamic>? data) async {
+    final String emailToSend =
+        data!.containsKey('email') ? data['email'] : null;
+    print("emailtosend: $emailToSend");
+
+    try {
+      final result = await Amplify.Auth.confirmSignUp(
+        username: emailToSend,
+        confirmationCode: confirmationCodeController.text,
+      );
+      // Check if further confirmations are needed or if
+      // the sign up is complete.
+      await _handleSignUpResult(result);
+      // await signInUser(widget.email, widget.password);
+      // print("signed in user");
+      Navigator.pushReplacementNamed(context, MainScreen.routeName);
+    } on AuthException catch (e) {
+      safePrint('Error confirming user: ${e.message}');
+    }
+  }
+
+  Future<void> signInUser(String username, String password) async {
+    print('username signin: $username');
+    print('password signin: $password');
+    try {
+      final result = await Amplify.Auth.signIn(
+        username: username,
+        password: password,
+      );
+      await _handleSignInResult(result);
+    } on AuthException catch (e) {
+      safePrint('Error signing in: ${e.message}');
+    }
+  }
+
   Widget build(BuildContext context) {
+    final Map<String, dynamic>? data =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -136,7 +139,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    confirmUser();
+                    confirmUser(data ?? {"nothing": "nothing"});
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
