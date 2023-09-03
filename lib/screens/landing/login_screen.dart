@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/colors.dart';
@@ -36,6 +37,30 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController.dispose();
     emailController.dispose();
     super.dispose();
+  }
+
+  Future<void> _handleSignInResult(SignInResult result) async {
+    switch (result.nextStep.signInStep) {
+      case AuthSignInStep.done:
+        print('Sign in is complete');
+        break;
+      default:
+        print(result);
+    }
+  }
+
+  Future<void> signInUser(String username, String password) async {
+    print('username signin: $username');
+    print('password signin: $password');
+    try {
+      final result = await Amplify.Auth.signIn(
+        username: username,
+        password: password,
+      );
+      await _handleSignInResult(result);
+    } on AuthException catch (e) {
+      print('Error signing in: ${e.message}');
+    }
   }
 
   void _userLogin() async {
@@ -84,6 +109,10 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     try {
+      // AWS Cognito sign-in
+      await signInUser(emailController.text, passwordController.text);
+      print("signed in user through aws cognito");
+
       final loginResponse = http.post(
         Uri.parse(apiUrl),
         body: json.encode(userData),

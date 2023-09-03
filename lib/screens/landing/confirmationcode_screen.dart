@@ -1,8 +1,11 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/utils/colors.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ConfirmationCodeScreen extends StatefulWidget {
   const ConfirmationCodeScreen({super.key, required this.arguments});
@@ -26,23 +29,25 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
   bool areAllFieldsFilled = false;
   bool isLoading = false;
 
+  Map<String, dynamic> searchResult = {};
+
   Future<void> _handleSignInResult(SignInResult result) async {
     switch (result.nextStep.signInStep) {
       case AuthSignInStep.done:
-        safePrint('Sign in is complete');
+        print('Sign in is complete');
         break;
       default:
-        safePrint(result);
+        print(result);
     }
   }
 
   Future<void> _handleSignUpResult(SignUpResult result) async {
     switch (result.nextStep.signUpStep) {
       case AuthSignUpStep.done:
-        safePrint('Sign up is complete');
+        print('Sign up is complete');
         break;
       default:
-        safePrint('Confirming user...');
+        print('Confirming user...');
         break;
     }
   }
@@ -56,21 +61,102 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
   Future<void> confirmUser(Map<String, dynamic>? data) async {
     final String emailToSend =
         data!.containsKey('email') ? data['email'] : null;
+
+    final String passwordToSend =
+        data!.containsKey('password') ? data['password'] : null;
     print("emailtosend: $emailToSend");
+
+    setState(() {
+      isLoading = true;
+    });
+
+    const String apiUrl = 'http://localhost:8080/users/login';
+
+    // TODO: handle case if email is null
 
     try {
       final result = await Amplify.Auth.confirmSignUp(
         username: emailToSend,
         confirmationCode: confirmationCodeController.text,
       );
+
       // Check if further confirmations are needed or if
       // the sign up is complete.
       await _handleSignUpResult(result);
-      // await signInUser(widget.email, widget.password);
-      // print("signed in user");
-      Navigator.pushReplacementNamed(context, MainScreen.routeName);
+      await signInUser(emailToSend, passwordToSend);
+
+      final loginResponse = http.post(
+        Uri.parse(apiUrl),
+        body: json.encode({
+          'userName': null,
+          'userEmail': emailToSend,
+          'userPassword': passwordToSend
+        }),
+        headers: {'Content-Type': 'application/json'},
+      );
+      final response = await Future.wait([loginResponse]);
+
+      bool allRequestsFailed = true;
+
+      for (final response in response) {
+        print(response.statusCode);
+
+        if (response.statusCode == 200) {
+          allRequestsFailed = false;
+          print(response.body);
+
+          setState(() {
+            searchResult = json.decode(response.body);
+          });
+          // use shared preference to store response
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('user', response.body);
+          String? user = prefs.getString('user');
+          print('User value: $user');
+
+          prefs.setString('userid', searchResult['userid']);
+          String? userid = prefs.getString('userid');
+          print('Userid: $userid');
+
+          print("signed in user");
+          Navigator.pushReplacementNamed(context, MainScreen.routeName);
+        }
+      }
+
+      if (allRequestsFailed) {
+        Fluttertoast.showToast(
+          msg: "Login or password is wrong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+      }
     } on AuthException catch (e) {
-      safePrint('Error confirming user: ${e.message}');
+      print('Error confirming user: ${e.message}');
+      Fluttertoast.showToast(
+        msg: "Error confirming user: ${e.message}",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+    } catch (e) {
+      print('Error occurred while sending data: $e');
+      Fluttertoast.showToast(
+        msg: "Error occurred while sending data: $e",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -84,7 +170,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
       );
       await _handleSignInResult(result);
     } on AuthException catch (e) {
-      safePrint('Error signing in: ${e.message}');
+      print('Error signing in: ${e.message}');
     }
   }
 

@@ -32,7 +32,7 @@ class MyAppState extends State<MyApp> {
       // call Amplify.configure to use the initialized categories in your app
       await Amplify.configure(amplifyconfig);
     } on Exception catch (e) {
-      safePrint('An error occurred configuring Amplify: $e');
+      print('An error occurred configuring Amplify: $e');
     }
   }
 

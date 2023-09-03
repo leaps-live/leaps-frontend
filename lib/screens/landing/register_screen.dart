@@ -139,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       }
     } on AuthException catch (e) {
-      safePrint('Error signing up user: ${e.message}');
+      print('Error signing up user: ${e.message}');
     } finally {
       setState(() {
         isLoading = false;
@@ -154,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _handleCodeDelivery(codeDeliveryDetails);
         break;
       case AuthSignUpStep.done:
-        safePrint('Sign up is complete');
+        print('Sign up is complete');
         break;
     }
   }
@@ -165,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       codeDeliveryMedium = codeDeliveryDetails.deliveryMedium.name;
     });
 
-    safePrint(
+    print(
       'A confirmation code has been sent to ${codeDeliveryDetails.destination}. '
       'Please check your ${codeDeliveryDetails.deliveryMedium.name} for the code.',
     );
