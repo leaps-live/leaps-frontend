@@ -1,14 +1,14 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
-import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
 import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
 import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -238,6 +238,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('user');
     await prefs.remove('userid');
+    signOutCurrentUser();
     Fluttertoast.showToast(
       msg: "Sign out successfully",
       toastLength: Toast.LENGTH_SHORT,
@@ -246,5 +247,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       backgroundColor: Colors.grey,
       textColor: Colors.white,
     );
+  }
+
+  Future<void> signOutCurrentUser() async {
+    final result = await Amplify.Auth.signOut();
+    if (result is CognitoCompleteSignOut) {
+      safePrint('Cognito Sign out completed successfully');
+    } else if (result is CognitoFailedSignOut) {
+      safePrint('Error signing user out: ${result.exception.message}');
+    }
   }
 }
