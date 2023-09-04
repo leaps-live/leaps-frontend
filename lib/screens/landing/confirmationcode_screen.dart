@@ -19,8 +19,6 @@ class ConfirmationCodeScreen extends StatefulWidget {
 }
 
 class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
-  @override
-
   // Define controllers to capture user input
   final TextEditingController confirmationCodeController =
       TextEditingController();
@@ -174,6 +172,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     final Map<String, dynamic>? data =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;

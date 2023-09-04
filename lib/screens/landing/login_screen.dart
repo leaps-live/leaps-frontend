@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool showPassword = false;
   Map<String, dynamic> searchResult = {};
 
-  // change button color when all the fields are filled
+  // TODO: change button color when all the fields are filled
   bool areAllFieldsFilled = false;
 
   void _checkIfFieldFilled() {
@@ -94,7 +94,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     const String apiUrl = 'http://localhost:8080/users/login';
-    // const String apiUrl = 'http://10.8.4.186:8080/users/login';
 
     // Check to see if input is an email
     final bool emailValid = RegExp(
@@ -188,8 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   _checkIfFieldFilled(); // Update button state on input change
                 },
                 decoration: const InputDecoration(
-                  labelText: 'UserEmail / Username',
-                  hintText: 'UserEmail / Username',
+                  labelText: 'Email',
+                  hintText: 'Email',
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
