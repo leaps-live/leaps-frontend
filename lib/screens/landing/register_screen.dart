@@ -51,8 +51,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         msg: "The password is different from the confirmation password.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
       return;

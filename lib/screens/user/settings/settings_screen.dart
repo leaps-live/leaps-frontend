@@ -240,11 +240,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await prefs.remove('userid');
     signOutCurrentUser();
     Fluttertoast.showToast(
-      msg: "Sign out successfully",
+      msg: "Successfully signed out",
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.grey,
+      timeInSecForIosWeb: 3,
+      backgroundColor: Colors.green[400],
       textColor: Colors.white,
     );
   }
@@ -254,6 +254,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (result is CognitoCompleteSignOut) {
       safePrint('Cognito Sign out completed successfully');
     } else if (result is CognitoFailedSignOut) {
+      Fluttertoast.showToast(
+        msg: result.exception.message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
       safePrint('Error signing user out: ${result.exception.message}');
     }
   }

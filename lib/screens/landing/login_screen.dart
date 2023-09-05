@@ -258,7 +258,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
+              ),
+              Center(
+                  child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "myRoute");
+                },
+                child: const Text("Forgot Password?"),
+              )),
+              const SizedBox(
+                height: 40,
               ),
               RichText(
                 text: TextSpan(

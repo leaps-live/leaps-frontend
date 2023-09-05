@@ -8,7 +8,9 @@ import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/home/home_leagues.dart';
 import 'package:leaps_frontend/screens/home/home_recommendations.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
+import 'package:leaps_frontend/screens/landing/confirmResetPassword_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/landing/forgot_password.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -84,5 +86,8 @@ var allRoutes = <String, WidgetBuilder>{
   HomeLeagues.routeName: (context) => const HomeLeagues(),
   GameSelectScreen.routeName: (context) => const GameSelectScreen(),
   ConfirmationCodeScreen.routeName: (context) =>
-      const ConfirmationCodeScreen(arguments: {})
+      const ConfirmationCodeScreen(arguments: {}),
+  ForgotPassword.routeName: (context) => const ForgotPassword(),
+  ConfirmResetPasswordScreen.routeName: (context) =>
+      const ConfirmLiveStreamScreen()
 };

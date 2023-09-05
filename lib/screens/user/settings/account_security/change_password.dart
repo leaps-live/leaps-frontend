@@ -62,48 +62,58 @@ class _ChangePasswordState extends State<ChangePassword> {
   }
 
   Future<void> changeUserPassword() async {
-    // if (currentPasswordController.text.isEmpty) {
-    //   Fluttertoast.showToast(
-    //     msg: "Please enter your current password.",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.CENTER,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.grey,
-    //     textColor: Colors.white,
-    //   );
-    //   return;
-    // }
+    if (currentPasswordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your current password.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
+      return;
+    }
 
-    // if (newPasswordController.text.isEmpty) {
-    //   Fluttertoast.showToast(
-    //     msg: "Please enter your new password.",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.CENTER,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.grey,
-    //     textColor: Colors.white,
-    //   );
-    //   return;
-    // }
+    if (newPasswordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please enter your new password.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
+      return;
+    }
 
-    // if (confirmNewPasswordController.text.isEmpty) {
-    //   Fluttertoast.showToast(
-    //     msg: "Please confirm your new password.",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.CENTER,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.grey,
-    //     textColor: Colors.white,
-    //   );
-    //   return;
-    // }
+    if (confirmNewPasswordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Please confirm your new password.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
+      return;
+    }
+
+    if (newPasswordController.text != confirmNewPasswordController.text) {
+      Fluttertoast.showToast(
+        msg: "Passwords do not match",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
+      return;
+    }
 
     // Create a map with the collected data
     final Map<String, dynamic> userData = {
       'newPassword': newPasswordController.text
     };
-
-    const String apiUrl = 'http://localhost:8080/users/changepassword/';
 
     try {
       updatePassword(
@@ -114,6 +124,8 @@ class _ChangePasswordState extends State<ChangePassword> {
       String? userJsonString = prefs.getString('user');
       user = jsonDecode(userJsonString!);
       String userid = user['userid'];
+
+      String apiUrl = 'http://localhost:8080/users/changepassword/$userid';
 
       print('userid $userid');
 
@@ -189,6 +201,14 @@ class _ChangePasswordState extends State<ChangePassword> {
       print("Successfully changed password for Cognito");
     } on AuthException catch (e) {
       safePrint('Error updating password: ${e.message}');
+      Fluttertoast.showToast(
+        msg: e.message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
     }
   }
 
@@ -263,7 +283,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 height: 16,
               ),
               const Text(
-                "Contain only letters, numbers, underscores and periods.",
+                "Password must be at least 8 characters and contains only letters, numbers, underscores and periods.",
                 style: TextStyle(fontSize: 13),
               )
             ],
