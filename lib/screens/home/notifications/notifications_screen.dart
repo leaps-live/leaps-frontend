@@ -16,7 +16,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -44,10 +44,9 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             controller: _tabController,
             isScrollable: true, // Make the TabBar scrollable
             tabs: const [
+              Tab(text: "Games"),
               Tab(text: "Likes"),
               Tab(text: "Comments"),
-              Tab(text: "Mentions"),
-              Tab(text: "Requests"),
             ],
             labelColor: Colors.black,
             unselectedLabelColor: Colors.grey,
@@ -64,14 +63,13 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             ),
           ),
           SizedBox(
-            height: 200, // Adjust the height as needed
+            height: 500, // Adjust the height as needed
             child: TabBarView(
               controller: _tabController,
               children: const [
+                Games(),
                 Likes(),
                 Comments(),
-                Mentions(),
-                Requests(),
               ],
             ),
           ),
@@ -92,37 +90,58 @@ class _LikesState extends State<Likes> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Column(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              const Flexible(
+                flex: 10,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Ruolin Chen",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "today",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
+                    Text(
+                      "8 users have liked your highlight video from UW CSSA Winter Leagues",
                     ),
                     SizedBox(height: 5),
-                    Text("has liked your highlight video"),
+                    Text(
+                      "Today",
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ],
                 ),
-                const Spacer(),
-                Container(width: 90, height: 50, color: Colors.grey),
-              ],
-            )
-          ],
-        ));
+              ),
+              const Spacer(),
+              Container(width: 50, height: 50, color: Colors.grey),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              const Flexible(
+                flex: 10,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "23 users have liked your highlight video from SeattleU Spring League.",
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "Aug 20",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              const Spacer(),
+              Container(width: 50, height: 50, color: Colors.grey),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -137,78 +156,61 @@ class _CommentsState extends State<Comments> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
+            const SizedBox(height: 10),
             Row(
               children: [
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Ruolin Chen",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "today",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
+                    Text(
+                      "Ruolin Chen",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 5),
                     Text("Nice Game!!!"),
+                    SizedBox(height: 5),
+                    Text(
+                      "Today",
+                      style: TextStyle(color: Colors.grey),
+                    )
                   ],
                 ),
                 const Spacer(),
-                Container(width: 90, height: 50, color: Colors.grey),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.grey,
+                ),
               ],
-            )
-          ],
-        ));
-  }
-}
-
-class Mentions extends StatefulWidget {
-  const Mentions({super.key});
-
-  @override
-  State<Mentions> createState() => _MentionsState();
-}
-
-class _MentionsState extends State<Mentions> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
+            ),
+            const SizedBox(height: 20),
             Row(
               children: [
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Ruolin Chen",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "today",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
+                    Text(
+                      "Francis Tang",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 5),
-                    Text("Mentioned you @ruov"),
+                    Text("Nice Game!!!"),
+                    SizedBox(height: 5),
+                    Text(
+                      "Today",
+                      style: TextStyle(color: Colors.grey),
+                    )
                   ],
                 ),
                 const Spacer(),
-                Container(width: 90, height: 50, color: Colors.grey),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.grey,
+                ),
               ],
             )
           ],
@@ -216,42 +218,85 @@ class _MentionsState extends State<Mentions> {
   }
 }
 
-class Requests extends StatefulWidget {
-  const Requests({super.key});
+class Games extends StatefulWidget {
+  const Games({super.key});
 
   @override
-  State<Requests> createState() => _RequestsState();
+  State<Games> createState() => _GamesState();
 }
 
-class _RequestsState extends State<Requests> {
+class _GamesState extends State<Games> {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text("Ruolin Chen requested to join Team B"),
-                        SizedBox(width: 10),
-                        Text(
-                          "Dec 30",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        SizedBox(width: 10),
-                        Icon(Remix.more_2_line),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            )
-          ],
-        ));
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.face,
+                    size: 30,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    "UW CSSA Winter League",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  )
+                ],
+              ),
+              SizedBox(height: 5),
+              Text(
+                "Best Team LEAPS vs Random game is starting soon at 10:00 a.m.",
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(height: 5),
+              Text(
+                "3m ago",
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+          SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.face,
+                    size: 30,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    "SeattleU Spring League",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  )
+                ],
+              ),
+              SizedBox(height: 5),
+              Text(
+                "Best Team LEAPS vs Random game is starting soon at 10:00 a.m.",
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(height: 5),
+              Text(
+                "3m ago",
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
