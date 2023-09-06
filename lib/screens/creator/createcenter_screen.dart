@@ -87,6 +87,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
       print(e);
     } finally {
       setState(() {
+        if (!mounted) return;
         isLoading = false;
       });
     }
