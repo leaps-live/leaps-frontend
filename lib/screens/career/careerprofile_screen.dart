@@ -1,12 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CareerProfileScreen extends StatelessWidget {
+class CareerProfileScreen extends StatefulWidget {
   static const routeName = '/careerprofile';
   const CareerProfileScreen({super.key});
+
+  @override
+  State<CareerProfileScreen> createState() => _CareerProfileScreenState();
+}
+
+class _CareerProfileScreenState extends State<CareerProfileScreen> {
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
+
+  Future<void> _getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userJsonString = prefs.getString('user');
+    if (userJsonString != null) {
+      setState(() {
+        isLogin = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +45,7 @@ class CareerProfileScreen extends StatelessWidget {
                   color: Color(0xFF2E3A59),
                 ), // Replace with the icon you want
                 onPressed: () {
-                  // Handle the onTap event for the custom leading IconButton
+                  Navigator.pushNamed(context, EditProfile.routeName);
                 },
               ),
               IconButton(
@@ -34,15 +58,19 @@ class CareerProfileScreen extends StatelessWidget {
                 },
               ),
             ]),
-        body: ListView(
-          children: const [
-            SizedBox(height: 10),
-            HeroContent(),
-            SizedBox(height: 10),
-            Highlight(),
-            ExperienceWidget()
-          ],
-        ));
+        body: isLogin
+            ? ListView(
+                children: const [
+                  SizedBox(height: 10),
+                  HeroContent(),
+                  SizedBox(height: 10),
+                  Highlight(),
+                  ExperienceWidget()
+                ],
+              )
+            : const Center(
+                child: Text("Please login first"),
+              ));
   }
 }
 

@@ -164,30 +164,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-// class topBar extends StatelessWidget {
-//   const topBar({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.all(16.0),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           IconButton(
-//             icon: const Icon(Icons.qr_code_scanner),
-//             onPressed: () {},
-//           ),
-//           IconButton(
-//             icon: const Icon(Icons.settings_outlined),
-//             onPressed: () {},
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class Avatar extends StatefulWidget {
   final String userName;
   const Avatar({required this.userName, Key? key}) : super(key: key);
