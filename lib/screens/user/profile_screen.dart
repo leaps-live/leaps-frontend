@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
@@ -88,16 +89,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             appBar: AppBar(
                 elevation: 0,
                 iconTheme: const IconThemeData(color: Colors.black),
-                leading: IconButton(
-                  icon: const Icon(
-                    Remix.qr_scan_2_line,
-                    color: Color(0xFF2E3A59),
-                  ), // Replace with the icon you want
-                  onPressed: () {
-                    // Handle the onTap event for the custom leading IconButton
-                  },
-                ),
                 actions: [
+                  IconButton(
+                    icon: const Icon(
+                      Remix.qr_scan_2_line,
+                      color: Color(0xFF2E3A59),
+                    ), // Replace with the icon you want
+                    onPressed: () {
+                      // Handle the onTap event for the custom leading IconButton
+                    },
+                  ),
                   IconButton(
                     icon: const Icon(
                       Remix.settings_2_line,
@@ -131,7 +132,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, EditProfile.routeName);
+                            Navigator.pushNamed(
+                                context, CareerProfileScreen.routeName);
                           },
                           child: const Row(
                             children: [

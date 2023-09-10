@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 import 'package:share_plus/share_plus.dart';
 
 class CareerProfileScreen extends StatelessWidget {
@@ -9,20 +11,49 @@ class CareerProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Remix.edit_line,
+                  color: Color(0xFF2E3A59),
+                ), // Replace with the icon you want
+                onPressed: () {
+                  // Handle the onTap event for the custom leading IconButton
+                },
+              ),
+              IconButton(
+                icon: const Icon(
+                  Remix.settings_2_line,
+                  color: Color(0xFF2E3A59),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, SettingsScreen.routeName);
+                },
+              ),
+            ]),
         body: ListView(
-      children: const [
-        SizedBox(height: 30),
-        HeroContent(),
-        SizedBox(height: 30),
-        ExperienceContentState()
-      ],
-    ));
+          children: const [
+            SizedBox(height: 10),
+            HeroContent(),
+            SizedBox(height: 10),
+            Highlight(),
+            ExperienceWidget()
+          ],
+        ));
   }
 }
 
-class HeroContent extends StatelessWidget {
+class HeroContent extends StatefulWidget {
   const HeroContent({super.key});
 
+  @override
+  State<HeroContent> createState() => _HeroContentState();
+}
+
+class _HeroContentState extends State<HeroContent> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -35,363 +66,190 @@ class HeroContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Column(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Ruolin Chen',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
-                              textAlign: TextAlign.left,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              'PG',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  color: Colors.grey),
-                              textAlign: TextAlign.left,
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const Icon(Icons.person_add_outlined,
-                                size: 35.0, color: primaryColor),
-                            const SizedBox(width: 15),
-                            const Icon(Icons.sms_outlined,
-                                size: 35.0, color: primaryColor),
-                            const SizedBox(width: 15),
-                            IconButton(
-                              icon: const Icon(Icons.share_outlined,
-                                  size: 35.0, color: primaryColor),
-                              onPressed: () {
-                                Share.share("Share something!!!");
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              '5,096 Fans',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 15),
-                              textAlign: TextAlign.left,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              '•',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 25),
-                              textAlign: TextAlign.left,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              '1201 Views',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  color: Colors.grey),
-                              textAlign: TextAlign.left,
-                            )
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12), // Image border
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(68), // Image radius
-                        child: Image.network(
-                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                          fit: BoxFit.cover,
-                        ),
+              const Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage(''),
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Ruolin Chen',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 21),
+                        textAlign: TextAlign.left,
                       ),
-                    )
-                  ],
-                )
-              ]),
-              const SizedBox(height: 30),
+                      SizedBox(height: 5),
+                      Text(
+                        '@ruov',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.left,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 15.0),
-                    width: MediaQuery.of(context).size.width * 0.80,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFFEFEFE),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 0.25, color: Color(0xFFE6E6E6)),
-                        borderRadius: BorderRadius.circular(40),
+                        horizontal: 5.0, vertical: 2),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                        width: 1.0, // 边框宽度
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Text(
+                      "19 yr",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color.fromRGBO(75, 75, 75, 1),
                       ),
                     ),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IntrinsicHeight(
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'PTS',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Text(
-                                      '124',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                      textAlign: TextAlign.left,
-                                    )
-                                  ]),
-                              VerticalDivider(
-                                width: 20,
-                                thickness: 1,
-                                indent: 20,
-                                endIndent: 0,
-                                color: Colors.grey,
-                              ),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'REB',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Text(
-                                      '124',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                      textAlign: TextAlign.left,
-                                    )
-                                  ]),
-                              VerticalDivider(
-                                width: 20,
-                                thickness: 1,
-                                indent: 20,
-                                endIndent: 0,
-                                color: Colors.grey,
-                              ),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'ASST',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Text(
-                                      '124',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                      textAlign: TextAlign.left,
-                                    )
-                                  ]),
-                              VerticalDivider(
-                                width: 20,
-                                thickness: 1,
-                                indent: 20,
-                                endIndent: 0,
-                                color: Colors.grey,
-                              ),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'GP',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Text(
-                                      '124',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                      textAlign: TextAlign.left,
-                                    )
-                                  ]),
-                            ]))
-                      ],
+                  ),
+                  const SizedBox(width: 5),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 2),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                        width: 1.0, // 边框宽度
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Text(
+                      "6'2",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color.fromRGBO(75, 75, 75, 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 2),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                        width: 1.0, // 边框宽度
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Text(
+                      "Seattle, WA",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color.fromRGBO(75, 75, 75, 1),
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      height: 150,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 15.0),
-                      width: MediaQuery.of(context).size.width * 0.44,
-                      decoration: ShapeDecoration(
-                        color: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 0.25, color: Color(0xFFE6E6E6)),
-                          borderRadius: BorderRadius.circular(17),
+              const SizedBox(height: 16),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.60,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFFEFEFE),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                          width: 0.25, color: Color(0xFFE6E6E6)),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "PTS",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromARGB(255, 81, 81, 81)),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              "124",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            )
+                          ],
                         ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'About me:',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                color: secondaryBackgroundColor),
-                            textAlign: TextAlign.left,
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            '19 y/o',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: screenWidth * .035,
-                                color: secondaryBackgroundColor),
-                            textAlign: TextAlign.left,
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            '6\'1',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: screenWidth * .035,
-                                color: secondaryBackgroundColor),
-                            textAlign: TextAlign.left,
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Seattle, WA',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: screenWidth * .035,
-                                color: secondaryBackgroundColor),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Container(
-                      height: 150,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 15.0),
-                      width: MediaQuery.of(context).size.width * 0.44,
-                      decoration: ShapeDecoration(
-                        color: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 0.10, color: Color(0xFFE6E6E6)),
-                          borderRadius: BorderRadius.circular(17),
+                        Column(
+                          children: [
+                            Text(
+                              "REB",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromARGB(255, 81, 81, 81)),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              "39",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            )
+                          ],
                         ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Social Media:',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                color: secondaryBackgroundColor),
-                            textAlign: TextAlign.left,
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              const Icon(Icons.facebook,
-                                  size: 25.0, color: secondaryBackgroundColor),
-                              const SizedBox(width: 5),
-                              Expanded(
-                                  child: Text(
-                                '@ruolinchenasdfasdf',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: screenWidth * .035,
-                                    color: secondaryBackgroundColor),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                              )),
-                            ],
-                          ),
-                          const SizedBox(height: 5),
-                          Row(
-                            children: [
-                              const Icon(Icons.facebook,
-                                  size: 25.0, color: secondaryBackgroundColor),
-                              const SizedBox(width: 5),
-                              Expanded(
-                                  child: Text(
-                                '@ruolinchenasdfasdf',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: screenWidth * .035,
-                                    color: secondaryBackgroundColor),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                              )),
-                            ],
-                          ),
-                          const SizedBox(height: 5),
-                          Row(
-                            children: [
-                              const Icon(Icons.facebook,
-                                  size: 25.0, color: secondaryBackgroundColor),
-                              const SizedBox(width: 5),
-                              Expanded(
-                                  child: Text(
-                                '@ruolinchenasdfasdf',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: screenWidth * .035,
-                                    color: secondaryBackgroundColor),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                              )),
-                            ],
-                          ),
-                        ],
-                      ))
-                ],
-              )
+                        Column(
+                          children: [
+                            Text(
+                              "AST",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromARGB(255, 81, 81, 81)),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              "56",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "GP",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromARGB(255, 81, 81, 81)),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              "20",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         )
@@ -400,65 +258,82 @@ class HeroContent extends StatelessWidget {
   }
 }
 
-class ExperienceContentState extends StatefulWidget {
-  const ExperienceContentState({super.key});
+class Highlight extends StatefulWidget {
+  const Highlight({super.key});
 
   @override
-  State<ExperienceContentState> createState() => ExperienceContent();
+  State<Highlight> createState() => _HighlightState();
 }
 
-const List<Widget> choices = <Widget>[
-  Text('Experience'),
-  Text('Highlights'),
-  Text('Fans')
-];
-
-class ExperienceContent extends State<ExperienceContentState> {
-  final List<bool> _selectedChoices = <bool>[true, false, false];
-  bool vertical = false;
-
+class _HighlightState extends State<Highlight> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ToggleButtons(
-          direction: vertical ? Axis.vertical : Axis.horizontal,
-          onPressed: (int index) {
-            setState(() {
-              // The button that is tapped is set to true, and the others to false.
-              for (int i = 0; i < _selectedChoices.length; i++) {
-                _selectedChoices[i] = i == index;
-              }
-            });
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          selectedBorderColor: primaryColor,
-          selectedColor: Colors.white,
-          fillColor: primaryColor,
-          color: primaryColor,
-          constraints: const BoxConstraints(
-            minHeight: 40.0,
-            minWidth: 100.0,
+    return Padding(
+      padding: EdgeInsets.all(18.0),
+      child: Column(
+        children: [
+          const Row(
+            children: [
+              Text("Highlights",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Colors.black)),
+              Spacer(),
+              Text("View all",
+                  style: TextStyle(
+                      fontSize: 15, color: Color.fromARGB(255, 13, 86, 145))),
+            ],
           ),
-          isSelected: _selectedChoices,
-          children: choices,
-        ),
-        const SizedBox(height: 20),
-        const Text(
-          'Now',
-          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 20),
-        const ExperienceWidget(),
-        const SizedBox(height: 15),
-        const ExperienceWidget(),
-        const SizedBox(height: 15),
-        const ExperienceWidget(),
-        const SizedBox(height: 15),
-        const ExperienceWidget(),
-      ],
+          const SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: MediaQuery.of(context).size.width / 2 - 24,
+                    color: Colors.grey,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Title of the video",
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      Icon(Icons.unfold_more)
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: MediaQuery.of(context).size.width / 2 - 24,
+                    color: Colors.grey,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Title of the video",
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      Icon(Icons.unfold_more)
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -468,137 +343,296 @@ class ExperienceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-            height: 75,
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-            width: MediaQuery.of(context).size.width * 0.90,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: primaryColor,
-                width: 2.5,
-              ),
-              color: const Color(0xFFFEFEFE),
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100), // Image border
-                    child: SizedBox.fromSize(
-                      size: const Size.fromRadius(23), // Image radius
-                      child: Image.network(
-                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                        fit: BoxFit.cover,
-                      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Experience",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Colors.black)),
+          const SizedBox(height: 5),
+          const Center(
+              child: Text("Recent",
+                  style: TextStyle(fontSize: 15, color: Colors.grey))),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  height: 75,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 5.0),
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: primaryColor,
+                      width: 2.5,
                     ),
-                  ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Point Guard',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
-                      ),
-                      Text(
-                        'Mighty Dragons',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13,
-                            color: Colors.grey),
-                        textAlign: TextAlign.left,
+                    color: const Color(0xFFFEFEFE),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset:
+                            const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'PTS',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: Colors.grey),
-                        textAlign: TextAlign.left,
-                      ),
-                      Text(
-                        '20.0',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(100), // Image border
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(23), // Image radius
+                            child: Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Point Guard',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              'Mighty Dragons',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 13,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PTS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '20.0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PTS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '20.0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PTS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '20.0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                      ])),
+            ],
+          ),
+          const SizedBox(height: 20),
+          const Center(
+              child: Text("2022",
+                  style: TextStyle(fontSize: 15, color: Colors.grey))),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  height: 75,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 5.0),
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: primaryColor,
+                      width: 2.5,
+                    ),
+                    color: const Color(0xFFFEFEFE),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset:
+                            const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'PTS',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: Colors.grey),
-                        textAlign: TextAlign.left,
-                      ),
-                      Text(
-                        '20.0',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'PTS',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: Colors.grey),
-                        textAlign: TextAlign.left,
-                      ),
-                      Text(
-                        '20.0',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ])),
-      ],
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(100), // Image border
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(23), // Image radius
+                            child: Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Point Guard',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              'Mighty Dragons',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 13,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PTS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '20.0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PTS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '20.0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PTS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '20.0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+                      ])),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
