@@ -11,6 +11,7 @@ import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmResetPassword_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
 import 'package:leaps_frontend/screens/landing/forgot_password.dart';
+import 'package:leaps_frontend/screens/home/notifications/notifications_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -90,4 +91,5 @@ var allRoutes = <String, WidgetBuilder>{
   ForgotPassword.routeName: (context) => const ForgotPassword(),
   ConfirmResetPasswordScreen.routeName: (context) =>
       const ConfirmResetPasswordScreen(arguments: {})
+  NotificationsScreen.routeName: (context) => const NotificationsScreen(),
 };
