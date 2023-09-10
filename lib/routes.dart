@@ -90,6 +90,6 @@ var allRoutes = <String, WidgetBuilder>{
       const ConfirmationCodeScreen(arguments: {}),
   ForgotPassword.routeName: (context) => const ForgotPassword(),
   ConfirmResetPasswordScreen.routeName: (context) =>
-      const ConfirmResetPasswordScreen(arguments: {})
+      const ConfirmResetPasswordScreen(arguments: {}),
   NotificationsScreen.routeName: (context) => const NotificationsScreen(),
 };
