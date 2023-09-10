@@ -59,29 +59,66 @@ class _ConfirmResetPasswordScreenState
       isLoading = true;
     });
 
-    const String apiUrl = 'http://localhost:8080/users/changepassword/';
+    String apiUrl =
+        'http://localhost:8080/users/changepassword/email/$emailToSend';
+
+    // Create a map with the collected data
+    final Map<String, dynamic> userData = {
+      'newPassword': newPasswordController.text
+    };
 
     try {
-      final result = await Amplify.Auth.confirmResetPassword(
-        username: emailToSend,
-        newPassword: newPasswordController.text,
-        confirmationCode: confirmationCodeController.text,
-      );
       print('reset password on amplify');
       // TODO: reset on backend too
-      updatePassword(
-          oldPassword: currentPasswordController.text,
-          newPassword: newPasswordController.text);
-      Fluttertoast.showToast(
-        msg: "Password successfully reset",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.green[400],
-        textColor: Colors.white,
+      final changePasswordResponse = http.put(
+        Uri.parse(apiUrl),
+        body: json.encode(userData),
+        headers: {'Content-Type': 'application/json'},
       );
-      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-      safePrint('Password reset complete: ${result.isPasswordReset}');
+
+      final response = await Future.wait([changePasswordResponse]);
+
+      bool allRequestsFailed = true;
+
+      for (final response in response) {
+        print(response.statusCode);
+
+        if (response.statusCode == 200) {
+          // Successfully sent data to the backend
+          print('Successfully changed password on backend!');
+
+          final result = await Amplify.Auth.confirmResetPassword(
+            username: emailToSend,
+            newPassword: newPasswordController.text,
+            confirmationCode: confirmationCodeController.text,
+          );
+
+          safePrint('Password reset complete: ${result.isPasswordReset}');
+
+          Fluttertoast.showToast(
+            msg: "Successfully changed password!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green[400],
+            textColor: Colors.white,
+          );
+          allRequestsFailed = false;
+
+          Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+        }
+      }
+
+      if (allRequestsFailed) {
+        Fluttertoast.showToast(
+          msg: "Something went wrong.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+        );
+      }
     } on AuthException catch (e) {
       safePrint('Error resetting password: ${e.message}');
       Fluttertoast.showToast(
@@ -128,15 +165,16 @@ class _ConfirmResetPasswordScreenState
               SizedBox(
                 width: 300,
                 child: RichText(
-                  text: const TextSpan(
-                    style: TextStyle(
+                  text: TextSpan(
+                    style: const TextStyle(
                       fontSize: 13,
                       color: Colors.black,
                     ),
                     children: [
                       TextSpan(
-                        text: 'A confirmation code has been sent to .',
-                        style: TextStyle(fontWeight: FontWeight.normal),
+                        text:
+                            'A confirmation code has been sent to ${data!.containsKey('email') ? data['email'] : null}.',
+                        style: const TextStyle(fontWeight: FontWeight.normal),
                       ),
                     ],
                   ),

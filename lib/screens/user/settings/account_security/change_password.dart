@@ -133,7 +133,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         isLoading = true;
       });
 
-      final changePasswordResponse = http.post(
+      final changePasswordResponse = http.put(
         Uri.parse(apiUrl),
         body: json.encode(userData),
         headers: {'Content-Type': 'application/json'},
@@ -157,6 +157,8 @@ class _ChangePasswordState extends State<ChangePassword> {
             backgroundColor: Colors.green[400],
             textColor: Colors.white,
           );
+
+          allRequestsFailed = false;
 
           Navigator.pushReplacementNamed(context, AccountSecurity.routeName);
         }

@@ -90,7 +90,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 onChanged: (value) {
                   _checkIfFieldFilled(); // Update button state on input change
                 },
-                obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Enter your email',
                   hintText: 'Enter your email',

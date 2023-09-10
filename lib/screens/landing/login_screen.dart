@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:leaps_frontend/screens/landing/forgot_password.dart';
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main_screen.dart';
@@ -60,6 +61,17 @@ class _LoginScreenState extends State<LoginScreen> {
       await _handleSignInResult(result);
     } on AuthException catch (e) {
       print('Error signing in: ${e.message}');
+    }
+  }
+
+  Future<void> googleSignIn() async {
+    try {
+      final result = await Amplify.Auth.signInWithWebUI(
+        provider: AuthProvider.google,
+      );
+      safePrint('Sign in result: $result');
+    } on AuthException catch (e) {
+      safePrint('Error signing in: ${e.message}');
     }
   }
 
@@ -175,6 +187,15 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text(
           'Log in',
         ),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black54,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -263,7 +284,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                   child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "myRoute");
+                  Navigator.pushNamed(context, ForgotPassword.routeName);
                 },
                 child: const Text("Forgot Password?"),
               )),
@@ -282,7 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const TextSpan(
-                      text: " Or sign up with ",
+                      text: " Or sign in with ",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15,
@@ -305,10 +326,15 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/google.png', // 替换为你的图片路径
-                    width: 24,
-                    height: 24,
+                  GestureDetector(
+                    onTap: () {
+                      googleSignIn();
+                    },
+                    child: Image.asset(
+                      'assets/images/google.png', // 替换为你的图片路径
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
                   const SizedBox(
                     width: 20,
