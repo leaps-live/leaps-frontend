@@ -8,6 +8,9 @@ import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/home/home_leagues.dart';
 import 'package:leaps_frontend/screens/home/home_recommendations.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
+import 'package:leaps_frontend/screens/landing/confirmResetPassword_screen.dart';
+import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/landing/forgot_password.dart';
 import 'package:leaps_frontend/screens/home/notifications/notifications_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
@@ -33,6 +36,7 @@ import 'package:leaps_frontend/screens/user/settings/account_security/account_se
 import 'package:leaps_frontend/screens/user/settings/account_security/change_email.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/email_confirmationcode_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
 import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
 import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
@@ -83,5 +87,12 @@ var allRoutes = <String, WidgetBuilder>{
   HomeRecommendations.routeName: (context) => const HomeRecommendations(),
   HomeLeagues.routeName: (context) => const HomeLeagues(),
   GameSelectScreen.routeName: (context) => const GameSelectScreen(),
+  ConfirmationCodeScreen.routeName: (context) =>
+      const ConfirmationCodeScreen(arguments: {}),
+  ForgotPassword.routeName: (context) => const ForgotPassword(),
+  ConfirmResetPasswordScreen.routeName: (context) =>
+      const ConfirmResetPasswordScreen(arguments: {}),
   NotificationsScreen.routeName: (context) => const NotificationsScreen(),
+  EmailConfirmationCodeScreen.routeName: (context) =>
+      const EmailConfirmationCodeScreen(arguments: {})
 };

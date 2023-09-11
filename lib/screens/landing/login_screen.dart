@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:leaps_frontend/screens/landing/forgot_password.dart';
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main_screen.dart';
@@ -21,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool showPassword = false;
   Map<String, dynamic> searchResult = {};
 
-  // change button color when all the fields are filled
+  // TODO: change button color when all the fields are filled
   bool areAllFieldsFilled = false;
 
   void _checkIfFieldFilled() {
@@ -36,6 +38,41 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController.dispose();
     emailController.dispose();
     super.dispose();
+  }
+
+  Future<void> _handleSignInResult(SignInResult result) async {
+    switch (result.nextStep.signInStep) {
+      case AuthSignInStep.done:
+        print('Sign in is complete');
+        break;
+      default:
+        print(result);
+    }
+  }
+
+  Future<void> signInUser(String username, String password) async {
+    print('username signin: $username');
+    print('password signin: $password');
+    try {
+      final result = await Amplify.Auth.signIn(
+        username: username,
+        password: password,
+      );
+      await _handleSignInResult(result);
+    } on AuthException catch (e) {
+      print('Error signing in: ${e.message}');
+    }
+  }
+
+  Future<void> googleSignIn() async {
+    try {
+      final result = await Amplify.Auth.signInWithWebUI(
+        provider: AuthProvider.google,
+      );
+      safePrint('Sign in result: $result');
+    } on AuthException catch (e) {
+      safePrint('Error signing in: ${e.message}');
+    }
   }
 
   void _userLogin() async {
@@ -69,7 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     const String apiUrl = 'http://localhost:8080/users/login';
-    // const String apiUrl = 'http://10.8.4.186:8080/users/login';
 
     // Check to see if input is an email
     final bool emailValid = RegExp(
@@ -84,6 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     try {
+      // AWS Cognito sign-in
+      await signInUser(emailController.text, passwordController.text);
+      print("signed in user through aws cognito");
+
       final loginResponse = http.post(
         Uri.parse(apiUrl),
         body: json.encode(userData),
@@ -147,6 +187,15 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text(
           'Log in',
         ),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black54,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -159,8 +208,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   _checkIfFieldFilled(); // Update button state on input change
                 },
                 decoration: const InputDecoration(
-                  labelText: 'UserEmail / Username',
-                  hintText: 'UserEmail / Username',
+                  labelText: 'Email',
+                  hintText: 'Email',
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
@@ -230,7 +279,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
+              ),
+              Center(
+                  child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, ForgotPassword.routeName);
+                },
+                child: const Text("Forgot Password?"),
+              )),
+              const SizedBox(
+                height: 40,
               ),
               RichText(
                 text: TextSpan(
@@ -244,7 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const TextSpan(
-                      text: " Or sign up with ",
+                      text: " Or sign in with ",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15,
@@ -267,10 +326,15 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/google.png', // 替换为你的图片路径
-                    width: 24,
-                    height: 24,
+                  GestureDetector(
+                    onTap: () {
+                      googleSignIn();
+                    },
+                    child: Image.asset(
+                      'assets/images/google.png', // 替换为你的图片路径
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
                   const SizedBox(
                     width: 20,
