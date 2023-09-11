@@ -36,6 +36,7 @@ import 'package:leaps_frontend/screens/user/settings/account_security/account_se
 import 'package:leaps_frontend/screens/user/settings/account_security/change_email.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
+import 'package:leaps_frontend/screens/user/settings/account_security/email_confirmationcode_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
 import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
 import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
@@ -92,4 +93,6 @@ var allRoutes = <String, WidgetBuilder>{
   ConfirmResetPasswordScreen.routeName: (context) =>
       const ConfirmResetPasswordScreen(arguments: {}),
   NotificationsScreen.routeName: (context) => const NotificationsScreen(),
+  EmailConfirmationCodeScreen.routeName: (context) =>
+      const EmailConfirmationCodeScreen(arguments: {})
 };
