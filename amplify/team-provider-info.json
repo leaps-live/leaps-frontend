@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-leapsfrontend-dev-172048-authRole",
+      "UnauthRoleArn": "arn:aws:iam::665360444809:role/amplify-leapsfrontend-dev-172048-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::665360444809:role/amplify-leapsfrontend-dev-172048-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-leapsfrontend-dev-172048-deployment",
+      "UnauthRoleName": "amplify-leapsfrontend-dev-172048-unauthRole",
+      "StackName": "amplify-leapsfrontend-dev-172048",
+      "StackId": "arn:aws:cloudformation:us-west-2:665360444809:stack/amplify-leapsfrontend-dev-172048/94b1b2b0-3fb8-11ee-83c9-0279984ac233",
+      "AmplifyAppId": "d1xj6qaq9s81f2"
+    },
+    "categories": {
+      "auth": {
+        "leapsfrontend7e17af83": {}
+      }
+    }
+  }
+}

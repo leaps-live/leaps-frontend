@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:leaps_frontend/screens/landing/login_screen.dart';
+import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,23 +24,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
-  // change button color when all the fields are filled
-  bool areAllFieldsFilled = false;
-  bool isLoading = false;
+  String? codeDestination;
+  String? codeDeliveryMedium;
 
-  void _checkIfFieldFilled() {
-    setState(() {
-      areAllFieldsFilled = emailController.text.isNotEmpty &&
-          passwordController.text.isNotEmpty &&
-          confirmPasswordController.text.isNotEmpty &&
-          userFirstNameController.text.isNotEmpty &&
-          userLastNameController.text.isNotEmpty &&
-          usernameController.text.isNotEmpty;
-    });
-  }
-
-  // make toast for incomplete form
-  void _userRegister() async {
+  /// Signs a user up with a username, password, and email.
+  Future<void> signUpUser() async {
     if (userFirstNameController.text.isEmpty ||
         userLastNameController.text.isEmpty ||
         usernameController.text.isEmpty ||
@@ -51,8 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         msg: "Please fullfil all the fields",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
       return;
@@ -63,8 +51,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         msg: "The password is different from the confirmation password.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
       return;
@@ -89,6 +77,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
     };
 
     try {
+      final userAttributes = {
+        AuthUserAttributeKey.email: emailController.text,
+        // additional attributes as needed
+      };
+
+      final result = await Amplify.Auth.signUp(
+        username: emailController.text,
+        password: passwordController.text,
+        options: SignUpOptions(
+          userAttributes: userAttributes,
+        ),
+      );
+
+      print('amplify auth sign up result:');
+      print(result);
+
+      await _handleSignUpResult(result);
       final response = await http.post(
         Uri.parse(apiUrl),
         body: json.encode(userData),
@@ -99,8 +104,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
-        print('Account registered successfully!');
-        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+
+        String emailToSend = emailController.text;
+
+        print('Account registered successfully! $emailToSend');
+
+        final Map<String, dynamic> dataToSend = {
+          'codeDestination': codeDestination,
+          'codeDeliveryMedium': codeDeliveryMedium,
+          'email': emailController.text,
+          'password': passwordController.text
+        };
+
+        Fluttertoast.showToast(
+          msg: "A confirmation code was sent to $emailToSend",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.green[400],
+          textColor: Colors.white,
+        );
+
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacementNamed(
+            context, ConfirmationCodeScreen.routeName,
+            arguments: dataToSend);
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "Email has already existed.",
@@ -115,18 +143,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
           msg: "Username has already existed.",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red[400],
           textColor: Colors.white,
         );
       }
-    } catch (e) {
-      print('Error occurred while sending data: $e');
+    } on AuthException catch (e) {
+      print('Error signing up user: ${e.message}');
     } finally {
       setState(() {
         isLoading = false;
       });
     }
+  }
+
+  Future<void> _handleSignUpResult(SignUpResult result) async {
+    switch (result.nextStep.signUpStep) {
+      case AuthSignUpStep.confirmSignUp:
+        final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
+        _handleCodeDelivery(codeDeliveryDetails);
+        break;
+      case AuthSignUpStep.done:
+        print('Sign up is complete');
+        break;
+    }
+  }
+
+  void _handleCodeDelivery(AuthCodeDeliveryDetails codeDeliveryDetails) {
+    setState(() {
+      codeDestination = codeDeliveryDetails.destination;
+      codeDeliveryMedium = codeDeliveryDetails.deliveryMedium.name;
+    });
+
+    print(
+      'A confirmation code has been sent to ${codeDeliveryDetails.destination}. '
+      'Please check your ${codeDeliveryDetails.deliveryMedium.name} for the code.',
+    );
+  }
+
+  // change button color when all the fields are filled
+  bool areAllFieldsFilled = false;
+  bool isLoading = false;
+
+  void _checkIfFieldFilled() {
+    setState(() {
+      areAllFieldsFilled = emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          confirmPasswordController.text.isNotEmpty &&
+          userFirstNameController.text.isNotEmpty &&
+          userLastNameController.text.isNotEmpty &&
+          usernameController.text.isNotEmpty;
+    });
   }
 
   @override
@@ -286,7 +353,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    _userRegister();
+                    signUpUser();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
