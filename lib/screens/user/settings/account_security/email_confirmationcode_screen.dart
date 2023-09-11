@@ -75,7 +75,6 @@ class _EmailConfirmationCodeScreenState
         confirmationCode: confirmationCodeController.text,
       );
 
-      // TODO: Change Email on backend
       final response = await http.put(
         Uri.parse(apiUrl),
         body: json.encode(userData),
@@ -84,6 +83,12 @@ class _EmailConfirmationCodeScreenState
 
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
+
+        // Update Shared Preferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('user', response.body);
+        String? user = prefs.getString('user');
+        print('User value: $user');
 
         print('Successfully changed email');
 
@@ -109,6 +114,19 @@ class _EmailConfirmationCodeScreenState
         backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: "There was an error: $e",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
