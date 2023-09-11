@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
@@ -88,19 +89,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             appBar: AppBar(
                 elevation: 0,
                 iconTheme: const IconThemeData(color: Colors.black),
-                backgroundColor: isLogin
-                    ? const Color.fromARGB(255, 193, 217, 229)
-                    : Colors.transparent,
-                leading: IconButton(
-                  icon: const Icon(
-                    Remix.qr_scan_2_line,
-                    color: Color(0xFF2E3A59),
-                  ), // Replace with the icon you want
-                  onPressed: () {
-                    // Handle the onTap event for the custom leading IconButton
-                  },
-                ),
                 actions: [
+                  IconButton(
+                    icon: const Icon(
+                      Remix.qr_scan_2_line,
+                      color: Color(0xFF2E3A59),
+                    ), // Replace with the icon you want
+                    onPressed: () {
+                      // Handle the onTap event for the custom leading IconButton
+                    },
+                  ),
                   IconButton(
                     icon: const Icon(
                       Remix.settings_2_line,
@@ -116,13 +114,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    color: isLogin
-                        ? const Color.fromARGB(255, 193, 217, 229)
-                        : Colors.transparent,
                     child: isLogin
                         ? Avatar(userName: userName)
                         : const AvatarNone(),
                   ),
+                  if (isLogin)
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          fixedSize:
+                              Size(MediaQuery.of(context).size.width - 20, 50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, CareerProfileScreen.routeName);
+                          },
+                          child: const Row(
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'My Career Profile',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 17),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                              ),
+                              SizedBox(width: 10),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   const Features(),
                   const SizedBox(height: 20),
                   if (!isLogin) const Landing(),
@@ -132,30 +163,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
   }
 }
-
-// class topBar extends StatelessWidget {
-//   const topBar({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.all(16.0),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           IconButton(
-//             icon: const Icon(Icons.qr_code_scanner),
-//             onPressed: () {},
-//           ),
-//           IconButton(
-//             icon: const Icon(Icons.settings_outlined),
-//             onPressed: () {},
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class Avatar extends StatefulWidget {
   final String userName;
