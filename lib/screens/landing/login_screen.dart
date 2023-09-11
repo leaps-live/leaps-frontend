@@ -81,8 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
         msg: "Please enter your email or username",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
       return;
@@ -93,8 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
         msg: "Please enter your password",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
       return;
@@ -166,8 +166,8 @@ class _LoginScreenState extends State<LoginScreen> {
           msg: "Login or password is wrong",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red[400],
           textColor: Colors.white,
         );
       }

@@ -153,7 +153,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             msg: "Successfully changed password!",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
+            timeInSecForIosWeb: 3,
             backgroundColor: Colors.green[400],
             textColor: Colors.white,
           );

@@ -39,8 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         msg: "Please fullfil all the fields",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
       return;
@@ -116,6 +116,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
           'password': passwordController.text
         };
 
+        Fluttertoast.showToast(
+          msg: "A confirmation code was sent to $emailToSend",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.green[400],
+          textColor: Colors.white,
+        );
+
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(
             context, ConfirmationCodeScreen.routeName,
             arguments: dataToSend);
@@ -133,8 +143,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           msg: "Username has already existed.",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red[400],
           textColor: Colors.white,
         );
       }

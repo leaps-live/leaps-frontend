@@ -117,17 +117,26 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
           print('Userid: $userid');
 
           print("signed in user");
+          Fluttertoast.showToast(
+            msg: "Successfully created account and signed in!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.green[400],
+            textColor: Colors.white,
+          );
+          // ignore: use_build_context_synchronously
           Navigator.pushReplacementNamed(context, MainScreen.routeName);
         }
       }
 
       if (allRequestsFailed) {
         Fluttertoast.showToast(
-          msg: "Login or password is wrong",
+          msg: "Failed to confirm",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red[400],
           textColor: Colors.white,
         );
       }
@@ -135,20 +144,20 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
       print('Error confirming user: ${e.message}');
       Fluttertoast.showToast(
         msg: "Error confirming user: ${e.message}",
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
     } catch (e) {
       print('Error occurred while sending data: $e');
       Fluttertoast.showToast(
         msg: "Error occurred while sending data: $e",
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
         textColor: Colors.white,
       );
     } finally {
