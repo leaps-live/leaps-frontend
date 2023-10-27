@@ -38,19 +38,12 @@ class _CareerProfileScreenState extends State<CareerProfileScreen> {
         appBar: AppBar(
             elevation: 0,
             iconTheme: const IconThemeData(color: Colors.black),
+            title: const Text("Ruolin Chen"),
+            centerTitle: true,
             actions: [
               IconButton(
                 icon: const Icon(
-                  Remix.edit_line,
-                  color: Color(0xFF2E3A59),
-                ), // Replace with the icon you want
-                onPressed: () {
-                  Navigator.pushNamed(context, EditProfile.routeName);
-                },
-              ),
-              IconButton(
-                icon: const Icon(
-                  Remix.settings_2_line,
+                  Remix.share_circle_line,
                   color: Color(0xFF2E3A59),
                 ),
                 onPressed: () {
@@ -97,38 +90,37 @@ class _HeroContentState extends State<HeroContent> {
               const Row(
                 children: [
                   CircleAvatar(
-                    radius: 30,
+                    radius: 40,
                     backgroundImage: NetworkImage(''),
                   ),
                   SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Ruolin Chen',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 21),
-                        textAlign: TextAlign.left,
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        '@ruov',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                        ),
-                        textAlign: TextAlign.left,
-                      )
-                    ],
-                  ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 5.0, vertical: 2),
+                        horizontal: 10.0, vertical: 2),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                        width: 1.0, // 边框宽度
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Text(
+                      "@ruov",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color.fromRGBO(75, 75, 75, 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 2),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
@@ -147,7 +139,7 @@ class _HeroContentState extends State<HeroContent> {
                   const SizedBox(width: 5),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 5.0, vertical: 2),
+                        horizontal: 10.0, vertical: 2),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
@@ -166,7 +158,7 @@ class _HeroContentState extends State<HeroContent> {
                   const SizedBox(width: 5),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 5.0, vertical: 2),
+                        horizontal: 10.0, vertical: 2),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
@@ -184,7 +176,7 @@ class _HeroContentState extends State<HeroContent> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 25),
               Center(
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.60,
@@ -310,7 +302,9 @@ class _HighlightState extends State<Highlight> {
               Spacer(),
               Text("View all",
                   style: TextStyle(
-                      fontSize: 15, color: Color.fromARGB(255, 13, 86, 145))),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: secondaryColor)),
             ],
           ),
           const SizedBox(height: 5),
