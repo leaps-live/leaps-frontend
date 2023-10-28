@@ -87,13 +87,37 @@ class _HeroContentState extends State<HeroContent> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 40,
                     backgroundImage: NetworkImage(''),
                   ),
-                  SizedBox(width: 10),
+                  const Spacer(),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 35.0, vertical: 0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, CareerProfileScreen.routeName);
+                      },
+                      child: const Text(
+                        'Edit',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )
                 ],
               ),
               const SizedBox(height: 20),
@@ -112,9 +136,9 @@ class _HeroContentState extends State<HeroContent> {
                     child: const Text(
                       "@ruov",
                       style: TextStyle(
-                        fontSize: 13,
-                        color: Color.fromRGBO(75, 75, 75, 1),
-                      ),
+                          fontSize: 13,
+                          color: Color.fromRGBO(75, 75, 75, 1),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -131,9 +155,9 @@ class _HeroContentState extends State<HeroContent> {
                     child: const Text(
                       "19 yr",
                       style: TextStyle(
-                        fontSize: 13,
-                        color: Color.fromRGBO(75, 75, 75, 1),
-                      ),
+                          fontSize: 13,
+                          color: Color.fromRGBO(75, 75, 75, 1),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -150,9 +174,9 @@ class _HeroContentState extends State<HeroContent> {
                     child: const Text(
                       "6'2",
                       style: TextStyle(
-                        fontSize: 13,
-                        color: Color.fromRGBO(75, 75, 75, 1),
-                      ),
+                          fontSize: 13,
+                          color: Color.fromRGBO(75, 75, 75, 1),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -169,9 +193,9 @@ class _HeroContentState extends State<HeroContent> {
                     child: const Text(
                       "Seattle, WA",
                       style: TextStyle(
-                        fontSize: 13,
-                        color: Color.fromRGBO(75, 75, 75, 1),
-                      ),
+                          fontSize: 13,
+                          color: Color.fromRGBO(75, 75, 75, 1),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
@@ -179,17 +203,21 @@ class _HeroContentState extends State<HeroContent> {
               const SizedBox(height: 25),
               Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.60,
-                  decoration: ShapeDecoration(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  decoration: BoxDecoration(
                     color: const Color(0xFFFEFEFE),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                          width: 0.25, color: Color(0xFFE6E6E6)),
-                      borderRadius: BorderRadius.circular(40),
-                    ),
+                    borderRadius: BorderRadius.circular(35),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.4),
+                        spreadRadius: 1,
+                        blurRadius: 6,
+                        offset: Offset(0, 1), // changes position of shadow
+                      ),
+                    ],
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(13.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -296,7 +324,7 @@ class _HighlightState extends State<Highlight> {
             children: [
               Text("Highlights",
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                       fontSize: 17,
                       color: Colors.black)),
               Spacer(),
@@ -307,7 +335,7 @@ class _HighlightState extends State<Highlight> {
                       color: secondaryColor)),
             ],
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -395,10 +423,10 @@ class ExperienceWidget extends StatelessWidget {
                     ),
                     color: const Color(0xFFFEFEFE),
                     borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)),
+                        topLeft: Radius.circular(7),
+                        topRight: Radius.circular(7),
+                        bottomLeft: Radius.circular(7),
+                        bottomRight: Radius.circular(7)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),
@@ -528,16 +556,12 @@ class ExperienceWidget extends StatelessWidget {
                       horizontal: 10.0, vertical: 5.0),
                   width: MediaQuery.of(context).size.width * 0.90,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: primaryColor,
-                      width: 2.5,
-                    ),
                     color: const Color(0xFFFEFEFE),
                     borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)),
+                        topLeft: Radius.circular(7),
+                        topRight: Radius.circular(7),
+                        bottomLeft: Radius.circular(7),
+                        bottomRight: Radius.circular(7)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -20,7 +19,6 @@ class _BottomNavBarState extends State<BottomNavbar> {
     const OnboardingScreen(),
     const CreateCenterScreen(),
     const CareerProfileScreen(),
-    const UserProfileScreen(),
   ];
 
   @override

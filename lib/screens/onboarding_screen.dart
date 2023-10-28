@@ -9,7 +9,6 @@ import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 
 import '../widgets/custom_button.dart';
 import 'landing/login_screen.dart';

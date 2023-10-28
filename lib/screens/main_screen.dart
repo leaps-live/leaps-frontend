@@ -4,7 +4,6 @@ import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class MainScreen extends StatefulWidget {
