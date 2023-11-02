@@ -22,6 +22,9 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController feetController = TextEditingController();
   final TextEditingController inchController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
   bool isLoading = false;
 
   @override
@@ -68,6 +71,9 @@ class _EditProfileState extends State<EditProfile> {
     feetController.dispose();
     inchController.dispose();
     weightController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    locationController.dispose();
     super.dispose();
   }
 
@@ -75,7 +81,10 @@ class _EditProfileState extends State<EditProfile> {
     if (birthdayController.text.isEmpty ||
         feetController.text.isEmpty ||
         inchController.text.isEmpty ||
-        weightController.text.isEmpty) {
+        weightController.text.isEmpty ||
+        firstNameController.text.isEmpty ||
+        lastNameController.text.isEmpty ||
+        locationController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fill in all fields!",
         toastLength: Toast.LENGTH_SHORT,
@@ -117,6 +126,7 @@ class _EditProfileState extends State<EditProfile> {
       'userBirthday': birthday,
       'userHeight': height,
       'userWeight': weight,
+      // TODO: Check backend for first name, last name, location edit
     };
 
     print(requestBody);
@@ -243,6 +253,48 @@ class _EditProfileState extends State<EditProfile> {
                     Icons.account_circle,
                     size: 80,
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: firstNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'First Name',
+                      hintText: 'First Name',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: lastNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Last Name',
+                      hintText: 'Last Name',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: locationController,
+                    decoration: const InputDecoration(
+                      labelText: 'Location',
+                      hintText: 'City and State',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   TextField(
                       controller: birthdayController,
                       decoration: const InputDecoration(
@@ -259,48 +311,6 @@ class _EditProfileState extends State<EditProfile> {
                           _showDatePicker(context);
                         }
                       }),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: feetController,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Height (feet)',
-                            hintText: 'Height (feet)',
-                            labelStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      Expanded(
-                        child: TextField(
-                          controller: inchController,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Height (inch)',
-                            hintText: 'Height (inch)',
-                            labelStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   const SizedBox(
                     height: 16,
                   ),

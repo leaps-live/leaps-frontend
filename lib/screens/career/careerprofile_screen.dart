@@ -106,8 +106,7 @@ class _HeroContentState extends State<HeroContent> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(
-                            context, CareerProfileScreen.routeName);
+                        Navigator.pushNamed(context, EditProfile.routeName);
                       },
                       child: const Text(
                         'Edit',
