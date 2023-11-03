@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,10 +37,39 @@ class _EditProfileState extends State<EditProfile> {
   int inches = 0;
   late String cm;
 
+  // For Weight Cupertino Picker
+  int selectedWeight = 0;
+  List<int> weightNumbers = [];
+
   @override
   void initState() {
     super.initState();
     _getUserData();
+    for (int i = 25; i <= 400; i++) {
+      weightNumbers.add(i);
+    }
+  }
+
+  // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoPicker.
+  void _showWeightDialog(Widget child) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 216,
+        padding: const EdgeInsets.only(top: 6.0),
+        // The Bottom margin is provided to align the popup above the system navigation bar.
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        // Provide a background color for the popup.
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        // Use a SafeArea widget to avoid system overlaps.
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
+    );
   }
 
   Future<void> _getUserData() async {
@@ -326,6 +356,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   TextField(
                     controller: heightController,
+                    // TODO: Create picker for Android
                     onTap: selectedUnit == HeightUnit.ft &&
                             Theme.of(context).platform == TargetPlatform.iOS
                         ? () {
@@ -425,6 +456,28 @@ class _EditProfileState extends State<EditProfile> {
                     controller: weightController,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    // TODO: Fix and set up android selector
+                    onTap: () => _showWeightDialog(CupertinoPicker(
+                      magnification: 1.22,
+                      squeeze: 1.2,
+                      useMagnifier: true,
+                      itemExtent: 375,
+                      // This sets the initial item.
+                      scrollController: FixedExtentScrollController(
+                        initialItem: selectedWeight,
+                      ),
+                      // This is called when selected item is changed.
+                      onSelectedItemChanged: (int selectedItem) {
+                        setState(() {
+                          selectedWeight = selectedItem;
+                        });
+                      },
+                      children: List<Widget>.generate(weightNumbers.length,
+                          (int index) {
+                        return Center(
+                            child: Text(weightNumbers[index] as String));
+                      }),
+                    )),
                     decoration: const InputDecoration(
                       labelText: 'Weight',
                       hintText: 'Weight',
