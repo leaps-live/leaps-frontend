@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+enum HeightUnit { ft, cm }
+
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
   static const routeName = '/edit_profile';
@@ -25,7 +27,14 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
   bool isLoading = false;
+
+  // For Height Cupertino Picker
+  HeightUnit selectedUnit = HeightUnit.ft;
+  int ft = 0;
+  int inches = 0;
+  late String cm;
 
   @override
   void initState() {
@@ -74,6 +83,7 @@ class _EditProfileState extends State<EditProfile> {
     firstNameController.dispose();
     lastNameController.dispose();
     locationController.dispose();
+    heightController.dispose();
     super.dispose();
   }
 
@@ -82,6 +92,7 @@ class _EditProfileState extends State<EditProfile> {
         feetController.text.isEmpty ||
         inchController.text.isEmpty ||
         weightController.text.isEmpty ||
+        heightController.text.isEmpty ||
         firstNameController.text.isEmpty ||
         lastNameController.text.isEmpty ||
         locationController.text.isEmpty) {
@@ -112,9 +123,8 @@ class _EditProfileState extends State<EditProfile> {
 
     // Get the input values from the text fields
     String birthday = birthdayController.text;
-    String height = feetController.text + "'" + inchController.text;
+    String height = "${feetController.text}'${inchController.text}";
     String weight = weightController.text;
-    print(height);
 
     String userid = 'f7a0ab13-1573-4716-9423-95d02b8d6732';
 
@@ -311,6 +321,103 @@ class _EditProfileState extends State<EditProfile> {
                           _showDatePicker(context);
                         }
                       }),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: heightController,
+                    onTap: selectedUnit == HeightUnit.ft &&
+                            Theme.of(context).platform == TargetPlatform.iOS
+                        ? () {
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            showCupertinoModalPopup(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    height: 300,
+                                    color: Colors.grey,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 3,
+                                          child: CupertinoPicker(
+                                            itemExtent: 32.0,
+                                            onSelectedItemChanged: (int index) {
+                                              print(index + 1);
+                                              setState(() {
+                                                ft = (index + 1);
+                                                heightController.text =
+                                                    "$ft' $inches\"";
+                                              });
+                                            },
+                                            children:
+                                                List.generate(12, (index) {
+                                              return Center(
+                                                child: Text('${index + 1}'),
+                                              );
+                                            }),
+                                          ),
+                                        ),
+                                        const Expanded(
+                                            flex: 1,
+                                            child: Center(
+                                                child: Text('ft',
+                                                    style: TextStyle(
+                                                      decoration:
+                                                          TextDecoration.none,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      color: Colors.black,
+                                                    )))),
+                                        Expanded(
+                                          child: CupertinoPicker(
+                                            itemExtent: 32.0,
+                                            onSelectedItemChanged: (int index) {
+                                              print(index);
+                                              setState(() {
+                                                inches = (index);
+                                                heightController.text =
+                                                    "$ft' $inches\"";
+                                              });
+                                            },
+                                            children:
+                                                List.generate(12, (index) {
+                                              return Center(
+                                                child: Text('$index'),
+                                              );
+                                            }),
+                                          ),
+                                        ),
+                                        const Expanded(
+                                          flex: 3,
+                                          child: Center(
+                                              child: Text('inches',
+                                                  style: TextStyle(
+                                                    decoration:
+                                                        TextDecoration.none,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Colors.black,
+                                                  ))),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                });
+                          }
+                        : null,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    decoration: const InputDecoration(
+                      labelText: 'Height',
+                      hintText: 'Height',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
