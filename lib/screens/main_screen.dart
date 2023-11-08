@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -29,50 +28,34 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
-        unselectedFontSize: 14,
+        unselectedFontSize: 25,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         selectedItemColor: primaryColor,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Icons.home,
+                Remix.home_line,
                 color: primaryColor,
               ),
-              icon: Icon(Icons.home),
+              icon: Icon(Remix.home_line),
               label: "Home",
               backgroundColor: primaryColor),
-          // BottomNavigationBarItem(
-          //     activeIcon: Icon(
-          //       Icons.favorite,
-          //       color: primaryColor,
-          //     ),
-          //     icon: Icon(Icons.favorite),
-          //     label: 'For you',
-          //     backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Icons.add,
+                Remix.add_line,
                 color: primaryColor,
               ),
               icon: Icon(Icons.add),
               label: 'Create',
               backgroundColor: primaryColor),
-          // BottomNavigationBarItem(
-          //     activeIcon: Icon(
-          //       Icons.star_rounded,
-          //       color: primaryColor,
-          //     ),
-          //     icon: Icon(
-          //       Icons.star_rounded,
-          //     ),
-          //     label: 'Career',
-          //     backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Icons.person,
+                Remix.user_5_fill,
                 color: primaryColor,
               ),
-              icon: Icon(Icons.person),
+              icon: Icon(Remix.user_5_fill),
               label: 'Profile',
               backgroundColor: primaryColor),
         ],

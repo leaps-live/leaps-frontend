@@ -88,8 +88,11 @@ class _EditProfileState extends State<EditProfile> {
           searchResult = json.decode(response.body);
         });
         print(searchResult);
+        firstNameController.text = searchResult['userfirstname'];
+        lastNameController.text = searchResult['userlastname'];
         birthdayController.text = searchResult['userbirthday'];
-        weightController.text = searchResult['userweight'];
+        weightController.text =
+            searchResult['userweight'] ? searchResult['userweight'] : 0;
         feetController.text = searchResult['userheight'].split("'")[0];
         inchController.text = searchResult['userheight'].split("'")[1];
         print(response.body);
