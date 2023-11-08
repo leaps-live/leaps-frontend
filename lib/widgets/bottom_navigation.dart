@@ -16,9 +16,9 @@ class _BottomNavBarState extends State<BottomNavbar> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const OnboardingScreen(),
-    const OnboardingScreen(),
+    // const OnboardingScreen(),
     const CreateCenterScreen(),
-    const CareerProfileScreen(),
+    // const CareerProfileScreen(),
   ];
 
   @override

@@ -19,10 +19,8 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePageScreen(),
-    const OnboardingScreen(),
     const CreateCenterScreen(),
-    const CareerProfileScreen(),
-    const ProfileScreen()
+    const ProfileScreen(),
   ];
 
   @override
@@ -43,14 +41,14 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.home),
               label: "Home",
               backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.favorite,
-                color: primaryColor,
-              ),
-              icon: Icon(Icons.favorite),
-              label: 'For you',
-              backgroundColor: primaryColor),
+          // BottomNavigationBarItem(
+          //     activeIcon: Icon(
+          //       Icons.favorite,
+          //       color: primaryColor,
+          //     ),
+          //     icon: Icon(Icons.favorite),
+          //     label: 'For you',
+          //     backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.add,
@@ -59,16 +57,16 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.add),
               label: 'Create',
               backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.star_rounded,
-                color: primaryColor,
-              ),
-              icon: Icon(
-                Icons.star_rounded,
-              ),
-              label: 'Career',
-              backgroundColor: primaryColor),
+          // BottomNavigationBarItem(
+          //     activeIcon: Icon(
+          //       Icons.star_rounded,
+          //       color: primaryColor,
+          //     ),
+          //     icon: Icon(
+          //       Icons.star_rounded,
+          //     ),
+          //     label: 'Career',
+          //     backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.person,
