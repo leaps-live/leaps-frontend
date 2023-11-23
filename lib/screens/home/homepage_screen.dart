@@ -97,14 +97,6 @@ class topBar extends StatelessWidget {
             ),
           ],
         ),
-        // Padding(
-        //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-        //     child: CustomButton(
-        //       text: 'S3 Upload Playground',
-        //       onTap: () {
-        //         Navigator.pushNamed(context, S3UploadScreen.routeName);
-        //       },
-        //     )),
       ],
     );
   }
