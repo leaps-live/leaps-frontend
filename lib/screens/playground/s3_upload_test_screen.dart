@@ -3,14 +3,15 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/multi_images_utils.dart';
 
-class S3Upload extends StatefulWidget {
-  const S3Upload({super.key});
+class S3UploadScreen extends StatefulWidget {
+  const S3UploadScreen({super.key});
+  static const routeName = '/s3upload';
 
   @override
-  State<S3Upload> createState() => _S3UploadState();
+  State<S3UploadScreen> createState() => _S3UploadScreenState();
 }
 
-class _S3UploadState extends State<S3Upload> {
+class _S3UploadScreenState extends State<S3UploadScreen> {
   bool isApiCallProcess = false;
   String singleImageFile = "";
   List<String> selectedMultiImages = [];
@@ -47,6 +48,7 @@ class _S3UploadState extends State<S3Upload> {
           child: MultiImagePicker(
               totalImages: 5,
               imageSource: ImagePickSource.gallery,
+              initialValue: const [],
               onImageChanged: (images) {
                 selectedMultiImages = [];
 
@@ -60,7 +62,11 @@ class _S3UploadState extends State<S3Upload> {
               }),
         ),
         Center(
-          child: FormHelper.submitButton("Upload", () {}, btnColor: Colors.red),
+          child: FormHelper.submitButton("Upload", () {},
+              btnColor: Colors.redAccent,
+              borderColor: Colors.redAccent,
+              txtColor: Colors.white,
+              borderRadius: 10),
         )
       ],
     );
