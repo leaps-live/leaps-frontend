@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
-import 'package:snippet_coder_utils/multi_images_utils.dart';
+// import 'package:snippet_coder_utils/multi_images_utils.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class S3UploadScreen extends StatefulWidget {
   const S3UploadScreen({super.key});
@@ -12,63 +15,142 @@ class S3UploadScreen extends StatefulWidget {
 }
 
 class _S3UploadScreenState extends State<S3UploadScreen> {
-  bool isApiCallProcess = false;
-  String singleImageFile = "";
-  List<String> selectedMultiImages = [];
+  List<Asset> images = <Asset>[];
+  String _error = 'No Error Dectected';
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget buildGridView() {
+    return GridView.count(
+      crossAxisCount: 3,
+      children: List.generate(images.length, (index) {
+        Asset asset = images[index];
+        return AssetThumb(
+          asset: asset,
+          width: 300,
+          height: 300,
+        );
+      }),
+    );
+  }
+
+  Future<void> loadAssets() async {
+    List<Asset> resultList = <Asset>[];
+    String error = 'No Error Detected';
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 300,
+        enableCamera: true,
+        selectedAssets: images,
+        cupertinoOptions: const CupertinoOptions(
+          takePhotoIcon: "chat",
+          doneButtonTitle: "Fatto",
+        ),
+        materialOptions: const MaterialOptions(
+          actionBarColor: "#abcdef",
+          actionBarTitle: "Example App",
+          allViewTitle: "All Photos",
+          useDetailsView: false,
+          selectCircleStrokeColor: "#000000",
+        ),
+      );
+    } on Exception catch (e) {
+      error = e.toString();
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      images = resultList;
+      _error = error;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      home: Scaffold(
         appBar: AppBar(title: const Text("S3 Uploading")),
-        body: ProgressHUD(
-            child: uploadUI(),
-            inAsyncCall: isApiCallProcess,
-            opacity: .3,
-            key: UniqueKey()));
-  }
-
-  uploadUI() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Single Image",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        SizedBox(
-          child: MultiImagePicker(
-              totalImages: 1,
-              imageSource: ImagePickSource.gallery,
-              onImageChanged: (images) {
-                singleImageFile = images[0].imageFile;
-              }),
+        body: Column(
+          children: <Widget>[
+            Center(child: Text('Error: $_error')),
+            ElevatedButton(
+              onPressed: loadAssets,
+              child: const Text("Pick images"),
+            ),
+            Expanded(
+              child: buildGridView(),
+            )
+          ],
         ),
-        const Text("Multiple Image",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        SizedBox(
-          child: MultiImagePicker(
-              totalImages: 5,
-              imageSource: ImagePickSource.gallery,
-              initialValue: const [],
-              onImageChanged: (images) {
-                selectedMultiImages = [];
-
-                images.forEach((image) {
-                  if (image is ImageUploadModel) {
-                    selectedMultiImages.add(image.imageFile);
-                  }
-                });
-
-                singleImageFile = images[0].imageFile;
-              }),
-        ),
-        Center(
-          child: FormHelper.submitButton("Upload", () {},
-              btnColor: Colors.redAccent,
-              borderColor: Colors.redAccent,
-              txtColor: Colors.white,
-              borderRadius: 10),
-        )
-      ],
+      ),
     );
   }
+
+  // bool isApiCallProcess = false;
+  // String singleImageFile = "";
+  // List<String> selectedMultiImages = [];
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //       appBar: AppBar(title: const Text("S3 Uploading")),
+  //       body: ProgressHUD(
+  //           child: uploadUI(),
+  //           inAsyncCall: isApiCallProcess,
+  //           opacity: .3,
+  //           key: UniqueKey()));
+  // }
+
+  // uploadUI() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       const Text("Single Image",
+  //           style: TextStyle(fontWeight: FontWeight.bold)),
+  //       SizedBox(
+  //         child: MultiImagePicker(
+  //             totalImages: 1,
+  //             imageSource: ImagePickSource.gallery,
+  //             onImageChanged: (images) {
+  //               singleImageFile = images[0].imageFile;
+  //             }),
+  //       ),
+  //       // const Text("Multiple Image",
+  //       //     style: TextStyle(fontWeight: FontWeight.bold)),
+  //       // SizedBox(
+  //       //   child: MultiImagePicker(
+  //       //       totalImages: 5,
+  //       //       imageSource: ImagePickSource.gallery,
+  //       //       initialValue: const [],
+  //       //       onImageChanged: (images) {
+  //       //         selectedMultiImages = [];
+
+  //       //         images.forEach((image) {
+  //       //           if (image is ImageUploadModel) {
+  //       //             selectedMultiImages.add(image.imageFile);
+  //       //           }
+  //       //         });
+
+  //       //         singleImageFile = images[0].imageFile;
+  //       //       }),
+  //       // ),
+  //       Center(
+  //         child: FormHelper.submitButton("Upload", () {},
+  //             btnColor: Colors.redAccent,
+  //             borderColor: Colors.redAccent,
+  //             txtColor: Colors.white,
+  //             borderRadius: 10),
+  //       )
+  //     ],
+  //   );
+  // }
 }
