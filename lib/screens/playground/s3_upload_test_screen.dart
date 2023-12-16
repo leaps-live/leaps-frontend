@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:snippet_coder_utils/ProgressHUD.dart';
-// import 'package:snippet_coder_utils/multi_images_utils.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class S3UploadScreen extends StatefulWidget {
