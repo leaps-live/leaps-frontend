@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
+import 'package:leaps_frontend/screens/user/profile_screen.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({super.key});
@@ -24,31 +24,31 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.input),
             title: const Text('Welcome'),
             onTap: () =>
-                {Navigator.pushNamed(context, UserProfileScreen.routeName)},
+                {Navigator.pushNamed(context, ProfileScreen.routeName)},
           ),
           ListTile(
             leading: const Icon(Icons.verified_user),
             title: const Text('Profile'),
             onTap: () =>
-                {Navigator.pushNamed(context, UserProfileScreen.routeName)},
+                {Navigator.pushNamed(context, ProfileScreen.routeName)},
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () =>
-                {Navigator.pushNamed(context, UserProfileScreen.routeName)},
+                {Navigator.pushNamed(context, ProfileScreen.routeName)},
           ),
           ListTile(
             leading: const Icon(Icons.border_color),
             title: const Text('Feedback'),
             onTap: () =>
-                {Navigator.pushNamed(context, UserProfileScreen.routeName)},
+                {Navigator.pushNamed(context, ProfileScreen.routeName)},
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
             onTap: () =>
-                {Navigator.pushNamed(context, UserProfileScreen.routeName)},
+                {Navigator.pushNamed(context, ProfileScreen.routeName)},
           ),
         ],
       ),

@@ -41,11 +41,10 @@ import 'package:leaps_frontend/screens/user/settings/account_security/manage_dev
 import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
 import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
+import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
 
 var allRoutes = <String, WidgetBuilder>{
   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
-  UserProfileScreen.routeName: (context) => const UserProfileScreen(),
   CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
   CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
@@ -94,5 +93,6 @@ var allRoutes = <String, WidgetBuilder>{
       const ConfirmResetPasswordScreen(arguments: {}),
   NotificationsScreen.routeName: (context) => const NotificationsScreen(),
   EmailConfirmationCodeScreen.routeName: (context) =>
-      const EmailConfirmationCodeScreen(arguments: {})
+      const EmailConfirmationCodeScreen(arguments: {}),
+  S3UploadScreen.routeName: (context) => const S3UploadScreen()
 };

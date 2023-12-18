@@ -14,8 +14,13 @@ class User {
   String userid;
   String firstName;
   String lastName;
+  String userType;
 
-  User({required this.userid, required this.firstName, required this.lastName});
+  User(
+      {required this.userid,
+      required this.firstName,
+      required this.lastName,
+      required this.userType});
 
   // Convert User object to Map
   Map<String, dynamic> toJson() {
@@ -29,10 +34,10 @@ class User {
   // Create User object from Map
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      userid: json['userid'],
-      firstName: json['userfirstname'],
-      lastName: json['userlastname'],
-    );
+        userid: json['userid'],
+        firstName: json['userfirstname'],
+        lastName: json['userlastname'],
+        userType: json['usertype']);
   }
 }
 
@@ -53,6 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   late User user;
   late String userName;
+  late String userType;
 
   @override
   void initState() {
@@ -69,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (userJsonString != null) {
       user = User.fromJson(jsonDecode(userJsonString!));
       userName = '${user.firstName} ${user.lastName}';
+      userType = user.userType;
       print("111111111111111 ${userJsonString}");
       setState(() {
         isLogin = true;
@@ -121,13 +128,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   if (isLogin)
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, CareerProfileScreen.routeName);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primaryColor,
                           fixedSize:
-                              Size(MediaQuery.of(context).size.width - 20, 50),
+                              Size(MediaQuery.of(context).size.width - 20, 60),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(6),
                           ),
                         ),
                         child: GestureDetector(
@@ -197,15 +207,15 @@ class _AvatarState extends State<Avatar> {
                   const SizedBox(
                     width: 8,
                   ),
-                  GestureDetector(
-                    child: const Icon(
-                      Remix.edit_line,
-                      color: Color(0xFF2E3A59),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(context, EditProfile.routeName);
-                    },
-                  )
+                  // GestureDetector(
+                  //   child: const Icon(
+                  //     Remix.edit_line,
+                  //     color: Color(0xFF2E3A59),
+                  //   ),
+                  //   onTap: () {
+                  //     Navigator.pushNamed(context, EditProfile.routeName);
+                  //   },
+                  // )
                 ],
               ),
               const SizedBox(height: 8),
