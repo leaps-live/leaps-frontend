@@ -46,9 +46,7 @@ class _ConfirmLiveStreamScreenState extends State<ConfirmLiveStreamScreen> {
           iconTheme: const IconThemeData(color: Colors.black),
           actions: [
             TextButton(
-              onPressed: () {
-                // Navigator.pushNamed(context, UserProfileScreen.routeName);
-              },
+              onPressed: () {},
               child: const CircleAvatar(
                 backgroundImage: NetworkImage(''),
               ),

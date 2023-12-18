@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
-import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
-import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dart';
 import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
+import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
-import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 
 import '../widgets/custom_button.dart';
-import 'landing/login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   static const routeName = '/onboarding';
@@ -78,6 +73,14 @@ class OnboardingScreen extends StatelessWidget {
                 text: 'Edit Game',
                 onTap: () {
                   Navigator.pushNamed(context, EditGameScreen.routeName);
+                },
+              )),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomButton(
+                text: 'S3 Upload Playground',
+                onTap: () {
+                  Navigator.pushNamed(context, S3UploadScreen.routeName);
                 },
               )),
         ],

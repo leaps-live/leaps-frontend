@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
+import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
@@ -253,6 +254,55 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                             SizedBox(width: 8), // 图标和文本之间的间距
                             Text(
                               "Create a game",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, CreateLiveStreamScreen.routeName);
+                        },
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Remix.broadcast_line,
+                              color: Color(0xFF2E3A59),
+                            ), // 添
+                            SizedBox(width: 8), // 图标和文本之间的间距
+                            Text(
+                              "Live streaming",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 32),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, S3UploadScreen.routeName);
+                        },
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Remix.basketball_line,
+                              color: Color(0xFF2E3A59),
+                            ), // 添 // 添加图标
+                            SizedBox(width: 8), // 图标和文本之间的间距
+                            Text(
+                              "S3 Upload",
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
