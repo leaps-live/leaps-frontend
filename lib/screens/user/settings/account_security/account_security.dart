@@ -93,27 +93,14 @@ class _AccountSecurityState extends State<AccountSecurity> {
                     TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                  'Are you sure you want to delete your account? This action is irreversible!!!'),
+                  'To delete your account, you must first transfer the ownership of all leagues and/or teams that you own.'),
               actions: [
-                TextButton(
-                  onPressed: () {
-                    deleteAccount();
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      MainScreen.routeName,
-                      (route) => false,
-                    );
-                  },
-                  child: const Text('Yes, delete'),
-                ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(color: Color(0xFF747474)),
-                  ),
+                  child:
+                      const Text('Okay', style: TextStyle(color: Colors.black)),
                 ),
               ],
             );
@@ -125,12 +112,12 @@ class _AccountSecurityState extends State<AccountSecurity> {
           builder: (BuildContext context) {
             return CupertinoAlertDialog(
               title: const Text(
-                'Note',
+                'Warning',
                 textAlign: TextAlign.start,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'To delete your account, you must first transfer ownshiper of all leagues and/or teams that you own.',
+                'To delete your account, you must first transfer the ownership of all leagues and/or teams that you own.',
                 style: TextStyle(fontSize: 15),
                 textAlign: TextAlign.start,
               ),
