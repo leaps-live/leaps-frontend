@@ -21,14 +21,18 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(0),
       child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              tabBar(),
-            ],
+        child: Container(
+          color: secondaryBackgroundColor,
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                tabBar(),
+              ],
+            ),
           ),
         ),
       ),
