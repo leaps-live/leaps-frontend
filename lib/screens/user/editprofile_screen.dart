@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+enum HeightUnit { ft, cm }
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -22,12 +25,51 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController feetController = TextEditingController();
   final TextEditingController inchController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
   bool isLoading = false;
+
+  // For Height Cupertino Picker
+  HeightUnit selectedUnit = HeightUnit.ft;
+  int ft = 0;
+  int inches = 0;
+  late String cm;
+
+  // For Weight Cupertino Picker
+  int selectedWeight = 0;
+  List<int> weightNumbers = [];
 
   @override
   void initState() {
     super.initState();
     _getUserData();
+    for (int i = 25; i <= 400; i++) {
+      weightNumbers.add(i);
+    }
+  }
+
+  // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoPicker.
+  void _showWeightDialog(Widget child) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 216,
+        padding: const EdgeInsets.only(top: 6.0),
+        // The Bottom margin is provided to align the popup above the system navigation bar.
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        // Provide a background color for the popup.
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        // Use a SafeArea widget to avoid system overlaps.
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
+    );
   }
 
   Future<void> _getUserData() async {
@@ -46,8 +88,11 @@ class _EditProfileState extends State<EditProfile> {
           searchResult = json.decode(response.body);
         });
         print(searchResult);
+        firstNameController.text = searchResult['userfirstname'];
+        lastNameController.text = searchResult['userlastname'];
         birthdayController.text = searchResult['userbirthday'];
-        weightController.text = searchResult['userweight'];
+        weightController.text =
+            searchResult['userweight'] ? searchResult['userweight'] : 0;
         feetController.text = searchResult['userheight'].split("'")[0];
         inchController.text = searchResult['userheight'].split("'")[1];
         print(response.body);
@@ -68,6 +113,10 @@ class _EditProfileState extends State<EditProfile> {
     feetController.dispose();
     inchController.dispose();
     weightController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    locationController.dispose();
+    heightController.dispose();
     super.dispose();
   }
 
@@ -75,7 +124,11 @@ class _EditProfileState extends State<EditProfile> {
     if (birthdayController.text.isEmpty ||
         feetController.text.isEmpty ||
         inchController.text.isEmpty ||
-        weightController.text.isEmpty) {
+        weightController.text.isEmpty ||
+        heightController.text.isEmpty ||
+        firstNameController.text.isEmpty ||
+        lastNameController.text.isEmpty ||
+        locationController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fill in all fields!",
         toastLength: Toast.LENGTH_SHORT,
@@ -103,9 +156,8 @@ class _EditProfileState extends State<EditProfile> {
 
     // Get the input values from the text fields
     String birthday = birthdayController.text;
-    String height = feetController.text + "'" + inchController.text;
+    String height = "${feetController.text}'${inchController.text}";
     String weight = weightController.text;
-    print(height);
 
     String userid = 'f7a0ab13-1573-4716-9423-95d02b8d6732';
 
@@ -117,6 +169,7 @@ class _EditProfileState extends State<EditProfile> {
       'userBirthday': birthday,
       'userHeight': height,
       'userWeight': weight,
+      // TODO: Check backend for first name, last name, location edit
     };
 
     print(requestBody);
@@ -243,6 +296,48 @@ class _EditProfileState extends State<EditProfile> {
                     Icons.account_circle,
                     size: 80,
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: firstNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'First Name',
+                      hintText: 'First Name',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: lastNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Last Name',
+                      hintText: 'Last Name',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: locationController,
+                    decoration: const InputDecoration(
+                      labelText: 'Location',
+                      hintText: 'City and State',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   TextField(
                       controller: birthdayController,
                       decoration: const InputDecoration(
@@ -262,44 +357,100 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(
                     height: 16,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: feetController,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Height (feet)',
-                            hintText: 'Height (feet)',
-                            labelStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
+                  TextField(
+                    controller: heightController,
+                    // TODO: Create picker for Android
+                    onTap: selectedUnit == HeightUnit.ft &&
+                            Theme.of(context).platform == TargetPlatform.iOS
+                        ? () {
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            showCupertinoModalPopup(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    height: 300,
+                                    color: Colors.grey,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 3,
+                                          child: CupertinoPicker(
+                                            itemExtent: 32.0,
+                                            onSelectedItemChanged: (int index) {
+                                              print(index + 1);
+                                              setState(() {
+                                                ft = (index + 1);
+                                                heightController.text =
+                                                    "$ft' $inches\"";
+                                              });
+                                            },
+                                            children:
+                                                List.generate(12, (index) {
+                                              return Center(
+                                                child: Text('${index + 1}'),
+                                              );
+                                            }),
+                                          ),
+                                        ),
+                                        const Expanded(
+                                            flex: 1,
+                                            child: Center(
+                                                child: Text('ft',
+                                                    style: TextStyle(
+                                                      decoration:
+                                                          TextDecoration.none,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      color: Colors.black,
+                                                    )))),
+                                        Expanded(
+                                          child: CupertinoPicker(
+                                            itemExtent: 32.0,
+                                            onSelectedItemChanged: (int index) {
+                                              print(index);
+                                              setState(() {
+                                                inches = (index);
+                                                heightController.text =
+                                                    "$ft' $inches\"";
+                                              });
+                                            },
+                                            children:
+                                                List.generate(12, (index) {
+                                              return Center(
+                                                child: Text('$index'),
+                                              );
+                                            }),
+                                          ),
+                                        ),
+                                        const Expanded(
+                                          flex: 3,
+                                          child: Center(
+                                              child: Text('inches',
+                                                  style: TextStyle(
+                                                    decoration:
+                                                        TextDecoration.none,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Colors.black,
+                                                  ))),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                });
+                          }
+                        : null,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    decoration: const InputDecoration(
+                      labelText: 'Height',
+                      hintText: 'Height',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
                       ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      Expanded(
-                        child: TextField(
-                          controller: inchController,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Height (inch)',
-                            hintText: 'Height (inch)',
-                            labelStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   const SizedBox(
                     height: 16,
@@ -308,6 +459,28 @@ class _EditProfileState extends State<EditProfile> {
                     controller: weightController,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    // TODO: Fix and set up android selector
+                    onTap: () => _showWeightDialog(CupertinoPicker(
+                      magnification: 1.22,
+                      squeeze: 1.2,
+                      useMagnifier: true,
+                      itemExtent: 375,
+                      // This sets the initial item.
+                      scrollController: FixedExtentScrollController(
+                        initialItem: selectedWeight,
+                      ),
+                      // This is called when selected item is changed.
+                      onSelectedItemChanged: (int selectedItem) {
+                        setState(() {
+                          selectedWeight = selectedItem;
+                        });
+                      },
+                      children: List<Widget>.generate(weightNumbers.length,
+                          (int index) {
+                        return Center(
+                            child: Text(weightNumbers[index] as String));
+                      }),
+                    )),
                     decoration: const InputDecoration(
                       labelText: 'Weight',
                       hintText: 'Weight',

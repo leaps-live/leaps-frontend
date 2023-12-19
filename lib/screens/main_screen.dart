@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/userprofile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,10 +18,8 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePageScreen(),
-    const OnboardingScreen(),
     const CreateCenterScreen(),
-    const CareerProfileScreen(),
-    const ProfileScreen()
+    const ProfileScreen(),
   ];
 
   @override
@@ -32,29 +28,23 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
-        unselectedFontSize: 14,
+        unselectedFontSize: 25,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         selectedItemColor: primaryColor,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Icons.home,
+                Remix.home_line,
                 color: primaryColor,
               ),
-              icon: Icon(Icons.home),
+              icon: Icon(Remix.home_line),
               label: "Home",
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Icons.favorite,
-                color: primaryColor,
-              ),
-              icon: Icon(Icons.favorite),
-              label: 'For you',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.add,
+                Remix.add_line,
                 color: primaryColor,
               ),
               icon: Icon(Icons.add),
@@ -62,20 +52,10 @@ class _MainScreenState extends State<MainScreen> {
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Icons.star_rounded,
+                Remix.user_5_fill,
                 color: primaryColor,
               ),
-              icon: Icon(
-                Icons.star_rounded,
-              ),
-              label: 'Career',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.person,
-                color: primaryColor,
-              ),
-              icon: Icon(Icons.person),
+              icon: Icon(Remix.user_5_fill),
               label: 'Profile',
               backgroundColor: primaryColor),
         ],

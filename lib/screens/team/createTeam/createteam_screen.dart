@@ -160,7 +160,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 46),
             const Text(
               'Category',
               style: TextStyle(fontSize: 17),
@@ -177,10 +177,10 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
               },
               items: <String>[
                 'Category Choices',
-                'basketball',
-                'football',
-                'tennis',
-                'volleyball'
+                'Basketball',
+                'Football',
+                'Tennis',
+                'Volleyball'
               ]
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -191,6 +191,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                   .toSet()
                   .toList(), // 使用Set来确保唯一值
             ),
+            const SizedBox(height: 26),
             TextField(
               controller: descriptionController,
               onChanged: (value) {
