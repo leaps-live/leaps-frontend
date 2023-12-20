@@ -211,6 +211,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Sign up',
@@ -231,7 +232,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         labelText: 'First Name',
-                        hintText: 'User First Name',
+                        hintText: 'First Name',
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
@@ -248,7 +249,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         labelText: 'Last Name',
-                        hintText: 'User Last Name',
+                        hintText: 'Last Name',
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
@@ -257,6 +258,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 20), // Add
               TextField(
                 controller: usernameController,
                 onChanged: (value) {
@@ -270,6 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
               TextField(
                 controller: emailController,
                 onChanged: (value) {
@@ -283,6 +286,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
               TextField(
                 controller: passwordController,
                 onChanged: (value) {
@@ -297,6 +301,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
               TextField(
                 controller: confirmPasswordController,
                 onChanged: (value) {
@@ -312,7 +317,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(
-                height: 80,
+                height: 60,
               ),
               Container(
                 width: 300,
@@ -358,10 +363,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         areAllFieldsFilled ? primaryColor : Colors.grey,
-                    fixedSize: const Size(300, 40),
+                    fixedSize: const Size(300, 42),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
                   child: isLoading
                       ? const Row(
