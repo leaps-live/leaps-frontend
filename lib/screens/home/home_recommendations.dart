@@ -12,12 +12,6 @@ class HomeRecommendations extends StatefulWidget {
 }
 
 class _HomeRecommendationsState extends State<HomeRecommendations> {
-  // final List<String> imageUrls = [
-  //   "assets/images/swiper1.jpg",
-  //   "assets/images/swiper2.jpeg",
-  //   "assets/images/swiper3.jpg",
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -96,9 +90,9 @@ class _HomeRecommendationsState extends State<HomeRecommendations> {
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Text(
+                child: const Text(
                   "Seattle",
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 13,
                       color: Color.fromRGBO(75, 75, 75, 1),
                       fontWeight: FontWeight.bold),
@@ -106,148 +100,167 @@ class _HomeRecommendationsState extends State<HomeRecommendations> {
               ),
             ],
           ),
-          Container(
-            height: 400,
+          SizedBox(
+            height: 500,
             width: double.infinity,
             child: Card(
-              elevation: 1, // shadow
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10), // 圆角大小
+                borderRadius: BorderRadius.circular(15.0),
               ),
-              child: Container(
-                  padding: EdgeInsets.all(16), // 内边距
-                  child: Column(
-                    children: [
-                      Container(
+              elevation: 1.0, // 设置阴影
+              margin: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
                         color: basketball,
-                        child: Column(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(15.0)),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Remix.basketball_line, color: Colors.white),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Basketball",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Remix.calendar_2_line, color: Colors.white),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Sundays",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Remix.map_pin_line, color: Colors.white),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "UW Intramural Activities Building (IMA)",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      )),
+                  Container(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Row(
                           children: [
-                            Row(
-                              children: [
-                                Icon(Remix.basketball_line),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text("Basketball")
-                              ],
-                            ),
+                            Icon(Remix.user_2_line),
                             SizedBox(
-                              height: 10,
+                              width: 5,
                             ),
-                            Row(
-                              children: [
-                                Icon(Remix.calendar_2_line),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text("Sundays")
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Icon(Remix.map_pin_line),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text("UW Intramural Activities Building (IMA)")
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
+                            Text("Kevin Durant"),
+                            Spacer(),
+                            Text("Shooting Guard")
                           ],
                         ),
-                      ),
-                      Row(
-                        children: [
-                          Icon(Remix.user_2_line),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Kevin Durant"),
-                          Spacer(),
-                          Text("Point Guard")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Remix.user_2_line),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Kevin Durant"),
-                          Spacer(),
-                          Text("Shooting Guard")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Remix.user_2_line),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Kevin Durant"),
-                          Spacer(),
-                          Text("Small Foward")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Remix.user_2_line),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Kevin Durant"),
-                          Spacer(),
-                          Text("Power Forward")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Remix.user_2_line),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("Kevin Durant"),
-                          Spacer(),
-                          Text("Center")
-                        ],
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: basketball,
-                            fixedSize: const Size(150, 40),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: const Text('Join team',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        const SizedBox(
+                          height: 10,
                         ),
-                      ),
-                    ],
-                  )),
+                        const Row(
+                          children: [
+                            Icon(Remix.user_2_line),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("Kevin Durant"),
+                            Spacer(),
+                            Text("Small Foward")
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Row(
+                          children: [
+                            Icon(Remix.user_2_line),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("Kevin Durant"),
+                            Spacer(),
+                            Text("Power Forward")
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Row(
+                          children: [
+                            Icon(Remix.user_2_line),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("Kevin Durant"),
+                            Spacer(),
+                            Text("Center")
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text("Note"),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text(
+                            "Hey everyone! Looking for two more 🏀 players who are available on Sundays. Please join if you are interested. Thanks!"),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: basketball,
+                              fixedSize: const Size(150, 40),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text('Join team',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],

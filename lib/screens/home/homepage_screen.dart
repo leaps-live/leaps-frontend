@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_games.dart';
 import 'package:leaps_frontend/screens/home/home_leagues.dart';
@@ -21,17 +22,19 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(0),
-      child: SafeArea(
-        child: Container(
-          color: secondaryBackgroundColor,
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                tabBar(),
-              ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.zero,
+          child: Container(
+            color: secondaryBackgroundColor,
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  tabBar(),
+                ],
+              ),
             ),
           ),
         ),
