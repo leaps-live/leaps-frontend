@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -216,6 +217,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
         title: const Text(
           'Sign up',
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, MainScreen.routeName);
+            },
+            child: const Text(
+              'Guest   ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ],
+        backgroundColor: primaryBackgroundColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -236,6 +252,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor),
+                        ),
                       ),
                     ),
                   ),
@@ -252,6 +274,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: 'Last Name',
                         labelStyle: TextStyle(
                           color: Colors.black,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor),
                         ),
                       ),
                     ),
@@ -270,6 +298,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -283,6 +317,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: 'Email',
                   labelStyle: TextStyle(
                     color: Colors.black,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
                   ),
                 ),
               ),
@@ -299,6 +339,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -314,12 +360,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 60,
               ),
-              Container(
+              SizedBox(
                 width: 300,
                 child: RichText(
                   text: const TextSpan(
@@ -333,7 +385,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontWeight: FontWeight.normal),
                       ),
                       TextSpan(
-                        text: "Terms of Use",
+                        text: "Privacy Policy",
                         style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
                       ),
                       TextSpan(
@@ -341,7 +393,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontWeight: FontWeight.normal),
                       ),
                       TextSpan(
-                        text: "Privacy Policy",
+                        text: "Terms of Service",
                         style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
                       ),
                       TextSpan(
@@ -394,52 +446,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
-              ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 120,
-                        height: 1,
-                        color: const Color(0xFFD7D7D7),
-                      ),
-                    ),
-                    const TextSpan(
-                      text: " Or sign up with ",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
-                    ),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 120,
-                        height: 1,
-                        color: const Color(0xFFD7D7D7),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
+                height: 100,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/google.png', // 替换为你的图片路径
-                    width: 24,
-                    height: 24,
+                  ElevatedButton(
+                    onPressed: () {
+                      signUpUser();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: grayShadeColor,
+                      fixedSize: const Size(160, 37),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                    ),
+                    child: const Text('Log in with email',
+                        style: TextStyle(color: secondaryTextColor)),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  const Icon(Icons.apple),
+                  Image.asset(
+                    'assets/images/google.png', // 替换为你的图片路径
+                    width: 35,
+                    height: 35,
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  const Icon(Icons.apple, size: 35),
                 ],
               ),
             ],
