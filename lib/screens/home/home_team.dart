@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
 import '../../utils/colors.dart';
 
-class HomeRecommendations extends StatefulWidget {
-  const HomeRecommendations({super.key});
+class HomeTeam extends StatefulWidget {
+  const HomeTeam({super.key});
   static const routeName = '/home';
 
   @override
-  State<HomeRecommendations> createState() => _HomeRecommendationsState();
+  State<HomeTeam> createState() => _HomeTeamState();
 }
 
-class _HomeRecommendationsState extends State<HomeRecommendations> {
+class _HomeTeamState extends State<HomeTeam> {
   @override
   Widget build(BuildContext context) {
     return Padding(

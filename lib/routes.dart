@@ -5,8 +5,8 @@ import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
-import 'package:leaps_frontend/screens/home/home_leagues.dart';
-import 'package:leaps_frontend/screens/home/home_recommendations.dart';
+import 'package:leaps_frontend/screens/home/home_video.dart';
+import 'package:leaps_frontend/screens/home/home_team.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmResetPassword_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
@@ -83,8 +83,8 @@ var allRoutes = <String, WidgetBuilder>{
   SearchTeam.routeName: (context) => const SearchTeam(),
   SearchLeague.routeName: (context) => const SearchLeague(),
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
-  HomeRecommendations.routeName: (context) => const HomeRecommendations(),
-  HomeLeagues.routeName: (context) => const HomeLeagues(),
+  HomeTeam.routeName: (context) => const HomeTeam(),
+  HomeVideo.routeName: (context) => const HomeVideo(),
   GameSelectScreen.routeName: (context) => const GameSelectScreen(),
   ConfirmationCodeScreen.routeName: (context) =>
       const ConfirmationCodeScreen(arguments: {}),
