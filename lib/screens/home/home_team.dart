@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
 
 class HomeTeam extends StatefulWidget {
@@ -12,6 +13,24 @@ class HomeTeam extends StatefulWidget {
 }
 
 class _HomeTeamState extends State<HomeTeam> {
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
+
+  Future<void> checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userJsonString = prefs.getString('user');
+    if (userJsonString != null) {
+      setState(() {
+        isLogin = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -245,7 +264,8 @@ class _HomeTeamState extends State<HomeTeam> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: basketball,
+                              backgroundColor:
+                                  isLogin ? basketball : Colors.grey,
                               fixedSize: const Size(150, 40),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),

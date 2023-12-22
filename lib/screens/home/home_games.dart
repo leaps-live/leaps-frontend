@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
 
 class HomeGames extends StatefulWidget {
@@ -11,6 +12,24 @@ class HomeGames extends StatefulWidget {
 }
 
 class _HomeGamesState extends State<HomeGames> {
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
+
+  Future<void> checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userJsonString = prefs.getString('user');
+    if (userJsonString != null) {
+      setState(() {
+        isLogin = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -204,7 +223,7 @@ class _HomeGamesState extends State<HomeGames> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: tennis,
+                              backgroundColor: isLogin ? tennis : Colors.grey,
                               fixedSize: const Size(150, 40),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -212,7 +231,9 @@ class _HomeGamesState extends State<HomeGames> {
                             ),
                             child: const Text('Join pickup',
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                                    fontSize: 15,
+                                    color: primaryText,
+                                    fontWeight: FontWeight.bold)),
                           ),
                         ),
                       ],
