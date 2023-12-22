@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -28,7 +29,9 @@ class _NotificationsScreenState extends State<NotificationsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryBackgroundColor,
       appBar: AppBar(
+        backgroundColor: secondaryBackgroundColor,
         title: const Text("Notifications"),
         actions: [
           IconButton(
