@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomeLeagues extends StatefulWidget {
-  const HomeLeagues({super.key});
-  static const routeName = '/home_leagues';
+class HomeVideo extends StatefulWidget {
+  const HomeVideo({super.key});
+  static const routeName = '/home_video';
 
   @override
-  State<HomeLeagues> createState() => _HomeLeaguesState();
+  State<HomeVideo> createState() => _HomeVideoState();
 }
 
-class _HomeLeaguesState extends State<HomeLeagues> {
+class _HomeVideoState extends State<HomeVideo> {
   @override
   Widget build(BuildContext context) {
     return Column(
