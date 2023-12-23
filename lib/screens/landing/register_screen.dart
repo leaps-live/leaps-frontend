@@ -27,6 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   String? codeDestination;
   String? codeDeliveryMedium;
+  bool showPassword = false;
 
   /// Signs a user up with a username, password, and email.
   Future<void> signUpUser() async {
@@ -204,7 +205,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     userLastNameController.dispose();
     usernameController.dispose();
     passwordController.dispose();
-    confirmPasswordController.dispose();
     emailController.dispose();
     super.dispose();
   }
@@ -332,44 +332,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onChanged: (value) {
                   _checkIfFieldFilled(); // Update button state on input change
                 },
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: !showPassword,
+                decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Password',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                   ),
-                  enabledBorder: UnderlineInputBorder(
+                  suffixIcon: IconButton(
+                      icon: Icon(showPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      color: primaryColor),
+                  enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: borderColor),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: primaryColor),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: confirmPasswordController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Confirm Password',
-                  hintText: 'Confirm Password',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: borderColor),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: primaryColor),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 15,
+              ),
+              const Text(
+                  'Contain at least one uppercase, numeric, or special characters. Must be 6 or more in length.',
+                  style: TextStyle(color: secondaryTextColor)),
+              const SizedBox(
+                height: 100,
               ),
               SizedBox(
                 width: 300,
@@ -446,7 +441,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(
-                height: 100,
+                height: 90,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
