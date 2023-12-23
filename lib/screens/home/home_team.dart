@@ -61,7 +61,12 @@ class _HomeTeamState extends State<HomeTeam> {
                       color: Color(0xFF2E3A59),
                     ),
                   ),
-                  Text("Filter", style: TextStyle(fontSize: 19))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, FilterScreen.routeName);
+                      },
+                      child: Text("Filter",
+                          style: TextStyle(fontSize: 19, color: Colors.black)))
                 ],
               ),
               Row(
