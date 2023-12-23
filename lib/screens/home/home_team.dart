@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
@@ -52,7 +53,9 @@ class _HomeTeamState extends State<HomeTeam> {
                   ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, FilterScreen.routeName);
+                    },
                     icon: Icon(
                       Remix.equalizer_line,
                       color: Color(0xFF2E3A59),
