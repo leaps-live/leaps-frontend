@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,13 +52,20 @@ class _HomeGamesState extends State<HomeGames> {
                   ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, FilterScreen.routeName);
+                    },
                     icon: Icon(
                       Remix.equalizer_line,
                       color: Color(0xFF2E3A59),
                     ),
                   ),
-                  Text("Filter", style: TextStyle(fontSize: 19))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, FilterScreen.routeName);
+                      },
+                      child: Text("Filter",
+                          style: TextStyle(fontSize: 19, color: Colors.black)))
                 ],
               ),
               Row(

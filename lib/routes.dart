@@ -5,6 +5,7 @@ import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
+import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_video.dart';
 import 'package:leaps_frontend/screens/home/home_team.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
@@ -78,6 +79,7 @@ var allRoutes = <String, WidgetBuilder>{
   ChangeUsername.routeName: (context) => const ChangeUsername(),
   ChangeEmail.routeName: (context) => const ChangeEmail(),
   ChangePassword.routeName: (context) => const ChangePassword(),
+  FilterScreen.routeName: (context) => const FilterScreen(),
   ManageDevices.routeName: (context) => const ManageDevices(),
   FirstCreateTeam.routeName: (context) => const FirstCreateTeam(),
   SearchTeam.routeName: (context) => const SearchTeam(),
