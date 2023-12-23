@@ -183,6 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Log in',
@@ -196,6 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
             color: Colors.black54,
           ),
         ),
+        backgroundColor: primaryBackgroundColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -213,8 +215,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
               TextField(
                 controller: passwordController,
                 onChanged: (value) {
@@ -227,19 +236,39 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelStyle: const TextStyle(
                     color: Colors.black,
                   ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        showPassword ? Icons.visibility_off : Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
                   ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  suffixIcon: IconButton(
+                      icon: Icon(showPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      color: primaryColor),
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 15,
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, ForgotPassword.routeName);
+                  },
+                  child: const Text("Forgot Password?",
+                      style: TextStyle(color: secondaryTextColor)),
+                ),
+              ),
+              const SizedBox(
+                height: 330,
               ),
               Center(
                 child: ElevatedButton(
@@ -253,6 +282,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
                   // child: const Text('Login'),
                   child: isLoading
@@ -279,67 +310,37 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
-              ),
-              Center(
-                  child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, ForgotPassword.routeName);
-                },
-                child: const Text("Forgot Password?"),
-              )),
-              const SizedBox(
-                height: 40,
-              ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 120,
-                        height: 1,
-                        color: const Color(0xFFD7D7D7),
-                      ),
-                    ),
-                    const TextSpan(
-                      text: " Or sign in with ",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
-                    ),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 120,
-                        height: 1,
-                        color: const Color(0xFFD7D7D7),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
+                height: 80,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      googleSignIn();
-                    },
-                    child: Image.asset(
-                      'assets/images/google.png', // 替换为你的图片路径
-                      width: 24,
-                      height: 24,
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: grayShadeColor,
+                      fixedSize: const Size(160, 37),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
                     ),
+                    child: const Text('Sign up with email',
+                        style: TextStyle(color: secondaryTextColor)),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  const Icon(Icons.apple),
+                  Image.asset(
+                    'assets/images/google.png', // 替换为你的图片路径
+                    width: 35,
+                    height: 35,
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  const Icon(Icons.apple, size: 35),
                 ],
               ),
             ],
