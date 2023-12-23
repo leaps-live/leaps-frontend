@@ -1,18 +1,19 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
+import '../landing/register_screen.dart';
 
-class HomeGames extends StatefulWidget {
-  const HomeGames({super.key});
-  static const routeName = '/home_games';
+class HomeTeam extends StatefulWidget {
+  const HomeTeam({super.key});
+  static const routeName = '/home';
 
   @override
-  State<HomeGames> createState() => _HomeGamesState();
+  State<HomeTeam> createState() => _HomeTeamState();
 }
 
-class _HomeGamesState extends State<HomeGames> {
+class _HomeTeamState extends State<HomeTeam> {
   bool isLogin = false;
 
   @override
@@ -46,7 +47,7 @@ class _HomeGamesState extends State<HomeGames> {
               Row(
                 children: [
                   Text(
-                    "Game Recruitment(12)",
+                    "Team Recruitment(12)",
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                   ),
                   Spacer(),
@@ -136,7 +137,7 @@ class _HomeGamesState extends State<HomeGames> {
                           width: double.infinity,
                           padding: EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
-                            color: tennis,
+                            color: basketball,
                             borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(15.0)),
                           ),
@@ -145,14 +146,14 @@ class _HomeGamesState extends State<HomeGames> {
                               Row(
                                 children: [
                                   Icon(Remix.basketball_line,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                   SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     "Basketball",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   )
                                 ],
@@ -163,14 +164,14 @@ class _HomeGamesState extends State<HomeGames> {
                               Row(
                                 children: [
                                   Icon(Remix.calendar_2_line,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                   SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     "Sundays",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   )
                                 ],
@@ -180,14 +181,14 @@ class _HomeGamesState extends State<HomeGames> {
                               ),
                               Row(
                                 children: [
-                                  Icon(Remix.map_pin_line, color: Colors.black),
+                                  Icon(Remix.map_pin_line, color: Colors.white),
                                   SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     "UW Intramural Activities Building (IMA)",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   )
                                 ],
@@ -199,21 +200,61 @@ class _HomeGamesState extends State<HomeGames> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Team 1"),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(Remix.user_2_line),
-                                Icon(Remix.user_2_line),
-                                Icon(Remix.user_2_line),
-                                Icon(Remix.user_2_line),
-                                Icon(Remix.user_2_line),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text("Kevin Durant"),
+                                Spacer(),
+                                Text("Shooting Guard")
                               ],
                             ),
                             const SizedBox(
                               height: 10,
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Remix.user_2_line),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text("Kevin Durant"),
+                                Spacer(),
+                                Text("Small Foward")
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Remix.user_2_line),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text("Kevin Durant"),
+                                Spacer(),
+                                Text("Power Forward")
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Row(
+                              children: [
+                                Icon(Remix.user_2_line),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text("Kevin Durant"),
+                                Spacer(),
+                                Text("Center")
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
                             ),
                             const Text("Note"),
                             const SizedBox(
@@ -222,23 +263,22 @@ class _HomeGamesState extends State<HomeGames> {
                             const Text(
                                 "Hey everyone! Looking for two more 🏀 players who are available on Sundays. Please join if you are interested. Thanks!"),
                             const SizedBox(
-                              height: 120,
+                              height: 30,
                             ),
                             Center(
                               child: ElevatedButton(
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
-                                      isLogin ? tennis : Colors.grey,
+                                      isLogin ? basketball : Colors.grey,
                                   fixedSize: const Size(150, 40),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
-                                child: const Text('Join pickup',
+                                child: const Text('Join team',
                                     style: TextStyle(
                                         fontSize: 15,
-                                        color: primaryText,
                                         fontWeight: FontWeight.bold)),
                               ),
                             ),
@@ -248,12 +288,12 @@ class _HomeGamesState extends State<HomeGames> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
-        ),
-        SizedBox(
-          height: 10,
         ),
         if (!isLogin)
           Container(
