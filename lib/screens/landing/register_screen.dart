@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,6 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   String? codeDestination;
   String? codeDeliveryMedium;
+  bool showPassword = false;
 
   /// Signs a user up with a username, password, and email.
   Future<void> signUpUser() async {
@@ -203,7 +205,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     userLastNameController.dispose();
     usernameController.dispose();
     passwordController.dispose();
-    confirmPasswordController.dispose();
     emailController.dispose();
     super.dispose();
   }
@@ -211,10 +212,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Sign up',
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, MainScreen.routeName);
+            },
+            child: const Text(
+              'Guest   ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ],
+        backgroundColor: primaryBackgroundColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -231,9 +248,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         labelText: 'First Name',
-                        hintText: 'User First Name',
+                        hintText: 'First Name',
                         labelStyle: TextStyle(
                           color: Colors.black,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor),
                         ),
                       ),
                     ),
@@ -248,15 +271,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         labelText: 'Last Name',
-                        hintText: 'User Last Name',
+                        hintText: 'Last Name',
                         labelStyle: TextStyle(
                           color: Colors.black,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor),
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
+              const SizedBox(height: 20), // Add
               TextField(
                 controller: usernameController,
                 onChanged: (value) {
@@ -268,8 +298,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
               TextField(
                 controller: emailController,
                 onChanged: (value) {
@@ -281,40 +318,55 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
               TextField(
                 controller: passwordController,
                 onChanged: (value) {
                   _checkIfFieldFilled(); // Update button state on input change
                 },
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: !showPassword,
+                decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Password',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                   ),
-                ),
-              ),
-              TextField(
-                controller: confirmPasswordController,
-                onChanged: (value) {
-                  _checkIfFieldFilled(); // Update button state on input change
-                },
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Confirm Password',
-                  hintText: 'Confirm Password',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
+                  suffixIcon: IconButton(
+                      icon: Icon(showPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      color: primaryColor),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 80,
+                height: 15,
               ),
-              Container(
+              const Text(
+                  'Contain at least one uppercase, numeric, or special characters. Must be 6 or more in length.',
+                  style: TextStyle(color: secondaryTextColor)),
+              const SizedBox(
+                height: 100,
+              ),
+              SizedBox(
                 width: 300,
                 child: RichText(
                   text: const TextSpan(
@@ -328,7 +380,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontWeight: FontWeight.normal),
                       ),
                       TextSpan(
-                        text: "Terms of Use",
+                        text: "Privacy Policy",
                         style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
                       ),
                       TextSpan(
@@ -336,7 +388,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontWeight: FontWeight.normal),
                       ),
                       TextSpan(
-                        text: "Privacy Policy",
+                        text: "Terms of Service",
                         style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
                       ),
                       TextSpan(
@@ -358,10 +410,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         areAllFieldsFilled ? primaryColor : Colors.grey,
-                    fixedSize: const Size(300, 40),
+                    fixedSize: const Size(300, 42),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
                   child: isLoading
                       ? const Row(
@@ -387,52 +441,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
-              ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 120,
-                        height: 1,
-                        color: const Color(0xFFD7D7D7),
-                      ),
-                    ),
-                    const TextSpan(
-                      text: " Or sign up with ",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
-                    ),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        width: 120,
-                        height: 1,
-                        color: const Color(0xFFD7D7D7),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
+                height: 90,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/google.png', // 替换为你的图片路径
-                    width: 24,
-                    height: 24,
+                  ElevatedButton(
+                    onPressed: () {
+                      signUpUser();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: grayShadeColor,
+                      fixedSize: const Size(160, 37),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                    ),
+                    child: const Text('Log in with email',
+                        style: TextStyle(color: secondaryTextColor)),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  const Icon(Icons.apple),
+                  Image.asset(
+                    'assets/images/google.png', // 替换为你的图片路径
+                    width: 35,
+                    height: 35,
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  const Icon(Icons.apple, size: 35),
                 ],
               ),
             ],
