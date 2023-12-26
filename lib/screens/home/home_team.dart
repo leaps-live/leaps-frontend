@@ -38,101 +38,110 @@ class _HomeTeamState extends State<HomeTeam> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Text(
-                    "Team Recruitment(12)",
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                  ),
-                  Spacer(),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, FilterScreen.routeName);
-                    },
-                    icon: Icon(
-                      Remix.equalizer_line,
-                      color: Color(0xFF2E3A59),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 17.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Team Recruitment(12)",
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  TextButton(
+                    Spacer(),
+                    IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, FilterScreen.routeName);
                       },
-                      child: Text("Filter",
-                          style: TextStyle(fontSize: 19, color: Colors.black)))
-                ],
+                      icon: Icon(
+                        Remix.equalizer_line,
+                        color: Color(0xFF2E3A59),
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, FilterScreen.routeName);
+                        },
+                        child: Text("Filter",
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.black)))
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1, // 边框宽度
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 17.0),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                          width: 1, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "Beginner",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1, // 边框宽度
+                      child: const Text(
+                        "Beginner",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
                       ),
-                      borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Text(
-                      "men",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1, // 边框宽度
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                          width: 1, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      borderRadius: BorderRadius.circular(15),
+                      child: const Text(
+                        "men",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
-                    child: const Text(
-                      "Seattle",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                ],
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                          width: 1, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: const Text(
+                        "Seattle",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 500,
                 width: double.infinity,
