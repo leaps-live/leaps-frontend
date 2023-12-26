@@ -18,6 +18,7 @@ late User user;
 late String userName;
 late String userFirstName;
 late String userLastName;
+late TabController _tabController;
 
 class User {
   String userid;
@@ -54,13 +55,21 @@ class User {
   }
 }
 
-class _CareerProfileScreenState extends State<CareerProfileScreen> {
+class _CareerProfileScreenState extends State<CareerProfileScreen>
+    with SingleTickerProviderStateMixin {
   bool isLogin = false;
 
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
     _getUserData();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   Future<void> _getUserData() async {
@@ -84,7 +93,10 @@ class _CareerProfileScreenState extends State<CareerProfileScreen> {
         appBar: AppBar(
             elevation: 0,
             iconTheme: const IconThemeData(color: Colors.black),
-            title: Text("@$userName"),
+            title: Text("@$userName",
+                style: const TextStyle(
+                  fontSize: 16,
+                )),
             centerTitle: true,
             backgroundColor: primaryBackgroundColor,
             actions: [
@@ -103,9 +115,9 @@ class _CareerProfileScreenState extends State<CareerProfileScreen> {
                 children: const [
                   // SizedBox(height: 10),
                   HeroContent(),
-                  SizedBox(height: 10),
+                  SizedBox(height: 2),
                   Highlight(),
-                  ExperienceWidget()
+                  // ExperienceWidget()
                 ],
               )
             : const Center(
@@ -132,7 +144,7 @@ class _HeroContentState extends State<HeroContent> {
             child: Container(
           color: primaryBackgroundColor,
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -212,25 +224,55 @@ class _HighlightState extends State<Highlight> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          const Row(
+          Row(
             children: [
-              Text("Highlights",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17,
-                      color: Colors.black)),
-              Spacer(),
-              Text("View all",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: secondaryColor)),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                  isScrollable: true, // Make the TabBar scrollable
+                  controller: _tabController,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  tabs: const [
+                    Tab(text: "Videos"),
+                    Tab(text: "Teams"),
+                  ],
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.grey,
+                  labelStyle: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  unselectedLabelStyle: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  indicator: const UnderlineTabIndicator(
+                      borderRadius: BorderRadius.all(Radius.circular(300)),
+                      borderSide: BorderSide(
+                        color: primaryColor,
+                        width: 2,
+                      ),
+                      insets:
+                          EdgeInsets.symmetric(horizontal: 14, vertical: 5)),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 10),
+          SizedBox(
+            height: 900, // Adjust the height as needed
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
+                // HomeTeam(),
+                // HomeGames(),
+                // HomeVideo(),
+              ],
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -283,6 +325,7 @@ class _HighlightState extends State<Highlight> {
   }
 }
 
+// For MVP2
 class ExperienceWidget extends StatelessWidget {
   const ExperienceWidget({super.key});
 
