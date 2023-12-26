@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
@@ -13,6 +14,46 @@ class CareerProfileScreen extends StatefulWidget {
   State<CareerProfileScreen> createState() => _CareerProfileScreenState();
 }
 
+late User user;
+late String userName;
+late String userFirstName;
+late String userLastName;
+
+class User {
+  String userid;
+  String firstName;
+  String lastName;
+  String userType;
+  String userName;
+
+  User(
+      {required this.userid,
+      required this.firstName,
+      required this.lastName,
+      required this.userType,
+      required this.userName});
+
+  // Convert User object to Map
+  Map<String, dynamic> toJson() {
+    return {
+      'userid': userid,
+      'userfirstname': firstName,
+      'userlastname': lastName,
+      'username': userName
+    };
+  }
+
+  // Create User object from Map
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        userid: json['userid'],
+        firstName: json['userfirstname'],
+        lastName: json['userlastname'],
+        userType: json['usertype'],
+        userName: json['username']);
+  }
+}
+
 class _CareerProfileScreenState extends State<CareerProfileScreen> {
   bool isLogin = false;
 
@@ -26,6 +67,11 @@ class _CareerProfileScreenState extends State<CareerProfileScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userJsonString = prefs.getString('user');
     if (userJsonString != null) {
+      print("user data $userJsonString");
+      user = User.fromJson(jsonDecode(userJsonString!));
+      userName = user.userName;
+      userFirstName = user.firstName;
+      userLastName = user.lastName;
       setState(() {
         isLogin = true;
       });
@@ -38,8 +84,9 @@ class _CareerProfileScreenState extends State<CareerProfileScreen> {
         appBar: AppBar(
             elevation: 0,
             iconTheme: const IconThemeData(color: Colors.black),
-            title: const Text("Ruolin Chen"),
+            title: Text("@$userName"),
             centerTitle: true,
+            backgroundColor: primaryBackgroundColor,
             actions: [
               IconButton(
                 icon: const Icon(
@@ -54,7 +101,7 @@ class _CareerProfileScreenState extends State<CareerProfileScreen> {
         body: isLogin
             ? ListView(
                 children: const [
-                  SizedBox(height: 10),
+                  // SizedBox(height: 10),
                   HeroContent(),
                   SizedBox(height: 10),
                   Highlight(),
@@ -82,226 +129,73 @@ class _HeroContentState extends State<HeroContent> {
     return Column(
       children: [
         SizedBox(
-          // padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
-          width: MediaQuery.of(context).size.width * 0.90,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(''),
-                  ),
-                  const Spacer(),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, EditProfile.routeName);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 35.0, vertical: 0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
+            child: Container(
+          color: primaryBackgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(''),
                     ),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, EditProfile.routeName);
-                      },
-                      child: const Text(
-                        'Edit',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 2),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "@ruov",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 2),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "19 yr",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 2),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "6'2",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 2),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "Seattle, WA",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 25),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFEFEFE),
-                    borderRadius: BorderRadius.circular(35),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.4),
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 1), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(13.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
+                        Text("$userFirstName $userLastName",
+                            style: const TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                                color: Colors.black)),
+                        const SizedBox(height: 6),
+                        const Row(
                           children: [
-                            Text(
-                              "PTS",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 81, 81, 81)),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "124",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "REB",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 81, 81, 81)),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "39",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "AST",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 81, 81, 81)),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "56",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "GP",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 81, 81, 81)),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "20",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            )
+                            Text("999 Followers",
+                                style: TextStyle(color: secondaryText)),
+                            SizedBox(width: 9),
+                            Text("999 Following",
+                                style: TextStyle(color: secondaryText))
                           ],
                         )
                       ],
-                    ),
-                  ),
+                    )
+                  ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 25),
+                const Row(
+                  children: [
+                    Text("Seattle, WA",
+                        style: TextStyle(
+                          color: secondaryText,
+                        )),
+                    SizedBox(width: 10),
+                    Text("|", style: TextStyle(color: secondaryText)),
+                    SizedBox(width: 10),
+                    Text("Volleyball", style: TextStyle(color: secondaryText)),
+                    SizedBox(width: 10),
+                    Text("|", style: TextStyle(color: secondaryText)),
+                    SizedBox(width: 10),
+                    Text("Tennis", style: TextStyle(color: secondaryText))
+                  ],
+                ),
+                const SizedBox(height: 15),
+                const Row(
+                  children: [
+                    Text("“I am captivated by the world of pickle ball.”",
+                        style: TextStyle(
+                          fontSize: 16,
+                        )),
+                  ],
+                )
+              ],
+            ),
           ),
-        )
+        ))
       ],
     );
   }

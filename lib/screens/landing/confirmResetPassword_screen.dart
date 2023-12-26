@@ -191,6 +191,12 @@ class _ConfirmResetPasswordScreenState
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
               TextField(
@@ -204,6 +210,12 @@ class _ConfirmResetPasswordScreenState
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
               TextField(
@@ -216,6 +228,12 @@ class _ConfirmResetPasswordScreenState
                   hintText: 'Confirm your password',
                   labelStyle: TextStyle(
                     color: Colors.black,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
                   ),
                 ),
               ),
@@ -234,6 +252,8 @@ class _ConfirmResetPasswordScreenState
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
                   child: isLoading
                       ? const Row(
