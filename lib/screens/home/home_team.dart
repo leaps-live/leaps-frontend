@@ -72,51 +72,54 @@ class _HomeTeamState extends State<HomeTeam> {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 3.7),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
+                        width: 1, // 边框宽度
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Beginner",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 13,
                           color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.normal),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 3.7),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
+                        width: 1, // 边框宽度
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Text(
+                    child: const Text(
                       "men",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 13,
                           color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.normal),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 3.7),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
+                        width: 1, // 边框宽度
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -125,7 +128,7 @@ class _HomeTeamState extends State<HomeTeam> {
                       style: TextStyle(
                           fontSize: 13,
                           color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.normal),
                     ),
                   ),
                 ],

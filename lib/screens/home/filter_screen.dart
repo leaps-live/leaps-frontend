@@ -30,11 +30,11 @@ class _FilterScreenState extends State<FilterScreen> {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(5.0),
+                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -43,16 +43,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -61,16 +62,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.red, // 边框颜色
-                    width: 2.0, // 边框宽度
+                    color: primaryColor, // 边框颜色
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -78,8 +80,8 @@ class _FilterScreenState extends State<FilterScreen> {
                   "Basketball",
                   style: const TextStyle(
                       fontSize: 15,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
+                      color: primaryColor,
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
@@ -88,11 +90,11 @@ class _FilterScreenState extends State<FilterScreen> {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(5.0),
+                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -101,16 +103,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -119,16 +122,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -137,16 +141,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -155,7 +160,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
@@ -164,11 +169,11 @@ class _FilterScreenState extends State<FilterScreen> {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(5.0),
+                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -177,16 +182,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, //  边框宽度
+                    width: 1.0, //  边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -195,16 +201,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -213,7 +220,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
@@ -227,11 +234,12 @@ class _FilterScreenState extends State<FilterScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.red, // 边框颜色
-                    width: 2.0, // 边框宽度
+                    color: primaryColor, // 边框颜色
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -239,17 +247,18 @@ class _FilterScreenState extends State<FilterScreen> {
                   "Seattle",
                   style: const TextStyle(
                       fontSize: 15,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
+                      color: primaryColor,
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -269,11 +278,12 @@ class _FilterScreenState extends State<FilterScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -282,16 +292,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.red, // 边框颜色
-                    width: 2.0, // 边框宽度
+                    color: primaryColor, // 边框颜色
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -299,17 +310,18 @@ class _FilterScreenState extends State<FilterScreen> {
                   "Sunday",
                   style: const TextStyle(
                       fontSize: 15,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
+                      color: primaryColor,
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -318,7 +330,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
@@ -332,11 +344,12 @@ class _FilterScreenState extends State<FilterScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.red, // 边框颜色
-                    width: 2.0, // 边框宽度
+                    color: primaryColor, // 边框颜色
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -344,17 +357,18 @@ class _FilterScreenState extends State<FilterScreen> {
                   "Beginner",
                   style: const TextStyle(
                       fontSize: 15,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
+                      color: primaryColor,
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -363,16 +377,17 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 2.0, // 边框宽度
+                    width: 1.0, // 边框宽度
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -381,7 +396,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   style: const TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
@@ -398,7 +413,8 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
               child: const Text('Show Results',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                  style:
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.normal)),
             ),
           ),
         ]),
