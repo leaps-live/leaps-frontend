@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
+import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -102,7 +103,7 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
             actions: [
               IconButton(
                 icon: const Icon(
-                  Remix.share_circle_line,
+                  Remix.settings_line,
                   color: Color(0xFF2E3A59),
                 ),
                 onPressed: () {
@@ -266,58 +267,8 @@ class _HighlightState extends State<Highlight> {
             height: 900, // Adjust the height as needed
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                // HomeTeam(),
-                // HomeGames(),
-                // HomeVideo(),
-              ],
+              children: const [CareerVideos(), CareerTeams()],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: MediaQuery.of(context).size.width / 2 - 24,
-                    color: Colors.grey,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Title of the video",
-                        style: TextStyle(fontSize: 17),
-                      ),
-                      Icon(Icons.unfold_more)
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: MediaQuery.of(context).size.width / 2 - 24,
-                    color: Colors.grey,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Title of the video",
-                        style: TextStyle(fontSize: 17),
-                      ),
-                      Icon(Icons.unfold_more)
-                    ],
-                  )
-                ],
-              ),
-            ],
           ),
         ],
       ),
