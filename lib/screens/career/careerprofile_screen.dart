@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
+import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -107,7 +108,8 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                   color: Color(0xFF2E3A59),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, SettingsScreen.routeName);
+                  // Navigator.pushNamed(context, SettingsScreen.routeName);
+                  Navigator.pushNamed(context, EditProfile.routeName);
                 },
               ),
             ]),
@@ -152,7 +154,7 @@ class _HeroContentState extends State<HeroContent> {
                 Row(
                   children: [
                     const CircleAvatar(
-                      radius: 40,
+                      radius: 35,
                       backgroundImage: NetworkImage(''),
                     ),
                     const SizedBox(width: 10),
@@ -163,19 +165,41 @@ class _HeroContentState extends State<HeroContent> {
                             style: const TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.bold,
-                                fontSize: 22,
+                                fontSize: 20,
                                 color: Colors.black)),
                         const SizedBox(height: 6),
                         const Row(
                           children: [
                             Text("999 Followers",
-                                style: TextStyle(color: secondaryText)),
+                                style: TextStyle(
+                                  color: secondaryText,
+                                  fontSize: 12,
+                                )),
                             SizedBox(width: 9),
                             Text("999 Following",
-                                style: TextStyle(color: secondaryText))
+                                style: TextStyle(
+                                  color: secondaryText,
+                                  fontSize: 12,
+                                ))
                           ],
                         )
                       ],
+                    ),
+                    const Spacer(),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        fixedSize: const Size(85, 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
+                      ),
+                      child: const Text('Follow',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
                     )
                   ],
                 ),

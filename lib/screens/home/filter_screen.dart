@@ -411,6 +411,8 @@ class _FilterScreenState extends State<FilterScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
+                elevation: 0.0,
+                shadowColor: Colors.transparent,
               ),
               child: const Text('Show Results',
                   style:
