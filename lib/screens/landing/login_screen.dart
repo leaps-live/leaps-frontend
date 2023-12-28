@@ -309,39 +309,46 @@ class _LoginScreenState extends State<LoginScreen> {
                       : const Text('Login'),
                 ),
               ),
-              const SizedBox(
-                height: 80,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: grayShadeColor,
-                      fixedSize: const Size(160, 37),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+              // const SizedBox(
+              //   height: 80,
+              // ),
+              Expanded(
+                  child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: grayShadeColor,
+                        fixedSize: const Size(160, 37),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
                       ),
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
+                      child: const Text('Sign up with email',
+                          style: TextStyle(color: secondaryTextColor)),
                     ),
-                    child: const Text('Sign up with email',
-                        style: TextStyle(color: secondaryTextColor)),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Image.asset(
-                    'assets/images/google.png', // 替换为你的图片路径
-                    width: 35,
-                    height: 35,
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Icon(Icons.apple, size: 35),
-                ],
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Image.asset(
+                      'assets/images/google.png', // 替换为你的图片路径
+                      width: 35,
+                      height: 35,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Icon(Icons.apple, size: 35),
+                  ],
+                ),
+              )),
+              const SizedBox(
+                height: 56,
               ),
             ],
           ),
