@@ -299,28 +299,47 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(
                     height: 16,
                   ),
-                  TextField(
-                    controller: firstNameController,
-                    decoration: const InputDecoration(
-                      labelText: 'First Name',
-                      hintText: 'First Name',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: firstNameController,
+                          decoration: const InputDecoration(
+                            labelText: 'First Name',
+                            hintText: 'First Name',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: borderColor),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    controller: lastNameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Last Name',
-                      hintText: 'Last Name',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                      const SizedBox(
+                          width: 32), // Add a 16 space between the text fields
+                      Expanded(
+                        child: TextField(
+                          controller: lastNameController,
+                          decoration: const InputDecoration(
+                            labelText: 'Last Name',
+                            hintText: 'Last Name',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: borderColor),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   const SizedBox(
                     height: 16,
@@ -332,6 +351,35 @@ class _EditProfileState extends State<EditProfile> {
                       hintText: 'City and State',
                       labelStyle: TextStyle(
                         color: Colors.black,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: borderColor),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: weightController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    // TODO: Fix and set up android selector
+                    onTap: () => {},
+                    decoration: const InputDecoration(
+                      labelText: 'Sports Interest',
+                      hintText: 'Sports Interest',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: borderColor),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
                       ),
                     ),
                   ),
@@ -345,6 +393,12 @@ class _EditProfileState extends State<EditProfile> {
                         hintText: 'Birthday',
                         labelStyle: TextStyle(
                           color: Colors.black,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor),
                         ),
                       ),
                       onTap: () {
@@ -450,42 +504,11 @@ class _EditProfileState extends State<EditProfile> {
                       labelStyle: TextStyle(
                         color: Colors.black,
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    controller: weightController,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    // TODO: Fix and set up android selector
-                    onTap: () => _showWeightDialog(CupertinoPicker(
-                      magnification: 1.22,
-                      squeeze: 1.2,
-                      useMagnifier: true,
-                      itemExtent: 375,
-                      // This sets the initial item.
-                      scrollController: FixedExtentScrollController(
-                        initialItem: selectedWeight,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: borderColor),
                       ),
-                      // This is called when selected item is changed.
-                      onSelectedItemChanged: (int selectedItem) {
-                        setState(() {
-                          selectedWeight = selectedItem;
-                        });
-                      },
-                      children: List<Widget>.generate(weightNumbers.length,
-                          (int index) {
-                        return Center(
-                            child: Text(weightNumbers[index] as String));
-                      }),
-                    )),
-                    decoration: const InputDecoration(
-                      labelText: 'Weight',
-                      hintText: 'Weight',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
                       ),
                     ),
                   ),
