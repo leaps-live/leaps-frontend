@@ -40,6 +40,8 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
+  final TextEditingController selfDescriptionController =
+      TextEditingController();
   bool isLoading = false;
 
   // For Height Cupertino Picker
@@ -85,6 +87,7 @@ class _EditProfileState extends State<EditProfile> {
         birthdayController.text = searchResult['userbirthday'];
         locationController.text = searchResult['userlocation'];
         sportsInterestController.text = searchResult['usersportsinterest'];
+        selfDescriptionController.text = searchResult['userselfdescription'];
         feetController.text = searchResult['userheight'].split("'")[0];
         inchController.text = searchResult['userheight'].split("'")[1];
         print(response.body);
@@ -109,6 +112,7 @@ class _EditProfileState extends State<EditProfile> {
     lastNameController.dispose();
     locationController.dispose();
     heightController.dispose();
+    selfDescriptionController.dispose();
     super.dispose();
   }
 
@@ -120,7 +124,8 @@ class _EditProfileState extends State<EditProfile> {
         heightController.text.isEmpty ||
         firstNameController.text.isEmpty ||
         lastNameController.text.isEmpty ||
-        locationController.text.isEmpty) {
+        locationController.text.isEmpty ||
+        selfDescriptionController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fill in all fields!",
         toastLength: Toast.LENGTH_SHORT,
@@ -151,6 +156,7 @@ class _EditProfileState extends State<EditProfile> {
     String height = "${feetController.text}'${inchController.text}";
     String sportsInterest = sportsInterestController.text;
     String location = locationController.text;
+    String selfDescription = selfDescriptionController.text;
 
     String userid = 'f7a0ab13-1573-4716-9423-95d02b8d6732';
 
@@ -162,7 +168,8 @@ class _EditProfileState extends State<EditProfile> {
       'userBirthday': birthday,
       'userHeight': height,
       'userSportsInterest': sportsInterest,
-      'userLocation': location
+      'userLocation': location,
+      'userSelfDescription': selfDescription
     };
 
     print(requestBody);
@@ -535,8 +542,25 @@ class _EditProfileState extends State<EditProfile> {
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: const InputDecoration(
-                      labelText: 'Height',
-                      hintText: 'Height',
+                      labelText: 'Height (optional)',
+                      hintText: 'Height (optional)',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: borderColor),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: selfDescriptionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Self Description (optional)',
+                      hintText: 'Self Description (optional)',
                       labelStyle: TextStyle(
                         color: Colors.black,
                       ),
