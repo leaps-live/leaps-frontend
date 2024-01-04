@@ -11,6 +11,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum HeightUnit { ft, cm }
 
+const double _kItemExtent = 32.0;
+const List<String> _sportsInterests = <String>[
+  'Basketball',
+  'Football',
+  'Tennis',
+  'Volleyball',
+  'Baseball',
+  'Soccer',
+];
+
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
   static const routeName = '/edit_profile';
@@ -24,7 +34,8 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController feetController = TextEditingController();
   final TextEditingController inchController = TextEditingController();
-  final TextEditingController weightController = TextEditingController();
+  final TextEditingController sportsInterestController =
+      TextEditingController();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
@@ -41,6 +52,9 @@ class _EditProfileState extends State<EditProfile> {
   int selectedWeight = 0;
   List<int> weightNumbers = [];
 
+  // For Sports Interest Cupertino Picker
+  int _selectedSport = 0;
+
   @override
   void initState() {
     super.initState();
@@ -48,28 +62,6 @@ class _EditProfileState extends State<EditProfile> {
     for (int i = 25; i <= 400; i++) {
       weightNumbers.add(i);
     }
-  }
-
-  // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoPicker.
-  void _showWeightDialog(Widget child) {
-    showCupertinoModalPopup<void>(
-      context: context,
-      builder: (BuildContext context) => Container(
-        height: 216,
-        padding: const EdgeInsets.only(top: 6.0),
-        // The Bottom margin is provided to align the popup above the system navigation bar.
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
-        // Provide a background color for the popup.
-        color: CupertinoColors.systemBackground.resolveFrom(context),
-        // Use a SafeArea widget to avoid system overlaps.
-        child: SafeArea(
-          top: false,
-          child: child,
-        ),
-      ),
-    );
   }
 
   Future<void> _getUserData() async {
@@ -91,8 +83,8 @@ class _EditProfileState extends State<EditProfile> {
         firstNameController.text = searchResult['userfirstname'];
         lastNameController.text = searchResult['userlastname'];
         birthdayController.text = searchResult['userbirthday'];
-        weightController.text =
-            searchResult['userweight'] ? searchResult['userweight'] : 0;
+        locationController.text = searchResult['userlocation'];
+        sportsInterestController.text = searchResult['usersportsinterest'];
         feetController.text = searchResult['userheight'].split("'")[0];
         inchController.text = searchResult['userheight'].split("'")[1];
         print(response.body);
@@ -112,7 +104,7 @@ class _EditProfileState extends State<EditProfile> {
     birthdayController.dispose();
     feetController.dispose();
     inchController.dispose();
-    weightController.dispose();
+    sportsInterestController.dispose();
     firstNameController.dispose();
     lastNameController.dispose();
     locationController.dispose();
@@ -124,7 +116,7 @@ class _EditProfileState extends State<EditProfile> {
     if (birthdayController.text.isEmpty ||
         feetController.text.isEmpty ||
         inchController.text.isEmpty ||
-        weightController.text.isEmpty ||
+        sportsInterestController.text.isEmpty ||
         heightController.text.isEmpty ||
         firstNameController.text.isEmpty ||
         lastNameController.text.isEmpty ||
@@ -157,7 +149,8 @@ class _EditProfileState extends State<EditProfile> {
     // Get the input values from the text fields
     String birthday = birthdayController.text;
     String height = "${feetController.text}'${inchController.text}";
-    String weight = weightController.text;
+    String sportsInterest = sportsInterestController.text;
+    String location = locationController.text;
 
     String userid = 'f7a0ab13-1573-4716-9423-95d02b8d6732';
 
@@ -168,8 +161,8 @@ class _EditProfileState extends State<EditProfile> {
     Map<String, dynamic> requestBody = {
       'userBirthday': birthday,
       'userHeight': height,
-      'userWeight': weight,
-      // TODO: Check backend for first name, last name, location edit
+      'userSportsInterest': sportsInterest,
+      'userLocation': location
     };
 
     print(requestBody);
@@ -246,6 +239,27 @@ class _EditProfileState extends State<EditProfile> {
         birthdayController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
       });
     }
+  }
+
+  void _showCupertinoPicker(Widget child) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 200,
+        padding: const EdgeInsets.only(top: 6.0),
+        // The Bottom margin is provided to align the popup above the system navigation bar.
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        // Provide a background color for the popup.
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        // Use a SafeArea widget to avoid system overlaps.
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
+    );
   }
 
   @override
@@ -364,11 +378,33 @@ class _EditProfileState extends State<EditProfile> {
                     height: 16,
                   ),
                   TextField(
-                    controller: weightController,
+                    controller: sportsInterestController,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     // TODO: Fix and set up android selector
-                    onTap: () => {},
+                    onTap: () => {
+                      _showCupertinoPicker(CupertinoPicker(
+                        magnification: 1.22,
+                        squeeze: 1.2,
+                        useMagnifier: true,
+                        itemExtent: _kItemExtent,
+                        // This sets the initial item.
+                        scrollController: FixedExtentScrollController(
+                            initialItem: _selectedSport),
+                        // This is called when selected item is changed.
+                        onSelectedItemChanged: (int selectedItem) {
+                          setState(() {
+                            _selectedSport = selectedItem;
+                            sportsInterestController.text =
+                                _sportsInterests[selectedItem];
+                          });
+                        },
+                        children: List<Widget>.generate(_sportsInterests.length,
+                            (int index) {
+                          return Center(child: Text(_sportsInterests[index]));
+                        }),
+                      ))
+                    },
                     decoration: const InputDecoration(
                       labelText: 'Sports Interest',
                       hintText: 'Sports Interest',
