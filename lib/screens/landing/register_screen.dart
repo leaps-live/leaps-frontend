@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:http/http.dart' as http;
@@ -227,10 +228,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ],
         backgroundColor: primaryBackgroundColor,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
           child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 children: [
@@ -434,41 +437,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       : const Text('Sign up'),
                 ),
               ),
-              const SizedBox(
-                height: 90,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      signUpUser();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: grayShadeColor,
-                      fixedSize: const Size(160, 37),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+              // const SizedBox(
+              //   height: 90,
+              // ),
+              Expanded(
+                  child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, LoginScreen.routeName);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: grayShadeColor,
+                        fixedSize: const Size(160, 37),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
                       ),
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
+                      child: const Text('Log in with email',
+                          style: TextStyle(color: secondaryTextColor)),
                     ),
-                    child: const Text('Log in with email',
-                        style: TextStyle(color: secondaryTextColor)),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Image.asset(
-                    'assets/images/google.png', // 替换为你的图片路径
-                    width: 35,
-                    height: 35,
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Icon(Icons.apple, size: 35),
-                ],
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Image.asset(
+                      'assets/images/google.png', // 替换为你的图片路径
+                      width: 35,
+                      height: 35,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Icon(Icons.apple, size: 35),
+                  ],
+                ),
+              )),
+              const SizedBox(
+                height: 56,
               ),
             ],
           ),
