@@ -95,13 +95,37 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
         appBar: AppBar(
             elevation: 0,
             iconTheme: const IconThemeData(color: Colors.black),
-            title: Text("@$userName",
-                style: const TextStyle(
-                  fontSize: 16,
-                )),
-            centerTitle: true,
+            title: Row(
+              children: [
+                // TODO: https://docs.flutter.dev/cookbook/design/drawer
+                IconButton(
+                  icon: const Icon(
+                    Remix.menu_line,
+                    color: Color(0xFF2E3A59),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, EditProfile.routeName);
+                  },
+                ),
+                Text("@$userName",
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center),
+              ],
+            ),
             backgroundColor: primaryBackgroundColor,
             actions: [
+              IconButton(
+                icon: const Icon(
+                  Remix.share_circle_line,
+                  color: Color(0xFF2E3A59),
+                ),
+                onPressed: () {
+                  // Navigator.pushNamed(context, SettingsScreen.routeName);
+                  Navigator.pushNamed(context, EditProfile.routeName);
+                },
+              ),
               IconButton(
                 icon: const Icon(
                   Remix.settings_line,
@@ -167,39 +191,37 @@ class _HeroContentState extends State<HeroContent> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 color: Colors.black)),
-                        const SizedBox(height: 6),
-                        const Row(
+                        const SizedBox(height: 8),
+                        Row(
                           children: [
-                            Text("999 Followers",
+                            const Text("999 Followers",
                                 style: TextStyle(
                                   color: secondaryText,
-                                  fontSize: 12,
+                                  fontSize: 13,
                                 )),
-                            SizedBox(width: 9),
-                            Text("999 Following",
-                                style: TextStyle(
-                                  color: secondaryText,
-                                  fontSize: 12,
-                                ))
+                            const SizedBox(width: 9),
+                            GestureDetector(
+                              onTap: () {},
+                              child: const Text("Follow",
+                                  style: TextStyle(
+                                    color: secondaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  )),
+                            ),
                           ],
                         )
                       ],
                     ),
                     const Spacer(),
-                    ElevatedButton(
+                    RawMaterialButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        fixedSize: const Size(85, 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 0.0,
-                        shadowColor: Colors.transparent,
-                      ),
-                      child: const Text('Follow',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold)),
+                      elevation: 2.0,
+                      fillColor: Colors.white,
+                      padding: const EdgeInsets.all(12.0),
+                      shape: const CircleBorder(),
+                      child: const Icon(Remix.message_line,
+                          color: primaryColor, size: 22),
                     )
                   ],
                 ),

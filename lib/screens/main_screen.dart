@@ -27,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: secondaryBackgroundColor,
         unselectedItemColor: Colors.grey,
         unselectedFontSize: 25,
         showSelectedLabels: false,
