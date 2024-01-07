@@ -36,22 +36,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         userLastNameController.text.isEmpty ||
         usernameController.text.isEmpty ||
         passwordController.text.isEmpty ||
-        confirmPasswordController.text.isEmpty ||
         emailController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fullfil all the fields",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red[400],
-        textColor: Colors.white,
-      );
-      return;
-    }
-
-    if (passwordController.text != confirmPasswordController.text) {
-      Fluttertoast.showToast(
-        msg: "The password is different from the confirmation password.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 3,
@@ -153,6 +140,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }
     } on AuthException catch (e) {
       print('Error signing up user: ${e.message}');
+      Fluttertoast.showToast(
+        msg: e.message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red[400],
+        textColor: Colors.white,
+      );
     } finally {
       setState(() {
         isLoading = false;
@@ -192,7 +187,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       areAllFieldsFilled = emailController.text.isNotEmpty &&
           passwordController.text.isNotEmpty &&
-          confirmPasswordController.text.isNotEmpty &&
           userFirstNameController.text.isNotEmpty &&
           userLastNameController.text.isNotEmpty &&
           usernameController.text.isNotEmpty;

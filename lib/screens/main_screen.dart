@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/homepage_screen.dart';
-import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomePageScreen(),
     const CreateCenterScreen(),
-    const ProfileScreen(),
+    const CareerProfileScreen()
   ];
 
   @override
@@ -27,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: secondaryBackgroundColor,
         unselectedItemColor: Colors.grey,
         unselectedFontSize: 25,
         showSelectedLabels: false,

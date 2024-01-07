@@ -93,11 +93,12 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
                   fontWeight: FontWeight.normal,
                 ),
                 indicator: const UnderlineTabIndicator(
-                  borderSide: BorderSide(
-                    color: primaryColor,
-                    width: 2,
-                  ),
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(300)),
+                    borderSide: BorderSide(
+                      color: primaryColor,
+                      width: 2.5,
+                    ),
+                    insets: EdgeInsets.symmetric(horizontal: 17, vertical: 7)),
               ),
             ),
             const Spacer(),
