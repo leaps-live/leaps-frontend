@@ -130,7 +130,7 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                     style: TextStyle(
                       color: Color.fromARGB(255, 8, 125, 221),
                       fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),

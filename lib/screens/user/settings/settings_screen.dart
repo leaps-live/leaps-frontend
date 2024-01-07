@@ -100,7 +100,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 15,
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.w600)),
               ListTile(
                 title: const Text(
                   'Privacy Policy',
@@ -165,7 +165,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text(
               'Warning',
               style:
-                  TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+                  TextStyle(color: primaryColor, fontWeight: FontWeight.w600),
             ),
             content: const Text(
                 'Are you sure you want to delete your account? This action is irreversible!!!'),
@@ -202,7 +202,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text(
               'Are you sure you want to log out?',
               textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.w600),
             ),
             actions: [
               CupertinoDialogAction(
@@ -224,7 +224,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: const Text(
                   'Log out',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: primaryColor),
+                      fontWeight: FontWeight.w600, color: primaryColor),
                 ),
               ),
             ],

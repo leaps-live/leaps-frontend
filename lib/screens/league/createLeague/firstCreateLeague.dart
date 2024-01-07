@@ -133,7 +133,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                   const SizedBox(height: 16.0),
                   const Text(
                     'Joined',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 16.0),
                   Row(
@@ -148,7 +148,7 @@ class _FirstCreateLeagueState extends State<FirstCreateLeague> {
                       const Text(
                         "Creator",
                         style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
+                            fontSize: 17, fontWeight: FontWeight.w600),
                       )
                     ],
                   ),

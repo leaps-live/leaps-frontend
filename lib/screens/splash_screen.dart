@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen>
             Text(
               'Welcome to \nLeaps',
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 40,
                   color: Colors.white),
               textAlign: TextAlign.center,

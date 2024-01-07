@@ -48,7 +48,7 @@ class _HomeGamesState extends State<HomeGames> {
                 children: [
                   Text(
                     "Game Recruitment(12)",
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
                   ),
                   Spacer(),
                   IconButton(
@@ -84,7 +84,7 @@ class _HomeGamesState extends State<HomeGames> {
                       style: const TextStyle(
                           fontSize: 13,
                           color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   SizedBox(
@@ -104,7 +104,7 @@ class _HomeGamesState extends State<HomeGames> {
                       style: const TextStyle(
                           fontSize: 13,
                           color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   SizedBox(
@@ -124,7 +124,7 @@ class _HomeGamesState extends State<HomeGames> {
                       style: TextStyle(
                           fontSize: 13,
                           color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
@@ -247,7 +247,7 @@ class _HomeGamesState extends State<HomeGames> {
                                     style: TextStyle(
                                         fontSize: 15,
                                         color: primaryText,
-                                        fontWeight: FontWeight.bold)),
+                                        fontWeight: FontWeight.w600)),
                               ),
                             ),
                           ],
@@ -294,7 +294,7 @@ class _HomeGamesState extends State<HomeGames> {
                   ),
                   child: const Text('Sign up',
                       style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
                 ),
               ],
             ),

@@ -52,7 +52,7 @@ class _HomeTeamState extends State<HomeTeam> {
                     Text(
                       "Team Recruitment(12)",
                       style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
                     ),
                     Spacer(),
                     IconButton(
@@ -301,7 +301,7 @@ class _HomeTeamState extends State<HomeTeam> {
                                 child: const Text('Join team',
                                     style: TextStyle(
                                         fontSize: 15,
-                                        fontWeight: FontWeight.bold)),
+                                        fontWeight: FontWeight.w600)),
                               ),
                             ),
                           ],
@@ -348,7 +348,7 @@ class _HomeTeamState extends State<HomeTeam> {
                   ),
                   child: const Text('Sign up',
                       style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
                 ),
               ],
             ),

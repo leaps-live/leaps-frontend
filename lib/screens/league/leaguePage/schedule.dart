@@ -37,7 +37,7 @@ class _scheduleState extends State<schedule>
           unselectedLabelColor: Colors.grey,
           labelStyle: const TextStyle(
             fontSize: 15,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
           unselectedLabelStyle: const TextStyle(
             fontSize: 13,

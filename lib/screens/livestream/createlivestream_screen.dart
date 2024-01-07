@@ -37,7 +37,7 @@ class _CreateLiveStreamScreenState extends State<CreateLiveStreamScreen> {
                 children: [
                   Text(
                     'Ruolin Chen',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
                     textAlign: TextAlign.left,
                   ),
                   SizedBox(

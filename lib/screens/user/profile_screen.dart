@@ -201,7 +201,7 @@ class _AvatarState extends State<Avatar> {
                   Text(
                     widget.userName,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 21),
+                        fontWeight: FontWeight.w600, fontSize: 21),
                     textAlign: TextAlign.left,
                   ),
                   const SizedBox(
@@ -260,7 +260,7 @@ class AvatarNone extends StatelessWidget {
         const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             'Guest',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 21),
             textAlign: TextAlign.left,
           ),
           SizedBox(height: 8),
