@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/landing/forgot_password.dart';
+import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main_screen.dart';
@@ -309,9 +310,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       : const Text('Login'),
                 ),
               ),
-              // const SizedBox(
-              //   height: 80,
-              // ),
+              const SizedBox(
+                height: 80,
+              ),
               Expanded(
                   child: Align(
                 alignment: Alignment.bottomCenter,

@@ -225,6 +225,12 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                   labelStyle: TextStyle(
                     color: Colors.black,
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: borderColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -242,6 +248,8 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
                   child: isLoading
                       ? const Row(
