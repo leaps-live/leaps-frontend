@@ -40,7 +40,7 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
           unselectedLabelColor: Colors.grey,
           labelStyle: const TextStyle(
             fontSize: 17,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
           unselectedLabelStyle: const TextStyle(
             fontSize: 15,

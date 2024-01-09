@@ -23,7 +23,7 @@ class OnboardingScreen extends StatelessWidget {
         children: [
           const Text(
             'Welcome to \nLeaps',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),

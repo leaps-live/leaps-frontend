@@ -188,7 +188,7 @@ class _HeroContentState extends State<HeroContent> {
                         Text("$userFirstName $userLastName",
                             style: const TextStyle(
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w600,
                                 fontSize: 20,
                                 color: Colors.black)),
                         const SizedBox(height: 8),
@@ -205,7 +205,7 @@ class _HeroContentState extends State<HeroContent> {
                               child: const Text("Follow",
                                   style: TextStyle(
                                     color: secondaryColor,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                     fontSize: 13,
                                   )),
                             ),
@@ -290,7 +290,7 @@ class _HighlightState extends State<Highlight> {
                   unselectedLabelColor: Colors.grey,
                   labelStyle: const TextStyle(
                     fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                   ),
                   unselectedLabelStyle: const TextStyle(
                     fontSize: 15,
@@ -335,7 +335,7 @@ class ExperienceWidget extends StatelessWidget {
         children: [
           const Text("Experience",
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 17,
                   color: Colors.black)),
           const SizedBox(height: 5),

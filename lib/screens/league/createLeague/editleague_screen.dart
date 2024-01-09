@@ -49,7 +49,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
             title: const Text(
               'Do you want to delete this league?',
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
             ),
             content:
                 const Text('Admins will be notified. This cannot be redone'),
@@ -92,7 +92,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
             title: const Text(
               'Do you want to delete this league?',
               textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.w600),
             ),
             content: const Text(
               'Admins will be notified. This cannot be redone',
@@ -125,7 +125,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
                 child: const Text(
                   'Yes, delete',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
+                      fontWeight: FontWeight.w600, color: Colors.black),
                 ),
               ),
             ],
@@ -179,7 +179,7 @@ class _EditLeagueScreenState extends State<EditLeagueScreen> {
               style: TextStyle(
                 color: Color.fromARGB(255, 8, 125, 221),
                 fontSize: 17,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),

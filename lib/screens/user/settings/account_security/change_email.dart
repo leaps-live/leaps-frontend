@@ -185,7 +185,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
                     child: const Text(
                       'Send Verification Email',
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],

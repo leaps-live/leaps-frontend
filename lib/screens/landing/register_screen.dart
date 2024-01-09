@@ -378,7 +378,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       TextSpan(
                         text: "Privacy Policy",
-                        style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
+                        style: TextStyle(fontWeight: FontWeight.w600), // 加粗样式
                       ),
                       TextSpan(
                         text: " and ",
@@ -386,7 +386,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       TextSpan(
                         text: "Terms of Service",
-                        style: TextStyle(fontWeight: FontWeight.bold), // 加粗样式
+                        style: TextStyle(fontWeight: FontWeight.w600), // 加粗样式
                       ),
                       TextSpan(
                         text: ".",

@@ -28,6 +28,7 @@ import 'package:leaps_frontend/screens/search/searchLeague.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_screen_stepone.dart';
 import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
@@ -96,5 +97,7 @@ var allRoutes = <String, WidgetBuilder>{
   NotificationsScreen.routeName: (context) => const NotificationsScreen(),
   EmailConfirmationCodeScreen.routeName: (context) =>
       const EmailConfirmationCodeScreen(arguments: {}),
-  S3UploadScreen.routeName: (context) => const S3UploadScreen()
+  S3UploadScreen.routeName: (context) => const S3UploadScreen(),
+  CreateTeamSteponeScreen.routeName: (context) =>
+      const CreateTeamSteponeScreen()
 };

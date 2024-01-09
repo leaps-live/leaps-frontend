@@ -4,10 +4,9 @@ import 'package:leaps_frontend/screens/game/create_game.dart';
 import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
 import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
-import 'package:leaps_frontend/screens/game/creategame_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_screen_stepone.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -171,7 +170,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                 ),
                 const Text(
                   "Creator Center",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   height: 32,
@@ -182,7 +181,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                                  context, CreateTeamScreen.routeName)
+                                  context, CreateTeamSteponeScreen.routeName)
                               .then((result) {
                             if (result != null && result is bool && result) {
                               getAllTeams();
@@ -339,7 +338,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                 ),
                 const Text(
                   "Manage",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
                 ),
                 const SizedBox(
                   height: 8,
@@ -357,7 +356,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       unselectedLabelColor: Colors.grey,
                       labelStyle: const TextStyle(
                         fontSize: 17,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                       unselectedLabelStyle: const TextStyle(
                         fontSize: 15,
@@ -433,7 +432,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                         "No teams found",
                                         style: TextStyle(
                                             fontSize: 19,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     ),
 
@@ -453,7 +452,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                         "No leagues found",
                                         style: TextStyle(
                                             fontSize: 19,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     )
                                   : Column(
@@ -510,7 +509,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                         "No games found",
                                         style: TextStyle(
                                             fontSize: 19,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     )
                                   : Column(

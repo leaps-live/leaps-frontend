@@ -97,7 +97,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 21,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     isLoading
@@ -151,7 +151,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 21,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     isLoading
@@ -210,7 +210,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 21,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     isLoading
@@ -269,7 +269,7 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 21,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     isLoading

@@ -90,7 +90,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
               title: const Text(
                 'Warning',
                 style:
-                    TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+                    TextStyle(color: primaryColor, fontWeight: FontWeight.w600),
               ),
               content: const Text(
                   'To delete your account, you must first transfer the ownership of all leagues and/or teams that you own.'),
@@ -114,7 +114,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
               title: const Text(
                 'Warning',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.w600),
               ),
               content: const Text(
                 'To delete your account, you must first transfer the ownership of all leagues and/or teams that you own.',
@@ -143,7 +143,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
               title: const Text(
                 'Warning',
                 style:
-                    TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+                    TextStyle(color: primaryColor, fontWeight: FontWeight.w600),
               ),
               content: const Text(
                   'Are you sure you want to delete your account? This action is irreversible!!!'),
@@ -180,7 +180,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
               title: const Text(
                 'Do you want to delete this account?',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.w600),
               ),
               content: Text(
                 'Username: $username',
@@ -204,7 +204,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
                   child: const Text(
                     'Yes, delete',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+                        fontWeight: FontWeight.w600, color: Colors.black),
                   ),
                 ),
               ],
