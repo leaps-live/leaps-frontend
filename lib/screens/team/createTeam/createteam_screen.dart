@@ -18,7 +18,7 @@ class CreateTeamScreen extends StatefulWidget {
 class _CreateTeamScreenState extends State<CreateTeamScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  String selectedValue = "Category Choices";
+  String selectedValue = "Point Guard";
   String teamid = "";
   bool areAllfieldsFilled = false;
   bool isLoading = false;
@@ -33,15 +33,12 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   void _checkIfFieldFilled(BuildContext context) {
     setState(() {
       areAllfieldsFilled = nameController.text.isNotEmpty &&
-          descriptionController.text.isNotEmpty &&
-          selectedValue != "Category Choices";
+          descriptionController.text.isNotEmpty;
     });
   }
 
   void createTeam() async {
-    if (nameController.text.isEmpty ||
-        descriptionController.text.isEmpty ||
-        selectedValue == "Category Choices") {
+    if (nameController.text.isEmpty || descriptionController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fulfill all the fields",
         toastLength: Toast.LENGTH_SHORT,
@@ -130,11 +127,13 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Create a team',
           style: TextStyle(color: Colors.black),
         ),
+        backgroundColor: secondaryBackgroundColor,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
@@ -158,11 +157,17 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 labelStyle: TextStyle(
                   color: Colors.black,
                 ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: borderColor),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: primaryColor),
+                ),
               ),
             ),
             const SizedBox(height: 46),
             const Text(
-              'Category',
+              'Your Position',
               style: TextStyle(fontSize: 17),
             ),
             DropdownButton<String>(
@@ -176,11 +181,12 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 _checkIfFieldFilled(context);
               },
               items: <String>[
-                'Category Choices',
-                'Basketball',
-                'Football',
-                'Tennis',
-                'Volleyball'
+                'Point Guard',
+                'Shooting Guard',
+                'Small Forward',
+                'Power Forward',
+                'Center',
+                'Bench'
               ]
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -199,50 +205,64 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                     context); // Update button state on input change
               },
               decoration: const InputDecoration(
-                labelText: 'Description',
-                hintText: 'Some description about this team',
+                labelText: 'Team Description (optional)',
+                hintText: 'Team Description (optional)',
                 labelStyle: TextStyle(
                   color: Colors.black,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: borderColor),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: primaryColor),
                 ),
               ),
               // maxLines: 3,
             ),
-            const SizedBox(height: 400.0),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  createTeam();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      areAllfieldsFilled ? primaryColor : Colors.grey,
-                  fixedSize: const Size(300, 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+            // const SizedBox(height: 400.0),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  onPressed: () {
+                    createTeam();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        areAllfieldsFilled ? primaryColor : Colors.grey,
+                    fixedSize: const Size(300, 43),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
-                ),
-                child: isLoading
-                    ? const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Create'),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Center(
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 2,
-                              ),
+                  child: isLoading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Create'),
+                            SizedBox(
+                              width: 10,
                             ),
-                          )
-                        ],
-                      )
-                    : const Text('Create'),
+                            Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      : const Text('Create'),
+                ),
               ),
+            ),
+            const SizedBox(
+              height: 150,
             ),
           ],
         ),

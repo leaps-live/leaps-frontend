@@ -16,7 +16,7 @@ class _HomeVideoState extends State<HomeVideo> {
       children: [
         const Text(
           "Popular Leagues",
-          style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           height: 16,
@@ -60,7 +60,7 @@ class _HomeVideoState extends State<HomeVideo> {
         ),
         const Text(
           "Leagues Near You",
-          style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           height: 16,
@@ -104,7 +104,7 @@ class _HomeVideoState extends State<HomeVideo> {
         ),
         const Text(
           "New Leagues",
-          style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           height: 16,

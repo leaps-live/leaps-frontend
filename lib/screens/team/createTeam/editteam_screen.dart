@@ -50,7 +50,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
             title: const Text(
               'Do you want to delete this team?',
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
             ),
             content:
                 const Text('Players will be notified. This cannot be redone'),
@@ -92,7 +92,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
             title: const Text(
               'Do you want to delete this team?',
               textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.w600),
             ),
             content: const Text(
               'Players will be notified. This cannot be redone',
@@ -124,7 +124,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
                 child: const Text(
                   'Yes, delete',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
+                      fontWeight: FontWeight.w600, color: Colors.black),
                 ),
               ),
             ],
@@ -232,7 +232,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
                     style: TextStyle(
                       color: Color.fromARGB(255, 8, 125, 221),
                       fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
           ),
@@ -326,7 +326,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
                     child: const Text(
                       "View List",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           color: Colors.grey,
                           fontSize: 17),
                     ))

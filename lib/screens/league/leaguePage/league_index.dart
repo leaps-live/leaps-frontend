@@ -96,7 +96,7 @@ class _IndexState extends State<Index> {
             ),
             Text(
               widget.searchResult['leaguename'] ?? 'League Name',
-              style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: 8,
@@ -108,7 +108,7 @@ class _IndexState extends State<Index> {
                   style: TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   width: 8,
@@ -132,7 +132,7 @@ class _IndexState extends State<Index> {
                           style: const TextStyle(
                               fontSize: 15,
                               color: Color.fromRGBO(75, 75, 75, 1),
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                       const SizedBox(

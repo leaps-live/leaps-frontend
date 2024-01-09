@@ -39,7 +39,7 @@ class _ConfirmLiveStreamScreenState extends State<ConfirmLiveStreamScreen> {
             'Title of the Live Stream',
             style: TextStyle(
               fontSize: 17,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
           ),

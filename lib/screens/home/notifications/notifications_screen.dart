@@ -55,7 +55,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
             unselectedLabelColor: Colors.grey,
             labelStyle: const TextStyle(
               fontSize: 17,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
             ),
             unselectedLabelStyle: const TextStyle(
               fontSize: 15,
@@ -170,7 +170,7 @@ class _CommentsState extends State<Comments> {
                   children: [
                     Text(
                       "Ruolin Chen",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 5),
                     Text("Nice Game!!!"),
@@ -197,7 +197,7 @@ class _CommentsState extends State<Comments> {
                   children: [
                     Text(
                       "Francis Tang",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 5),
                     Text("Nice Game!!!"),
@@ -249,7 +249,7 @@ class _GamesState extends State<Games> {
                     "UW CSSA Winter League",
                     style: TextStyle(
                         fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                         color: Colors.blue),
                   )
                 ],
@@ -281,7 +281,7 @@ class _GamesState extends State<Games> {
                     "SeattleU Spring League",
                     style: TextStyle(
                         fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                         color: Colors.blue),
                   )
                 ],
