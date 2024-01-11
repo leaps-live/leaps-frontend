@@ -23,44 +23,49 @@ class _S3UploadScreenState extends State<S3UploadScreen> {
   }
 
   uploadUI() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Single Image",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        SizedBox(
-          child: MultiImagePicker(
-              totalImages: 1,
-              onImageChanged: (images) {
-                singleImageFile = images[0].image;
-              },
-              imageSource: ImagePickSource.gallery),
-        ),
-        const Text("Multiple Images",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        SizedBox(
-          child: MultiImagePicker(
-              totalImages: 5,
-              onImageChanged: (images) {
-                selectedMultiImages = [];
-                images.forEach((image) {
-                  if (image is ImageUploadModel) {
-                    selectedMultiImages.add(image.imageFile);
-                  }
-                });
-                singleImageFile = images[0].image;
-              },
-              imageSource: ImagePickSource.gallery),
-        ),
-        Center(
-          child: FormHelper.submitButton("Upload", () {},
-              btnColor: primaryColor,
-              borderColor: primaryColor,
-              txtColor: Colors.black,
-              borderRadius: 10),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Single Image",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(
+            child: MultiImagePicker(
+                totalImages: 1,
+                onImageChanged: (images) {
+                  singleImageFile = images[0].image;
+                },
+                imageSource: ImagePickSource.gallery,
+                initialValue: const []),
+          ),
+          const Text("Multiple Images",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(
+            child: MultiImagePicker(
+                totalImages: 5,
+                onImageChanged: (images) {
+                  selectedMultiImages = [];
+                  images.forEach((image) {
+                    if (image is ImageUploadModel) {
+                      selectedMultiImages.add(image.imageFile);
+                    }
+                  });
+                  singleImageFile = images[0].image;
+                },
+                imageSource: ImagePickSource.gallery,
+                initialValue: const []),
+          ),
+          Center(
+            child: FormHelper.submitButton("Upload", () {},
+                btnColor: primaryColor,
+                borderColor: primaryColor,
+                txtColor: Colors.black,
+                borderRadius: 10),
+          )
+        ],
+      ),
     );
   }
 
