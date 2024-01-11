@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/multi_images_utils.dart';
 // import 'dart:async';
@@ -11,6 +13,8 @@ class S3UploadScreen extends StatefulWidget {
   @override
   State<S3UploadScreen> createState() => _S3UploadScreenState();
 }
+
+// 22:44
 
 class _S3UploadScreenState extends State<S3UploadScreen> {
   @override
@@ -25,12 +29,37 @@ class _S3UploadScreenState extends State<S3UploadScreen> {
       children: [
         const Text("Single Image",
             style: TextStyle(fontWeight: FontWeight.bold)),
-        MultiImagePicker(
-            totalImages: 1,
-            onImageChanged: (images) {
-              singleImageFile = images[0].image;
-            },
-            imageSource: ImagePickSource.gallery)
+        SizedBox(
+          child: MultiImagePicker(
+              totalImages: 1,
+              onImageChanged: (images) {
+                singleImageFile = images[0].image;
+              },
+              imageSource: ImagePickSource.gallery),
+        ),
+        const Text("Multiple Images",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        SizedBox(
+          child: MultiImagePicker(
+              totalImages: 5,
+              onImageChanged: (images) {
+                selectedMultiImages = [];
+                images.forEach((image) {
+                  if (image is ImageUploadModel) {
+                    selectedMultiImages.add(image.imageFile);
+                  }
+                });
+                singleImageFile = images[0].image;
+              },
+              imageSource: ImagePickSource.gallery),
+        ),
+        Center(
+          child: FormHelper.submitButton("Upload", () {},
+              btnColor: primaryColor,
+              borderColor: primaryColor,
+              txtColor: Colors.black,
+              borderRadius: 10),
+        )
       ],
     );
   }
