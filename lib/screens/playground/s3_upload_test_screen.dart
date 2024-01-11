@@ -35,7 +35,8 @@ class _S3UploadScreenState extends State<S3UploadScreen> {
             child: MultiImagePicker(
                 totalImages: 1,
                 onImageChanged: (images) {
-                  singleImageFile = images[0].image;
+                  singleImageFile = images[0].imageFile;
+                  print("this is the single image: " + singleImageFile);
                 },
                 imageSource: ImagePickSource.gallery,
                 initialValue: const []),
@@ -52,7 +53,7 @@ class _S3UploadScreenState extends State<S3UploadScreen> {
                       selectedMultiImages.add(image.imageFile);
                     }
                   });
-                  singleImageFile = images[0].image;
+                  singleImageFile = images[0].imageFile;
                 },
                 imageSource: ImagePickSource.gallery,
                 initialValue: const []),
