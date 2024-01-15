@@ -133,10 +133,12 @@ class _ChangeEmailState extends State<ChangeEmail> {
   Widget build(BuildContext context) {
     return isInit
         ? const Scaffold(
+            backgroundColor: primaryBackgroundColor,
             body: Center(child: CircularProgressIndicator(color: primaryColor)))
         : Scaffold(
             appBar: AppBar(
               title: const Text("Change Email"),
+              backgroundColor: primaryBackgroundColor,
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),

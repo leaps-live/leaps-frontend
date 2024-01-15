@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
 import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
 import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
@@ -42,12 +43,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Settings")),
+        backgroundColor: primaryBackgroundColor,
+        appBar: AppBar(
+          title: const Text("Settings"),
+          backgroundColor: primaryBackgroundColor,
+        ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text("USER",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600)),
+              ListTile(
+                title: const Text(
+                  'Edit Profile',
+                  style: TextStyle(color: Colors.black, fontSize: 19),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, EditProfile.routeName);
+                },
+              ),
               ListTile(
                 title: const Text(
                   'Account Security',
@@ -78,23 +103,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Navigator.pushNamed(context, Notifications.routeName);
                 },
               ),
-              ListTile(
-                title: const Text(
-                  'Privacy Settings',
-                  style: TextStyle(color: Colors.black, fontSize: 19),
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.black,
-                  size: 20,
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, PrivacySettings.routeName);
-                },
-              ),
               const SizedBox(
-                height: 16,
+                height: 30,
               ),
               const Text("ABOUT",
                   style: TextStyle(
@@ -139,6 +149,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   size: 20,
                 ),
                 onTap: () {},
+              ),
+              const SizedBox(
+                height: 30,
               ),
               if (isLogin)
                 ListTile(

@@ -16,6 +16,7 @@ class _NotificationsState extends State<Notifications> {
   final likesController = ValueNotifier<bool>(false);
   final commentController = ValueNotifier<bool>(false);
   final followerController = ValueNotifier<bool>(false);
+  final requestsController = ValueNotifier<bool>(false);
 
   // @override
   // void initState() {
@@ -36,54 +37,26 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: primaryBackgroundColor,
         appBar: AppBar(
+          backgroundColor: primaryBackgroundColor,
           title: const Text("Notifications"),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
               Row(
                 children: [
                   const Text(
-                    "Mention @",
+                    "Requests",
                     style: TextStyle(color: Colors.black, fontSize: 19),
                   ),
                   const Spacer(),
                   AdvancedSwitch(
-                    controller: mentionController,
+                    controller: requestsController,
                     activeColor: primaryColor,
                     inactiveColor: const Color(0xFFD7D7D7),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32.0),
-              Row(
-                children: [
-                  const Text(
-                    "Likes",
-                    style: TextStyle(color: Colors.black, fontSize: 19),
-                  ),
-                  const Spacer(),
-                  AdvancedSwitch(
-                    controller: likesController,
-                    activeColor: primaryColor,
-                    inactiveColor: const Color(0xFFD7D7D7),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32.0),
-              Row(
-                children: [
-                  const Text(
-                    "Comments",
-                    style: TextStyle(color: Colors.black, fontSize: 19),
-                  ),
-                  const Spacer(),
-                  AdvancedSwitch(
-                    controller: commentController,
-                    inactiveColor: const Color(0xFFD7D7D7),
-                    activeColor: primaryColor,
                   ),
                 ],
               ),
