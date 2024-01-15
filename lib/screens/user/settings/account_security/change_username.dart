@@ -116,10 +116,13 @@ class _ChangeUsernameState extends State<ChangeUsername> {
   Widget build(BuildContext context) {
     return isInit
         ? const Scaffold(
+            backgroundColor: primaryBackgroundColor,
             body: Center(child: CircularProgressIndicator(color: primaryColor)))
         : Scaffold(
+            backgroundColor: primaryBackgroundColor,
             appBar: AppBar(
               title: const Text("Change Username"),
+              backgroundColor: primaryBackgroundColor,
               actions: [
                 TextButton(
                   onPressed: () {
