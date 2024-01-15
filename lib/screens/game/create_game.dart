@@ -16,86 +16,96 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Center(
+          child: GestureDetector(
+            child: const Text("Cancel",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.black)),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
         title: const Text("Create a game"),
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Type of game",
+                "Select your team",
                 style: TextStyle(fontSize: 17),
               ),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _isLeagueSelected = true;
-                      });
-                    },
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(horizontal: 0),
-                      ),
-                      overlayColor: MaterialStateProperty.all<Color>(
-                        _isLeagueSelected
-                            ? Colors.transparent
-                            : Colors.grey.withOpacity(0.2),
-                      ),
-                    ),
-                    child: Text(
-                      "Select a league",
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: _isLeagueSelected ? Colors.red : Colors.black,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _isLeagueSelected = false;
-                      });
-                    },
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(horizontal: 0),
-                      ),
-                      overlayColor: MaterialStateProperty.all<Color>(
-                        !_isLeagueSelected
-                            ? Colors.transparent
-                            : Colors.grey.withOpacity(0.2),
-                      ),
-                    ),
-                    child: Text(
-                      "Pickup game",
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: !_isLeagueSelected ? Colors.red : Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              if (_isLeagueSelected)
-                Column(
-                  children: [
-                    Text("You are the admin for the leagues below:"),
-                    GestureDetector(
-                      child:
-                          Text("Placeholder", style: TextStyle(fontSize: 23)),
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, CreateGameScreen.routeName);
-                      },
-                    )
-                  ],
-                )
+              // Row(
+              //   children: [
+              //     TextButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           _isLeagueSelected = true;
+              //         });
+              //       },
+              //       style: ButtonStyle(
+              //         padding: MaterialStateProperty.all(
+              //           const EdgeInsets.symmetric(horizontal: 0),
+              //         ),
+              //         overlayColor: MaterialStateProperty.all<Color>(
+              //           _isLeagueSelected
+              //               ? Colors.transparent
+              //               : Colors.grey.withOpacity(0.2),
+              //         ),
+              //       ),
+              //       child: Text(
+              //         "Select a league",
+              //         style: TextStyle(
+              //           fontSize: 17,
+              //           color: _isLeagueSelected ? Colors.red : Colors.black,
+              //         ),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 16),
+              //     TextButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           _isLeagueSelected = false;
+              //         });
+              //       },
+              //       style: ButtonStyle(
+              //         padding: MaterialStateProperty.all(
+              //           const EdgeInsets.symmetric(horizontal: 0),
+              //         ),
+              //         overlayColor: MaterialStateProperty.all<Color>(
+              //           !_isLeagueSelected
+              //               ? Colors.transparent
+              //               : Colors.grey.withOpacity(0.2),
+              //         ),
+              //       ),
+              //       child: Text(
+              //         "Pickup game",
+              //         style: TextStyle(
+              //           fontSize: 17,
+              //           color: !_isLeagueSelected ? Colors.red : Colors.black,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 16),
+              // if (_isLeagueSelected)
+              //   Column(
+              //     children: [
+              //       Text("You are the admin for the leagues below:"),
+              //       GestureDetector(
+              //         child:
+              //             Text("Placeholder", style: TextStyle(fontSize: 23)),
+              //         onTap: () {
+              //           Navigator.pushNamed(
+              //               context, CreateGameScreen.routeName);
+              //         },
+              //       )
+              //     ],
+              //   )
             ],
           ),
         ),

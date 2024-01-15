@@ -114,6 +114,12 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+          child: const Text("Cancel", style: TextStyle(fontSize: 16)),
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: const Text(
           'Create a Game',
           style: TextStyle(color: Colors.black),
