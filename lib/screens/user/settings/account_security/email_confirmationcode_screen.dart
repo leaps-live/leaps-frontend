@@ -136,10 +136,12 @@ class _EmailConfirmationCodeScreenState
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
 
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Confirmation Code to change your email',
         ),
+        backgroundColor: primaryBackgroundColor,
       ),
       body: SingleChildScrollView(
         child: Padding(

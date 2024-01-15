@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 
 class ManageDevices extends StatefulWidget {
   const ManageDevices({super.key});
@@ -12,8 +13,10 @@ class _ManageDevicesState extends State<ManageDevices> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: primaryBackgroundColor,
         appBar: AppBar(
           title: const Text("Manage Settings"),
+          backgroundColor: primaryBackgroundColor,
           actions: [
             TextButton(
               onPressed: () {

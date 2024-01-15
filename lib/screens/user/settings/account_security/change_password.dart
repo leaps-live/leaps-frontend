@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -217,7 +218,9 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: primaryBackgroundColor,
         appBar: AppBar(
+          backgroundColor: primaryBackgroundColor,
           title: const Text("Change Password"),
           actions: [
             TextButton(

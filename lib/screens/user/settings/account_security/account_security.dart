@@ -251,8 +251,10 @@ class _AccountSecurityState extends State<AccountSecurity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: primaryBackgroundColor,
         appBar: AppBar(
           title: const Text("Account Security"),
+          backgroundColor: primaryBackgroundColor,
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

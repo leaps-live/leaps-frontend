@@ -132,8 +132,8 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                   color: Color(0xFF2E3A59),
                 ),
                 onPressed: () {
-                  // Navigator.pushNamed(context, SettingsScreen.routeName);
-                  Navigator.pushNamed(context, EditProfile.routeName);
+                  Navigator.pushNamed(context, SettingsScreen.routeName);
+                  // Navigator.pushNamed(context, EditProfile.routeName);
                 },
               ),
             ]),
