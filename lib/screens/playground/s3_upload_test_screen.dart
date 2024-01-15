@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
+import 'package:snippet_coder_utils/ProgressHUD.dart';
+import 'package:snippet_coder_utils/multi_images_utils.dart';
 // import 'dart:async';
 // import 'package:multi_image_picker2/multi_image_picker2.dart';
 
@@ -10,71 +14,75 @@ class S3UploadScreen extends StatefulWidget {
   State<S3UploadScreen> createState() => _S3UploadScreenState();
 }
 
-class _S3UploadScreenState extends State<S3UploadScreen> {
-  // List<Asset> images = <Asset>[];
-  // String _error = 'No Error Dectected';
+// 22:44
 
+class _S3UploadScreenState extends State<S3UploadScreen> {
   @override
   void initState() {
     super.initState();
   }
 
-  // Widget buildGridView() {
-  //   return GridView.count(
-  //     crossAxisCount: 3,
-  //     children: List.generate(images.length, (index) {
-  //       Asset asset = images[index];
-  //       return AssetThumb(
-  //         asset: asset,
-  //         width: 300,
-  //         height: 300,
-  //       );
-  //     }),
-  //   );
-  // }
+  uploadUI() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Single Image",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(
+            child: MultiImagePicker(
+                totalImages: 1,
+                onImageChanged: (images) {
+                  singleImageFile = images[0].imageFile;
+                  print("this is the single image: " + singleImageFile);
+                },
+                imageSource: ImagePickSource.gallery,
+                initialValue: const []),
+          ),
+          const Text("Multiple Images",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(
+            child: MultiImagePicker(
+                totalImages: 5,
+                onImageChanged: (images) {
+                  selectedMultiImages = [];
+                  images.forEach((image) {
+                    if (image is ImageUploadModel) {
+                      selectedMultiImages.add(image.imageFile);
+                    }
+                  });
+                  singleImageFile = images[0].imageFile;
+                },
+                imageSource: ImagePickSource.gallery,
+                initialValue: const []),
+          ),
+          Center(
+            child: FormHelper.submitButton("Upload", () {},
+                btnColor: primaryColor,
+                borderColor: primaryColor,
+                txtColor: Colors.black,
+                borderRadius: 10),
+          )
+        ],
+      ),
+    );
+  }
 
-  // Future<void> loadAssets() async {
-  //   List<Asset> resultList = <Asset>[];
-  //   String error = 'No Error Detected';
-
-  //   try {
-  //     resultList = await MultiImagePicker.pickImages(
-  //       maxImages: 300,
-  //       enableCamera: true,
-  //       selectedAssets: images,
-  //       cupertinoOptions: const CupertinoOptions(
-  //         takePhotoIcon: "chat",
-  //         doneButtonTitle: "Fatto",
-  //       ),
-  //       materialOptions: const MaterialOptions(
-  //         actionBarColor: "#abcdef",
-  //         actionBarTitle: "Example App",
-  //         allViewTitle: "All Photos",
-  //         useDetailsView: false,
-  //         selectCircleStrokeColor: "#000000",
-  //       ),
-  //     );
-  //   } on Exception catch (e) {
-  //     error = e.toString();
-  //   }
-
-  //   // If the widget was removed from the tree while the asynchronous platform
-  //   // message was in flight, we want to discard the reply rather than calling
-  //   // setState to update our non-existent appearance.
-  //   if (!mounted) return;
-
-  //   setState(() {
-  //     images = resultList;
-  //     _error = error;
-  //   });
+  bool isApiCallprocess = false;
+  String singleImageFile = "";
+  List<String> selectedMultiImages = [];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text("S3 Uploading")),
-        body: Column(),
-      ),
+    return Scaffold(
+      appBar: AppBar(title: const Text("S3 Uploading")),
+      body: ProgressHUD(
+          key: UniqueKey(),
+          child: uploadUI(),
+          inAsyncCall: isApiCallprocess,
+          opacity: .3),
     );
   }
 }
