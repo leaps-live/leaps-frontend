@@ -9,7 +9,11 @@ class GameSelectScreen extends StatefulWidget {
   State<GameSelectScreen> createState() => _GameSelectScreenState();
 }
 
+enum SingingCharacter { lafayette, jefferson }
+
 class _GameSelectScreenState extends State<GameSelectScreen> {
+  SingingCharacter? _character = SingingCharacter.lafayette;
+
   bool _isLeagueSelected = true;
 
   @override
@@ -30,7 +34,7 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,7 +42,40 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
                 "Select your team",
                 style: TextStyle(fontSize: 17),
               ),
-              // Row(
+              ListTile(
+                title: const Text('Lafayette'),
+                leading: Radio<SingingCharacter>(
+                  value: SingingCharacter.lafayette,
+                  groupValue: _character,
+                  onChanged: (SingingCharacter? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Thomas Jefferson'),
+                leading: Radio<SingingCharacter>(
+                  value: SingingCharacter.jefferson,
+                  groupValue: _character,
+                  onChanged: (SingingCharacter? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+// Row(
               //   children: [
               //     TextButton(
               //       onPressed: () {
@@ -106,10 +143,3 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
               //       )
               //     ],
               //   )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
