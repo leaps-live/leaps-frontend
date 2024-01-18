@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/game/creategame_screen.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 
 class GameSelectScreen extends StatefulWidget {
   const GameSelectScreen({super.key});
@@ -47,12 +48,15 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
                 leading: Radio<SingingCharacter>(
                   value: SingingCharacter.lafayette,
                   groupValue: _character,
+                  activeColor: primaryColor,
+                  materialTapTargetSize: 50,
                   onChanged: (SingingCharacter? value) {
                     setState(() {
                       _character = value;
                     });
                   },
                 ),
+                horizontalTitleGap: 0,
               ),
               ListTile(
                 title: const Text('Thomas Jefferson'),
@@ -65,6 +69,7 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
                     });
                   },
                 ),
+                horizontalTitleGap: 0,
               ),
             ],
           ),
