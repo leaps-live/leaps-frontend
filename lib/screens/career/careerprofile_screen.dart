@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
+import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -147,8 +148,24 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                   // ExperienceWidget()
                 ],
               )
-            : const Center(
-                child: Text("Please login first"),
+            : Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, LoginScreen.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        primaryColor,
+                    fixedSize: const Size(150, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
+                  ),
+                  // child: const Text('Login'),
+                  child: const Text('Sign In', style: TextStyle(color: Colors.white)),
+                ),
               ));
   }
 }
