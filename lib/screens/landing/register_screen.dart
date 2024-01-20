@@ -48,6 +48,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
+    String lowerCaseEmail = emailController.text.toLowerCase();
+
     setState(() {
       isLoading = true;
     });
@@ -59,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'userFirstName': userFirstNameController.text,
       'userLastName': userLastNameController.text,
       'username': usernameController.text,
-      'userEmail': emailController.text,
+      'userEmail': lowerCaseEmail,
       'userPassword': passwordController.text,
       'userBirthday': '2000-1-1',
       'userHeight': null,
@@ -68,12 +70,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     try {
       final userAttributes = {
-        AuthUserAttributeKey.email: emailController.text,
+        AuthUserAttributeKey.email: lowerCaseEmail,
         // additional attributes as needed
       };
 
       final result = await Amplify.Auth.signUp(
-        username: emailController.text,
+        username: lowerCaseEmail,
         password: passwordController.text,
         options: SignUpOptions(
           userAttributes: userAttributes,
@@ -95,14 +97,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (response.statusCode == 200) {
         // Successfully sent data to the backend
 
-        String emailToSend = emailController.text;
+        String emailToSend = lowerCaseEmail;
 
         print('Account registered successfully! $emailToSend');
 
         final Map<String, dynamic> dataToSend = {
           'codeDestination': codeDestination,
           'codeDeliveryMedium': codeDeliveryMedium,
-          'email': emailController.text,
+          'email': lowerCaseEmail,
           'password': passwordController.text
         };
 
