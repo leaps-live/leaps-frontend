@@ -43,13 +43,16 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
                 "Select your team",
                 style: TextStyle(fontSize: 17),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               ListTile(
                 title: const Text('Lafayette'),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                 leading: Radio<SingingCharacter>(
                   value: SingingCharacter.lafayette,
                   groupValue: _character,
                   activeColor: primaryColor,
-                  materialTapTargetSize: 50,
                   onChanged: (SingingCharacter? value) {
                     setState(() {
                       _character = value;
@@ -60,6 +63,7 @@ class _GameSelectScreenState extends State<GameSelectScreen> {
               ),
               ListTile(
                 title: const Text('Thomas Jefferson'),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                 leading: Radio<SingingCharacter>(
                   value: SingingCharacter.jefferson,
                   groupValue: _character,

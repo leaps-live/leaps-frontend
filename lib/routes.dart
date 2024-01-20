@@ -34,15 +34,15 @@ import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_email.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/email_confirmationcode_screen.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
-import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
-import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
-import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
+import 'package:leaps_frontend/screens/settings/account_security/account_security.dart';
+import 'package:leaps_frontend/screens/settings/account_security/change_email.dart';
+import 'package:leaps_frontend/screens/settings/account_security/change_password.dart';
+import 'package:leaps_frontend/screens/settings/account_security/change_username.dart';
+import 'package:leaps_frontend/screens/settings/account_security/email_confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/settings/account_security/manage_devices.dart';
+import 'package:leaps_frontend/screens/settings/notifications/notifications.dart';
+import 'package:leaps_frontend/screens/settings/privacy_settings/privacy_settings.dart';
+import 'package:leaps_frontend/screens/settings/settings_screen.dart';
 import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
 
 var allRoutes = <String, WidgetBuilder>{
