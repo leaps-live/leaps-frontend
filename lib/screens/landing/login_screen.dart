@@ -54,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> signInUser(String username, String password) async {
     print('username signin: $username');
     print('password signin: $password');
+
     try {
       final result = await Amplify.Auth.signIn(
         username: username,
@@ -106,23 +107,25 @@ class _LoginScreenState extends State<LoginScreen> {
       searchResult = {};
     });
 
+    String lowerCaseEmail = emailController.text.toLowerCase();
+
     const String apiUrl = 'http://localhost:8080/users/login';
 
     // Check to see if input is an email
     final bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(emailController.text);
+        .hasMatch(lowerCaseEmail);
 
     // Create a map with the collected data
     final Map<String, dynamic> userData = {
-      'userName': emailValid ? null : emailController.text,
-      'userEmail': emailValid ? emailController.text : null,
+      'userName': emailValid ? null : lowerCaseEmail,
+      'userEmail': emailValid ? lowerCaseEmail : null,
       'userPassword': passwordController.text,
     };
 
     try {
       // AWS Cognito sign-in
-      await signInUser(emailController.text, passwordController.text);
+      await signInUser(lowerCaseEmail, passwordController.text);
       print("signed in user through aws cognito");
 
       final loginResponse = http.post(
