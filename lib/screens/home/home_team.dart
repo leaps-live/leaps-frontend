@@ -5,6 +5,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
 import '../landing/register_screen.dart';
+import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 
 class HomeTeam extends StatefulWidget {
   const HomeTeam({super.key});
@@ -49,18 +50,18 @@ class _HomeTeamState extends State<HomeTeam> {
                 padding: const EdgeInsets.symmetric(horizontal: 17.0),
                 child: Row(
                   children: [
-                    Text(
-                      "Team Recruitment(12)",
-                      style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
-                    ),
-                    Spacer(),
+                    // Text(
+                    //   "Team Recruitment(12)",
+                    //   style:
+                    //       TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
+                    // ),
+                    // Spacer(),
                     IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, FilterScreen.routeName);
                       },
                       icon: Icon(
-                        Remix.equalizer_line,
+                        RemixIcon.equalizer_2_line,
                         color: Color(0xFF2E3A59),
                       ),
                     ),
@@ -70,77 +71,82 @@ class _HomeTeamState extends State<HomeTeam> {
                         },
                         child: Text("Filter",
                             style:
-                                TextStyle(fontSize: 19, color: Colors.black)))
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 17.0),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                          width: 1, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Text(
-                        "Beginner",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color.fromRGBO(75, 75, 75, 1),
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                          width: 1, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Text(
-                        "men",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color.fromRGBO(75, 75, 75, 1),
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                          width: 1, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Text(
-                        "Seattle",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color.fromRGBO(75, 75, 75, 1),
-                            fontWeight: FontWeight.normal),
-                      ),
+                                TextStyle(fontSize: 17, color: Colors.black87))),
+                    Text(
+                      "·  12 Results",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black54),
                     ),
                   ],
                 ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 17.0),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //         padding: const EdgeInsets.symmetric(
+              //             horizontal: 12.0, vertical: 3.7),
+              //         decoration: BoxDecoration(
+              //           border: Border.all(
+              //             color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+              //             width: 1, // 边框宽度
+              //           ),
+              //           borderRadius: BorderRadius.circular(15),
+              //         ),
+              //         child: const Text(
+              //           "Beginner",
+              //           style: TextStyle(
+              //               fontSize: 13,
+              //               color: Color.fromRGBO(75, 75, 75, 1),
+              //               fontWeight: FontWeight.normal),
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         width: 10,
+              //       ),
+              //       Container(
+              //         padding: const EdgeInsets.symmetric(
+              //             horizontal: 12.0, vertical: 3.7),
+              //         decoration: BoxDecoration(
+              //           border: Border.all(
+              //             color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+              //             width: 1, // 边框宽度
+              //           ),
+              //           borderRadius: BorderRadius.circular(15),
+              //         ),
+              //         child: const Text(
+              //           "men",
+              //           style: TextStyle(
+              //               fontSize: 13,
+              //               color: Color.fromRGBO(75, 75, 75, 1),
+              //               fontWeight: FontWeight.normal),
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         width: 10,
+              //       ),
+              //       Container(
+              //         padding: const EdgeInsets.symmetric(
+              //             horizontal: 12.0, vertical: 3.7),
+              //         decoration: BoxDecoration(
+              //           border: Border.all(
+              //             color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+              //             width: 1, // 边框宽度
+              //           ),
+              //           borderRadius: BorderRadius.circular(15),
+              //         ),
+              //         child: const Text(
+              //           "Seattle",
+              //           style: TextStyle(
+              //               fontSize: 13,
+              //               color: Color.fromRGBO(75, 75, 75, 1),
+              //               fontWeight: FontWeight.normal),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               const SizedBox(height: 20),
               SizedBox(
                 height: 500,
@@ -319,40 +325,48 @@ class _HomeTeamState extends State<HomeTeam> {
         ),
         if (!isLogin)
           Container(
-            width: double.infinity,
-            height: 40,
-            color: secondaryText,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "Sign up or Log in to explore more.",
-                  style: TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegisterScreen.routeName);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    fixedSize: const Size(75, 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              width: double.infinity,
+              height: 60,
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    color: secondaryText,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Sign up or Log in to explore more.",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, RegisterScreen.routeName);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            fixedSize: const Size(90, 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: const Text('Sign up',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white)),
+                        ),
+                      ],
                     ),
-                  ),
-                  child: const Text('Sign up',
-                      style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
-                ),
-              ],
-            ),
-          )
+                  )))
       ],
     );
   }

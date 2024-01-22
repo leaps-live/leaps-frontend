@@ -4,6 +4,7 @@ import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
+import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 
 class HomeGames extends StatefulWidget {
   const HomeGames({super.key});
@@ -46,17 +47,17 @@ class _HomeGamesState extends State<HomeGames> {
               ),
               Row(
                 children: [
-                  Text(
-                    "Game Recruitment(12)",
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
-                  ),
-                  Spacer(),
+                  // Text(
+                  //   "Game Recruitment(12)",
+                  //   style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
+                  // ),
+                  // Spacer(),
                   IconButton(
                     onPressed: () {
                       Navigator.pushNamed(context, FilterScreen.routeName);
                     },
                     icon: Icon(
-                      Remix.equalizer_line,
+                      RemixIcon.equalizer_2_line,
                       color: Color(0xFF2E3A59),
                     ),
                   ),
@@ -65,70 +66,75 @@ class _HomeGamesState extends State<HomeGames> {
                         Navigator.pushNamed(context, FilterScreen.routeName);
                       },
                       child: Text("Filter",
-                          style: TextStyle(fontSize: 19, color: Colors.black)))
+                          style: TextStyle(fontSize: 17, color: Colors.black87))),
+                  Text(
+                      "·  12 Results",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black54),
+                    ),
                 ],
               ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Beginner",
-                      style: const TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "men",
-                      style: const TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "Seattle",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Container(
+              //       padding: const EdgeInsets.all(3.0),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(
+              //           color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+              //           width: 2.0, // 边框宽度
+              //         ),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text(
+              //         "Beginner",
+              //         style: const TextStyle(
+              //             fontSize: 13,
+              //             color: Color.fromRGBO(75, 75, 75, 1),
+              //             fontWeight: FontWeight.w600),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Container(
+              //       padding: const EdgeInsets.all(3.0),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(
+              //           color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+              //           width: 2.0, // 边框宽度
+              //         ),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text(
+              //         "men",
+              //         style: const TextStyle(
+              //             fontSize: 13,
+              //             color: Color.fromRGBO(75, 75, 75, 1),
+              //             fontWeight: FontWeight.w600),
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Container(
+              //       padding: const EdgeInsets.all(3.0),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(
+              //           color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+              //           width: 2.0, // 边框宽度
+              //         ),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: const Text(
+              //         "Seattle",
+              //         style: TextStyle(
+              //             fontSize: 13,
+              //             color: Color.fromRGBO(75, 75, 75, 1),
+              //             fontWeight: FontWeight.w600),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(
                 height: 500,
                 width: double.infinity,
@@ -266,7 +272,7 @@ class _HomeGamesState extends State<HomeGames> {
         if (!isLogin)
           Container(
             width: double.infinity,
-            height: 40,
+            height: 60,
             color: secondaryText,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -287,14 +293,14 @@ class _HomeGamesState extends State<HomeGames> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,
-                    fixedSize: const Size(75, 15),
+                    fixedSize: const Size(90, 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                   child: const Text('Sign up',
                       style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.white)),
                 ),
               ],
             ),
