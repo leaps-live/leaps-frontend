@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
-import 'package:remixicon/remixicon.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 
-class CreateGameScreen extends StatefulWidget {
-  const CreateGameScreen({super.key});
-  static const routeName = '/create_game';
+class CreateGameTwoScreen extends StatefulWidget {
+  const CreateGameTwoScreen({super.key});
+  static const routeName = '/create_game_two';
 
   @override
-  State<CreateGameScreen> createState() => _CreateGameScreenState();
+  State<CreateGameTwoScreen> createState() => _CreateGameTwoScreenState();
 }
 
-class _CreateGameScreenState extends State<CreateGameScreen> {
+class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
   String dropdownValue1 = "None";
   String dropdownValue2 = "None";
 
@@ -114,12 +113,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          child: const Text("Cancel", style: TextStyle(fontSize: 16)),
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-        ),
         title: const Text(
           'Create a Game',
           style: TextStyle(color: Colors.black),
@@ -134,7 +127,7 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Schedule: $concatenatedDateTime',
+              'Date and Time: $concatenatedDateTime',
               // 'Schedule: $concatenatedDateTime',
               style: const TextStyle(fontSize: 17),
             ),
@@ -172,116 +165,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'Add Members',
-              style: TextStyle(fontSize: 17),
-            ),
-            const SizedBox(height: 16.0),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, SearchMemberScreen.routeName);
-              },
-              child: const Icon(
-                Remix.add_circle_line,
-                size: 40,
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Placeholder",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: DropdownButton<String>(
-                        value: dropdownValue1, // default option shown
-                        items: const <DropdownMenuItem<String>>[
-                          DropdownMenuItem<String>(
-                            value: 'None',
-                            child: Text('None'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Home',
-                            child: Text('Home'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Away',
-                            child: Text('Away'),
-                          ),
-                        ],
-                        onChanged: (String? value) {
-                          // 处理选择的值
-
-                          setState(() {
-                            dropdownValue1 = value!; // 更新选择的值
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Placeholder",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: DropdownButton<String>(
-                        value: dropdownValue2, // default option shown
-                        items: const <DropdownMenuItem<String>>[
-                          DropdownMenuItem<String>(
-                            value: 'None',
-                            child: Text('None'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Home',
-                            child: Text('Home'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Away',
-                            child: Text('Away'),
-                          ),
-                        ],
-                        onChanged: (String? value) {
-                          // 处理选择的值
-
-                          setState(() {
-                            dropdownValue2 = value!; // 更新选择的值
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Number of Quarters',
@@ -303,16 +186,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
               ),
               keyboardType: TextInputType.number,
             ),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Game Description',
-                hintText: 'Some description about this game',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              keyboardType: TextInputType.number,
-            ),
             const SizedBox(height: 70.0),
             Center(
               child: ElevatedButton(
@@ -320,7 +193,7 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
                   // do something after clicking create button
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: primaryColor,
                   fixedSize: const Size(300, 40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),

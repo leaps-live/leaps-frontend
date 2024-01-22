@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/game/create_game.dart';
-import 'package:leaps_frontend/screens/game/creategame_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game_2_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
@@ -58,7 +58,7 @@ var allRoutes = <String, WidgetBuilder>{
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
   SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
   CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
-  CreateGameScreen.routeName: (context) => const CreateGameScreen(),
+  CreateGameTwoScreen.routeName: (context) => const CreateGameTwoScreen(),
   CreateLiveStreamScreen.routeName: (context) => const CreateLiveStreamScreen(),
   EditGameScreen.routeName: (context) => const EditGameScreen(),
   HomePageScreen.routeName: (context) => const HomePageScreen(),
@@ -88,7 +88,7 @@ var allRoutes = <String, WidgetBuilder>{
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
   HomeTeam.routeName: (context) => const HomeTeam(),
   HomeVideo.routeName: (context) => const HomeVideo(),
-  GameSelectScreen.routeName: (context) => const GameSelectScreen(),
+  CreateGameScreen.routeName: (context) => const CreateGameScreen(),
   ConfirmationCodeScreen.routeName: (context) =>
       const ConfirmationCodeScreen(arguments: {}),
   ForgotPassword.routeName: (context) => const ForgotPassword(),
