@@ -86,6 +86,10 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
       setState(() {
         isLogin = true;
       });
+    } else {
+      userName = "";
+      userFirstName = "";
+      userLastName = "";
     }
   }
 

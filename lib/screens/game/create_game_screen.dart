@@ -20,7 +20,9 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
+        backgroundColor: primaryBackgroundColor,
         leading: Center(
           child: GestureDetector(
             child: const Text("Cancel",
