@@ -17,6 +17,10 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
   String dropdownValue1 = "None";
   String dropdownValue2 = "None";
 
+  // TODO: https://www.youtube.com/watch?v=uL09CPiM8Ds
+
+  DateTime dateTime = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +128,21 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () => {
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (BuildContext context) => SizedBox(
+                              height: 250,
+                              child: CupertinoDatePicker(
+                                backgroundColor: Colors.white,
+                                initialDateTime: dateTime,
+                                onDateTimeChanged: (DateTime newTime) {
+                                  setState(() => dateTime = newTime);
+                                },
+                                use24hFormat: true,
+                              ),
+                            ))
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: tagColor,
                       elevation: 0.0,
@@ -134,7 +152,8 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
                       ),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 12)),
-                  child: const Text("Select Date",
+                  child: Text(
+                      '${dateTime.month}-${dateTime.day}-${dateTime.year}',
                       style: TextStyle(
                           color: secondaryTextColor,
                           fontWeight: FontWeight.bold)),
@@ -190,7 +209,6 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
             ),
             const Text(
               'Minutes per Quarter',
-              // 'Schedule: $concatenatedDateTime',
               style: const TextStyle(fontSize: 17),
             ),
             const SizedBox(
