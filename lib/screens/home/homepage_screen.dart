@@ -67,6 +67,15 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+
+
+    final labelStyle = TextStyle(
+    fontSize: 0.035 * widthRatio,
+    fontWeight: FontWeight.w600,
+    color: secondaryTextColor,
+    );
+
     return Column(
       children: [
         Row(
@@ -84,14 +93,8 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
                 ],
                 labelColor: Colors.black,
                 unselectedLabelColor: Colors.grey,
-                labelStyle: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
-                unselectedLabelStyle: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                ),
+                labelStyle: labelStyle,
+                unselectedLabelStyle: labelStyle,
                 indicator: const UnderlineTabIndicator(
                     borderRadius: BorderRadius.all(Radius.circular(300)),
                     borderSide: BorderSide(

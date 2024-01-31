@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -35,6 +36,16 @@ class _HomeGamesState extends State<HomeGames> {
 
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+    final heightRatio = MediaQuery.of(context).size.height;
+
+    final pageHeadingStyle = TextStyle(
+    fontSize: 0.04 * widthRatio,
+    fontWeight: FontWeight.w600,
+    color: secondaryTextColor,
+
+    );
+    
     return Column(
       children: [
         Padding(
@@ -61,17 +72,27 @@ class _HomeGamesState extends State<HomeGames> {
                       color: Color(0xFF2E3A59),
                     ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, FilterScreen.routeName);
-                      },
-                      child: Text("Filter",
-                          style: TextStyle(fontSize: 17, color: Colors.black87))),
+                  RichText(
+                      text: TextSpan(
+                          text: 'Filter',
+                          style: pageHeadingStyle,
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                  context, FilterScreen.routeName);
+                            })),
+                  SizedBox(width: 10),
                   Text(
-                      "·  12 Results",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black54),
-                    ),
+                    "•",
+                    style: pageHeadingStyle
+              ,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    "12 Results",
+                    style: pageHeadingStyle
+              ,
+                  ),
                 ],
               ),
               // Row(
@@ -135,8 +156,9 @@ class _HomeGamesState extends State<HomeGames> {
               //     ),
               //   ],
               // ),
+              const SizedBox(height: 0),
               SizedBox(
-                height: 500,
+                //height: 0.6 * heightRatio,
                 width: double.infinity,
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -262,49 +284,59 @@ class _HomeGamesState extends State<HomeGames> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 0.01 * heightRatio,
+              ),
             ],
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        // SizedBox(
+        //   height: 0.01 * heightRatio,
+        // ),
         if (!isLogin)
           Container(
             width: double.infinity,
-            height: 60,
-            color: secondaryText,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "Sign up or Log in to explore more.",
-                  style: TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegisterScreen.routeName);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    fixedSize: const Size(90, 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              height: 0.08 * heightRatio,
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: double.infinity,
+                    height: 0.06 * heightRatio,
+                    color: secondaryText,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        Text(
+                          "Sign up or Log in to explore more.",
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, RegisterScreen.routeName);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            fixedSize: const Size(90, 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: const Text('Sign up',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white)),
+                        ),
+                      ],
                     ),
-                  ),
-                  child: const Text('Sign up',
-                      style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.white)),
-                ),
-              ],
-            ),
-          )
+                  )))
       ],
     );
   }

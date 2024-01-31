@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:remixicon/remixicon.dart';
@@ -36,6 +37,16 @@ class _HomeTeamState extends State<HomeTeam> {
 
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+    final heightRatio = MediaQuery.of(context).size.height;
+
+    final pageHeadingStyle = TextStyle(
+    fontSize: 0.04 * widthRatio,
+    fontWeight: FontWeight.w600,
+    color: secondaryTextColor,
+
+    );
+    
     return Column(
       children: [
         Padding(
@@ -57,6 +68,8 @@ class _HomeTeamState extends State<HomeTeam> {
                     // ),
                     // Spacer(),
                     IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
                       onPressed: () {
                         Navigator.pushNamed(context, FilterScreen.routeName);
                       },
@@ -65,18 +78,44 @@ class _HomeTeamState extends State<HomeTeam> {
                         color: Color(0xFF2E3A59),
                       ),
                     ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, FilterScreen.routeName);
-                        },
-                        child: Text("Filter",
-                            style:
-                                TextStyle(fontSize: 17, color: Colors.black87))),
+                    RichText(
+                        text: TextSpan(
+                            text: 'Filter',
+                            style: pageHeadingStyle,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.pushNamed(
+                                    context, FilterScreen.routeName);
+                              })),
+                    SizedBox(width: 10),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       Navigator.pushNamed(context, FilterScreen.routeName);
+                    //     },
+                    //     style: TextButton.styleFrom(
+                    //         padding: EdgeInsets.zero,
+                    //         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    //         alignment: Alignment.centerLeft),
+                    //     child: Text("Filter",
+                    //         style: TextStyle(
+                    //             fontSize: 17, color: Colors.black87))),
+                    //                   SizedBox(width: 10),
                     Text(
-                      "·  12 Results",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black54),
+                      "•",
+                      style: pageHeadingStyle,
                     ),
+                    SizedBox(width: 10),
+                    Text(
+                      "12 Results",
+                      style: pageHeadingStyle,
+                    ),
+                    // Text(
+                    //   "·  12 Results",
+                    //   style: TextStyle(
+                    //       fontSize: 17,
+                    //       fontWeight: FontWeight.w600,
+                    //       color: Colors.black54),
+                    // ),
                   ],
                 ),
               ),
@@ -147,9 +186,9 @@ class _HomeTeamState extends State<HomeTeam> {
               //     ],
               //   ),
               // ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 0),
               SizedBox(
-                height: 500,
+                //height: 0.6 * heightRatio,
                 width: double.infinity,
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -318,7 +357,7 @@ class _HomeTeamState extends State<HomeTeam> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 0.01 * heightRatio,
               ),
             ],
           ),
@@ -326,19 +365,19 @@ class _HomeTeamState extends State<HomeTeam> {
         if (!isLogin)
           Container(
               width: double.infinity,
-              height: 60,
+              height: 0.08 * heightRatio,
               child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 0.06 * heightRatio,
                     color: secondaryText,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
                         Text(
                           "Sign up or Log in to explore more.",
                           style: TextStyle(fontSize: 15, color: Colors.white),
