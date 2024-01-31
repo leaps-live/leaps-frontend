@@ -4,7 +4,7 @@ import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
-import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
+import 'package:leaps_frontend/screens/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -87,6 +87,10 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
       setState(() {
         isLogin = true;
       });
+    } else {
+      userName = "";
+      userFirstName = "";
+      userLastName = "";
     }
   }
 
