@@ -20,6 +20,7 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
   // TODO: https://www.youtube.com/watch?v=uL09CPiM8Ds
 
   DateTime dateTime = DateTime.now();
+  DateTime justTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -134,13 +135,13 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
                         builder: (BuildContext context) => SizedBox(
                               height: 250,
                               child: CupertinoDatePicker(
-                                backgroundColor: Colors.white,
-                                initialDateTime: dateTime,
-                                onDateTimeChanged: (DateTime newTime) {
-                                  setState(() => dateTime = newTime);
-                                },
-                                use24hFormat: true,
-                              ),
+                                  backgroundColor: Colors.white,
+                                  initialDateTime: dateTime,
+                                  onDateTimeChanged: (DateTime newTime) {
+                                    setState(() => dateTime = newTime);
+                                  },
+                                  use24hFormat: true,
+                                  mode: CupertinoDatePickerMode.date),
                             ))
                   },
                   style: ElevatedButton.styleFrom(
@@ -154,13 +155,27 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
                           horizontal: 20, vertical: 12)),
                   child: Text(
                       '${dateTime.month}-${dateTime.day}-${dateTime.year}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: secondaryTextColor,
                           fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(width: 12),
                 ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () => {
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (BuildContext context) => SizedBox(
+                              height: 250,
+                              child: CupertinoDatePicker(
+                                  backgroundColor: Colors.white,
+                                  initialDateTime: justTime,
+                                  onDateTimeChanged: (DateTime newTime) {
+                                    setState(() => justTime = newTime);
+                                  },
+                                  use24hFormat: true,
+                                  mode: CupertinoDatePickerMode.time),
+                            ))
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: tagColor,
                       elevation: 0.0,
@@ -170,8 +185,8 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
                       ),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 12)),
-                  child: const Text(
-                    "Select Time",
+                  child: Text(
+                    '${justTime.hour}:${justTime.minute}',
                     style: TextStyle(
                         color: secondaryTextColor, fontWeight: FontWeight.bold),
                   ),
