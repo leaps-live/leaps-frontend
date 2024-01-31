@@ -42,24 +42,24 @@ class _HomeTeamState extends State<HomeTeam> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 17.0),
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       "Team Recruitment(12)",
                       style:
                           TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, FilterScreen.routeName);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Remix.equalizer_line,
                         color: Color(0xFF2E3A59),
                       ),

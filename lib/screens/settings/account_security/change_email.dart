@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/email_confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/settings/account_security/email_confirmationcode_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

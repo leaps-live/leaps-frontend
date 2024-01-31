@@ -71,35 +71,32 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
       children: [
         Row(
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TabBar(
-                isScrollable: true, // Make the TabBar scrollable
-                controller: _tabController,
-                indicatorSize: TabBarIndicatorSize.label,
-                tabs: const [
-                  Tab(text: "Teams"),
-                  Tab(text: "Games"),
-                  Tab(text: "Videos"),
-                ],
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.grey,
-                labelStyle: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
-                unselectedLabelStyle: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                ),
-                indicator: const UnderlineTabIndicator(
-                    borderRadius: BorderRadius.all(Radius.circular(300)),
-                    borderSide: BorderSide(
-                      color: primaryColor,
-                      width: 2.5,
-                    ),
-                    insets: EdgeInsets.symmetric(horizontal: 17, vertical: 7)),
+            TabBar(
+              isScrollable: true, // Make the TabBar scrollable
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: const [
+                Tab(text: "Teams"),
+                Tab(text: "Games"),
+                Tab(text: "Videos"),
+              ],
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.grey,
+              labelStyle: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
               ),
+              unselectedLabelStyle: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+              ),
+              indicator: const UnderlineTabIndicator(
+                  borderRadius: BorderRadius.all(Radius.circular(300)),
+                  borderSide: BorderSide(
+                    color: primaryColor,
+                    width: 2.5,
+                  ),
+                  insets: EdgeInsets.symmetric(horizontal: 17, vertical: 7)),
             ),
             const Spacer(),
             GestureDetector(

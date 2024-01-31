@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
+import 'package:leaps_frontend/screens/settings/account_security/account_security.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
