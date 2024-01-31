@@ -145,7 +145,7 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
                                   onDateTimeChanged: (DateTime newTime) {
                                     setState(() => dateTime = newTime);
                                   },
-                                  use24hFormat: true,
+                                  use24hFormat: false,
                                   mode: CupertinoDatePickerMode.date),
                             ))
                   },

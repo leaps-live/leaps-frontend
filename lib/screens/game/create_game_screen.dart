@@ -23,16 +23,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
       backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         backgroundColor: primaryBackgroundColor,
-        leading: Center(
-          child: GestureDetector(
-            child: const Text("Cancel",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.black)),
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
         title: const Text("Create a game"),
       ),
       body: SafeArea(
