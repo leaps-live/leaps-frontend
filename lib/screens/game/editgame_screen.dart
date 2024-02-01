@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens//search/searchMember_screen.dart';
-import 'package:http/http.dart' as http;
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 
 class EditGameScreen extends StatefulWidget {
   const EditGameScreen({super.key});
@@ -14,160 +15,18 @@ class EditGameScreen extends StatefulWidget {
 class _EditGameScreenState extends State<EditGameScreen> {
   String dropdownValue1 = "None";
   String dropdownValue2 = "None";
-  bool isLoading = false;
 
-  DateTime? selectedDate;
-  TimeOfDay? selectedTime;
-  String concatenatedDateTime = '';
+  DateTime dateTime = DateTime.now();
+  DateTime justTime = DateTime.now();
 
-  Future<void> _selectDate() async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-
-    if (pickedDate != null) {
-      setState(() {
-        selectedDate = pickedDate;
-        _updateConcatenatedDateTime();
-      });
-    }
-  }
-
-  Future<void> _selectTime() async {
-    final TimeOfDay? pickedTime = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
-
-    if (pickedTime != null) {
-      setState(() {
-        selectedTime = pickedTime;
-        _updateConcatenatedDateTime();
-      });
-    }
-  }
-
-  void _updateConcatenatedDateTime() {
-    if (selectedDate != null && selectedTime != null) {
-      final DateTime combinedDateTime = DateTime(
-        selectedDate!.year,
-        selectedDate!.month,
-        selectedDate!.day,
-        selectedTime!.hour,
-        selectedTime!.minute,
-      );
-      concatenatedDateTime = combinedDateTime.toString();
-    } else {
-      concatenatedDateTime = '';
-    }
-  }
-
-  void showPopup() {
-    if (Theme.of(context).platform == TargetPlatform.android) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text(
-              'Do you want to delete this league?',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-            ),
-            content: const Text(
-                'Team admins will be notified. This cannot be redone'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  deleteGame();
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Yes, delete'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(color: Color(0xFF747474)),
-                ),
-              ),
-            ],
-          );
-        },
-      );
-    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return CupertinoAlertDialog(
-            title: const Text(
-              'Do you want to delete this league?',
-              textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
-            content: const Text(
-              'Team admins will be notified. This cannot be redone',
-              style: TextStyle(fontSize: 15),
-              textAlign: TextAlign.start,
-            ),
-            actions: [
-              CupertinoDialogAction(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel',
-                    style: TextStyle(color: Color(0xFF747474))),
-              ),
-              CupertinoDialogAction(
-                onPressed: () {
-                  deleteGame();
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Yes, delete',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.black),
-                ),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  void deleteGame() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    String gameid = "85627481-9197-4d10-b55c-650414511f2b";
-
-    try {
-      final response =
-          await http.delete(Uri.parse('http://localhost:8080/game/$gameid'));
-      print(response.body);
-
-      if (response.statusCode == 200) {
-        print("Game deleted successfully");
-      }
-    } catch (e) {
-      print(e);
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
-
+  int numberOfQuarters = 0;
+  int minutesPerQuarter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
+        backgroundColor: primaryBackgroundColor,
         title: const Text(
           'Edit a Game',
           style: TextStyle(color: Colors.black),
@@ -196,8 +55,40 @@ class _EditGameScreenState extends State<EditGameScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              "Your Team",
+              style: TextStyle(fontSize: 17),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100), // Image border
+                  child: SizedBox.fromSize(
+                    size: const Size.fromRadius(15), // Image radius
+                    child: Image.network(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                const Text(
+                  'Mighty Dragons',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Colors.black),
+                  textAlign: TextAlign.left,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 25,
+            ),
             Text(
-              'Schedule: $concatenatedDateTime',
+              'Opponent Team',
+              // 'Schedule: $concatenatedDateTime',
               style: const TextStyle(fontSize: 17),
             ),
             const SizedBox(
@@ -205,233 +96,254 @@ class _EditGameScreenState extends State<EditGameScreen> {
             ),
             Row(
               children: [
-                Expanded(
-                  child: SizedBox(
-                    width: 120,
-                    height: 40,
-                    child: ElevatedButton(
-                      onPressed: _selectDate,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                      ),
-                      child: const Text('Select Date'),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100), // Image border
+                  child: SizedBox.fromSize(
+                    size: const Size.fromRadius(15), // Image radius
+                    child: Image.network(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: SizedBox(
-                    width: 120,
-                    height: 40,
-                    child: ElevatedButton(
-                      onPressed: _selectTime,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                      ),
-                      child: const Text('Select Time'),
-                    ),
-                  ),
-                ),
+                const SizedBox(width: 8),
+                const Text(
+                  'Mighty Dragons',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Colors.black),
+                  textAlign: TextAlign.left,
+                )
               ],
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'Add Members',
-              style: TextStyle(fontSize: 17),
+            const SizedBox(
+              height: 25,
             ),
-            const SizedBox(height: 16.0),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, SearchMemberScreen.routeName);
-              },
-              child: Container(
-                width: 36,
-                height: 36,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue,
-                ),
-                child: const CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+            Text(
+              'Location',
+              // 'Schedule: $concatenatedDateTime',
+              style: const TextStyle(fontSize: 17),
             ),
             const SizedBox(
-              height: 16.0,
+              height: 8,
             ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Placeholder",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: DropdownButton<String>(
-                        value: dropdownValue1, // default option shown
-                        items: const <DropdownMenuItem<String>>[
-                          DropdownMenuItem<String>(
-                            value: 'None',
-                            child: Text('None'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Home',
-                            child: Text('Home'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Away',
-                            child: Text('Away'),
-                          ),
-                        ],
-                        onChanged: (String? value) {
-                          // 处理选择的值
-
-                          setState(() {
-                            dropdownValue1 = value!; // 更新选择的值
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.abc,
-                      size: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: const Text(
-                          "Placeholder",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: DropdownButton<String>(
-                        value: dropdownValue2, // default option shown
-                        items: const <DropdownMenuItem<String>>[
-                          DropdownMenuItem<String>(
-                            value: 'None',
-                            child: Text('None'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Home',
-                            child: Text('Home'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Away',
-                            child: Text('Away'),
-                          ),
-                        ],
-                        onChanged: (String? value) {
-                          // 处理选择的值
-
-                          setState(() {
-                            dropdownValue2 = value!; // 更新选择的值
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Game Description',
-                hintText: 'Some description about this game',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Number of Quarters',
-                // border: InputBorder.none,
-                hintText: 'Number Only',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Minutes per Quarters',
-                // border: InputBorder.none,
-                hintText: 'Number only',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 70.0),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  showPopup();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  fixedSize: const Size(300, 40),
+            ElevatedButton(
+              onPressed: () => {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: tagColor,
+                  elevation: 0.0,
+                  shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
+              child: const Text("Select Location",
+                  style: TextStyle(
+                      color: secondaryTextColor, fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Text(
+              'Date and Time:',
+              // 'Schedule: $concatenatedDateTime',
+              style: const TextStyle(fontSize: 17),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => {
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (BuildContext context) => SizedBox(
+                              height: 250,
+                              child: CupertinoDatePicker(
+                                  backgroundColor: CupertinoColors
+                                      .systemBackground
+                                      .resolveFrom(context),
+                                  initialDateTime: dateTime,
+                                  onDateTimeChanged: (DateTime newTime) {
+                                    setState(() => dateTime = newTime);
+                                  },
+                                  use24hFormat: false,
+                                  mode: CupertinoDatePickerMode.date),
+                            ))
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: tagColor,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12)),
+                  child: Text(
+                      '${dateTime.month}-${dateTime.day}-${dateTime.year}',
+                      style: const TextStyle(
+                          color: secondaryTextColor,
+                          fontWeight: FontWeight.bold)),
+                ),
+                const SizedBox(width: 12),
+                ElevatedButton(
+                  onPressed: () => {
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (BuildContext context) => SizedBox(
+                              height: 250,
+                              child: CupertinoDatePicker(
+                                  backgroundColor: CupertinoColors
+                                      .systemBackground
+                                      .resolveFrom(context),
+                                  initialDateTime: justTime,
+                                  onDateTimeChanged: (DateTime newTime) {
+                                    setState(() => justTime = newTime);
+                                  },
+                                  use24hFormat: true,
+                                  mode: CupertinoDatePickerMode.time),
+                            ))
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: tagColor,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12)),
+                  child: Text(
+                    '${justTime.hour}:${justTime.minute}',
+                    style: TextStyle(
+                        color: secondaryTextColor, fontWeight: FontWeight.bold),
                   ),
                 ),
-                child: isLoading
-                    ? const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Delete this league',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 17)),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Center(
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 2,
-                              ),
-                            ),
-                          )
-                        ],
-                      )
-                    : const Text(
-                        'Delete this league',
-                        style: TextStyle(color: Colors.black, fontSize: 17),
-                      ),
-              ),
+              ],
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Text(
+              'Number of Quarters',
+              // 'Schedule: $concatenatedDateTime',
+              style: const TextStyle(fontSize: 17),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (_) => SizedBox(
+                        width: double.infinity,
+                        height: 250,
+                        child: CupertinoPicker(
+                          backgroundColor: CupertinoColors.systemBackground
+                              .resolveFrom(context),
+                          itemExtent: 30,
+                          scrollController:
+                              FixedExtentScrollController(initialItem: 0),
+                          onSelectedItemChanged: (int value) {
+                            setState(() {
+                              numberOfQuarters = value;
+                            });
+                          },
+                          children: const [
+                            Text('0'),
+                            Text('1'),
+                            Text('2'),
+                            Text('3'),
+                            Text('4')
+                          ],
+                        )))
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: tagColor,
+                  elevation: 0.0,
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 12)),
+              child: Text(numberOfQuarters.toString(),
+                  style: const TextStyle(
+                      color: secondaryTextColor, fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            const Text(
+              'Minutes per Quarter',
+              style: const TextStyle(fontSize: 17),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (_) => SizedBox(
+                        width: double.infinity,
+                        height: 250,
+                        child: CupertinoPicker(
+                          backgroundColor: CupertinoColors.systemBackground
+                              .resolveFrom(context),
+                          itemExtent: 30,
+                          scrollController:
+                              FixedExtentScrollController(initialItem: 1),
+                          onSelectedItemChanged: (int value) {
+                            setState(() {
+                              minutesPerQuarter = value;
+                            });
+                          },
+                          children: const [
+                            Text('0'),
+                            Text('1'),
+                            Text('2'),
+                            Text('3'),
+                            Text('4'),
+                            Text('5'),
+                            Text('6'),
+                            Text('7'),
+                            Text('8'),
+                            Text('9'),
+                            Text('10'),
+                            Text('11'),
+                            Text('12'),
+                            Text('13'),
+                            Text('14'),
+                            Text('15'),
+                            Text('16'),
+                            Text('17'),
+                            Text('18'),
+                            Text('19'),
+                            Text('20'),
+                          ],
+                        )))
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: tagColor,
+                  elevation: 0.0,
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 12)),
+              child: Text(minutesPerQuarter.toString(),
+                  style: const TextStyle(
+                      color: secondaryTextColor, fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(
+              height: 36,
             ),
           ],
         ),
