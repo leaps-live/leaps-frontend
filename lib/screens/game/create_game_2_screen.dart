@@ -17,8 +17,6 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
   String dropdownValue1 = "None";
   String dropdownValue2 = "None";
 
-  // TODO: https://www.youtube.com/watch?v=uL09CPiM8Ds
-
   DateTime dateTime = DateTime.now();
   DateTime justTime = DateTime.now();
 
