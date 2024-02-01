@@ -147,6 +147,15 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: primaryBackgroundColor,
+        title: const Text(
+          'Creator Center',
+          style: TextStyle(color: Colors.black),
+        ),
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SafeArea(
@@ -154,184 +163,89 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(
-                        context, MainScreen.routeName);
-                  },
-                  child: const Text(
-                    "GO HOME",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
                 const Text(
-                  "Creator Center",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                  "Create",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
                 ),
-                const SizedBox(
-                  height: 32,
-                ),
+                const SizedBox(height: 15),
                 Row(
                   children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                                  context, CreateTeamSteponeScreen.routeName)
-                              .then((result) {
-                            if (result != null && result is bool && result) {
-                              getAllTeams();
-                            }
-                          });
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Remix.team_line,
-                              color: Color(0xFF2E3A59),
-                            ), // 添加图标
-                            SizedBox(width: 8), // 图标和文本之间的间距
-                            Text(
-                              "Create a team",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 5),
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () {},
+                          splashColor: Colors.black26,
+                          child: IntrinsicHeight(
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/CreateTeam.png',
+                                      fit: BoxFit.cover,
+                                      width: 90,
+                                      height: 90,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text(
+                                      'Team',
+                                      style: TextStyle(
+                                          color: primaryText,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ]),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                                  context, CreateLeagueScreen.routeName)
-                              .then((result) {
-                            if (result != null && result is bool && result) {
-                              getAllLeagues();
-                            }
-                          });
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Remix.medal_line,
-                              color: Color(0xFF2E3A59),
-                            ), // 添
-                            SizedBox(width: 8),
-                            Text(
-                              "Create a league",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 5),
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () {},
+                          splashColor: Colors.black26,
+                          child: IntrinsicHeight(
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/CreateTeam.png',
+                                      fit: BoxFit.cover,
+                                      width: 90,
+                                      height: 90,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text(
+                                      'Team',
+                                      style: TextStyle(
+                                          color: primaryText,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ]),
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, CreateGameScreen.routeName);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Remix.basketball_line,
-                              color: Color(0xFF2E3A59),
-                            ), // 添 // 添加图标
-                            SizedBox(width: 8), // 图标和文本之间的间距
-                            Text(
-                              "Create a game",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, CreateLiveStreamScreen.routeName);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Remix.broadcast_line,
-                              color: Color(0xFF2E3A59),
-                            ), // 添
-                            SizedBox(width: 8), // 图标和文本之间的间距
-                            Text(
-                              "Live streaming",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, S3UploadScreen.routeName);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Remix.basketball_line,
-                              color: Color(0xFF2E3A59),
-                            ), // 添 // 添加图标
-                            SizedBox(width: 8), // 图标和文本之间的间距
-                            Text(
-                              "S3 Upload",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, EditGameScreen.routeName);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Remix.broadcast_line,
-                              color: Color(0xFF2E3A59),
-                            ), // 添
-                            SizedBox(width: 8), // 图标和文本之间的间距
-                            Text(
-                              "Edit Game",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -339,7 +253,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                 ),
                 const Text(
                   "Manage",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
                 ),
                 const SizedBox(
                   height: 8,

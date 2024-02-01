@@ -80,6 +80,7 @@ flutter:
     - assets/images/swiper2.jpeg
     - assets/images/swiper3.jpg
     - assets/images/google.png
+    - assets/images/CreateTeam.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
