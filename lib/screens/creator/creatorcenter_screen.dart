@@ -179,7 +179,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: Material(
                         type: MaterialType.transparency,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, CreateGameScreen.routeName);
+                          },
                           splashColor: Colors.black26,
                           child: IntrinsicHeight(
                             child: Padding(
@@ -190,14 +193,14 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                     Image.asset(
                                       'assets/images/CreateTeam.png',
                                       fit: BoxFit.cover,
-                                      width: 90,
-                                      height: 90,
+                                      width: 110,
+                                      height: 110,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     const Text(
-                                      'Team',
+                                      'Game',
                                       style: TextStyle(
                                           color: primaryText,
                                           fontWeight: FontWeight.w600),
@@ -208,6 +211,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                         ),
                       ),
                     ),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -217,7 +221,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                       child: Material(
                         type: MaterialType.transparency,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, CreateTeamSteponeScreen.routeName);
+                          },
                           splashColor: Colors.black26,
                           child: IntrinsicHeight(
                             child: Padding(
@@ -228,8 +235,8 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                     Image.asset(
                                       'assets/images/CreateTeam.png',
                                       fit: BoxFit.cover,
-                                      width: 90,
-                                      height: 90,
+                                      width: 110,
+                                      height: 110,
                                     ),
                                     const SizedBox(
                                       height: 10,
@@ -260,212 +267,56 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                 ),
                 Column(
                   children: [
-                    TabBar(
-                      controller: _tabController,
-                      tabs: const [
-                        Tab(text: "Team"),
-                        Tab(text: "League"),
-                        Tab(text: "Game"),
-                      ],
-                      labelColor: Colors.black,
-                      unselectedLabelColor: Colors.grey,
-                      labelStyle: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      unselectedLabelStyle: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      indicator: const UnderlineTabIndicator(
-                        borderSide:
-                            BorderSide(color: Colors.transparent, width: 0),
+                    ElevatedButton(
+                      onPressed: () => {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          minimumSize: const Size.fromHeight(50),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12)),
+                      child: const Row(
+                        children: [
+                          Text('Teams (3)',
+                              style: TextStyle(
+                                  color: primaryText,
+                                  fontWeight: FontWeight.w600)),
+                          Spacer(),
+                          Icon(
+                            Remix.arrow_right_s_line,
+                            color: secondaryTextColor,
+                          )
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 800, // Adjust the height as needed
-                      child: TabBarView(
-                        controller: _tabController,
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () => {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          minimumSize: const Size.fromHeight(50),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12)),
+                      child: const Row(
                         children: [
-                          // Lists for Teams
-                          isLoading
-                              ? const SizedBox(
-                                  height: 200,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                        color: primaryColor),
-                                  ),
-                                )
-                              : searchResultTeam.isNotEmpty
-                                  ? Column(
-                                      children: [
-                                        for (var team in searchResultTeam)
-                                          ListTile(
-                                            title: Text(
-                                              team['teamname'],
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 19),
-                                            ),
-                                            subtitle: Row(
-                                              children: [
-                                                for (var category
-                                                    in team['teamcategories'])
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        category,
-                                                        style: const TextStyle(
-                                                            fontSize: 17),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      )
-                                                    ],
-                                                  ),
-                                              ],
-                                            ),
-                                            contentPadding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 16.0),
-                                            leading: const CircleAvatar(
-                                              backgroundImage: NetworkImage(
-                                                  'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
-                                            ),
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                context,
-                                                TeamScreen.routeName,
-                                                arguments: team['teamid'],
-                                              );
-                                            },
-                                          )
-                                      ],
-                                    )
-                                  : const Center(
-                                      child: Text(
-                                        "No teams found",
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-
-                          // Lists for Leagues
-                          isLoading
-                              ? const SizedBox(
-                                  height: 200,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color: primaryColor,
-                                    ),
-                                  ),
-                                )
-                              : searchResultLeague.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                        "No leagues found",
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )
-                                  : Column(
-                                      children: [
-                                        for (var leagues in searchResultLeague)
-                                          for (var league in leagues)
-                                            ListTile(
-                                              title: Text(
-                                                league['leaguename'],
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 19),
-                                              ),
-                                              subtitle: Row(
-                                                children: [
-                                                  for (var category in league[
-                                                      'leaguecategories'])
-                                                    Text(
-                                                      category,
-                                                      style: const TextStyle(
-                                                          fontSize: 17),
-                                                    ),
-                                                ],
-                                              ),
-                                              contentPadding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16.0),
-                                              leading: const CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
-                                              ),
-                                              onTap: () {
-                                                Navigator.pushNamed(
-                                                  context,
-                                                  LeagueScreen.routeName,
-                                                  arguments: league['leagueid'],
-                                                );
-                                              },
-                                            )
-                                      ],
-                                    ),
-                          // Lists for Games
-                          isLoading
-                              ? const SizedBox(
-                                  height: 200,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                        color: primaryColor),
-                                  ),
-                                )
-                              : searchResultTeam.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                        "No games found",
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )
-                                  : Column(
-                                      children: [
-                                        for (var team in searchResultTeam)
-                                          ListTile(
-                                            title: Text(
-                                              team['teamname'],
-                                              style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 19),
-                                            ),
-                                            subtitle: Row(
-                                              children: [
-                                                for (var category
-                                                    in team['teamcategories'])
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        category,
-                                                        style: const TextStyle(
-                                                            fontSize: 17),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      )
-                                                    ],
-                                                  ),
-                                              ],
-                                            ),
-                                            contentPadding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 16.0),
-                                            leading: const CircleAvatar(
-                                              backgroundImage: NetworkImage(
-                                                  'https://media.sproutsocial.com/uploads/2019/08/chicago-bulls-case-study-feature-img.png'),
-                                            ),
-                                            onTap: () {},
-                                          )
-                                      ],
-                                    ),
+                          Text('Games (2)',
+                              style: TextStyle(
+                                  color: primaryText,
+                                  fontWeight: FontWeight.w600)),
+                          Spacer(),
+                          Icon(
+                            Remix.arrow_right_s_line,
+                            color: secondaryTextColor,
+                          )
                         ],
                       ),
                     ),
