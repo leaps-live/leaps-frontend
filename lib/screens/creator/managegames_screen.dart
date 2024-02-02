@@ -25,9 +25,22 @@ class _ManageGamesScreenState extends State<ManageGamesScreen> {
         ),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(0),
-        child: Column(),
+      body: const Padding(
+        padding: EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Upcoming",
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
+            ),
+            SizedBox(height: 20),
+            Text(
+              "History",
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
+            ),
+          ],
+        ),
       ),
     );
   }
