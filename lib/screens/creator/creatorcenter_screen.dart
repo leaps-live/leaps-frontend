@@ -1,14 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
+import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
-import 'package:leaps_frontend/screens/game/editgame_screen.dart';
-import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
-import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
-import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
-import 'package:leaps_frontend/screens/league/createLeague/createLeague_screen.dart';
-import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createteam_screen_stepone.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -268,7 +263,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                 Column(
                   children: [
                     ElevatedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        Navigator.pushNamed(
+                            context, ManageTeamsScreen.routeName)
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           elevation: 0.0,
@@ -295,7 +293,10 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                     ),
                     const SizedBox(height: 10),
                     ElevatedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        Navigator.pushNamed(
+                            context, ManageGamesScreen.routeName)
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           elevation: 0.0,
