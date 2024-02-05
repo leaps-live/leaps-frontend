@@ -67,75 +67,96 @@ class _ManageTeamsScreenState extends State<ManageTeamsScreen> {
                 children: [
                   Row(
                     children: [
-                      ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(100), // Image border
-                        child: SizedBox.fromSize(
-                          size: const Size.fromRadius(20), // Image radius
-                          child: Image.network(
-                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                            fit: BoxFit.cover,
+                      Row(children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(100), // Image border
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(20), // Image radius
+                            child: Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      const Text(
-                        'Mighty Dragons',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
+                        const SizedBox(width: 12),
+                        const Text(
+                          'Mighty Dragons',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                          textAlign: TextAlign.left,
+                        )
+                      ]),
+                      const Spacer(),
+                      const Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
                       )
                     ],
                   ),
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(100), // Image border
-                        child: SizedBox.fromSize(
-                          size: const Size.fromRadius(20), // Image radius
-                          child: Image.network(
-                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                            fit: BoxFit.cover,
+                      Row(children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(100), // Image border
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(20), // Image radius
+                            child: Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      const Text(
-                        'Mighty Dragons',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
+                        const SizedBox(width: 12),
+                        const Text(
+                          'Mighty Dragons',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                          textAlign: TextAlign.left,
+                        )
+                      ]),
+                      const Spacer(),
+                      const Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
                       )
                     ],
                   ),
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(100), // Image border
-                        child: SizedBox.fromSize(
-                          size: const Size.fromRadius(20), // Image radius
-                          child: Image.network(
-                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                            fit: BoxFit.cover,
+                      Row(children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(100), // Image border
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(20), // Image radius
+                            child: Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      const Text(
-                        'Mighty Dragons',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
-                        textAlign: TextAlign.left,
+                        const SizedBox(width: 12),
+                        const Text(
+                          'Mighty Dragons',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                          textAlign: TextAlign.left,
+                        )
+                      ]),
+                      const Spacer(),
+                      const Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
                       )
                     ],
                   ),
