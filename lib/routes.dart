@@ -6,6 +6,7 @@ import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_2_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
+import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_video.dart';
@@ -103,5 +104,6 @@ var allRoutes = <String, WidgetBuilder>{
   CreateTeamSteponeScreen.routeName: (context) =>
       const CreateTeamSteponeScreen(),
   ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
-  ManageGamesScreen.routeName: (context) => const ManageGamesScreen()
+  ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
+  GameDetailsScreen.routeName: (context) => const GameDetailsScreen()
 };

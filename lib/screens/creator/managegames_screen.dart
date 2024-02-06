@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -26,7 +27,7 @@ class _ManageGamesScreenState extends State<ManageGamesScreen> {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
-        padding: EdgeInsets.all(18),
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,13 +38,14 @@ class _ManageGamesScreenState extends State<ManageGamesScreen> {
             const SizedBox(height: 10),
             Container(
               width: double.infinity,
-              // height: 100,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, GameDetailsScreen.routeName);
+                  },
                   splashColor: Colors.black26,
                   child: Column(mainAxisSize: MainAxisSize.min, children: [
                     Container(
