@@ -76,11 +76,6 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
                                     ),
                                   ],
                                 ),
-                                Spacer(),
-                                Icon(
-                                  Remix.arrow_right_s_line,
-                                  color: Colors.white,
-                                )
                               ],
                             ),
                           ],
@@ -134,6 +129,152 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
                     const SizedBox(height: 20),
                   ]),
                 ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              // height: 100,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  onTap: () {},
+                  splashColor: Colors.black26,
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Row(children: [
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      100), // Image border
+                                  child: SizedBox.fromSize(
+                                    size: const Size.fromRadius(
+                                        15), // Image radius
+                                    child: Image.network(
+                                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                const Text(
+                                  'Mighty Dragons',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: Colors.black),
+                                  textAlign: TextAlign.left,
+                                )
+                              ],
+                            ),
+                            const Spacer(),
+                            const Text(
+                              'HOME',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: secondaryTextColor),
+                            )
+                          ]),
+                          const SizedBox(height: 15),
+                          Row(children: [
+                            ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(100), // Image border
+                              child: SizedBox.fromSize(
+                                size: const Size.fromRadius(15), // Image radius
+                                child: Image.network(
+                                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            const Text(
+                              'Mighty Dragons',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Colors.black),
+                              textAlign: TextAlign.left,
+                            )
+                          ]),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Text(
+              'More Actions',
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                  color: Colors.black),
+              textAlign: TextAlign.left,
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  elevation: 0.0,
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  minimumSize: const Size.fromHeight(50),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+              child: const Row(
+                children: [
+                  Text('Edit Game Info',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: secondaryTextColor,
+                          fontWeight: FontWeight.w600)),
+                  Spacer(),
+                  Icon(
+                    Remix.arrow_right_s_line,
+                    color: secondaryTextColor,
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  elevation: 0.0,
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  minimumSize: const Size.fromHeight(50),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+              child: const Row(
+                children: [
+                  Text('Disband Game',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: secondaryTextColor,
+                          fontWeight: FontWeight.w600)),
+                  Spacer(),
+                  Icon(
+                    Remix.arrow_right_s_line,
+                    color: secondaryTextColor,
+                  )
+                ],
               ),
             ),
           ],
