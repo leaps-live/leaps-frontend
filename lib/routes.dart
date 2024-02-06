@@ -105,5 +105,5 @@ var allRoutes = <String, WidgetBuilder>{
       const CreateTeamSteponeScreen(),
   ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
   ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
-  GameDetailsScreen.routeName: (context) => const GameDetailsScreen()
+  GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),
 };

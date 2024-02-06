@@ -176,7 +176,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, CreateGameScreen.routeName);
+                                context, CreateTeamSteponeScreen.routeName);
                           },
                           splashColor: Colors.black26,
                           child: IntrinsicHeight(
@@ -195,7 +195,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                       height: 10,
                                     ),
                                     const Text(
-                                      'Game',
+                                      'Team',
                                       style: TextStyle(
                                           color: primaryText,
                                           fontWeight: FontWeight.w600),
@@ -228,7 +228,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Image.asset(
-                                      'assets/images/CreateTeam.png',
+                                      'assets/images/CreateGame.png',
                                       fit: BoxFit.cover,
                                       width: 110,
                                       height: 110,
@@ -237,7 +237,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                                       height: 10,
                                     ),
                                     const Text(
-                                      'Team',
+                                      'Game',
                                       style: TextStyle(
                                           color: primaryText,
                                           fontWeight: FontWeight.w600),

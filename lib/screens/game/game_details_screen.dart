@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:intl/intl.dart';
 
 class GameDetailsScreen extends StatefulWidget {
   const GameDetailsScreen({super.key});
@@ -13,6 +13,40 @@ class GameDetailsScreen extends StatefulWidget {
 }
 
 class _GameDetailsScreenState extends State<GameDetailsScreen> {
+  void _showDisbandAlert(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Disband a game cannot be undone',
+            textAlign: TextAlign.left),
+        content: const Text('All players will be notified.',
+            textAlign: TextAlign.left),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cancel',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    color: secondaryTextColor)),
+          ),
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Disband',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.black)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,7 +257,8 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
             ),
             const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: () => {},
+              onPressed: () =>
+                  {Navigator.pushNamed(context, EditGameScreen.routeName)},
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   elevation: 0.0,
@@ -251,7 +286,7 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
             ),
             const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: () => {},
+              onPressed: () => {_showDisbandAlert(context)},
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   elevation: 0.0,
