@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
-import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
+import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
+import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_2_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
+import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_video.dart';
@@ -99,5 +102,8 @@ var allRoutes = <String, WidgetBuilder>{
       const EmailConfirmationCodeScreen(arguments: {}),
   S3UploadScreen.routeName: (context) => const S3UploadScreen(),
   CreateTeamSteponeScreen.routeName: (context) =>
-      const CreateTeamSteponeScreen()
+      const CreateTeamSteponeScreen(),
+  ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
+  ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
+  GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),
 };
