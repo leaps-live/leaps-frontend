@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_games.dart';
 import 'package:leaps_frontend/screens/home/home_video.dart';
 import 'package:leaps_frontend/screens/home/home_team.dart';

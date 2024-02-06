@@ -73,10 +73,10 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
             const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               'Opponent Team',
               // 'Schedule: $concatenatedDateTime',
-              style: const TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: 17),
             ),
             const SizedBox(
               height: 16,
@@ -93,10 +93,10 @@ class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
             const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               'Location',
               // 'Schedule: $concatenatedDateTime',
-              style: const TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: 17),
             ),
             const SizedBox(
               height: 8,
