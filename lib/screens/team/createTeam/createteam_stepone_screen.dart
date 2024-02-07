@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_steptwo_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +20,15 @@ class CreateTeamScreen extends StatefulWidget {
 class _CreateTeamScreenState extends State<CreateTeamScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  String selectedValue = "Point Guard";
+  final List<String> selectedPositions = <String>[
+    'Point Guard',
+    'Shooting Guard',
+    'Small Forward',
+    'Power Forward',
+    'Center',
+    'Bench',
+  ];
+  int selectedPositionIndex = 0;
   String teamid = "";
   bool areAllfieldsFilled = false;
   bool isLoading = false;
@@ -63,7 +73,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
     // Create a map with the collected data
     final Map<String, dynamic> userData = {
-      'teamCategories': [selectedValue],
+      'teamCategories': [selectedPositions[selectedPositionIndex]],
       'teamName': nameController.text,
       'teamDescription': descriptionController.text,
       'teamCreator': userid,
@@ -137,13 +147,23 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100), // Image border
+                child: SizedBox.fromSize(
+                  size: const Size.fromRadius(40), // Image radius
+                  child: Image.network(
+                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             TextField(
               controller: nameController,
               onChanged: (value) {
@@ -165,38 +185,51 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 46),
-            const Text(
-              'Your Position',
-              style: TextStyle(fontSize: 17),
-            ),
-            DropdownButton<String>(
-              value: selectedValue,
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  setState(() {
-                    selectedValue = newValue;
-                  });
-                }
-                _checkIfFieldFilled(context);
-              },
-              items: <String>[
-                'Point Guard',
-                'Shooting Guard',
-                'Small Forward',
-                'Power Forward',
-                'Center',
-                'Bench'
-              ]
-                  .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  })
-                  .toSet()
-                  .toList(), // 使用Set来确保唯一值
-            ),
+            // const SizedBox(height: 46),
+            // const Text(
+            //   'Your Position',
+            //   style: TextStyle(fontSize: 17),
+            // ),
+            // ElevatedButton(
+            //   onPressed: () => {
+            //     showCupertinoModalPopup(
+            //         context: context,
+            //         builder: (_) => SizedBox(
+            //             width: double.infinity,
+            //             height: 250,
+            //             child: CupertinoPicker(
+            //               backgroundColor: CupertinoColors.systemBackground
+            //                   .resolveFrom(context),
+            //               itemExtent: 30,
+            //               scrollController:
+            //                   FixedExtentScrollController(initialItem: 0),
+            //               onSelectedItemChanged: (int value) {
+            //                 setState(() {
+            //                   selectedPositionIndex = value;
+            //                 });
+            //               },
+            //               children: const [
+            //                 Text('Point Guard'),
+            //                 Text('Shooting Guard'),
+            //                 Text('Small Forward'),
+            //                 Text('Power Forward'),
+            //                 Text('Center')
+            //               ],
+            //             )))
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //       backgroundColor: tagColor,
+            //       elevation: 0.0,
+            //       shadowColor: Colors.transparent,
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(10.0),
+            //       ),
+            //       padding:
+            //           const EdgeInsets.symmetric(horizontal: 5, vertical: 12)),
+            //   child: Text(selectedPositions[selectedPositionIndex],
+            //       style: const TextStyle(
+            //           color: secondaryTextColor, fontWeight: FontWeight.bold)),
+            // ),
             const SizedBox(height: 26),
             TextField(
               controller: descriptionController,
@@ -219,13 +252,14 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
               ),
               // maxLines: 3,
             ),
-            // const SizedBox(height: 400.0),
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () {
-                    createTeam();
+                    // createTeam();
+                    Navigator.pushReplacementNamed(
+                        context, CreateTeamStepTwoScreen.routeName);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:

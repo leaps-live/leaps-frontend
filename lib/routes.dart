@@ -30,8 +30,9 @@ import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/search/searchLeague.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen_stepone.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_stepone_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_prefilters_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createteam_steptwo_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
@@ -106,4 +107,6 @@ var allRoutes = <String, WidgetBuilder>{
   ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
   ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
   GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),
+  CreateTeamStepTwoScreen.routeName: (context) =>
+      const CreateTeamStepTwoScreen()
 };
