@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/colors.dart';
+import 'package:flutter_remix_icon/flutter_remix_icon.dart';
 
 class HomeGames extends StatefulWidget {
   const HomeGames({super.key});
@@ -34,10 +36,20 @@ class _HomeGamesState extends State<HomeGames> {
 
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+    final heightRatio = MediaQuery.of(context).size.height;
+
+    final pageHeadingStyle = TextStyle(
+    fontSize: 0.04 * widthRatio,
+    fontWeight: FontWeight.w600,
+    color: secondaryTextColor,
+
+    );
+    
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,92 +58,48 @@ class _HomeGamesState extends State<HomeGames> {
               ),
               Row(
                 children: [
-                  Text(
-                    "Game Recruitment(12)",
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
-                  ),
-                  Spacer(),
+                  // Text(
+                  //   "Game Recruitment(12)",
+                  //   style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
+                  // ),
+                  // Spacer(),
                   IconButton(
                     onPressed: () {
                       Navigator.pushNamed(context, FilterScreen.routeName);
                     },
                     icon: Icon(
-                      Remix.equalizer_line,
+                      RemixIcon.equalizer_2_line,
                       color: Color(0xFF2E3A59),
                     ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, FilterScreen.routeName);
-                      },
-                      child: Text("Filter",
-                          style: TextStyle(fontSize: 19, color: Colors.black)))
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Beginner",
-                      style: const TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
+                  RichText(
+                      text: TextSpan(
+                          text: 'Filter',
+                          style: pageHeadingStyle,
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                  context, FilterScreen.routeName);
+                            })),
+                  SizedBox(width: 10),
+                  Text(
+                    "•",
+                    style: pageHeadingStyle
+              ,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "men",
-                      style: const TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 2.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Text(
-                      "Seattle",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
+                  SizedBox(width: 10),
+                  Text(
+                    "12 Results",
+                    style: pageHeadingStyle
+              ,
                   ),
                 ],
               ),
+              const SizedBox(height: 0),
               SizedBox(
-                height: 500,
-                width: double.infinity,
+                //height: 0.6 * heightRatio,
+                // width: double.infinity,
+                width: 1 * widthRatio, 
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -256,49 +224,13 @@ class _HomeGamesState extends State<HomeGames> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 0.01 * heightRatio,
+              ),
             ],
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
-        if (!isLogin)
-          Container(
-            width: double.infinity,
-            height: 40,
-            color: secondaryText,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "Sign up or Log in to explore more.",
-                  style: TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegisterScreen.routeName);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    fixedSize: const Size(75, 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: const Text('Sign up',
-                      style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
-                ),
-              ],
-            ),
-          )
       ],
     );
   }
