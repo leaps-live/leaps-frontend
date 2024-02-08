@@ -49,7 +49,7 @@ class _HomeGamesState extends State<HomeGames> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -95,71 +95,11 @@ class _HomeGamesState extends State<HomeGames> {
                   ),
                 ],
               ),
-              // Row(
-              //   children: [
-              //     Container(
-              //       padding: const EdgeInsets.all(3.0),
-              //       decoration: BoxDecoration(
-              //         border: Border.all(
-              //           color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-              //           width: 2.0, // 边框宽度
-              //         ),
-              //         borderRadius: BorderRadius.circular(15),
-              //       ),
-              //       child: Text(
-              //         "Beginner",
-              //         style: const TextStyle(
-              //             fontSize: 13,
-              //             color: Color.fromRGBO(75, 75, 75, 1),
-              //             fontWeight: FontWeight.w600),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 10,
-              //     ),
-              //     Container(
-              //       padding: const EdgeInsets.all(3.0),
-              //       decoration: BoxDecoration(
-              //         border: Border.all(
-              //           color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-              //           width: 2.0, // 边框宽度
-              //         ),
-              //         borderRadius: BorderRadius.circular(15),
-              //       ),
-              //       child: Text(
-              //         "men",
-              //         style: const TextStyle(
-              //             fontSize: 13,
-              //             color: Color.fromRGBO(75, 75, 75, 1),
-              //             fontWeight: FontWeight.w600),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 10,
-              //     ),
-              //     Container(
-              //       padding: const EdgeInsets.all(3.0),
-              //       decoration: BoxDecoration(
-              //         border: Border.all(
-              //           color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-              //           width: 2.0, // 边框宽度
-              //         ),
-              //         borderRadius: BorderRadius.circular(15),
-              //       ),
-              //       child: const Text(
-              //         "Seattle",
-              //         style: TextStyle(
-              //             fontSize: 13,
-              //             color: Color.fromRGBO(75, 75, 75, 1),
-              //             fontWeight: FontWeight.w600),
-              //       ),
-              //     ),
-              //   ],
-              // ),
               const SizedBox(height: 0),
               SizedBox(
                 //height: 0.6 * heightRatio,
-                width: double.infinity,
+                // width: double.infinity,
+                width: 1 * widthRatio, 
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -291,52 +231,6 @@ class _HomeGamesState extends State<HomeGames> {
             ],
           ),
         ),
-        // SizedBox(
-        //   height: 0.01 * heightRatio,
-        // ),
-        if (!isLogin)
-          Container(
-            width: double.infinity,
-              height: 0.08 * heightRatio,
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: double.infinity,
-                    height: 0.06 * heightRatio,
-                    color: secondaryText,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // SizedBox(
-                        //   width: 10,
-                        // ),
-                        Text(
-                          "Sign up or Log in to explore more.",
-                          style: TextStyle(fontSize: 15, color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, RegisterScreen.routeName);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            fixedSize: const Size(90, 15),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: const Text('Sign up',
-                              style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white)),
-                        ),
-                      ],
-                    ),
-                  )))
       ],
     );
   }
