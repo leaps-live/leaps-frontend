@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens//search/searchMember_screen.dart';
+import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:intl/intl.dart';
 
-class EditGameScreen extends StatefulWidget {
-  const EditGameScreen({super.key});
-  static const routeName = '/edit_game';
+class CreateGameTwoScreen extends StatefulWidget {
+  const CreateGameTwoScreen({super.key});
+  static const routeName = '/create_game_two';
 
   @override
-  State<EditGameScreen> createState() => _EditGameScreenState();
+  State<CreateGameTwoScreen> createState() => _CreateGameTwoScreenState();
 }
 
-class _EditGameScreenState extends State<EditGameScreen> {
+class _CreateGameTwoScreenState extends State<CreateGameTwoScreen> {
   String dropdownValue1 = "None";
   String dropdownValue2 = "None";
 
@@ -21,6 +22,7 @@ class _EditGameScreenState extends State<EditGameScreen> {
 
   int numberOfQuarters = 0;
   int minutesPerQuarter = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,25 +30,10 @@ class _EditGameScreenState extends State<EditGameScreen> {
       appBar: AppBar(
         backgroundColor: primaryBackgroundColor,
         title: const Text(
-          'Edit a Game',
+          'Create a Game',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
-        actions: [
-          TextButton(
-            onPressed: () {
-              // do something for save button
-            },
-            child: const Text(
-              'Save',
-              style: TextStyle(
-                color: Color.fromARGB(255, 8, 125, 221),
-                fontSize: 17,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(
@@ -86,44 +73,30 @@ class _EditGameScreenState extends State<EditGameScreen> {
             const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               'Opponent Team',
               // 'Schedule: $concatenatedDateTime',
-              style: const TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: 17),
             ),
             const SizedBox(
               height: 16,
             ),
-            Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100), // Image border
-                  child: SizedBox.fromSize(
-                    size: const Size.fromRadius(15), // Image radius
-                    child: Image.network(
-                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  'Mighty Dragons',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Colors.black),
-                  textAlign: TextAlign.left,
-                )
-              ],
+            GestureDetector(
+              child: const Icon(
+                Remix.search_line,
+                color: Color(0xFF2E3A59),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, SearchMemberScreen.routeName);
+              },
             ),
             const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               'Location',
               // 'Schedule: $concatenatedDateTime',
-              style: const TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: 17),
             ),
             const SizedBox(
               height: 8,
@@ -341,6 +314,31 @@ class _EditGameScreenState extends State<EditGameScreen> {
               child: Text(minutesPerQuarter.toString(),
                   style: const TextStyle(
                       color: secondaryTextColor, fontWeight: FontWeight.bold)),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // do something after clicking create button
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        fixedSize: const Size(300, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
+                      ),
+                      child: const Text('Create'),
+                    ),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(
               height: 36,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
+import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_games.dart';
 import 'package:leaps_frontend/screens/home/home_video.dart';
 import 'package:leaps_frontend/screens/home/home_team.dart';
@@ -185,6 +185,13 @@ class _tabBarState extends State<tabBar> with SingleTickerProviderStateMixin {
                     ),
                     insets: EdgeInsets.symmetric(horizontal: 17, vertical: 7)),
               ),
+              indicator: const UnderlineTabIndicator(
+                  borderRadius: BorderRadius.all(Radius.circular(300)),
+                  borderSide: BorderSide(
+                    color: primaryColor,
+                    width: 2.5,
+                  ),
+                  insets: EdgeInsets.symmetric(horizontal: 17, vertical: 7)),
             ),
             const Spacer(),
             GestureDetector(

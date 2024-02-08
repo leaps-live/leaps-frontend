@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
-import 'package:leaps_frontend/screens/creator/createcenter_screen.dart';
-import 'package:leaps_frontend/screens/game/create_game.dart';
-import 'package:leaps_frontend/screens/game/creategame_screen.dart';
+import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
+import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
+import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game_2_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
+import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
 import 'package:leaps_frontend/screens/home/filter_screen.dart';
 import 'package:leaps_frontend/screens/home/home_video.dart';
@@ -34,15 +37,15 @@ import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/account_security.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_email.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_password.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/change_username.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/email_confirmationcode_screen.dart';
-import 'package:leaps_frontend/screens/user/settings/account_security/manage_devices.dart';
-import 'package:leaps_frontend/screens/user/settings/notifications/notifications.dart';
-import 'package:leaps_frontend/screens/user/settings/privacy_settings/privacy_settings.dart';
-import 'package:leaps_frontend/screens/user/settings/settings_screen.dart';
+import 'package:leaps_frontend/screens/settings/account_security/account_security.dart';
+import 'package:leaps_frontend/screens/settings/account_security/change_email.dart';
+import 'package:leaps_frontend/screens/settings/account_security/change_password.dart';
+import 'package:leaps_frontend/screens/settings/account_security/change_username.dart';
+import 'package:leaps_frontend/screens/settings/account_security/email_confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/settings/account_security/manage_devices.dart';
+import 'package:leaps_frontend/screens/settings/notifications/notifications.dart';
+import 'package:leaps_frontend/screens/settings/privacy_settings/privacy_settings.dart';
+import 'package:leaps_frontend/screens/settings/settings_screen.dart';
 import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
 
 var allRoutes = <String, WidgetBuilder>{
@@ -58,7 +61,7 @@ var allRoutes = <String, WidgetBuilder>{
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
   SearchMemberScreen.routeName: (context) => const SearchMemberScreen(),
   CreateCenterScreen.routeName: (context) => const CreateCenterScreen(),
-  CreateGameScreen.routeName: (context) => const CreateGameScreen(),
+  CreateGameTwoScreen.routeName: (context) => const CreateGameTwoScreen(),
   CreateLiveStreamScreen.routeName: (context) => const CreateLiveStreamScreen(),
   EditGameScreen.routeName: (context) => const EditGameScreen(),
   HomePageScreen.routeName: (context) => const HomePageScreen(),
@@ -88,7 +91,7 @@ var allRoutes = <String, WidgetBuilder>{
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
   HomeTeam.routeName: (context) => const HomeTeam(),
   HomeVideo.routeName: (context) => const HomeVideo(),
-  GameSelectScreen.routeName: (context) => const GameSelectScreen(),
+  CreateGameScreen.routeName: (context) => const CreateGameScreen(),
   ConfirmationCodeScreen.routeName: (context) =>
       const ConfirmationCodeScreen(arguments: {}),
   ForgotPassword.routeName: (context) => const ForgotPassword(),
@@ -99,5 +102,8 @@ var allRoutes = <String, WidgetBuilder>{
       const EmailConfirmationCodeScreen(arguments: {}),
   S3UploadScreen.routeName: (context) => const S3UploadScreen(),
   CreateTeamSteponeScreen.routeName: (context) =>
-      const CreateTeamSteponeScreen()
+      const CreateTeamSteponeScreen(),
+  ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
+  ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
+  GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),
 };
