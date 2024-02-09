@@ -54,9 +54,7 @@ var allRoutes = <String, WidgetBuilder>{
   CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
   CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
-  EditTeamScreen.routeName: (context) => EditTeamScreen(
-      searchResult:
-          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
+  EditTeamScreen.routeName: (context) => EditTeamScreen(),
   EditLeagueScreen.routeName: (context) => EditLeagueScreen(
       searchResult:
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),

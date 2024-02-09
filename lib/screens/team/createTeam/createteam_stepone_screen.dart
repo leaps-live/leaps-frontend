@@ -20,15 +20,15 @@ class CreateTeamScreen extends StatefulWidget {
 class _CreateTeamScreenState extends State<CreateTeamScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  final List<String> selectedPositions = <String>[
-    'Point Guard',
-    'Shooting Guard',
-    'Small Forward',
-    'Power Forward',
-    'Center',
-    'Bench',
+  final List<String> selectedSport = <String>[
+    'Basketball',
+    'Football',
+    'Soccer',
+    'Baseball',
+    'Volleyball',
+    'Hiking',
   ];
-  int selectedPositionIndex = 0;
+  int selectedSportIndex = 0;
   String teamid = "";
   bool areAllfieldsFilled = false;
   bool isLoading = false;
@@ -73,7 +73,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
     // Create a map with the collected data
     final Map<String, dynamic> userData = {
-      'teamCategories': [selectedPositions[selectedPositionIndex]],
+      // TODO: change teamCategories to teamSport
+      'teamCategories': [selectedSport[selectedSportIndex]],
       'teamName': nameController.text,
       'teamDescription': descriptionController.text,
       'teamCreator': userid,
@@ -185,51 +186,6 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 ),
               ),
             ),
-            // const SizedBox(height: 46),
-            // const Text(
-            //   'Your Position',
-            //   style: TextStyle(fontSize: 17),
-            // ),
-            // ElevatedButton(
-            //   onPressed: () => {
-            //     showCupertinoModalPopup(
-            //         context: context,
-            //         builder: (_) => SizedBox(
-            //             width: double.infinity,
-            //             height: 250,
-            //             child: CupertinoPicker(
-            //               backgroundColor: CupertinoColors.systemBackground
-            //                   .resolveFrom(context),
-            //               itemExtent: 30,
-            //               scrollController:
-            //                   FixedExtentScrollController(initialItem: 0),
-            //               onSelectedItemChanged: (int value) {
-            //                 setState(() {
-            //                   selectedPositionIndex = value;
-            //                 });
-            //               },
-            //               children: const [
-            //                 Text('Point Guard'),
-            //                 Text('Shooting Guard'),
-            //                 Text('Small Forward'),
-            //                 Text('Power Forward'),
-            //                 Text('Center')
-            //               ],
-            //             )))
-            //   },
-            //   style: ElevatedButton.styleFrom(
-            //       backgroundColor: tagColor,
-            //       elevation: 0.0,
-            //       shadowColor: Colors.transparent,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(10.0),
-            //       ),
-            //       padding:
-            //           const EdgeInsets.symmetric(horizontal: 5, vertical: 12)),
-            //   child: Text(selectedPositions[selectedPositionIndex],
-            //       style: const TextStyle(
-            //           color: secondaryTextColor, fontWeight: FontWeight.bold)),
-            // ),
             const SizedBox(height: 26),
             TextField(
               controller: descriptionController,
@@ -251,6 +207,53 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 ),
               ),
               // maxLines: 3,
+            ),
+            const SizedBox(height: 26),
+            const Text(
+              'Sport',
+              style: TextStyle(fontSize: 17),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () => {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (_) => SizedBox(
+                        width: double.infinity,
+                        height: 250,
+                        child: CupertinoPicker(
+                          backgroundColor: CupertinoColors.systemBackground
+                              .resolveFrom(context),
+                          itemExtent: 30,
+                          scrollController:
+                              FixedExtentScrollController(initialItem: 0),
+                          onSelectedItemChanged: (int value) {
+                            setState(() {
+                              selectedSportIndex = value;
+                            });
+                          },
+                          children: const [
+                            Text('Basketball'),
+                            Text('Football'),
+                            Text('Soccer'),
+                            Text('Baseball'),
+                            Text('Volleyball'),
+                            Text('Hiking'),
+                          ],
+                        )))
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: tagColor,
+                  elevation: 0.0,
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 12)),
+              child: Text(selectedSport[selectedSportIndex],
+                  style: const TextStyle(
+                      color: secondaryTextColor, fontWeight: FontWeight.bold)),
             ),
             Expanded(
               child: Align(
