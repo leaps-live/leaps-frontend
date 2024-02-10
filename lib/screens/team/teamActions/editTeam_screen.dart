@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/main_screen.dart';
+import 'package:leaps_frontend/utils/colors.dart';
+import 'package:remixicon/remixicon.dart';
 
 class EditTeamScreen extends StatefulWidget {
   // final Map<String, dynamic> searchResult;
@@ -23,6 +25,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
   String selectedValue = "Category Choices";
   bool isLoading = false;
   bool saveLoading = false;
+  bool areAllfieldsFilled = false;
   final TextEditingController teamNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
@@ -43,6 +46,12 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
     super.dispose();
   }
 
+  void _checkIfFieldFilled(BuildContext context) {
+    setState(() {
+      areAllfieldsFilled = teamNameController.text.isNotEmpty &&
+          descriptionController.text.isNotEmpty;
+    });
+  }
   // void showPopup(BuildContext context) {
   //   if (Theme.of(context).platform == TargetPlatform.android) {
   //     showDialog(
@@ -210,9 +219,10 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
-          'Edit a Team',
+          'Edit Team',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
@@ -250,6 +260,114 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
               ),
             ),
             const SizedBox(height: 20),
+            TextField(
+              controller: teamNameController,
+              onChanged: (value) {
+                _checkIfFieldFilled(
+                    context); // Update button state on input change
+              },
+              decoration: const InputDecoration(
+                labelText: 'Team Name',
+                // border: InputBorder.none,
+                hintText: 'Team name',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: borderColor),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: primaryColor),
+                ),
+              ),
+            ),
+            const SizedBox(height: 26),
+            TextField(
+              controller: descriptionController,
+              onChanged: (value) {
+                _checkIfFieldFilled(
+                    context); // Update button state on input change
+              },
+              decoration: const InputDecoration(
+                labelText: 'Team Description (optional)',
+                hintText: 'Team Description (optional)',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: borderColor),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: primaryColor),
+                ),
+              ),
+              // maxLines: 3,
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              "More Actions",
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('All Members (3)',
+                          style: TextStyle(
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('Disband Team',
+                          style: TextStyle(
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

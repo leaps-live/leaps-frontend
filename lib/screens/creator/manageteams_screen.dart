@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/editTeam_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:intl/intl.dart';

@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_steptwo_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepTwo_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -102,15 +101,16 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
           "teamid": teamid,
         };
 
-        Navigator.pushNamed(context, FirstCreateTeam.routeName,
-                arguments: routeArguments)
-            .then((result) {
-          if (result != null && result is bool && result) {
-            if (mounted) {
-              Navigator.pop(context, true);
-            }
-          }
-        });
+        // TODO: Different route
+        // Navigator.pushNamed(context, FirstCreateTeam.routeName,
+        //         arguments: routeArguments)
+        //     .then((result) {
+        //   if (result != null && result is bool && result) {
+        //     if (mounted) {
+        //       Navigator.pop(context, true);
+        //     }
+        //   }
+        // });
       } else if (response.statusCode == 401) {
         Fluttertoast.showToast(
           msg: "The team name already exists",

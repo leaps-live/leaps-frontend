@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_stepone_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class CreateTeamSteponeScreen extends StatefulWidget {
