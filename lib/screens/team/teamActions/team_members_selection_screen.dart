@@ -11,8 +11,12 @@ class TeamMembersSelectionScreen extends StatefulWidget {
       _TeamMembersSelectionScreenState();
 }
 
+enum SingingCharacter { lafayette, jefferson, washington }
+
 class _TeamMembersSelectionScreenState
     extends State<TeamMembersSelectionScreen> {
+  SingingCharacter? _character = SingingCharacter.lafayette;
+
   @override
   void initState() {
     super.initState();
@@ -32,14 +36,209 @@ class _TeamMembersSelectionScreenState
           'Solar Surfers',
           style: TextStyle(color: Colors.black),
         ),
+        backgroundColor: primaryBackgroundColor,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(16),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [],
+            children: [
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Radio<SingingCharacter>(
+                      value: SingingCharacter.washington,
+                      groupValue: _character,
+                      activeColor: primaryColor,
+                      onChanged: (SingingCharacter? value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(width: 2),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100), // Image border
+                      child: SizedBox.fromSize(
+                        size: const Size.fromRadius(20), // Image radius
+                        child: Image.network(
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Kevin Durant',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                          textAlign: TextAlign.left,
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          'Organizer',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: secondaryTextColor),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                horizontalTitleGap: 0,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Radio<SingingCharacter>(
+                      value: SingingCharacter.jefferson,
+                      groupValue: _character,
+                      activeColor: primaryColor,
+                      onChanged: (SingingCharacter? value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(width: 2),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100), // Image border
+                      child: SizedBox.fromSize(
+                        size: const Size.fromRadius(20), // Image radius
+                        child: Image.network(
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Kevin Durant',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                          textAlign: TextAlign.left,
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          'Organizer',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: secondaryTextColor),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                horizontalTitleGap: 0,
+              ),
+              const SizedBox(height: 10),
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Radio<SingingCharacter>(
+                      value: SingingCharacter.lafayette,
+                      groupValue: _character,
+                      activeColor: primaryColor,
+                      onChanged: (SingingCharacter? value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(width: 2),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100), // Image border
+                      child: SizedBox.fromSize(
+                        size: const Size.fromRadius(20), // Image radius
+                        child: Image.network(
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Kevin Durant',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                          textAlign: TextAlign.left,
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          'Organizer',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: secondaryTextColor),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                horizontalTitleGap: 0,
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      fixedSize: const Size(300, 43),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                    ),
+                    child: const Text('Transfer'),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 56,
+              ),
+            ],
           ),
         ),
       ),

@@ -34,6 +34,7 @@ class _DisbandTeamScreenState extends State<DisbandTeamScreen> {
           'Disband team',
           style: TextStyle(color: Colors.black),
         ),
+        backgroundColor: primaryBackgroundColor,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(

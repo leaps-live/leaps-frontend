@@ -102,7 +102,7 @@ class _CreateTeamStepTwoScreenState extends State<CreateTeamStepTwoScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mighty Dragons',
+                      'Kevin Durant',
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
