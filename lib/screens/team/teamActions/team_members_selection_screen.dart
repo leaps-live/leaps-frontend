@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/team/teamActions/disbandTeam_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
+import 'package:flutter/gestures.dart';
 
 class TeamMembersSelectionScreen extends StatefulWidget {
   const TeamMembersSelectionScreen({super.key});
@@ -25,6 +28,58 @@ class _TeamMembersSelectionScreenState
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _showTransferAlert(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: RichText(
+          text: TextSpan(
+              style: const TextStyle(
+                  color: primaryText,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16),
+              children: <TextSpan>[
+                const TextSpan(
+                    text:
+                        'Do you want to transfer ownership to Daisy Hansley '),
+                TextSpan(
+                    text: '@daisy',
+                    style: const TextStyle(
+                        color: secondaryColor, fontWeight: FontWeight.w600),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushReplacementNamed(
+                            context, TeamMembersSelectionScreen.routeName);
+                      }),
+                const TextSpan(text: '?'),
+              ]),
+        ),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cancel',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    color: secondaryTextColor)),
+          ),
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pushNamed(context, DisbandTeamScreen.routeName);
+            },
+            child: const Text('Transfer',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.black)),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -221,7 +276,9 @@ class _TeamMembersSelectionScreenState
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _showTransferAlert(context);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
                       fixedSize: const Size(300, 43),

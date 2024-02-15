@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/team/teamActions/team_members_selection_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
@@ -23,6 +24,40 @@ class _DisbandTeamScreenState extends State<DisbandTeamScreen> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _showDisbandAlert(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Disbanding a team cannot be undone',
+            textAlign: TextAlign.left),
+        content: const Text('All players will be notified.',
+            textAlign: TextAlign.left),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cancel',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    color: secondaryTextColor)),
+          ),
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pushNamed(context, ManageTeamsScreen.routeName);
+            },
+            child: const Text('Disband',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.black)),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -109,7 +144,9 @@ class _DisbandTeamScreenState extends State<DisbandTeamScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _showDisbandAlert(context);
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primaryColor,
                             fixedSize: const Size(300, 43),

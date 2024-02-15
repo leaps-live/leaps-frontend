@@ -17,7 +17,7 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text('Disband a game cannot be undone',
+        title: const Text('Disbanding a game cannot be undone',
             textAlign: TextAlign.left),
         content: const Text('All players will be notified.',
             textAlign: TextAlign.left),
