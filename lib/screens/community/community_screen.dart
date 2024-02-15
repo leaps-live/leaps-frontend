@@ -13,15 +13,15 @@ import 'package:leaps_frontend/widgets/buttons/custom_button.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({super.key});
-  static const routeName = '/home_page';
+class CommunityPageScreen extends StatefulWidget {
+  const CommunityPageScreen({super.key});
+  static const routeName = '/community_page';
 
   @override
-  State<HomePageScreen> createState() => _HomePageScreenState();
+  State<CommunityPageScreen> createState() => _CommunityPageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen> {
+class _CommunityPageScreenState extends State<CommunityPageScreen> {
   bool isLogin = false;
 
   @override

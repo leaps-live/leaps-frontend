@@ -66,7 +66,7 @@ var allRoutes = <String, WidgetBuilder>{
   CreateGameTwoScreen.routeName: (context) => const CreateGameTwoScreen(),
   CreateLiveStreamScreen.routeName: (context) => const CreateLiveStreamScreen(),
   EditGameScreen.routeName: (context) => const EditGameScreen(),
-  HomePageScreen.routeName: (context) => const HomePageScreen(),
+  CommunityPageScreen.routeName: (context) => const CommunityPageScreen(),
   ConfirmLiveStreamScreen.routeName: (context) =>
       const ConfirmLiveStreamScreen(),
   MainScreen.routeName: (context) => const MainScreen(),
