@@ -469,7 +469,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: 20,
                     ),
                     Image.asset(
-                      'assets/images/google.png', // 替换为你的图片路径
+                      'assets/images/google.png',
                       width: 35,
                       height: 35,
                     ),

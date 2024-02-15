@@ -4,7 +4,7 @@ import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
 import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
 import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
-import 'package:leaps_frontend/screens/game/create_game_2_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game_stepTwo_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
@@ -30,10 +30,13 @@ import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/search/searchLeague.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen_stepone.dart';
-import 'package:leaps_frontend/screens/team/createTeam/editteam_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/firstCreateTeam.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepTwo_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/disbandTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/editTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/createTeam/old_firstCreateTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/team_members_selection_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
 import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
@@ -53,9 +56,7 @@ var allRoutes = <String, WidgetBuilder>{
   CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
   CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
-  EditTeamScreen.routeName: (context) => EditTeamScreen(
-      searchResult:
-          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
+  EditTeamScreen.routeName: (context) => EditTeamScreen(),
   EditLeagueScreen.routeName: (context) => EditLeagueScreen(
       searchResult:
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
@@ -106,4 +107,9 @@ var allRoutes = <String, WidgetBuilder>{
   ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
   ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
   GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),
+  CreateTeamStepTwoScreen.routeName: (context) =>
+      const CreateTeamStepTwoScreen(),
+  DisbandTeamScreen.routeName: (context) => const DisbandTeamScreen(),
+  TeamMembersSelectionScreen.routeName: (context) =>
+      const TeamMembersSelectionScreen()
 };

@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
               height: 32,
             ),
             Text(
-              "Live-streaming Engagement for All People and Sports",
+              "Live Engagement for All People and Sports",
               style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 14,

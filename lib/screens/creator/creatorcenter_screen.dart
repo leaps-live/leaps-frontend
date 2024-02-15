@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
 import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
-import 'package:leaps_frontend/screens/team/createTeam/createteam_screen_stepone.dart';
+import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -218,7 +218,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, CreateTeamSteponeScreen.routeName);
+                                context, CreateGameScreen.routeName);
                           },
                           splashColor: Colors.black26,
                           child: IntrinsicHeight(
