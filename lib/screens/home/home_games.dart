@@ -40,12 +40,11 @@ class _HomeGamesState extends State<HomeGames> {
     final heightRatio = MediaQuery.of(context).size.height;
 
     final pageHeadingStyle = TextStyle(
-    fontSize: 0.04 * widthRatio,
-    fontWeight: FontWeight.w600,
-    color: secondaryTextColor,
-
+      fontSize: 0.04 * widthRatio,
+      fontWeight: FontWeight.w600,
+      color: secondaryTextColor,
     );
-    
+
     return Column(
       children: [
         Padding(
@@ -53,9 +52,6 @@ class _HomeGamesState extends State<HomeGames> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 10,
-              ),
               Row(
                 children: [
                   // Text(
@@ -84,14 +80,12 @@ class _HomeGamesState extends State<HomeGames> {
                   SizedBox(width: 10),
                   Text(
                     "•",
-                    style: pageHeadingStyle
-              ,
+                    style: pageHeadingStyle,
                   ),
                   SizedBox(width: 10),
                   Text(
                     "12 Results",
-                    style: pageHeadingStyle
-              ,
+                    style: pageHeadingStyle,
                   ),
                 ],
               ),
@@ -99,7 +93,7 @@ class _HomeGamesState extends State<HomeGames> {
               SizedBox(
                 //height: 0.6 * heightRatio,
                 // width: double.infinity,
-                width: 1 * widthRatio, 
+                width: 1 * widthRatio,
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),

@@ -47,6 +47,7 @@ class _HomeTeamState extends State<HomeTeam> {
     );
 
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       body: Column(
         children: [
           Expanded(

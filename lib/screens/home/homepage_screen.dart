@@ -58,11 +58,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
     );
 
     return Scaffold(
+      backgroundColor: primaryBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.zero,
           child: Container(
-            color: secondaryBackgroundColor,
+            color: primaryBackgroundColor,
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
