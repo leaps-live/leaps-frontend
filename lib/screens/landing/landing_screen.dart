@@ -120,21 +120,49 @@ class _LandingScreenState extends State<LandingScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.routeName);
+                    Navigator.pushReplacementNamed(context, RegisterScreen.routeName);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    fixedSize: const Size(300, 40),
+                    backgroundColor: primaryColor,
+                    fixedSize: const Size(300, 42),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                   ),
-                  // const SizedBox(
-                  //   height: 90,
+                  child: 
+                    const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Create an account', 
+                              style: TextStyle(color: Colors.white)),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        )
+                ),
+              ),
+              
+              //Center(
+                //child: ElevatedButton(
+                  // onPressed: () {
+                  //   Navigator.pushNamed(context, LoginScreen.routeName);
+                  // },
+                  // style: ElevatedButton.styleFrom(
+                  //   backgroundColor: Colors.white,
+                  //   fixedSize: const Size(300, 40),
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(20),
+                  //   ),
                   // ),
+                  
+                  //const SizedBox(height: 90),
 
-                  child: Expanded(
-                      child: Align(
+                  //child:
+                  Expanded(
+                    child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -171,11 +199,11 @@ class _LandingScreenState extends State<LandingScreen> {
                       ],
                     ),
                   )),
-                  // child: const SizedBox(
-                  //   height: 56,
-                  // ),
-                ),
-              ),
+                  const SizedBox(
+                    height: 56,
+                  ),
+                //),
+              //),
             ],
           ),
         ),

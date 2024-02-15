@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
+import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -213,6 +214,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         title: const Text(
           'Sign up',
+        ),
+        leading: InkWell(
+          onTap: () {
+            // Navigator.pop(context); // FIX!!!
+            Navigator.pushReplacementNamed(context, LandingScreen.routeName);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black54,
+          ),
         ),
         actions: [
           TextButton(

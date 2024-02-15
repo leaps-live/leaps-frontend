@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/landing/forgot_password.dart';
+import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
 import '../../utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -194,13 +195,28 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         leading: InkWell(
           onTap: () {
-            Navigator.pop(context);
+            // Navigator.pop(context); // FIX!!!
+            Navigator.pushReplacementNamed(context, LandingScreen.routeName);
           },
           child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black54,
           ),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, MainScreen.routeName);
+            },
+            child: const Text(
+              'Guest   ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ],
         backgroundColor: primaryBackgroundColor,
       ),
       body: Padding(
