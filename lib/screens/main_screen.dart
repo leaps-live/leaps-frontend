@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
-import 'package:leaps_frontend/screens/home/homepage_screen.dart';
+import 'package:leaps_frontend/screens/community/community_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
+import 'package:leaps_frontend/screens/community/filter_screen.dart';
 import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
 import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
 import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
@@ -8,14 +9,14 @@ import 'package:leaps_frontend/screens/game/create_game_stepTwo_screen.dart';
 import 'package:leaps_frontend/screens/game/editgame_screen.dart';
 import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
-import 'package:leaps_frontend/screens/home/filter_screen.dart';
-import 'package:leaps_frontend/screens/home/home_video.dart';
-import 'package:leaps_frontend/screens/home/home_team.dart';
-import 'package:leaps_frontend/screens/home/homepage_screen.dart';
+import 'package:leaps_frontend/screens/community/community_screen.dart';
+import 'package:leaps_frontend/screens/community/community_video.dart';
+import 'package:leaps_frontend/screens/community/community_teams.dart';
+import 'package:leaps_frontend/screens/community/community_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmResetPassword_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
 import 'package:leaps_frontend/screens/landing/forgot_password.dart';
-import 'package:leaps_frontend/screens/home/notifications/notifications_screen.dart';
+import 'package:leaps_frontend/screens/notifications/notifications_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -90,8 +91,8 @@ var allRoutes = <String, WidgetBuilder>{
   SearchTeam.routeName: (context) => const SearchTeam(),
   SearchLeague.routeName: (context) => const SearchLeague(),
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
-  HomeTeam.routeName: (context) => const HomeTeam(),
-  HomeVideo.routeName: (context) => const HomeVideo(),
+  CommunityTeams.routeName: (context) => const CommunityTeams(),
+  CommunityVideo.routeName: (context) => const CommunityVideo(),
   CreateGameScreen.routeName: (context) => const CreateGameScreen(),
   ConfirmationCodeScreen.routeName: (context) =>
       const ConfirmationCodeScreen(arguments: {}),
