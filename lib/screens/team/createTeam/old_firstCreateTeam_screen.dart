@@ -6,6 +6,7 @@ import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+// TODO: This file is deprecated, remove
 class FirstCreateTeam extends StatefulWidget {
   const FirstCreateTeam({super.key});
   static const routeName = '/first_create_team';

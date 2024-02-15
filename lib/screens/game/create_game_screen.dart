@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/game/create_game_2_screen.dart';
+import 'package:leaps_frontend/screens/game/create_game_stepTwo_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
 class CreateGameScreen extends StatefulWidget {
