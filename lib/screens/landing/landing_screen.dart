@@ -110,10 +110,8 @@ class _LandingScreenState extends State<LandingScreen> {
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 100), // Add
-              const Text(
-                  'Leaps',
-                  style: TextStyle(color: primaryColor)),
-              const SizedBox(height: 390), // Add
+              const Text('Leaps', style: TextStyle(color: primaryColor)),
+              //const SizedBox(height: 390), // Add
               //             ),
               //           ),
               //         ),
@@ -121,67 +119,74 @@ class _LandingScreenState extends State<LandingScreen> {
                 height: 16,
               ),
 
+              // AREA TO FIX "CREATE A BUTTON" PLACEMENT
 
-
-
-
-              // AREA TO FIX "CREATE A BUTTON" PLACEMENT 
-
-
-
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(),),);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    fixedSize: const Size(300, 42),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    elevation: 0.0,
-                    shadowColor: Colors.transparent,
-                  ),
-                  child: 
-                    const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Create an account', 
-                              style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        )
-                ),
-              ),
-              
               //Center(
-                //child: ElevatedButton(
-                  // onPressed: () {
-                  //   Navigator.pushNamed(context, LoginScreen.routeName);
-                  // },
-                  // style: ElevatedButton.styleFrom(
-                  //   backgroundColor: Colors.white,
-                  //   fixedSize: const Size(300, 40),
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20),
-                  //   ),
-                  // ),
-                  
-                  //const SizedBox(height: 90),
+              //child: ElevatedButton(
+              // onPressed: () {
+              //   Navigator.pushNamed(context, LoginScreen.routeName);
+              // },
+              // style: ElevatedButton.styleFrom(
+              //   backgroundColor: Colors.white,
+              //   fixedSize: const Size(300, 40),
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(20),
+              //   ),
+              // ),
 
-                  //child:
-                  Expanded(
-                    child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
+              //const SizedBox(height: 90),
+
+              //child:
+              Expanded(
+                  child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Center(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegisterScreen(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            fixedSize: const Size(300, 42),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            elevation: 0.0,
+                            shadowColor: Colors.transparent,
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Create an account',
+                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          )),
+                    ),
+                    SizedBox(height: 56),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),),);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: grayShadeColor,
@@ -209,11 +214,13 @@ class _LandingScreenState extends State<LandingScreen> {
                         const Icon(Icons.apple, size: 35),
                       ],
                     ),
-                  )),
-                  const SizedBox(
-                    height: 56,
-                  ),
-                //),
+                  ],
+                ),
+              )),
+              const SizedBox(
+                height: 56,
+              ),
+              //),
               //),
             ],
           ),
