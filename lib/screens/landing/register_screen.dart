@@ -215,16 +215,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
         title: const Text(
           'Sign up',
         ),
-        leading: InkWell(
-          onTap: () {
-            // Navigator.pop(context); // FIX!!!
-            Navigator.pushReplacementNamed(context, LandingScreen.routeName);
-          },
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black54,
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Navigator.pop(context, true); // FIX!!!
+        //     // Navigator.of(context)..pop();
+        //     // Navigator.of(context, rootNavigator: true).pop(context);
+        //     // Navigator.pushReplacementNamed(context, LandingScreen.routeName);
+        //   },
+        //   child: const Icon(
+        //     Icons.arrow_back_ios,
+        //     color: Colors.black54,
+        //   ),
+        // ),
         actions: [
           TextButton(
             onPressed: () {

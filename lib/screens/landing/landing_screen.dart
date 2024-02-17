@@ -109,7 +109,11 @@ class _LandingScreenState extends State<LandingScreen> {
             // mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20), // Add
+              const SizedBox(height: 100), // Add
+              const Text(
+                  'Leaps',
+                  style: TextStyle(color: primaryColor)),
+              const SizedBox(height: 390), // Add
               //             ),
               //           ),
               //         ),
@@ -117,10 +121,18 @@ class _LandingScreenState extends State<LandingScreen> {
                 height: 16,
               ),
 
+
+
+
+
+              // AREA TO FIX "CREATE A BUTTON" PLACEMENT 
+
+
+
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, RegisterScreen.routeName);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(),),);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,
@@ -169,8 +181,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, LoginScreen.routeName);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),),);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: grayShadeColor,

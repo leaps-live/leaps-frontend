@@ -193,16 +193,16 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text(
           'Log in',
         ),
-        leading: InkWell(
-          onTap: () {
-            // Navigator.pop(context); // FIX!!!
-            Navigator.pushReplacementNamed(context, LandingScreen.routeName);
-          },
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black54,
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Navigator.pop(context); // FIX!!!
+        //     // Navigator.pushReplacementNamed(context, LandingScreen.routeName);
+        //   },
+        //   child: const Icon(
+        //     Icons.arrow_back_ios,
+        //     color: Colors.black54,
+        //   ),
+        // ),
         actions: [
           TextButton(
             onPressed: () {
@@ -218,6 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
         backgroundColor: primaryBackgroundColor,
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
