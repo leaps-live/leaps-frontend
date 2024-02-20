@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
 import 'package:leaps_frontend/screens/community/community_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/team_management_landing_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -17,7 +18,8 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const CommunityPageScreen(),
+    // const CommunityPageScreen(),
+    const TeamManagementLandingScreen(),
     const CreateCenterScreen(),
     const CareerProfileScreen()
   ];

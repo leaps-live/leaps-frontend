@@ -126,7 +126,7 @@ class _DisbandTeamScreenState extends State<DisbandTeamScreen> {
                             TextSpan(
                                 text: 'transfer',
                                 style: const TextStyle(
-                                    color: secondaryColor,
+                                    color: actionItem,
                                     decoration: TextDecoration.underline,
                                     fontWeight: FontWeight.w600),
                                 recognizer: TapGestureRecognizer()

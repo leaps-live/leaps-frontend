@@ -67,7 +67,7 @@ class _CreateTeamStepTwoScreenState extends State<CreateTeamStepTwoScreen> {
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                   icon: const Icon(Remix.add_circle_line,
-                      color: secondaryColor, size: 30),
+                      color: actionItem, size: 30),
                   onPressed: () {},
                 ),
                 const SizedBox(width: 15),
@@ -77,7 +77,7 @@ class _CreateTeamStepTwoScreenState extends State<CreateTeamStepTwoScreen> {
                     child: const Text(
                       'Add Members',
                       style: TextStyle(
-                          color: secondaryColor,
+                          color: actionItem,
                           fontSize: 17,
                           fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,

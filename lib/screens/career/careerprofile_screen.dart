@@ -158,8 +158,7 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                     Navigator.pushNamed(context, LoginScreen.routeName);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        primaryColor,
+                    backgroundColor: primaryColor,
                     fixedSize: const Size(150, 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -168,7 +167,8 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                     shadowColor: Colors.transparent,
                   ),
                   // child: const Text('Login'),
-                  child: const Text('Sign In', style: TextStyle(color: Colors.white)),
+                  child: const Text('Sign In',
+                      style: TextStyle(color: Colors.white)),
                 ),
               ));
   }
@@ -225,7 +225,7 @@ class _HeroContentState extends State<HeroContent> {
                               onTap: () {},
                               child: const Text("Follow",
                                   style: TextStyle(
-                                    color: secondaryColor,
+                                    color: actionItem,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 13,
                                   )),

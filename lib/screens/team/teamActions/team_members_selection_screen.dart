@@ -47,7 +47,7 @@ class _TeamMembersSelectionScreenState
                 TextSpan(
                     text: '@daisy',
                     style: const TextStyle(
-                        color: secondaryColor, fontWeight: FontWeight.w600),
+                        color: actionItem, fontWeight: FontWeight.w600),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         Navigator.pushReplacementNamed(
