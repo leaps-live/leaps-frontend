@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_index.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_tabbar.dart';
+import 'package:leaps_frontend/screens/team/teamPage/Old/team_index.dart';
+import 'package:leaps_frontend/screens/team/teamPage/Old/team_tabbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';

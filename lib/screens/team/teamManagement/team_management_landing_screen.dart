@@ -32,7 +32,7 @@ class _TeamManagementLandingScreenState
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -44,7 +44,7 @@ class _TeamManagementLandingScreenState
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8)),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 23, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 23, vertical: 14),
                   child: Stack(
                     children: [
                       Column(
@@ -55,15 +55,18 @@ class _TeamManagementLandingScreenState
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      100), // Image border
-                                  child: SizedBox.fromSize(
-                                    size: const Size.fromRadius(
-                                        30), // Image radius
-                                    child: Image.network(
-                                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                                      fit: BoxFit.cover,
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        100), // Image border
+                                    child: SizedBox.fromSize(
+                                      size: const Size.fromRadius(
+                                          30), // Image radius
+                                      child: Image.network(
+                                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -110,7 +113,7 @@ class _TeamManagementLandingScreenState
                               ],
                             ),
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 10),
                           const Text(
                             "University of Washington",
                             style: TextStyle(
@@ -120,7 +123,7 @@ class _TeamManagementLandingScreenState
                             ),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -236,16 +239,275 @@ class _TeamManagementLandingScreenState
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8)),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 23, vertical: 15),
-                  child: const Stack(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  child: Stack(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            children: [Row()],
-                          )
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        100), // Image border
+                                    child: SizedBox.fromSize(
+                                      size: const Size.fromRadius(
+                                          13), // Image radius
+                                      child: Image.network(
+                                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const Text(
+                                    'Jack Stanley',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Colors.black),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  const SizedBox(width: 3),
+                                  const Text(
+                                    'Coach',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                        color: secondaryTextColor),
+                                  )
+                                ],
+                              ),
+                              const Icon(
+                                Remix.pushpin_line,
+                                color: basketball,
+                                size: 18,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 12),
+                          const Text(
+                            "Hey everyone, don’t forget we have practice before the game on Monday night.",
+                            style: TextStyle(
+                              color: primaryText,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
                         ],
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('Announcements History',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Upcoming Games',
+                  style: const TextStyle(fontSize: 17),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: InkWell(
+                      onTap: () {},
+                      splashColor: Colors.black26,
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        Container(
+                          width: double.infinity,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                            color: basketball,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(8.0),
+                              topLeft: Radius.circular(8.0),
+                            ),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Remix.basketball_fill,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          "Tuesday, March 5",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                    Spacer(),
+                                    Icon(
+                                      Remix.arrow_right_s_line,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Column(
+                            children: [
+                              Row(children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      100), // Image border
+                                  child: SizedBox.fromSize(
+                                    size: const Size.fromRadius(
+                                        15), // Image radius
+                                    child: Image.network(
+                                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                const Text(
+                                  'Mighty Dragons',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: Colors.black),
+                                  textAlign: TextAlign.left,
+                                )
+                              ]),
+                              const SizedBox(height: 15),
+                              Row(children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      100), // Image border
+                                  child: SizedBox.fromSize(
+                                    size: const Size.fromRadius(
+                                        15), // Image radius
+                                    child: Image.network(
+                                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                const Text(
+                                  'Mighty Dragons',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: Colors.black),
+                                  textAlign: TextAlign.left,
+                                )
+                              ])
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                      ]),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(context, ManageGamesScreen.routeName)
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('Game History',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('All Members (6)',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
                       )
                     ],
                   ),

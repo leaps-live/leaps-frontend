@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/team/teamActions/editTeam_screen.dart';
+import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../utils/colors.dart';
 
 class Index extends StatefulWidget {
   final Map<String, dynamic> searchResult;
