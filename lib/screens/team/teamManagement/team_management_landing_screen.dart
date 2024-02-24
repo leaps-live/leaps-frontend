@@ -31,14 +31,6 @@ class _TeamManagementLandingScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
-      // appBar: AppBar(
-      //   backgroundColor: primaryBackgroundColor,
-      //   title: const Text(
-      //     'Solar Surfers',
-      //     style: TextStyle(color: Colors.black),
-      //   ),
-      //   iconTheme: const IconThemeData(color: Colors.black),
-      // ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
         child: SafeArea(
@@ -110,7 +102,7 @@ class _TeamManagementLandingScreenState
                                             style: TextStyle(
                                                 color: actionItem,
                                                 fontSize: 12,
-                                                fontWeight: FontWeight.w700)),
+                                                fontWeight: FontWeight.w600)),
                                       ),
                                     ],
                                   ),
@@ -151,6 +143,108 @@ class _TeamManagementLandingScreenState
                               ),
                             ],
                           ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: grayShadeColor,
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12)),
+                      child: const Row(
+                        children: [
+                          Icon(Remix.user_shared_line,
+                              color: iconColor, size: 20),
+                          SizedBox(width: 8),
+                          Text('Invite',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: secondaryTextColor,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: grayShadeColor,
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12)),
+                      child: const Row(
+                        children: [
+                          Icon(Remix.edit_line, color: iconColor, size: 20),
+                          SizedBox(width: 8),
+                          Text('Post',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: secondaryTextColor,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: grayShadeColor,
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12)),
+                      child: const Row(
+                        children: [
+                          Icon(Remix.message_line, color: iconColor, size: 20),
+                          SizedBox(width: 8),
+                          Text('Chat',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: secondaryTextColor,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Announcements',
+                  style: const TextStyle(fontSize: 17),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 23, vertical: 15),
+                  child: const Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [Row()],
+                          )
                         ],
                       )
                     ],
