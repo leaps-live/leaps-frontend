@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:leaps_frontend/screens/main_screen.dart';
-import 'package:leaps_frontend/screens/team/teamActions/disbandTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/disband_team_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 

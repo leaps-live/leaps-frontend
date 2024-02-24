@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/team/teamActions/editTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/edit_team_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
-import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
