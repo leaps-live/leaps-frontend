@@ -209,6 +209,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+    final heightRatio = MediaQuery.of(context).size.height;
+
+    final pageHeadingStyle = TextStyle(
+    fontSize: 0.04 * widthRatio,
+    fontWeight: FontWeight.w600,
+    color: secondaryTextColor,
+
+    );
+    
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
@@ -245,7 +255,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Center(
+        child: SafeArea(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
@@ -378,123 +388,129 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(
                 height: 100,
               ),
-              SizedBox(
-                width: 300,
-                child: RichText(
-                  text: const TextSpan(
-                    style: TextStyle(
-                      fontSize: 13, // 设置默认字体大小
-                      color: Colors.black, // 设置默认字体颜色
-                    ),
-                    children: [
-                      TextSpan(
-                        text: "By signing up, you agree to our ",
-                        style: TextStyle(fontWeight: FontWeight.normal),
-                      ),
-                      TextSpan(
-                        text: "Privacy Policy",
-                        style: TextStyle(fontWeight: FontWeight.w600), // 加粗样式
-                      ),
-                      TextSpan(
-                        text: " and ",
-                        style: TextStyle(fontWeight: FontWeight.normal),
-                      ),
-                      TextSpan(
-                        text: "Terms of Service",
-                        style: TextStyle(fontWeight: FontWeight.w600), // 加粗样式
-                      ),
-                      TextSpan(
-                        text: ".",
-                        style: TextStyle(fontWeight: FontWeight.normal),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    signUpUser();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        areAllFieldsFilled ? primaryColor : Colors.grey,
-                    fixedSize: const Size(300, 42),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    elevation: 0.0,
-                    shadowColor: Colors.transparent,
-                  ),
-                  child: isLoading
-                      ? const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Sign up'),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Center(
-                              child: SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2,
-                                ),
-                              ),
-                            )
-                          ],
-                        )
-                      : const Text('Sign up'),
-                ),
-              ),
-              // const SizedBox(
-              //   height: 90,
-              // ),
               Expanded(
                   child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, LoginScreen.routeName);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: grayShadeColor,
-                        fixedSize: const Size(160, 37),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                    SizedBox(
+                      width: widthRatio * 0.7,
+                      child: RichText(
+                        text: const TextSpan(
+                          style: TextStyle(
+                            fontSize: 13, // 设置默认字体大小
+                            color: Colors.black, // 设置默认字体颜色
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "By signing up, you agree to our ",
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                            TextSpan(
+                              text: "Privacy Policy",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600), // 加粗样式
+                            ),
+                            TextSpan(
+                              text: " and ",
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                            TextSpan(
+                              text: "Terms of Service",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600), // 加粗样式
+                            ),
+                            TextSpan(
+                              text: ".",
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                          ],
                         ),
-                        elevation: 0.0,
-                        shadowColor: Colors.transparent,
                       ),
-                      child: const Text('Log in with email',
-                          style: TextStyle(color: secondaryTextColor)),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(
+                      height: heightRatio * 0.025,
                     ),
-                    Image.asset(
-                      'assets/images/google.png', // 替换为你的图片路径
-                      width: 35,
-                      height: 35,
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          signUpUser();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              areAllFieldsFilled ? primaryColor : Colors.grey,
+                          fixedSize: Size(widthRatio * 0.7, heightRatio * 0.05),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                        ),
+                        child: isLoading
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Sign up'),
+                                  Center(
+                                    child: SizedBox(
+                                      // width: 20, commented for reference
+                                      // height: 20, commented for reference
+                                      width: widthRatio * 0.025,
+                                      height: widthRatio * 0.025,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                        strokeWidth: 2,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            : const Text('Sign up'),
+                      ),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(height: heightRatio * 0.05),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, LoginScreen.routeName);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: grayShadeColor,
+                            fixedSize: Size(widthRatio * 0.45, heightRatio * 0.05),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            elevation: 0.0,
+                            shadowColor: Colors.transparent,
+                          ),
+                          child: const Text('Log in with email',
+                              style: TextStyle(color: secondaryTextColor)),
+                        ),
+                        SizedBox(
+                          width: widthRatio * 0.03,
+                        ),
+                        Image.asset(
+                          'assets/images/google.png', // 替换为你的图片路径
+                          width: heightRatio * 0.040,
+                          height: heightRatio * 0.040,
+                        ),
+                        SizedBox(
+                          width: widthRatio * 0.025,
+                        ),
+                        Icon(Icons.apple, size: heightRatio * 0.040),
+                      ],
                     ),
-                    const Icon(Icons.apple, size: 35),
                   ],
                 ),
               )),
-              const SizedBox(
-                height: 56,
+              SizedBox(
+                height: heightRatio * 0.06,
               ),
             ],
           ),

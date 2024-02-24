@@ -187,22 +187,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+    final heightRatio = MediaQuery.of(context).size.height;
+
+    final pageHeadingStyle = TextStyle(
+      fontSize: 0.04 * widthRatio,
+      fontWeight: FontWeight.w600,
+      color: secondaryTextColor,
+    );
+
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Log in',
         ),
-        // leading: InkWell(
-        //   onTap: () {
-        //     Navigator.pop(context); // FIX!!!
-        //     // Navigator.pushReplacementNamed(context, LandingScreen.routeName);
-        //   },
-        //   child: const Icon(
-        //     Icons.arrow_back_ios,
-        //     color: Colors.black54,
-        //   ),
-        // ),
         actions: [
           TextButton(
             onPressed: () {
@@ -288,83 +287,94 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: secondaryTextColor)),
                 ),
               ),
-              const SizedBox(
-                height: 330,
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    _userLogin();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        areAllFieldsFilled ? primaryColor : Colors.grey,
-                    fixedSize: const Size(300, 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    elevation: 0.0,
-                    shadowColor: Colors.transparent,
-                  ),
-                  // child: const Text('Login'),
-                  child: isLoading
-                      ? const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Login'),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Center(
-                              child: SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2,
-                                ),
-                              ),
-                            )
-                          ],
-                        )
-                      : const Text('Login'),
-                ),
-              ),
-              const SizedBox(
-                height: 80,
-              ),
               Expanded(
                   child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: grayShadeColor,
-                        fixedSize: const Size(160, 37),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _userLogin();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              areAllFieldsFilled ? primaryColor : Colors.grey,
+                          fixedSize: Size(widthRatio * 0.7, heightRatio * 0.05),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
                         ),
-                        elevation: 0.0,
-                        shadowColor: Colors.transparent,
+                        // child: const Text('Login'),
+                        child: isLoading
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Login'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Center(
+                                    child: SizedBox(
+                                      // width: 20, commented for reference
+                                      // height: 20, commented for reference
+                                      width: widthRatio * 0.025,
+                                      height: widthRatio * 0.025,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                        strokeWidth: 2,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            : const Text('Login'),
                       ),
-                      child: const Text('Sign up with email',
-                          style: TextStyle(color: secondaryTextColor)),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(height: heightRatio * 0.05),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegisterScreen(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: grayShadeColor,
+                            fixedSize: Size(widthRatio * 0.45, heightRatio * 0.05),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            elevation: 0.0,
+                            shadowColor: Colors.transparent,
+                          ),
+                          child: const Text('Sign up with email',
+                              style: TextStyle(color: secondaryTextColor)),
+                        ),
+                        SizedBox(
+                          width: widthRatio * 0.03,
+                        ),
+                        Image.asset(
+                          'assets/images/google.png', // 替换为你的图片路径
+                          width: heightRatio * 0.040,
+                          height: heightRatio * 0.040,
+                        ),
+                        SizedBox(
+                          width: widthRatio * 0.025,
+                        ),
+                        Icon(Icons.apple, size: heightRatio * 0.040),
+                      ],
                     ),
-                    Image.asset(
-                      'assets/images/google.png', // 替换为你的图片路径
-                      width: 35,
-                      height: 35,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Icon(Icons.apple, size: 35),
                   ],
                 ),
               )),

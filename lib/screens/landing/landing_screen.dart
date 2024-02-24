@@ -14,75 +14,18 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //       body: SafeArea(
-  //     child: Center(
-  //       child: Column(
-  //         children: [
-  //           const SizedBox(
-  //             height: 250,
-  //           ),
-  //           const Icon(
-  //             Icons.face,
-  //             size: 100,
-  //           ),
-  //           const SizedBox(
-  //             height: 180,
-  //           ),
-  //           ElevatedButton(
-  //             onPressed: () {
-  //               Navigator.pushNamed(context, RegisterScreen.routeName);
-  //             },
-  //             style: ElevatedButton.styleFrom(
-  //               backgroundColor: primaryColor,
-  //               fixedSize: const Size(300, 40),
-  //               shape: RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(20),
-  //               ),
-  //             ),
-  //             child: const Text('Sign up'),
-  //           ),
-  //           const SizedBox(
-  //             height: 8,
-  //           ),
-  //           ElevatedButton(
-  //             onPressed: () {
-  //               Navigator.pushNamed(context, LoginScreen.routeName);
-  //             },
-  //             style: ElevatedButton.styleFrom(
-  //               backgroundColor: Colors.white,
-  //               fixedSize: const Size(300, 40),
-  //               shape: RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(20),
-  //               ),
-  //             ),
-  //             child: const Text(
-  //               'Log in',
-  //               style: TextStyle(color: Colors.black),
-  //             ),
-  //           ),
-  //           const SizedBox(
-  //             height: 16,
-  //           ),
-  //           GestureDetector(
-  //             child: const Text(
-  //               "Continue as a guest",
-  //               style: TextStyle(fontSize: 16),
-  //             ),
-  //             onTap: () {
-  //               Navigator.pushReplacementNamed(context, MainScreen.routeName);
-  //             },
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   ));
-  // }
-
   @override
   Widget build(BuildContext context) {
+    final widthRatio = MediaQuery.of(context).size.width;
+    final heightRatio = MediaQuery.of(context).size.height;
+
+    final pageHeadingStyle = TextStyle(
+    fontSize: 0.04 * widthRatio,
+    fontWeight: FontWeight.w600,
+    color: secondaryTextColor,
+
+    );
+    
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
@@ -104,41 +47,13 @@ class _LandingScreenState extends State<LandingScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Center(
+        child: SafeArea(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 100), // Add
+              SizedBox(height: 0.15 * heightRatio), // Add
               const Text('Leaps', style: TextStyle(color: primaryColor)),
-              //const SizedBox(height: 390), // Add
-              //             ),
-              //           ),
-              //         ),
-              const SizedBox(
-                height: 16,
-              ),
-
-              // AREA TO FIX "CREATE A BUTTON" PLACEMENT
-
-              //Center(
-              //child: ElevatedButton(
-              // onPressed: () {
-              //   Navigator.pushNamed(context, LoginScreen.routeName);
-              // },
-              // style: ElevatedButton.styleFrom(
-              //   backgroundColor: Colors.white,
-              //   fixedSize: const Size(300, 40),
-              //   shape: RoundedRectangleBorder(
-              //     borderRadius: BorderRadius.circular(20),
-              //   ),
-              // ),
-
-              //const SizedBox(height: 90),
-
-              //child:
               Expanded(
-                  child: Align(
+                child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -157,7 +72,8 @@ class _LandingScreenState extends State<LandingScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primaryColor,
-                            fixedSize: const Size(300, 42),
+                            //fixedSize: const Size(300, 42),
+                            fixedSize: Size(widthRatio * 0.7, heightRatio * 0.05),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -169,13 +85,11 @@ class _LandingScreenState extends State<LandingScreen> {
                             children: [
                               Text('Create an account',
                                   style: TextStyle(color: Colors.white)),
-                              SizedBox(
-                                width: 10,
-                              ),
                             ],
                           )),
                     ),
-                    SizedBox(height: 56),
+                    // SizedBox(height: 56),
+                    SizedBox(height: heightRatio * 0.05),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -190,7 +104,8 @@ class _LandingScreenState extends State<LandingScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: grayShadeColor,
-                            fixedSize: const Size(160, 37),
+                            // fixedSize: const Size(160, 37),
+                            fixedSize: Size(widthRatio * 0.45, heightRatio * 0.05),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -200,28 +115,31 @@ class _LandingScreenState extends State<LandingScreen> {
                           child: const Text('Log in with email',
                               style: TextStyle(color: secondaryTextColor)),
                         ),
-                        const SizedBox(
-                          width: 20,
+                        SizedBox(
+                          //width: 20,
+                          width: widthRatio * 0.03,
                         ),
                         Image.asset(
                           'assets/images/google.png', // 替换为你的图片路径
-                          width: 35,
-                          height: 35,
+                          // width: 35,
+                          // height: 35,
+                          width: heightRatio * 0.040,
+                          height: heightRatio * 0.040,
                         ),
-                        const SizedBox(
-                          width: 20,
+                        SizedBox(
+                          // width: 20,
+                          width: widthRatio * 0.025,
                         ),
-                        const Icon(Icons.apple, size: 35),
+                        Icon(Icons.apple, size: heightRatio * 0.040),
                       ],
                     ),
                   ],
                 ),
               )),
-              const SizedBox(
-                height: 56,
+              SizedBox(
+                // height: 56,
+                height: heightRatio * 0.06,
               ),
-              //),
-              //),
             ],
           ),
         ),
