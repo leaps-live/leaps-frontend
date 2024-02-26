@@ -16,7 +16,7 @@ class _WriteAnnouncementScreenState extends State<WriteAnnouncementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryBackgroundColor,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: primaryBackgroundColor,
         title: const Text(
@@ -24,6 +24,19 @@ class _WriteAnnouncementScreenState extends State<WriteAnnouncementScreen> {
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Send',
+              style: TextStyle(
+                color: Color.fromARGB(255, 8, 125, 221),
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

@@ -37,6 +37,7 @@ import 'package:leaps_frontend/screens/team/teamActions/disband_team_screen.dart
 import 'package:leaps_frontend/screens/team/teamActions/edit_team_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/old_firstCreateTeam_screen.dart';
 import 'package:leaps_frontend/screens/team/teamActions/team_members_selection_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
 import 'package:leaps_frontend/screens/team/teamPage/old/team_screen.dart';
 import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
@@ -111,5 +112,7 @@ var allRoutes = <String, WidgetBuilder>{
       const CreateTeamStepTwoScreen(),
   DisbandTeamScreen.routeName: (context) => const DisbandTeamScreen(),
   TeamMembersSelectionScreen.routeName: (context) =>
-      const TeamMembersSelectionScreen()
+      const TeamMembersSelectionScreen(),
+  WriteAnnouncementScreen.routeName: (context) =>
+      const WriteAnnouncementScreen()
 };

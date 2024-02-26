@@ -5,6 +5,7 @@ import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
 import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -180,7 +181,10 @@ class _TeamManagementLandingScreenState
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, WriteAnnouncementScreen.routeName);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: grayShadeColor,
                           elevation: 0.0,
