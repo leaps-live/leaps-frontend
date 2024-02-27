@@ -57,7 +57,8 @@ var allRoutes = <String, WidgetBuilder>{
   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
   CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
-  CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
+  CreateTeamStepOneScreen.routeName: (context) =>
+      const CreateTeamStepOneScreen(),
   EditTeamScreen.routeName: (context) => const EditTeamScreen(),
   EditLeagueScreen.routeName: (context) => EditLeagueScreen(
       searchResult:
@@ -104,8 +105,8 @@ var allRoutes = <String, WidgetBuilder>{
   EmailConfirmationCodeScreen.routeName: (context) =>
       const EmailConfirmationCodeScreen(arguments: {}),
   S3UploadScreen.routeName: (context) => const S3UploadScreen(),
-  CreateTeamSteponeScreen.routeName: (context) =>
-      const CreateTeamSteponeScreen(),
+  CreateTeamPreFiltersScreen.routeName: (context) =>
+      const CreateTeamPreFiltersScreen(),
   ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
   ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
   GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),

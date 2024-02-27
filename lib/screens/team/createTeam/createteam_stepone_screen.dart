@@ -8,15 +8,16 @@ import 'package:leaps_frontend/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-class CreateTeamScreen extends StatefulWidget {
-  const CreateTeamScreen({super.key});
+class CreateTeamStepOneScreen extends StatefulWidget {
+  const CreateTeamStepOneScreen({super.key});
   static const routeName = '/create_team';
 
   @override
-  State<CreateTeamScreen> createState() => _CreateTeamScreenState();
+  State<CreateTeamStepOneScreen> createState() =>
+      _CreateTeamStepOneScreenState();
 }
 
-class _CreateTeamScreenState extends State<CreateTeamScreen> {
+class _CreateTeamStepOneScreenState extends State<CreateTeamStepOneScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final List<String> selectedSport = <String>[

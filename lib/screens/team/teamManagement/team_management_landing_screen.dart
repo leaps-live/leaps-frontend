@@ -5,6 +5,7 @@ import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
 import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
+import 'package:leaps_frontend/screens/team/join_team_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -483,6 +484,35 @@ class _TeamManagementLandingScreenState
                   child: const Row(
                     children: [
                       Text('All Members (6)',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () =>
+                      {Navigator.pushNamed(context, JoinTeamScreen.routeName)},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('Join Team',
                           style: TextStyle(
                               fontSize: 16,
                               color: secondaryTextColor,
