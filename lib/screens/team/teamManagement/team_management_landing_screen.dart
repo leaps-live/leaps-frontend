@@ -231,15 +231,11 @@ class _TeamManagementLandingScreenState
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Announcements',
-                  style: const TextStyle(fontSize: 17),
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
+                      border: Border.all(color: basketball, width: 1.0),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8)),
                   padding:
@@ -308,39 +304,29 @@ class _TeamManagementLandingScreenState
                   ),
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () => {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      minimumSize: const Size.fromHeight(50),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12)),
-                  child: const Row(
-                    children: [
-                      Text('Announcements History',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: secondaryTextColor,
-                              fontWeight: FontWeight.w600)),
-                      Spacer(),
-                      Icon(
-                        Remix.arrow_right_s_line,
-                        color: secondaryTextColor,
-                      )
-                    ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "More Announcements",
+                            style: TextStyle(
+                              color: secondaryText,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                            ),
+                            textAlign: TextAlign.right,
+                          ),
+                          SizedBox(width: 5),
+                          Icon(Remix.arrow_right_line,
+                              color: secondaryText, size: 15),
+                        ]),
+                    onTap: () {},
                   ),
                 ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Upcoming Games',
-                  style: const TextStyle(fontSize: 17),
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -459,36 +445,29 @@ class _TeamManagementLandingScreenState
                   ),
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () => {
-                    Navigator.pushNamed(context, ManageGamesScreen.routeName)
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      minimumSize: const Size.fromHeight(50),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12)),
-                  child: const Row(
-                    children: [
-                      Text('Game History',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: secondaryTextColor,
-                              fontWeight: FontWeight.w600)),
-                      Spacer(),
-                      Icon(
-                        Remix.arrow_right_s_line,
-                        color: secondaryTextColor,
-                      )
-                    ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "More Games",
+                            style: TextStyle(
+                              color: secondaryText,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                            ),
+                            textAlign: TextAlign.right,
+                          ),
+                          SizedBox(width: 5),
+                          Icon(Remix.arrow_right_line,
+                              color: secondaryText, size: 15),
+                        ]),
+                    onTap: () {},
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () => {},
                   style: ElevatedButton.styleFrom(

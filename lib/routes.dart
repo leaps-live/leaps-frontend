@@ -33,6 +33,7 @@ import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepTwo_screen.dart';
+import 'package:leaps_frontend/screens/team/join_team_screen.dart';
 import 'package:leaps_frontend/screens/team/teamActions/disband_team_screen.dart';
 import 'package:leaps_frontend/screens/team/teamActions/edit_team_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/old_firstCreateTeam_screen.dart';
@@ -114,5 +115,6 @@ var allRoutes = <String, WidgetBuilder>{
   TeamMembersSelectionScreen.routeName: (context) =>
       const TeamMembersSelectionScreen(),
   WriteAnnouncementScreen.routeName: (context) =>
-      const WriteAnnouncementScreen()
+      const WriteAnnouncementScreen(),
+  JoinTeamScreen.routeName: (context) => const JoinTeamScreen()
 };
