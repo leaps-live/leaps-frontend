@@ -40,7 +40,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'LEAPS = Live-streaming Engagement for All People and Sports',
+      title: 'LEAPS = Live Engagement for All People and Sports',
       theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: backgroundColor,
           appBarTheme: AppBarTheme.of(context).copyWith(

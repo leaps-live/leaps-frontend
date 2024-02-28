@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
-import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -158,8 +158,7 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                     Navigator.pushNamed(context, LoginScreen.routeName);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        primaryColor,
+                    backgroundColor: primaryColor,
                     fixedSize: const Size(150, 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -168,7 +167,8 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
                     shadowColor: Colors.transparent,
                   ),
                   // child: const Text('Login'),
-                  child: const Text('Sign In', style: TextStyle(color: Colors.white)),
+                  child: const Text('Sign In',
+                      style: TextStyle(color: Colors.white)),
                 ),
               ));
   }
@@ -225,7 +225,7 @@ class _HeroContentState extends State<HeroContent> {
                               onTap: () {},
                               child: const Text("Follow",
                                   style: TextStyle(
-                                    color: secondaryColor,
+                                    color: actionItem,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 13,
                                   )),

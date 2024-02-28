@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/team/teamActions/disbandTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/disband_team_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:flutter/gestures.dart';
 
@@ -47,7 +47,7 @@ class _TeamMembersSelectionScreenState
                 TextSpan(
                     text: '@daisy',
                     style: const TextStyle(
-                        color: secondaryColor, fontWeight: FontWeight.w600),
+                        color: actionItem, fontWeight: FontWeight.w600),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         Navigator.pushReplacementNamed(

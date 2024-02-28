@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
-import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/settings/account_security/account_security.dart';
 import 'package:leaps_frontend/screens/settings/notifications/notifications.dart';
 import 'package:leaps_frontend/screens/settings/privacy_settings/privacy_settings.dart';
