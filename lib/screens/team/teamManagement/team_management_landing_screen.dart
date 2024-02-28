@@ -6,6 +6,7 @@ import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
 import 'package:leaps_frontend/screens/team/join_team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/announcements/announcements_history_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
@@ -324,7 +325,10 @@ class _TeamManagementLandingScreenState
                           Icon(Remix.arrow_right_line,
                               color: secondaryText, size: 15),
                         ]),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, AnnouncementsHistoryScreen.routeName);
+                    },
                   ),
                 ),
                 const SizedBox(height: 30),
