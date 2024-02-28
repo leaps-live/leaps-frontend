@@ -176,7 +176,7 @@ class _CreateCenterScreenState extends State<CreateCenterScreen>
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, CreateTeamSteponeScreen.routeName);
+                                context, CreateTeamPreFiltersScreen.routeName);
                           },
                           splashColor: Colors.black26,
                           child: IntrinsicHeight(

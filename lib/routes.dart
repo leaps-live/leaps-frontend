@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
+import 'package:leaps_frontend/screens/community/filter_screen.dart';
 import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
 import 'package:leaps_frontend/screens/creator/managegames_screen.dart';
 import 'package:leaps_frontend/screens/creator/manageteams_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_screen.dart';
 import 'package:leaps_frontend/screens/game/create_game_stepTwo_screen.dart';
-import 'package:leaps_frontend/screens/game/editgame_screen.dart';
+import 'package:leaps_frontend/screens/game/edit_game_screen.dart';
 import 'package:leaps_frontend/screens/game/game_details_screen.dart';
 import 'package:leaps_frontend/screens/game/game_screen.dart';
-import 'package:leaps_frontend/screens/home/filter_screen.dart';
-import 'package:leaps_frontend/screens/home/home_video.dart';
-import 'package:leaps_frontend/screens/home/home_team.dart';
-import 'package:leaps_frontend/screens/home/homepage_screen.dart';
+import 'package:leaps_frontend/screens/community/community_screen.dart';
+import 'package:leaps_frontend/screens/community/community_video.dart';
+import 'package:leaps_frontend/screens/community/community_teams.dart';
 import 'package:leaps_frontend/screens/landing/confirmResetPassword_screen.dart';
 import 'package:leaps_frontend/screens/landing/confirmationcode_screen.dart';
 import 'package:leaps_frontend/screens/landing/forgot_password.dart';
-import 'package:leaps_frontend/screens/home/notifications/notifications_screen.dart';
+import 'package:leaps_frontend/screens/notifications/notifications_screen.dart';
 import 'package:leaps_frontend/screens/landing/landing_screen.dart';
 import 'package:leaps_frontend/screens/landing/login_screen.dart';
 import 'package:leaps_frontend/screens/landing/register_screen.dart';
@@ -33,12 +33,15 @@ import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepTwo_screen.dart';
-import 'package:leaps_frontend/screens/team/teamActions/disbandTeam_screen.dart';
-import 'package:leaps_frontend/screens/team/teamActions/editTeam_screen.dart';
+import 'package:leaps_frontend/screens/team/join_team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/disband_team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamActions/edit_team_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/old_firstCreateTeam_screen.dart';
 import 'package:leaps_frontend/screens/team/teamActions/team_members_selection_screen.dart';
-import 'package:leaps_frontend/screens/team/teamPage/team_screen.dart';
-import 'package:leaps_frontend/screens/user/editprofile_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/announcements/announcements_history_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
+import 'package:leaps_frontend/screens/team/teamPage/old/team_screen.dart';
+import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/screens/settings/account_security/account_security.dart';
 import 'package:leaps_frontend/screens/settings/account_security/change_email.dart';
@@ -55,8 +58,9 @@ var allRoutes = <String, WidgetBuilder>{
   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
   CareerProfileScreen.routeName: (context) => const CareerProfileScreen(),
   CreateLeagueScreen.routeName: (context) => const CreateLeagueScreen(),
-  CreateTeamScreen.routeName: (context) => const CreateTeamScreen(),
-  EditTeamScreen.routeName: (context) => EditTeamScreen(),
+  CreateTeamStepOneScreen.routeName: (context) =>
+      const CreateTeamStepOneScreen(),
+  EditTeamScreen.routeName: (context) => const EditTeamScreen(),
   EditLeagueScreen.routeName: (context) => EditLeagueScreen(
       searchResult:
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
@@ -65,7 +69,7 @@ var allRoutes = <String, WidgetBuilder>{
   CreateGameTwoScreen.routeName: (context) => const CreateGameTwoScreen(),
   CreateLiveStreamScreen.routeName: (context) => const CreateLiveStreamScreen(),
   EditGameScreen.routeName: (context) => const EditGameScreen(),
-  HomePageScreen.routeName: (context) => const HomePageScreen(),
+  CommunityPageScreen.routeName: (context) => const CommunityPageScreen(),
   ConfirmLiveStreamScreen.routeName: (context) =>
       const ConfirmLiveStreamScreen(),
   MainScreen.routeName: (context) => const MainScreen(),
@@ -90,8 +94,8 @@ var allRoutes = <String, WidgetBuilder>{
   SearchTeam.routeName: (context) => const SearchTeam(),
   SearchLeague.routeName: (context) => const SearchLeague(),
   FirstCreateLeague.routeName: (context) => const FirstCreateLeague(),
-  HomeTeam.routeName: (context) => const HomeTeam(),
-  HomeVideo.routeName: (context) => const HomeVideo(),
+  CommunityTeams.routeName: (context) => const CommunityTeams(),
+  CommunityVideo.routeName: (context) => const CommunityVideo(),
   CreateGameScreen.routeName: (context) => const CreateGameScreen(),
   ConfirmationCodeScreen.routeName: (context) =>
       const ConfirmationCodeScreen(arguments: {}),
@@ -102,8 +106,8 @@ var allRoutes = <String, WidgetBuilder>{
   EmailConfirmationCodeScreen.routeName: (context) =>
       const EmailConfirmationCodeScreen(arguments: {}),
   S3UploadScreen.routeName: (context) => const S3UploadScreen(),
-  CreateTeamSteponeScreen.routeName: (context) =>
-      const CreateTeamSteponeScreen(),
+  CreateTeamPreFiltersScreen.routeName: (context) =>
+      const CreateTeamPreFiltersScreen(),
   ManageTeamsScreen.routeName: (context) => const ManageTeamsScreen(),
   ManageGamesScreen.routeName: (context) => const ManageGamesScreen(),
   GameDetailsScreen.routeName: (context) => const GameDetailsScreen(),
@@ -111,5 +115,10 @@ var allRoutes = <String, WidgetBuilder>{
       const CreateTeamStepTwoScreen(),
   DisbandTeamScreen.routeName: (context) => const DisbandTeamScreen(),
   TeamMembersSelectionScreen.routeName: (context) =>
-      const TeamMembersSelectionScreen()
+      const TeamMembersSelectionScreen(),
+  WriteAnnouncementScreen.routeName: (context) =>
+      const WriteAnnouncementScreen(),
+  JoinTeamScreen.routeName: (context) => const JoinTeamScreen(),
+  AnnouncementsHistoryScreen.routeName: (context) =>
+      const AnnouncementsHistoryScreen()
 };

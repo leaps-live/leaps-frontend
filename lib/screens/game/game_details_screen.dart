@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/game/editgame_screen.dart';
+import 'package:leaps_frontend/screens/game/edit_game_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 

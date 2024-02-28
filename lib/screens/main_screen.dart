@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/career/careerprofile_screen.dart';
 import 'package:leaps_frontend/screens/creator/creatorcenter_screen.dart';
-import 'package:leaps_frontend/screens/home/homepage_screen.dart';
+import 'package:leaps_frontend/screens/community/community_screen.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/team_management_landing_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -17,7 +18,8 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const HomePageScreen(),
+    // const CommunityPageScreen(),
+    const TeamManagementLandingScreen(),
     const CreateCenterScreen(),
     const CareerProfileScreen()
   ];
@@ -37,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Remix.home_line,
+                Remix.home_fill,
                 color: primaryColor,
               ),
               icon: Icon(Remix.home_line),
@@ -45,10 +47,10 @@ class _MainScreenState extends State<MainScreen> {
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
               activeIcon: Icon(
-                Remix.add_line,
+                Remix.add_box_fill,
                 color: primaryColor,
               ),
-              icon: Icon(Icons.add),
+              icon: Icon(Icons.add_box_outlined),
               label: 'Create',
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
@@ -56,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
                 Remix.user_5_fill,
                 color: primaryColor,
               ),
-              icon: Icon(Remix.user_5_fill),
+              icon: Icon(Remix.user_5_line),
               label: 'Profile',
               backgroundColor: primaryColor),
         ],

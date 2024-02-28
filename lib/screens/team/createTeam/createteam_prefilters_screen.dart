@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
-class CreateTeamSteponeScreen extends StatefulWidget {
-  const CreateTeamSteponeScreen({super.key});
+class CreateTeamPreFiltersScreen extends StatefulWidget {
+  const CreateTeamPreFiltersScreen({super.key});
   static const routeName = '/create_team_stepone';
 
   @override
-  State<CreateTeamSteponeScreen> createState() =>
-      _CreateTeamSteponeScreenState();
+  State<CreateTeamPreFiltersScreen> createState() =>
+      _CreateTeamPreFiltersScreenState();
 }
 
-class _CreateTeamSteponeScreenState extends State<CreateTeamSteponeScreen> {
+class _CreateTeamPreFiltersScreenState
+    extends State<CreateTeamPreFiltersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -541,7 +542,7 @@ class _CreateTeamSteponeScreenState extends State<CreateTeamSteponeScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, CreateTeamScreen.routeName);
+                Navigator.pushNamed(context, CreateTeamStepOneScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
