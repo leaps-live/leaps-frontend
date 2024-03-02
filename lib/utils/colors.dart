@@ -14,3 +14,4 @@ const tennis = Color(0xFFD7F64C);
 const primaryText = Color.fromRGBO(28, 28, 28, 1);
 const secondaryText = Color.fromRGBO(74, 74, 74, 1);
 const tagColor = Color.fromRGBO(210, 210, 210, 1);
+const redBacking = Color.fromRGBO(251, 235, 235, 1);
