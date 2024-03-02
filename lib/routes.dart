@@ -122,5 +122,5 @@ var allRoutes = <String, WidgetBuilder>{
   JoinTeamScreen.routeName: (context) => const JoinTeamScreen(),
   AnnouncementsHistoryScreen.routeName: (context) =>
       const AnnouncementsHistoryScreen(),
-  TeamProfileScreen.routeName: (context) => const TeamProfileScreen()
+  TeamProfileScreen.routeName: (context) => const TeamProfileScreen(),
 };

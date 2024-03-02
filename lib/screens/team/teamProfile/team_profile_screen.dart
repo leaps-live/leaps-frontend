@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/career/careerprofile_teams.dart';
-import 'package:leaps_frontend/screens/career/careerprofile_videos_screen.dart';
-import 'package:leaps_frontend/screens/landing/login_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/team_profile_members_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/team_profile_videos_screen.dart';
 import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/settings/settings_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
@@ -48,20 +47,7 @@ class _TeamProfileScreenState extends State<TeamProfileScreen>
                   Remix.share_circle_line,
                   color: Color(0xFF2E3A59),
                 ),
-                onPressed: () {
-                  // Navigator.pushNamed(context, SettingsScreen.routeName);
-                  Navigator.pushNamed(context, EditProfile.routeName);
-                },
-              ),
-              IconButton(
-                icon: const Icon(
-                  Remix.settings_line,
-                  color: Color(0xFF2E3A59),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, SettingsScreen.routeName);
-                  // Navigator.pushNamed(context, EditProfile.routeName);
-                },
+                onPressed: () {},
               ),
             ]),
         body: ListView(
@@ -106,7 +92,7 @@ class _HeroContentState extends State<HeroContent> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Julius Cecilia",
+                        const Text("Solar Surfers",
                             style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w600,
@@ -115,7 +101,6 @@ class _HeroContentState extends State<HeroContent> {
                         const SizedBox(height: 8),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
@@ -136,28 +121,28 @@ class _HeroContentState extends State<HeroContent> {
                                     )),
                               ],
                             ),
-                            SizedBox(width: 20),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: primaryColor,
-                                  elevation: 0.0,
-                                  shadowColor: Colors.transparent,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 6)),
-                              child: const Text('Join',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      height: 1.2,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600)),
-                            ),
                           ],
                         )
                       ],
+                    ),
+                    const Spacer(),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 6)),
+                      child: const Text('Join',
+                          style: TextStyle(
+                              fontSize: 15,
+                              height: 1.2,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
                     ),
                   ],
                 ),
@@ -253,7 +238,7 @@ class _HighlightState extends State<Highlight> {
             height: 900, // Adjust the height as needed
             child: TabBarView(
               controller: _tabController,
-              children: const [CareerVideos(), CareerTeams()],
+              children: const [TeamProfileVideos(), TeamProfileMembers()],
             ),
           ),
         ],
@@ -262,7 +247,7 @@ class _HighlightState extends State<Highlight> {
   }
 }
 
-// For MVP2
+// TODO: For MVP2
 class ExperienceWidget extends StatelessWidget {
   const ExperienceWidget({super.key});
 
