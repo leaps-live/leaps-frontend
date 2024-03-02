@@ -8,6 +8,7 @@ import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_scr
 import 'package:leaps_frontend/screens/team/join_team_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/announcements_history_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/team_profile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -517,6 +518,36 @@ class _TeamManagementLandingScreenState
                   child: const Row(
                     children: [
                       Text('Join Team',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(context, TeamProfileScreen.routeName)
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('Go to Team Profile',
                           style: TextStyle(
                               fontSize: 16,
                               color: secondaryTextColor,
