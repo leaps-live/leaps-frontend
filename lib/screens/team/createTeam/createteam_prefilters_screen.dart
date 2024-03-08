@@ -4,7 +4,7 @@ import 'package:leaps_frontend/utils/colors.dart';
 
 class CreateTeamPreFiltersScreen extends StatefulWidget {
   const CreateTeamPreFiltersScreen({super.key});
-  static const routeName = '/create_team_stepone';
+  static const routeName = '/create_team_prefilters';
 
   @override
   State<CreateTeamPreFiltersScreen> createState() =>
@@ -13,6 +13,15 @@ class CreateTeamPreFiltersScreen extends StatefulWidget {
 
 class _CreateTeamPreFiltersScreenState
     extends State<CreateTeamPreFiltersScreen> {
+  String selectedGender = "";
+  String selectedLevel = "";
+  String selectedSport = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,53 +39,16 @@ class _CreateTeamPreFiltersScreenState
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 15),
-          Row(
-            children: [
-              Container(
+          Row(children: [
+            GestureDetector(
+              onTap: () {},
+              child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: const Text(
-                  "Badminton",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Baseball",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: primaryColor, // 边框颜色
-                    width: 1.0, // 边框宽度
+                    color: primaryColor,
+                    width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -88,147 +60,8 @@ class _CreateTeamPreFiltersScreenState
                       fontWeight: FontWeight.normal),
                 ),
               ),
-            ],
-          ),
-          SizedBox(height: 15),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Football",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Lacrosse",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Soccer",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Golf",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 15),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Volleyball",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, //  边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Tennis",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "+ More",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ]),
           SizedBox(height: 25),
           Text(
             "Location",
@@ -237,39 +70,45 @@ class _CreateTeamPreFiltersScreenState
           SizedBox(height: 15),
           Row(
             children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: primaryColor, // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: primaryColor, // 边框颜色
+                      width: 1.0, // 边框宽度
+                    ),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Green Lake Community Center",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: primaryColor,
-                      fontWeight: FontWeight.normal),
+                  child: Text(
+                    "Green Lake Community Center",
+                    style: const TextStyle(
+                        fontSize: 15,
+                        color: primaryColor,
+                        fontWeight: FontWeight.normal),
+                  ),
                 ),
               ),
               SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                      width: 1.0, // 边框宽度
+                    ),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Icon(
-                  size: 15,
-                  Icons.search,
-                  color: Colors.grey,
+                  child: Icon(
+                    size: 15,
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ],
@@ -345,83 +184,99 @@ class _CreateTeamPreFiltersScreenState
               SizedBox(height: 15),
               Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                          width: 1.0, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Thursday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
+                      child: Text(
+                        "Thursday",
+                        style: const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                   ),
                   SizedBox(width: 15),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                          width: 1.0, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Friday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
+                      child: Text(
+                        "Friday",
+                        style: const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                   ),
                   SizedBox(width: 15),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: primaryColor, // 边框颜色
-                        width: 1.0, // 边框宽度
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: primaryColor, // 边框颜色
+                          width: 1.0, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Saturday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: primaryColor,
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
+                      child: Text(
+                        "Saturday",
+                        style: const TextStyle(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.normal),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Sunday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 3.7),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                          width: 1.0, // 边框宽度
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Text(
+                        "Sunday",
+                        style: const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
           SizedBox(height: 25),
@@ -432,60 +287,123 @@ class _CreateTeamPreFiltersScreenState
           SizedBox(height: 15),
           Row(
             children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: primaryColor, // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedLevel = "Beginner";
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: selectedLevel == "Beginner"
+                      ? BoxDecoration(
+                          border: Border.all(
+                            color: primaryColor, // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        )
+                      : BoxDecoration(
+                          border: Border.all(
+                            color:
+                                const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                  child: Text(
+                    "Beginner",
+                    style: selectedLevel == "Beginner"
+                        ? const TextStyle(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.normal)
+                        : const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Beginner",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: primaryColor,
-                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedLevel = "Intermediate";
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: selectedLevel == "Intermediate"
+                      ? BoxDecoration(
+                          border: Border.all(
+                            color: primaryColor, // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        )
+                      : BoxDecoration(
+                          border: Border.all(
+                            color:
+                                const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                  child: Text(
+                    "Intermediate",
+                    style: selectedLevel == "Intermediate"
+                        ? const TextStyle(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.normal)
+                        : const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Intermediate",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
                 ),
               ),
               SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedLevel = "Advanced";
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: selectedLevel == "Advanced"
+                      ? BoxDecoration(
+                          border: Border.all(
+                            color: primaryColor, // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        )
+                      : BoxDecoration(
+                          border: Border.all(
+                            color:
+                                const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                  child: Text(
+                    "Advanced",
+                    style: selectedLevel == "Advanced"
+                        ? const TextStyle(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.normal)
+                        : const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  "Advanced",
-                  style: const TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
@@ -498,41 +416,83 @@ class _CreateTeamPreFiltersScreenState
           SizedBox(height: 15),
           Row(
             children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: primaryColor, // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedGender = "Male";
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: selectedGender == "Male"
+                      ? BoxDecoration(
+                          border: Border.all(
+                            color: primaryColor, // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        )
+                      : BoxDecoration(
+                          border: Border.all(
+                            color:
+                                const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                  child: Text(
+                    "Male Only",
+                    style: selectedGender == "Male"
+                        ? const TextStyle(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.normal)
+                        : const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: const Text(
-                  "Male only",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: primaryColor,
-                      fontWeight: FontWeight.normal),
                 ),
               ),
               const SizedBox(width: 15),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.7),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                    width: 1.0, // 边框宽度
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedGender = "Female";
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 3.7),
+                  decoration: selectedGender == "Female"
+                      ? BoxDecoration(
+                          border: Border.all(
+                            color: primaryColor, // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        )
+                      : BoxDecoration(
+                          border: Border.all(
+                            color:
+                                const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+                            width: 1.0, // 边框宽度
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                  child: Text(
+                    "Female Only",
+                    style: selectedGender == "Female"
+                        ? const TextStyle(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.normal)
+                        : const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(75, 75, 75, 1),
+                            fontWeight: FontWeight.normal),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: const Text(
-                  "Female only",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Color.fromRGBO(75, 75, 75, 1),
-                      fontWeight: FontWeight.normal),
                 ),
               ),
             ],
