@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/search/searchLocation_screen.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 
@@ -94,7 +95,9 @@ class _CreateTeamPreFiltersScreenState
               ),
               SizedBox(width: 15),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, SearchLocationScreen.routeName);
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 12.0, vertical: 3.7),
@@ -547,7 +550,9 @@ class _CreateTeamPreFiltersScreenState
                   ),
                   child: const Text('Next',
                       style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.normal)),
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700)),
                 ),
               ]),
             ),
