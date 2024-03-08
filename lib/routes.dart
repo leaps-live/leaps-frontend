@@ -40,7 +40,8 @@ import 'package:leaps_frontend/screens/team/createTeam/old_firstCreateTeam_scree
 import 'package:leaps_frontend/screens/team/teamActions/team_members_selection_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/announcements_history_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
-import 'package:leaps_frontend/screens/team/teamPage/old/team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/old/team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/team_profile_screen.dart';
 import 'package:leaps_frontend/screens/user/edit_profile_screen.dart';
 import 'package:leaps_frontend/screens/user/profile_screen.dart';
 import 'package:leaps_frontend/screens/settings/account_security/account_security.dart';
@@ -120,5 +121,6 @@ var allRoutes = <String, WidgetBuilder>{
       const WriteAnnouncementScreen(),
   JoinTeamScreen.routeName: (context) => const JoinTeamScreen(),
   AnnouncementsHistoryScreen.routeName: (context) =>
-      const AnnouncementsHistoryScreen()
+      const AnnouncementsHistoryScreen(),
+  TeamProfileScreen.routeName: (context) => const TeamProfileScreen(),
 };

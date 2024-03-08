@@ -5,7 +5,7 @@ import 'package:leaps_frontend/screens/league/createLeague/editleague_screen.dar
 import 'package:leaps_frontend/screens/league/leaguePage/league_screen.dart';
 import 'package:leaps_frontend/screens/playground/s3_upload_test_screen.dart';
 import 'package:leaps_frontend/screens/team/teamActions/edit_team_screen.dart';
-import 'package:leaps_frontend/screens/team/teamPage/old/team_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/old/team_screen.dart';
 
 import '../widgets/buttons/custom_button.dart';
 

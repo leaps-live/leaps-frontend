@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:leaps_frontend/screens/team/teamPage/old/member.dart';
-import 'package:leaps_frontend/screens/team/teamPage/old/schedule.dart';
-import 'package:leaps_frontend/screens/team/teamPage/old/video.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/old/member.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/old/schedule.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/old/video.dart';
 
 class tabBar extends StatefulWidget {
   const tabBar({super.key});
