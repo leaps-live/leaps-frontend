@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +14,8 @@ class WriteAnnouncementScreen extends StatefulWidget {
 }
 
 class _WriteAnnouncementScreenState extends State<WriteAnnouncementScreen> {
+  final pinController = ValueNotifier<bool>(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +23,7 @@ class _WriteAnnouncementScreenState extends State<WriteAnnouncementScreen> {
       appBar: AppBar(
         backgroundColor: primaryBackgroundColor,
         title: const Text(
-          'Team Announcement',
+          'Announcement',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: Colors.black),
@@ -42,7 +45,47 @@ class _WriteAnnouncementScreenState extends State<WriteAnnouncementScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Post Your Announcement...',
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Text('Pin',
+                        style: TextStyle(
+                          color: secondaryTextColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        )),
+                    SizedBox(width: 10),
+                    AdvancedSwitch(
+                      inactiveColor: secondaryTextColor,
+                      controller: pinController,
+                      activeColor: primaryColor,
+                      width: 37,
+                      height: 20,
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Text('1000 characters',
+                    style: TextStyle(
+                      color: secondaryTextColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ))
+              ],
+            )
+          ],
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -23,13 +24,23 @@ class _AnnouncementsHistoryScreenState extends State<AnnouncementsHistoryScreen>
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
       appBar: AppBar(
-        backgroundColor: primaryBackgroundColor,
-        title: const Text(
-          'Team Announcements',
-          style: TextStyle(color: Colors.black),
-        ),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+          backgroundColor: primaryBackgroundColor,
+          title: const Text(
+            'Announcements',
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: const IconThemeData(color: Colors.black),
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Remix.edit_line,
+                color: Color(0xFF2E3A59),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, WriteAnnouncementScreen.routeName);
+              },
+            ),
+          ]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: SafeArea(

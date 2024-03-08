@@ -8,6 +8,7 @@ import 'package:leaps_frontend/screens/team/createTeam/createTeam_preFilters_scr
 import 'package:leaps_frontend/screens/team/join_team_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/announcements_history_screen.dart';
 import 'package:leaps_frontend/screens/team/teamManagement/announcements/write_announcement_screen.dart';
+import 'package:leaps_frontend/screens/team/teamProfile/team_profile_screen.dart';
 import 'package:leaps_frontend/utils/colors.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -116,7 +117,7 @@ class _TeamManagementLandingScreenState
                               ],
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 14),
                           const Text(
                             "University of Washington",
                             style: TextStyle(
@@ -126,26 +127,109 @@ class _TeamManagementLandingScreenState
                             ),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 14),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Container(
-                                    color: primaryColor, width: 6, height: 6),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, TeamProfileScreen.routeName);
+                                    },
+                                    child: const Text("View Team Profile",
+                                        style: TextStyle(
+                                          color: actionItem,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 13,
+                                        )),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Icon(Remix.arrow_right_line,
+                                      color: actionItem, size: 13),
+                                ],
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: redBacking,
+                                    elevation: 0.0,
+                                    shadowColor: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 6)),
+                                child: const Row(
+                                  children: [
+                                    Icon(Remix.user_shared_line,
+                                        color: primaryColor, size: 20),
+                                    SizedBox(width: 8),
+                                    Text('Invite',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: primaryColor,
+                                            fontWeight: FontWeight.w600)),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(width: 7),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Container(
-                                    color: tagColor, width: 6, height: 6),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context,
+                                      WriteAnnouncementScreen.routeName);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: redBacking,
+                                    elevation: 0.0,
+                                    shadowColor: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 6)),
+                                child: const Row(
+                                  children: [
+                                    Icon(Remix.edit_line,
+                                        color: primaryColor, size: 20),
+                                    SizedBox(width: 8),
+                                    Text('Post',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: primaryColor,
+                                            fontWeight: FontWeight.w600)),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(width: 7),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Container(
-                                    color: tagColor, width: 6, height: 6),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: redBacking,
+                                    elevation: 0.0,
+                                    shadowColor: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 6)),
+                                child: const Row(
+                                  children: [
+                                    Icon(Remix.message_line,
+                                        color: primaryColor, size: 20),
+                                    SizedBox(width: 8),
+                                    Text('Chat',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: primaryColor,
+                                            fontWeight: FontWeight.w600)),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -153,85 +237,6 @@ class _TeamManagementLandingScreenState
                       )
                     ],
                   ),
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: grayShadeColor,
-                          elevation: 0.0,
-                          shadowColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 12)),
-                      child: const Row(
-                        children: [
-                          Icon(Remix.user_shared_line,
-                              color: iconColor, size: 20),
-                          SizedBox(width: 8),
-                          Text('Invite',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: secondaryTextColor,
-                                  fontWeight: FontWeight.w600)),
-                        ],
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, WriteAnnouncementScreen.routeName);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: grayShadeColor,
-                          elevation: 0.0,
-                          shadowColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 12)),
-                      child: const Row(
-                        children: [
-                          Icon(Remix.edit_line, color: iconColor, size: 20),
-                          SizedBox(width: 8),
-                          Text('Post',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: secondaryTextColor,
-                                  fontWeight: FontWeight.w600)),
-                        ],
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: grayShadeColor,
-                          elevation: 0.0,
-                          shadowColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 12)),
-                      child: const Row(
-                        children: [
-                          Icon(Remix.message_line, color: iconColor, size: 20),
-                          SizedBox(width: 8),
-                          Text('Chat',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: secondaryTextColor,
-                                  fontWeight: FontWeight.w600)),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
                 const SizedBox(height: 30),
                 Container(
@@ -517,6 +522,36 @@ class _TeamManagementLandingScreenState
                   child: const Row(
                     children: [
                       Text('Join Team',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w600)),
+                      Spacer(),
+                      Icon(
+                        Remix.arrow_right_s_line,
+                        color: secondaryTextColor,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(context, TeamProfileScreen.routeName)
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size.fromHeight(50),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12)),
+                  child: const Row(
+                    children: [
+                      Text('Go to Team Profile',
                           style: TextStyle(
                               fontSize: 16,
                               color: secondaryTextColor,
