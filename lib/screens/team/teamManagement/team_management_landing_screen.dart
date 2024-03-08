@@ -134,7 +134,10 @@ class _TeamManagementLandingScreenState
                               Row(
                                 children: [
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, TeamProfileScreen.routeName);
+                                    },
                                     child: const Text("View Team Profile",
                                         style: TextStyle(
                                           color: actionItem,
