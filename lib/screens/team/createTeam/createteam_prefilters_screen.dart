@@ -15,7 +15,8 @@ class _CreateTeamPreFiltersScreenState
     extends State<CreateTeamPreFiltersScreen> {
   String selectedGender = "";
   String selectedLevel = "";
-  String selectedSport = "";
+  String selectedSport = "Basketball";
+  String selectedLocation = "";
 
   @override
   void initState() {
@@ -113,172 +114,198 @@ class _CreateTeamPreFiltersScreenState
               ),
             ],
           ),
-          SizedBox(height: 25),
-          Text(
-            "Days",
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-          ),
-          SizedBox(height: 15),
-          Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Monday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Tuesday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 3.7),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                        width: 1.0, // 边框宽度
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(
-                      "Wednesday",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(75, 75, 75, 1),
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                          width: 1.0, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        "Thursday",
-                        style: const TextStyle(
-                            fontSize: 15,
-                            color: Color.fromRGBO(75, 75, 75, 1),
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                          width: 1.0, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        "Friday",
-                        style: const TextStyle(
-                            fontSize: 15,
-                            color: Color.fromRGBO(75, 75, 75, 1),
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: primaryColor, // 边框颜色
-                          width: 1.0, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        "Saturday",
-                        style: const TextStyle(
-                            fontSize: 15,
-                            color: primaryColor,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15),
-              GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 3.7),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
-                          width: 1.0, // 边框宽度
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        "Sunday",
-                        style: const TextStyle(
-                            fontSize: 15,
-                            color: Color.fromRGBO(75, 75, 75, 1),
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+          // Select Days
+          // SizedBox(height: 25),
+          // Text(
+          //   "Days",
+          //   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+          // ),
+          // SizedBox(height: 15),
+          // Column(
+          //   children: [
+          //     Row(
+          //       children: [
+          //         GestureDetector(
+          //           onTap: () {
+          //             setState(() {
+          //               selectedDay = "Monday";
+          //             });
+          //           },
+          //           child: Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Monday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: Color.fromRGBO(75, 75, 75, 1),
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ),
+          //         SizedBox(width: 15),
+          //         GestureDetector(
+          //           onTap: () {
+          //             setState(() {
+          //               selectedDay = "Tuesday";
+          //             });
+          //           },
+          //           child: Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Tuesday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: Color.fromRGBO(75, 75, 75, 1),
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ),
+          //         SizedBox(width: 15),
+          //         GestureDetector(
+          //           onTap: () {
+          //             setState(() {
+          //               selectedDay = "Wednesday";
+          //             });
+          //           },
+          //           child: Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Wednesday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: Color.fromRGBO(75, 75, 75, 1),
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //     SizedBox(height: 15),
+          //     Row(
+          //       children: [
+          //         GestureDetector(
+          //           onTap: () {
+          //             setState(() {
+          //               selectedDay = "Thursday";
+          //             });
+          //           },
+          //           child: Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Thursday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: Color.fromRGBO(75, 75, 75, 1),
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ),
+          //         SizedBox(width: 15),
+          //         GestureDetector(
+          //           onTap: () {},
+          //           child: Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Friday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: Color.fromRGBO(75, 75, 75, 1),
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ),
+          //         SizedBox(width: 15),
+          //         GestureDetector(
+          //           onTap: () {},
+          //           child: Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: primaryColor, // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Saturday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: primaryColor,
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //     SizedBox(height: 15),
+          //     GestureDetector(
+          //       onTap: () {},
+          //       child: Row(
+          //         children: [
+          //           Container(
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 12.0, vertical: 3.7),
+          //             decoration: BoxDecoration(
+          //               border: Border.all(
+          //                 color: const Color.fromRGBO(176, 175, 175, 1), // 边框颜色
+          //                 width: 1.0, // 边框宽度
+          //               ),
+          //               borderRadius: BorderRadius.circular(15),
+          //             ),
+          //             child: Text(
+          //               "Sunday",
+          //               style: const TextStyle(
+          //                   fontSize: 15,
+          //                   color: Color.fromRGBO(75, 75, 75, 1),
+          //                   fontWeight: FontWeight.normal),
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     )
+          //   ],
+          // ),
           SizedBox(height: 25),
           Text(
             "Skill Level (Optional)",
@@ -499,24 +526,34 @@ class _CreateTeamPreFiltersScreenState
           ),
           // TODO: Replace with align bottom screen
           const SizedBox(height: 100),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, CreateTeamStepOneScreen.routeName);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
-                fixedSize: const Size(300, 40),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                        context, CreateTeamStepOneScreen.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    fixedSize: const Size(300, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
+                  ),
+                  child: const Text('Next',
+                      style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.normal)),
                 ),
-                elevation: 0.0,
-                shadowColor: Colors.transparent,
-              ),
-              child: const Text('Next',
-                  style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.normal)),
+              ]),
             ),
+          ),
+          const SizedBox(
+            height: 56,
           ),
         ]),
       ),
