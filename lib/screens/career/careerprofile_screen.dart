@@ -17,18 +17,18 @@ class CareerProfileScreen extends StatefulWidget {
   State<CareerProfileScreen> createState() => _CareerProfileScreenState();
 }
 
-late User user;
-late String userName;
-late String userFirstName;
-late String userLastName;
-late TabController _tabController;
+User? user;
+String? userName;
+String? userFirstName;
+String? userLastName;
+TabController? _tabController;
 
 class User {
   String userid;
-  String firstName;
-  String lastName;
-  String userType;
-  String userName;
+  String firstName = "";
+  String lastName = "";
+  String userType = "";
+  String userName = "";
 
   User(
       {required this.userid,
@@ -71,7 +71,7 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController?.dispose();
     super.dispose();
   }
 
@@ -81,9 +81,9 @@ class _CareerProfileScreenState extends State<CareerProfileScreen>
     if (userJsonString != null) {
       print("user data $userJsonString");
       user = User.fromJson(jsonDecode(userJsonString!));
-      userName = user.userName;
-      userFirstName = user.firstName;
-      userLastName = user.lastName;
+      userName = user?.userName;
+      userFirstName = user?.firstName;
+      userLastName = user?.lastName;
       setState(() {
         isLogin = true;
       });
@@ -300,6 +300,9 @@ class _HighlightState extends State<Highlight> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: TabBar(
+                  indicatorColor: Colors.transparent,
+                  dividerColor: Colors.transparent,
+                  tabAlignment: TabAlignment.start,
                   isScrollable: true, // Make the TabBar scrollable
                   controller: _tabController,
                   indicatorSize: TabBarIndicatorSize.label,
