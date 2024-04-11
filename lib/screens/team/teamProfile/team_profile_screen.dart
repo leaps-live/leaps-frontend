@@ -204,6 +204,9 @@ class _HighlightState extends State<Highlight> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: TabBar(
+                  indicatorColor: Colors.transparent,
+                  dividerColor: Colors.transparent,
+                  tabAlignment: TabAlignment.start,
                   isScrollable: true, // Make the TabBar scrollable
                   controller: _tabController,
                   indicatorSize: TabBarIndicatorSize.label,

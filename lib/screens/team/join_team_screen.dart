@@ -31,6 +31,9 @@ class _JoinTeamScreenState extends State<JoinTeamScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: secondaryBackgroundColor,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(

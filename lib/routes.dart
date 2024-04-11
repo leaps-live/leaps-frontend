@@ -28,6 +28,7 @@ import 'package:leaps_frontend/screens/livestream/createlivestream_screen.dart';
 import 'package:leaps_frontend/screens/main_screen.dart';
 import 'package:leaps_frontend/screens/onboarding_screen.dart';
 import 'package:leaps_frontend/screens/search/searchLeague.dart';
+import 'package:leaps_frontend/screens/search/searchLocation_screen.dart';
 import 'package:leaps_frontend/screens/search/searchMember_screen.dart';
 import 'package:leaps_frontend/screens/search/searchTeam.dart';
 import 'package:leaps_frontend/screens/team/createTeam/createTeam_stepOne_screen.dart';
@@ -123,4 +124,5 @@ var allRoutes = <String, WidgetBuilder>{
   AnnouncementsHistoryScreen.routeName: (context) =>
       const AnnouncementsHistoryScreen(),
   TeamProfileScreen.routeName: (context) => const TeamProfileScreen(),
+  SearchLocationScreen.routeName: (context) => const SearchLocationScreen()
 };

@@ -534,36 +534,6 @@ class _TeamManagementLandingScreenState
                     ],
                   ),
                 ),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () => {
-                    Navigator.pushNamed(context, TeamProfileScreen.routeName)
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      minimumSize: const Size.fromHeight(50),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12)),
-                  child: const Row(
-                    children: [
-                      Text('Go to Team Profile',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: secondaryTextColor,
-                              fontWeight: FontWeight.w600)),
-                      Spacer(),
-                      Icon(
-                        Remix.arrow_right_s_line,
-                        color: secondaryTextColor,
-                      )
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
