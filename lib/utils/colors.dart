@@ -10,6 +10,7 @@ const secondaryTextColor = Color.fromRGBO(116, 116, 116, 1);
 const borderColor = Color.fromRGBO(208, 208, 208, 1);
 const iconColor = Color(0xFF2E3A59);
 const basketball = Color(0xFFEE6730);
+const primaryBlackBackground = Color.fromRGBO(33, 33, 37, 1);
 const tennis = Color(0xFFD7F64C);
 const primaryText = Color.fromRGBO(28, 28, 28, 1);
 const secondaryText = Color.fromRGBO(74, 74, 74, 1);

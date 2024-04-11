@@ -34,7 +34,7 @@ class _TeamManagementLandingScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryBackgroundColor,
+      backgroundColor: primaryBlackBackground,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: SafeArea(
@@ -42,6 +42,19 @@ class _TeamManagementLandingScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Row(
+                  children: [
+                    Text(
+                      "Julius Cecilia",
+                      style: TextStyle(
+                        color: secondaryText,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
